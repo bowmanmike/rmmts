@@ -4,5 +4,5 @@ class Chore < ActiveRecord::Base
 
   validates :name, presence: true
   validates :frequency, numericality: {only_integer: true}
-  
+
 end
