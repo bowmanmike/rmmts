@@ -2,9 +2,10 @@
 
 <div id="chore-due">
   <p>
-    Original due date: <%= @chore.due_date %><br>
-    Next due date: <%= @chore.next_due_date %><br>
-    Occurs every <%= @chore.frequency %> days
+    Original due date: <%= @chore.due_date.strftime("%a, %e %b %Y") %><br>
+    Next due date: <%= @chore.next_due_date.strftime("%a, %e %b %Y") %><br>
+    <!-- Might need to fix wording for chores that aren't daily weekly or monthly -->
+    Needs to be done <%= @chore.frequency_alias %>.
   </p>
 </div>
 
