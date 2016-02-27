@@ -24,6 +24,7 @@ class HousesController < ApplicationController
   end
 
   def edit
+    @house = House.find(params[:id])
   end
 
   def update
