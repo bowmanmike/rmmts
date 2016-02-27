@@ -30,15 +30,17 @@ class Chore < ActiveRecord::Base
     next_due_date
   end
 
-  def frequency_alias(frequency)
+  def frequency_alias
 
-    case frequency
+    case self.frequency
     when 1
       "daily"
     when 7
       "weekly"
     when 14
       "bi-weekly"
+    else
+      "every #{self.frequency} days(s)"
     end
 
   end

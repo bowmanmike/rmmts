@@ -12,7 +12,7 @@
   <p><strong><%= chore.name %></strong></p>
   <p><%= chore.description %></p>
   <p><%= chore.next_due_date.strftime("%a, %e %b %Y") %></p>
-  <p>Every <%= chore.frequency %> day(s)</p>
+  <p>Occurs <%= chore.frequency_alias %></p>
   <%= form_for [@house, chore] do |f| %>
     <%= f.hidden_field :complete, :value => false %>
     <%= f.submit "Mark as Incomplete" %>
@@ -26,7 +26,7 @@
   <p><strong><%= chore.name %></strong></p>
   <p><%= chore.description %></p>
   <p>Due Date: <%= chore.next_due_date.strftime("%a, %e %b %Y") %></p>
-  <p>Every <%= chore.frequency %> day(s)</p>
+  <p>Occurs <%= chore.frequency_alias %></p>
   <%= form_for [@house, chore] do |f| %>
     <%= f.hidden_field :complete, :value => true %>
     <%= f.submit "Mark as Complete" %>
