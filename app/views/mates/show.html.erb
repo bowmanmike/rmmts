@@ -1,1 +1,21 @@
 <h1>Profile for <%= @mate.username %></h1>
+
+<div class="mate-details">
+  <dl>
+    <dd>Name: <%= @mate.first_name %> <%= @mate.last_name %></dd>
+    <dd>Email: <%= @mate.email %></dd>
+  </dl>
+</div>
+
+<div class="mates-chores-list">
+  <% if @mate.chores.any? %>
+    <% @mate.chores.each do |chore| %>
+      <li><%= link_to chore.name, chore_path(chore) %></li>
+      <li>Due: <%= chore.due_date %></li>
+    <% end %>
+  <% else %>
+    <p>This mate has no chores, lazy bum...</p>
+  <% end %>
+</div>
+
+<%= link_to "Create a house", new_house_path %>
