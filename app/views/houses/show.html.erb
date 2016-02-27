@@ -1,9 +1,15 @@
 <h2><%= @house.name %></h2>
 
 <% if current_user.house_id == @house.id %>
-  <%= link_to button_tag("Leave This House"), houses_path %>
+  <%= form_for current_user do |f| %>
+    <%= f.hidden_field :house_id, :value => nil %>
+    <%= f.submit "Leave This House" %>
+  <% end %>
 <% else %>
-  <%= link_to button_tag("Join This House"), houses_path %>
+  <%= form_for current_user do |f| %>
+    <%= f.hidden_field :house_id, :value => @house.id %>
+    <%= f.submit "Join This House" %>
+  <% end %>
 <% end %>
 
 <h3>Roommates</h3>
