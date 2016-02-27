@@ -1,0 +1,25 @@
+<h1><%= @chore.name %></h1>
+
+<div id="chore-due">
+  <p>
+    <%= @chore.due_date %><br>
+    Occurs every <%= @chore.frequency %> days
+  </p>
+</div>
+
+<div id="chore-description">
+  <p>
+    <%= @chore.description %>
+  </p>
+</div>
+
+<div id="chore-complete">
+  <p>
+    Completed?
+    <% if @chore.complete %>
+      Yes
+    <% else %>
+      No
+    <% end %>
+  </p>
+</div>
