@@ -2,8 +2,9 @@ class Mate < ActiveRecord::Base
   authenticates_with_sorcery!
   validates :username, presence: true, uniqueness: true
   validates :email, uniqueness: true
-  validates_length_of :password, minimum: 3, message: "password must be at least 3 characters long", if: :password
-  validates_confirmation_of :password, message: "should match confirmation", if: :password
+  validates :password, length: { minimum: 3 }, if: -> { new_record? || changes["password"] }
+  validates :password, confirmation: true, if: -> { new_record? || changes["password"] }
+  validates :password_confirmation, presence: true, if: -> { new_record? || changes["password"] }
 
   belongs_to :house
   has_many :chores

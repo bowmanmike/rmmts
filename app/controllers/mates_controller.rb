@@ -16,6 +16,7 @@ class MatesController < ApplicationController
     @mate = Mate.new(mate_params)
 
     if @mate.save
+      auto_login(@mate)
       redirect_to mate_path(@mate), notice: 'account created'
     end
   end
