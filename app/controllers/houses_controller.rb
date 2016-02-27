@@ -14,6 +14,7 @@ class HousesController < ApplicationController
 
   def create
     @house = House.new(house_params)
+    @house.creator_id = current_user
 
     if @house.save
       redirect_to house_path(@house), notice: "House created!"
