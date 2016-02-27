@@ -11,7 +11,7 @@
 <% @house.chores.where(complete: true).each do |chore| %>
   <p><strong><%= chore.name %></strong></p>
   <p><%= chore.description %></p>
-  <p><%= chore.due_date.strftime("%a, %e %b %Y") %></p>
+  <p><%= chore.next_due_date.strftime("%a, %e %b %Y") %></p>
   <p>Every <%= chore.frequency %> day(s)</p>
   <%= form_for [@house, chore] do |f| %>
     <%= f.hidden_field :complete, :value => false %>
@@ -25,7 +25,7 @@
 <% @house.chores.where(complete: !true).each do |chore| %>
   <p><strong><%= chore.name %></strong></p>
   <p><%= chore.description %></p>
-  <p>Due Date: <%= chore.due_date.strftime("%a, %e %b %Y") %></p>
+  <p>Due Date: <%= chore.next_due_date.strftime("%a, %e %b %Y") %></p>
   <p>Every <%= chore.frequency %> day(s)</p>
   <%= form_for [@house, chore] do |f| %>
     <%= f.hidden_field :complete, :value => true %>

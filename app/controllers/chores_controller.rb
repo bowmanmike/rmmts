@@ -3,7 +3,7 @@ class ChoresController < ApplicationController
   before_filter :require_login
 
   before_action :load_house
-  before_action :load_chore, only: [:edit, :update, :destroy]
+  before_action :load_chore, only: [:show, :edit, :update, :destroy]
 
   def new
     @chore = Chore.new
