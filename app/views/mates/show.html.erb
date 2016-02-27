@@ -10,7 +10,7 @@
 <div class="mates-chores-list">
   <% if @mate.chores.any? %>
     <% @mate.chores.each do |chore| %>
-      <li><%= link_to chore.name, chore_path(chore) %></li>
+      <li><%= link_to chore.name, house_chore_path(@mate.house, chore) %></li>
       <li>Due: <%= chore.due_date %></li>
     <% end %>
   <% else %>

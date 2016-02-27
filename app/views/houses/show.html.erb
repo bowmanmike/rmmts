@@ -15,7 +15,7 @@
 <h3>Roommates</h3>
 <ul>
   <% @house.mates.each do |mate| %>
-    <li><%= mate.first_name %> <%= mate.last_name %></li>
+    <li><%= link_to "#{mate.first_name} #{mate.last_name}", mate_path(mate) %></li>
   <% end %>
 </ul>
 
