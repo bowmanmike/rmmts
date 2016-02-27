@@ -1,2 +1,5 @@
-<%= link_to "register", new_mate_path %>
-<%= link_to "login", new_session_path %>
+<h1>Roommates</h1>
+
+<% @mates.each do |mate| %>
+  <li><%= link_to mate.username, mate_path(mate) %></li>
+<% end %>
