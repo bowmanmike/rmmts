@@ -11,10 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227201345) do
+ActiveRecord::Schema.define(version: 20160227202434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chores", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "due_date"
+    t.integer  "frequency"
+    t.boolean  "complete"
+    t.integer  "house_id"
+    t.integer  "mate_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "chores", ["house_id"], name: "index_chores_on_house_id", using: :btree
+  add_index "chores", ["mate_id"], name: "index_chores_on_mate_id", using: :btree
+
+  create_table "houses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "creator_id"
+  end
+
+  add_index "houses", ["creator_id"], name: "index_houses_on_creator_id", using: :btree
 
   create_table "mates", force: :cascade do |t|
     t.string   "email",            null: false
@@ -29,4 +53,6 @@ ActiveRecord::Schema.define(version: 20160227201345) do
 
   add_index "mates", ["email"], name: "index_mates_on_email", unique: true, using: :btree
 
+  add_foreign_key "chores", "houses"
+  add_foreign_key "chores", "mates"
 end
