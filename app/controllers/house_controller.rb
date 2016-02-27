@@ -5,6 +5,7 @@ class HouseController < ApplicationController
   end
 
   def create
+    @house = House.new
   end
 
   def index
