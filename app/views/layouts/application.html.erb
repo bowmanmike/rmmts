@@ -9,6 +9,7 @@
 <body>
 
   <div id="nav">
+    <h1>rmmts</h1>
     <% unless current_user %>
       <%= link_to "register", new_mate_path %>
       <%= link_to "login", new_session_path %>
@@ -19,7 +20,6 @@
     <%= link_to 'Mates', mates_path %>
   </div>
 
-  <h1>rmmts</h1>
 
   <%= yield %>
 
