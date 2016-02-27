@@ -8,16 +8,27 @@
 </head>
 <body>
 
-<h1>rmmts</h1>
+  <div id="nav">
+    <% unless current_user %>
+      <%= link_to "register", new_mate_path %>
+      <%= link_to "login", new_session_path %>
+    <% end %>
 
-<%= yield %>
+    <%= link_to 'Home', root_path %>
+    <%= link_to 'Houses', houses_path %>
+    <%= link_to 'Mates', mates_path %>
+  </div>
 
-<footer>
-  <% if current_user %>
-    <p>logged in as <%= current_user.username %></p>
-    <%= link_to "log out", logout_path(@mate), method: :post %>
-  <% end %>
-</footer>
+  <h1>rmmts</h1>
+
+  <%= yield %>
+
+  <footer>
+    <% if current_user %>
+      <p>logged in as <%= current_user.username %></p>
+      <%= link_to "log out", logout_path(@mate), method: :post %>
+    <% end %>
+  </footer>
 
 </body>
 </html>
