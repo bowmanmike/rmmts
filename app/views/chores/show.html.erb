@@ -2,7 +2,8 @@
 
 <div id="chore-due">
   <p>
-    <%= @chore.due_date %><br>
+    Original due date: <%= @chore.due_date %><br>
+    Next due date: <%= @chore.next_due_date %><br>
     Occurs every <%= @chore.frequency %> days
   </p>
 </div>

@@ -17,22 +17,34 @@ class HousesController < ApplicationController
     @house.creator_id = current_user.id
 
     if @house.save
-      redirect_to house_path(@house), notice: "House created!"
+      redirect_to house_path(@house.id), notice: "House created!"
     else
       render :new
     end
   end
 
   def edit
+    @house = House.find(params[:id])
   end
 
   def update
+    @house = House.find(params[:id])
+
+    if @house.update_attributes(house_params)
+      redirect_to house_path(@house.id), notice: "House Updated!"
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @house = House.find(params[:id])
+    @house.destroy
+    redirect_to houses_path
   end
 
   private
+
   def house_params
     params.require(:house).permit(:name)
   end
