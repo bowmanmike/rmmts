@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'house#index'
+  root 'houses#index'
 
   resources :houses do
     resources :chores, except: [:index]
