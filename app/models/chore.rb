@@ -5,7 +5,7 @@ class Chore < ActiveRecord::Base
   validates :name, presence: true
   validates :frequency, numericality: {only_integer: true}
 
-  def self.next_due_date
+  def next_due_date
     # Convert today into a Date object: today
     today = Time.now.beginning_of_day.to_date
     # Convert original due date into a Date object: original_date
