@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   root 'house#index'
 
-  resources :house
+  resources :houses do
+    resources :chores, except: [:index]
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
