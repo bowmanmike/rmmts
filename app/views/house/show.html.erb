@@ -1,1 +1,27 @@
-<h3><%= @house.name %></h3>
+<h2><%= @house.name %></h2>
+
+<h3>Roommates</h3>
+<ul>
+  <% @house.mates.each do |mate| %>
+    <li><%= mate.first_name %> <%= mate.last_name %></li>
+  <% end %>
+</ul>
+
+<h3>Completed Chores</h3>
+<% @house.chores.where(complete: true).each do |chore| %>
+  <p><strong><%= chore.name %></strong></p>
+  <p><%= chore.description %></p>
+  <p><%= chore.due_date.strftime("%a, %e %b %Y") %></p>
+  <p>Every <%= chore.frequency %> day(s)</p>
+  <br>
+<% end %>
+
+
+<h3>Incomplete Chores</h3>
+<% @house.chores.where(complete: !true).each do |chore| %>
+  <p><strong><%= chore.name %></strong></p>
+  <p><%= chore.description %></p>
+  <p>Due Date: <%= chore.due_date.strftime("%a, %e %b %Y") %></p>
+  <p>Every <%= chore.frequency %> day(s)</p>
+  <br>
+<% end %>
