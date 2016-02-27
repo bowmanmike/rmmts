@@ -26,7 +26,11 @@ class MatesController < ApplicationController
 
   def update
     if @mate.update_attributes(mate_params)
-      redirect_to mate_path(@mate), notice: 'account updated'
+      if @mate.house == nil
+        redirect_to houses_path
+      else
+        redirect_to house_path(@mate.house), notice: 'account updated'
+      end
     else
       render :edit
     end
