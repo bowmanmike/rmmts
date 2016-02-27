@@ -5,7 +5,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if @mate = login(params[:email], params[:password])
+    if Mate.find_by(username: params[:login])
+      params[:login] = Mate.find_by(username: params[:login]).email
+    end
+
+    if @mate = login(params[:login], params[:password])
       redirect_to root_path, notice: "login successful"
     else
       render :new, notice: "login failed"
@@ -18,3 +22,9 @@ class SessionsController < ApplicationController
   end
 
 end
+
+
+
+# if params[:username] != "" && Mate.find_by(username: params[:username])
+#   params[:email] = Mate.find_by(username: params[:username]).email
+# end
