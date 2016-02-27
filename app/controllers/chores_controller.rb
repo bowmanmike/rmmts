@@ -3,7 +3,7 @@ class ChoresController < ApplicationController
   before_filter :require_login
 
   before_action :load_house
-  before_action :load_chore, only: [:edit, :update, :destroy]
+  before_action :load_chore, only: [:show, :edit, :update, :destroy]
 
   def new
     @chore = Chore.new
@@ -49,7 +49,7 @@ class ChoresController < ApplicationController
   private
 
   def load_chore
-    @chore = Chore.find(params:[id])
+    @chore = Chore.find(params[:id])
   end
 
   def load_house
@@ -57,6 +57,6 @@ class ChoresController < ApplicationController
   end
 
   def chore_params
-    params.require(:chore).permit(:name, :description, :due_date, :frequency)
+    params.require(:chore).permit(:name, :description, :due_date, :frequency, :complete)
   end
 end
