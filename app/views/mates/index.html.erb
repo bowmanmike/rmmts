@@ -1,1 +1,5 @@
+<h1>Roommates</h1>
 
+<% @mates.each do |mate| %>
+  <li><%= link_to mate.username, mate_path(mate) %></li>
+<% end %>
