@@ -13,6 +13,10 @@
   <p><%= chore.description %></p>
   <p><%= chore.due_date.strftime("%a, %e %b %Y") %></p>
   <p>Every <%= chore.frequency %> day(s)</p>
+  <%= form_for [@house, chore] do |f| %>
+    <%= f.hidden_field :complete, :value => false %>
+    <%= f.submit "Mark as Incomplete" %>
+  <% end %>
   <br>
 <% end %>
 
@@ -23,6 +27,10 @@
   <p><%= chore.description %></p>
   <p>Due Date: <%= chore.due_date.strftime("%a, %e %b %Y") %></p>
   <p>Every <%= chore.frequency %> day(s)</p>
+  <%= form_for [@house, chore] do |f| %>
+    <%= f.hidden_field :complete, :value => true %>
+    <%= f.submit "Mark as Complete" %>
+  <% end %>
   <br>
 <% end %>
 
