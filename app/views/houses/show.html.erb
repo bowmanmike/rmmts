@@ -19,6 +19,19 @@
   <% end %>
 </ul>
 
+<h3>House Announcements</h3>
+<% if @announcements.blank? %>
+  <p>No Announcements Yet!</p>
+<% else %>
+  <% @announcements.each do |announcement| %>
+    <h4><%= announcement.title %></h4>
+    <p><%= announcement.body %></p>
+    <p>Posted by: <%= announcement.mate.first_name %> <%= announcement.mate.last_name %></p>
+    <p>Posted at: <%= announcement.created_at.strftime('%A, %d %b %Y %l:%M %p') %></p>
+  <% end %>
+<% end %>
+<%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house) %>
+
 <h3>Completed Chores</h3>
 <% @house.chores.where(complete: true).each do |chore| %>
   <p>

@@ -1,0 +1,12 @@
+<h3>All Announcements</h3>
+
+<% if @announcements.blank? %>
+  <p>No Announcements for this house!</p>
+<% else %>
+  <% @announcements.each do |announcement| %>
+    <h4><%= announcement.title %></h4>
+    <p><%= announcement.body %></p>
+    <p>Posted by: <%= announcement.mate.first_name %> <%= announcement.mate.last_name %></p>
+    <p>Posted at: <%= announcement.created_at.strftime('%A, %d %b %Y %l:%M %p') %></p>
+  <% end %>
+<% end %>
