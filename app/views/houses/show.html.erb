@@ -55,6 +55,10 @@
     <%= f.hidden_field :complete, :value => true %>
     <%= f.submit "Mark as Complete" %>
   <% end %>
+  <%= form_for [@house, chore] do |f| %>
+    <%= f.hidden_field :assign_self, :value => current_user.id %>
+    <%= f.submit "Claim this chore" %>
+  <% end %>
   <br>
 <% end %>
 
