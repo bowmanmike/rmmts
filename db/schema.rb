@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228192333) do
+ActiveRecord::Schema.define(version: 20160228193242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,7 +66,21 @@ ActiveRecord::Schema.define(version: 20160228192333) do
 
   add_index "mates", ["email"], name: "index_mates_on_email", unique: true, using: :btree
 
+  create_table "payments", force: :cascade do |t|
+    t.float    "amount"
+    t.datetime "paid_date"
+    t.integer  "mate_id"
+    t.integer  "expense_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "payments", ["expense_id"], name: "index_payments_on_expense_id", using: :btree
+  add_index "payments", ["mate_id"], name: "index_payments_on_mate_id", using: :btree
+
   add_foreign_key "chores", "houses"
   add_foreign_key "chores", "mates"
   add_foreign_key "expenses", "houses"
+  add_foreign_key "payments", "expenses"
+  add_foreign_key "payments", "mates"
 end
