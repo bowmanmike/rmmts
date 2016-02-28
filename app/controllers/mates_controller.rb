@@ -17,6 +17,7 @@ class MatesController < ApplicationController
 
     if @mate.save
       auto_login(@mate)
+      MateMailer.welcome_email(@mate).deliver_later
       redirect_to mate_path(@mate), notice: 'account created'
     end
   end
