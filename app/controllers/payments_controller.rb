@@ -2,6 +2,7 @@ class PaymentsController < ApplicationController
 
   before_filter :require_login
 
+  before_action :load_house
   before_action :load_expense
   before_action :load_payment, only: [:show, :edit, :update, :destroy]
 
@@ -11,7 +12,7 @@ class PaymentsController < ApplicationController
 
   def create
     @payment = @expense.payments.build(payment_params)
-    @payment.user = current_user
+    @payment.mate = current_user
 
     if @payment.save
       redirect_to house_path(@expense)
@@ -49,6 +50,10 @@ class PaymentsController < ApplicationController
 
   def payment_params
     params.require(:payment).permit(:amount, :paid_date)
+  end
+
+  def load_house
+    @house = House.find(params[:house_id])
   end
 
   def load_expense
