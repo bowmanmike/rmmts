@@ -1,0 +1,27 @@
+<div id="expense-form" class="form">
+
+  <%= form_for ([@house, @expense]) do |f| %>
+
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+      <%= f.label :due_date %><br>
+      <%= f.date_field :due_date %>
+    </div>
+    <div class="field">
+      <%= f.label :amount %><br>
+      <%= f.number_field :amount, nil, min: 0.01%>
+    </div>
+    <div class="action">
+      <%= f.submit "Save" %>
+    </div>
+
+  <% end %>
+
+</div>
