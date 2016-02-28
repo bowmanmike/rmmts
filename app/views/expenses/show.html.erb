@@ -33,3 +33,4 @@
     <%= link_to "Delete expense", house_expense_path(@expense.house, @expense), method: :delete, data: { confirm: "Are you sure you want to delete this expense?" } %>
   <% end %>
 </div>
+<%= link_to "Back to House", house_path(params[:house_id]) %>
