@@ -11,7 +11,7 @@ class ChoresController < ApplicationController
 
   def create
     @chore = @house.chores.build(chore_params)
-    @chore.mate = current_user
+    @chore.mate = nil
     @chore.creator = current_user
     @chore.complete = false
 
