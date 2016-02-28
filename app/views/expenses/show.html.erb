@@ -9,7 +9,7 @@
 <div id="payment-list">
   <% @expense.payments.each do |payment| %>
     <p>
-      <%= payment.mate.username %>: <%= number_to_currency(payment.amount) %> (<%= @payment.paid_date.strftime("%a, %e %b %Y") %>)
+      <%= payment.mate.username %>: <%= number_to_currency(payment.amount) %> (<%= payment.paid_date.strftime("%a, %e %b %Y") %>)
     </p>
   <% end %>
 </div>
