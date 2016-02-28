@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :houses do
     resources :chores, except: [:index]
+    resources :announcements
   end
 
   resources :mates

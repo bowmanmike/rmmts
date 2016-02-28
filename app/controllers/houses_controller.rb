@@ -1,4 +1,6 @@
 class HousesController < ApplicationController
+  before_action :load_announcements, only: [:show]
+
 
   def index
     @houses = House.all
