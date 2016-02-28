@@ -15,7 +15,7 @@ class PaymentsController < ApplicationController
     @payment.mate = current_user
 
     if @payment.save
-      redirect_to house_path(@expense)
+      redirect_to house_expense_path(@house, @expense)
       flash[:notice] = "Thanks for your payment!"
     else
       render :new
