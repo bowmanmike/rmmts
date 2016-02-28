@@ -12,6 +12,7 @@ class ChoresController < ApplicationController
   def create
     @chore = @house.chores.build(chore_params)
     @chore.mate = current_user
+    @chore.creator = current_user
     @chore.complete = false
 
     if @chore.save

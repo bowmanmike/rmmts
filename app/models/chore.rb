@@ -1,6 +1,7 @@
 class Chore < ActiveRecord::Base
   belongs_to :house
   belongs_to :mate
+  belongs_to :creator, class_name: Mate
 
   validates :name, presence: true
   validates :frequency, numericality: {only_integer: true}
