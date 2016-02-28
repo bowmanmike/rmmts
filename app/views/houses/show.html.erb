@@ -28,7 +28,7 @@
     <p><%= announcement.body %></p>
     <p>Posted by: <%= announcement.mate.first_name %> <%= announcement.mate.last_name %></p>
     <p>Posted at: <%= announcement.created_at.strftime('%A, %d %b %Y %l:%M %p') %></p>
-    <%= link_to button_tag("Edit or Delete This Announcement"), edit_house_announcement_path(@house, announcement) %>
+    <%= link_to button_tag("Edit or Delete This Announcement"), edit_house_announcement_path(@house, announcement) %><br>
   <% end %>
 <% end %>
 <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house) %>
