@@ -1,6 +1,7 @@
 class ExpensesController < ApplicationController
 
   before_action :load_house
+  before_action :load_expense, only: [:show, :edit, :update, :destroy]
 
   def new
     @expense = Expense.new
@@ -24,6 +25,14 @@ class ExpensesController < ApplicationController
   end
 
   def update
+    @expense.update_attributes(expense_params)
+
+    if @expense.save
+      redirect_to house_path(@house)
+      flash[:notice] = "Expense has been updated!"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -33,6 +42,10 @@ class ExpensesController < ApplicationController
 
   def expense_params
     params.require(:expense).permit(:name, :description, :due_date, :amount)
+  end
+
+  def load_expense
+    @expense = Expense.find(params[:id])
   end
 
   def load_house
