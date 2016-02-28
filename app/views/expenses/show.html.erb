@@ -1,23 +1,25 @@
 <h1><%= @expense.name %>: <%= number_to_currency(@expense.amount) %></h1>
 
-<div id="expense-due">
-  <p>
-    Expense due: <%= @expense.due_date.strftime("%a, %e %b %Y") %>
-  </p>
+<div id="expense-description">
+  <h4>Expense due: <%= @expense.due_date.strftime("%a, %e %b %Y") %></h4>
+  <p><%= @expense.description %></p>
+  <h3>
+    Paid: <%= number_to_currency(@expense.amount_paid) %><br>
+    Still Owed: <%= number_to_currency(@expense.amount_owed) %>
+  </h3>
 </div>
 
 <div id="payment-list">
-  <% @expense.payments.each do |payment| %>
-    <p>
-      <%= payment.mate.username %>: <%= number_to_currency(payment.amount) %> (<%= @payment.paid_date.strftime("%a, %e %b %Y") %>)
-    </p>
-  <% end %>
-</div>
 
-<div id="expense-description">
-  <p>
-    <%= @expense.description %>
-  </p>
+  <% @expense.payments.each do |payment| %>
+    <ul>
+      <li>
+        <%= payment.mate.username %>:
+        <%= number_to_currency(payment.amount) %>
+        (<%= payment.paid_date.strftime("%a, %e %b %Y") %>)
+      </li>
+    </ul>
+  <% end %>
 </div>
 
 <div id="make-payment">
