@@ -25,15 +25,19 @@
         <dl>
           <dd><%= link_to @mate.house.name, house_path(@mate.house) %></dd>
           <dd><i>created on</i> <%= @mate.house.created_at %></dd>
-          <% unless @mate.house.creator = current_user %>
+          <% unless @mate.house.creator == current_user %>
             <dd><i>added by</i> <%= @mate.house.creator.username %></dd>
           <% end %>
         </dl>
         <div id="leave-house">
-          <%= form_for current_user do |f| %>
-            <%= f.hidden_field :house_id, :value => nil %>
-            <%= f.submit "Leave This House" %>
+
+          <% if @mate == current_user %>
+            <%= form_for current_user do |f| %>
+              <%= f.hidden_field :house_id, :value => nil %>
+              <%= f.submit "Leave This House" %>
+            <% end %>
           <% end %>
+
         <% else %>
           <p>You are not part of a household yet...</p>
         <% end %>
@@ -50,9 +54,11 @@
         <dd>Due: <%= chore.due_date %></dd>
       </dl>
 
-      <%= form_for [@mate.house, chore] do |f| %>
-        <%= f.hidden_field :assign_self, :value => nil %>
-        <%= f.submit "Unclaim this chore" %>
+      <% if @mate == current_user %>
+        <%= form_for [@mate.house, chore] do |f| %>
+          <%= f.hidden_field :assign_self, :value => nil %>
+          <%= f.submit "Unclaim this chore" %>
+        <% end %>
       <% end %>
 
       <% if chore.creator == current_user %>
@@ -65,4 +71,6 @@
   <% end %>
 </div>
 
-<%= link_to "Create a house", new_house_path %>
+<% if @mate == current_user %>
+  <%= link_to "Create a house", new_house_path %>
+<% end %>

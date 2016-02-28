@@ -1,6 +1,6 @@
 <h2><%= @house.name %></h2>
 
-<% if current_user.house_id == @house.id %>
+<% if current_user.house == @house %>
   <%= form_for current_user do |f| %>
     <%= f.hidden_field :house_id, :value => nil %>
     <%= f.submit "Leave This House" %>
