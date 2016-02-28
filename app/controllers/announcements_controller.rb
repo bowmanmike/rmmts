@@ -41,6 +41,10 @@ class AnnouncementsController < ApplicationController
   end
 
   def destroy
+    @announcement = Announcement.find(params[:id])
+    @announcement.destroy
+
+    redirect_to house_path(params[:house_id])
   end
 
   private
