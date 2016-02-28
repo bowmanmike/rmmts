@@ -26,8 +26,10 @@ ActiveRecord::Schema.define(version: 20160228193242) do
     t.integer  "mate_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "creator_id"
   end
 
+  add_index "chores", ["creator_id"], name: "index_chores_on_creator_id", using: :btree
   add_index "chores", ["house_id"], name: "index_chores_on_house_id", using: :btree
   add_index "chores", ["mate_id"], name: "index_chores_on_mate_id", using: :btree
 
