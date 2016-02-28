@@ -16,7 +16,7 @@
     </div>
     <div class="field">
       <%= f.label :amount %><br>
-      <%= f.number_field :amount, nil, min: 0.01%>
+      <%= f.number_field :amount, step: 0.01 %>
     </div>
     <div class="action">
       <%= f.submit "Save" %>
