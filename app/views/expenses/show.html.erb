@@ -6,10 +6,22 @@
   </p>
 </div>
 
+<div id="payment-list">
+  <% @expense.payments.each do |payment| %>
+    <p>
+      <%= payment.user.username %>: <%= number_to_currency(payment.amount) %> (<%= @payment.paid_date.strftime("%a, %e %b %Y") %>)
+    </p>
+  <% end %>
+</div>
+
 <div id="expense-description">
   <p>
     <%= @expense.description %>
   </p>
+</div>
+
+<div id="make-payment">
+  <%= link_to button_tag("Make a payment"), new_house_expense_payment_path(@expense.house, @expense) %>
 </div>
 
 <div id="expense-links">
