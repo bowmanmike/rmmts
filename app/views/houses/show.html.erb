@@ -21,7 +21,13 @@
 
 <h3>Completed Chores</h3>
 <% @house.chores.where(complete: true).each do |chore| %>
-  <p><strong><%= link_to chore.name, house_chore_path(chore.house, chore) %></strong></p>
+  <p>
+    <strong><%= link_to chore.name, house_chore_path(chore.house, chore) %></strong>
+    <% if chore.creator == current_user %>
+      <%= link_to "Edit chore", edit_house_chore_path(chore.house, chore) %> |
+      <%= link_to "Delete chore", house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" } %>
+    <% end %>
+  </p>
   <p><%= chore.description %></p>
   <p><%= chore.next_due_date.strftime("%a, %e %b %Y") %></p>
   <p>Occurs <%= chore.frequency_alias %></p>
@@ -35,7 +41,13 @@
 
 <h3>Incomplete Chores</h3>
 <% @house.chores.where(complete: !true).each do |chore| %>
-  <p><strong><%= link_to chore.name, house_chore_path(chore.house, chore) %></strong></p>
+  <p>
+    <strong><%= link_to chore.name, house_chore_path(chore.house, chore) %></strong>
+    <% if chore.creator == current_user %>
+      <%= link_to "Edit chore", edit_house_chore_path(chore.house, chore) %> |
+      <%= link_to "Delete chore", house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" } %>
+    <% end %>
+  </p>
   <p><%= chore.description %></p>
   <p>Due Date: <%= chore.next_due_date.strftime("%a, %e %b %Y") %></p>
   <p>Occurs <%= chore.frequency_alias %></p>

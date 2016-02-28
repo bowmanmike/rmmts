@@ -8,5 +8,6 @@ class Mate < ActiveRecord::Base
 
   belongs_to :house
   has_many :chores
+  has_many :created_chores, class_name: Chore, foreign_key: 'creator_id'
   has_many :created_houses, class_name: House, foreign_key: 'creator_id'
 end
