@@ -26,9 +26,18 @@ class AnnouncementsController < ApplicationController
   end
 
   def edit
+    @announcement = Announcement.find(params[:id])
   end
 
   def update
+    @announcement = Announcement.find(params[:id])
+
+    if @announcement.update_attributes(announcement_params)
+      redirect_to house_path(@announcement.house_id), notice: "Announcement updated"
+    else
+      render :edit
+    end
+
   end
 
   def destroy

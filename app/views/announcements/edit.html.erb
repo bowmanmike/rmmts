@@ -1,0 +1,5 @@
+<h3>Edit or Delete Announcement</h3>
+
+<%= render 'edit_announcement' %>
+
+<%= link_to button_tag("Delete This Announcement"), [@house, @announcement], method: :delete, data: {confirm: "Are you sure you want to delete this announcement?"} %>

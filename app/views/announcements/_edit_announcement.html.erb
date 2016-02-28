@@ -1,0 +1,15 @@
+<%= form_for [@house, @announcement] do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="action">
+    <%= f.submit "Update This Announcement" %>
+  </div>
+<% end %>
