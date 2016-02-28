@@ -23,7 +23,7 @@
 <% if @announcements.blank? %>
   <p>No Announcements Yet!</p>
 <% else %>
-  <% @announcements.each do |announcement| %>
+  <% @announcements.order(created_at: :desc).each do |announcement| %>
     <h4><%= announcement.title %></h4>
     <p><%= announcement.body %></p>
     <p>Posted by: <%= announcement.mate.first_name %> <%= announcement.mate.last_name %></p>
