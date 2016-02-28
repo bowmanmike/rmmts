@@ -1,5 +1,7 @@
 class ExpensesController < ApplicationController
 
+  before_filter :require_login
+
   before_action :load_house
   before_action :load_expense, only: [:show, :edit, :update, :destroy]
 
