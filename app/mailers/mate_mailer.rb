@@ -1,4 +1,4 @@
-class UserMailer < ApplicationMailer
+class MateMailer < ApplicationMailer
 
   def welcome_email(mate)
     @mate = mate
