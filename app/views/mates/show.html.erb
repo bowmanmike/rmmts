@@ -13,7 +13,7 @@
     <p><strong>Your created houses</strong></p>
     <% @mate.created_houses.each do |house| %>
       <dl>
-        <dd><%= house.name %></dd>
+        <dd><%= link_to house.name, house_path(house) %></dd>
         <dd><i>created on</i> <%= house.created_at %></dd>
       </dl>
     <% end %>
@@ -49,6 +49,12 @@
         <dd><%= link_to chore.name, house_chore_path(@mate.house, chore) %></dd>
         <dd>Due: <%= chore.due_date %></dd>
       </dl>
+
+      <%= form_for [@mate.house, chore] do |f| %>
+        <%= f.hidden_field :assign_self, :value => nil %>
+        <%= f.submit "Unclaim this chore" %>
+      <% end %>
+
       <% if chore.creator == current_user %>
         <%= link_to "Edit chore", edit_house_chore_path(chore.house, chore) %> |
         <%= link_to "Delete chore", house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" } %>
