@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228190008) do
+ActiveRecord::Schema.define(version: 20160228193242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,18 @@ ActiveRecord::Schema.define(version: 20160228190008) do
   add_index "chores", ["creator_id"], name: "index_chores_on_creator_id", using: :btree
   add_index "chores", ["house_id"], name: "index_chores_on_house_id", using: :btree
   add_index "chores", ["mate_id"], name: "index_chores_on_mate_id", using: :btree
+
+  create_table "expenses", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "due_date"
+    t.float    "amount"
+    t.integer  "house_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "expenses", ["house_id"], name: "index_expenses_on_house_id", using: :btree
 
   create_table "houses", force: :cascade do |t|
     t.string   "name"
@@ -56,6 +68,21 @@ ActiveRecord::Schema.define(version: 20160228190008) do
 
   add_index "mates", ["email"], name: "index_mates_on_email", unique: true, using: :btree
 
+  create_table "payments", force: :cascade do |t|
+    t.float    "amount"
+    t.datetime "paid_date"
+    t.integer  "mate_id"
+    t.integer  "expense_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "payments", ["expense_id"], name: "index_payments_on_expense_id", using: :btree
+  add_index "payments", ["mate_id"], name: "index_payments_on_mate_id", using: :btree
+
   add_foreign_key "chores", "houses"
   add_foreign_key "chores", "mates"
+  add_foreign_key "expenses", "houses"
+  add_foreign_key "payments", "expenses"
+  add_foreign_key "payments", "mates"
 end
