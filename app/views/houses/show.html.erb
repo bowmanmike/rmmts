@@ -69,9 +69,29 @@
     <%= f.hidden_field :complete, :value => true %>
     <%= f.submit "Mark as Complete" %>
   <% end %>
+  <%= form_for [@house, chore] do |f| %>
+    <%= f.hidden_field :assign_self, :value => current_user.id %>
+    <%= f.submit "Claim this chore" %>
+  <% end %>
   <br>
 <% end %>
 
-<%= link_to button_tag("Add new chore"), new_house_chore_path(@house) %>
+<% if @house.expenses != nil %>
+  <div class="subheader">
+    <h3 id="expenses-header">Expenses</h3>
+  </div>
+  <div id="expense-list" class="house-list">
+    <% @house.expenses.each do |expense| %>
+      <p>
+        <strong>
+          <%= link_to "#{expense.name}: #{number_to_currency(expense.amount)}", house_expense_path(expense.house, expense) %>
+        </strong><br>
+        Expense due: <%= expense.due_date.strftime("%a, %e %b %Y") %>
+      </p>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to button_tag("Add new chore"), new_house_chore_path(@house) %> <%= link_to button_tag("Add new expense"), new_house_expense_path(@house) %>
 
 <%= link_to button_tag("Edit or Delete this House"), edit_house_path(@house) %>

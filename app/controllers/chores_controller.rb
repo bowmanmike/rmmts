@@ -30,6 +30,13 @@ class ChoresController < ApplicationController
   end
 
   def update
+    if params[:chore][:assign_self]
+      @chore.mate_id = params[:chore][:assign_self]
+      @chore.save
+      redirect_to :back, notice: "You have claimed this chore"
+      return
+    end
+
     @chore.update_attributes(chore_params)
 
     if @chore.save
