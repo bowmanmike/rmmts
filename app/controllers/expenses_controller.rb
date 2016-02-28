@@ -36,6 +36,10 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
+    @expense.destroy
+
+    redirect_to house_path(@house)
+    flash[:notice] = "Expense has been deleted!"
   end
 
   private
