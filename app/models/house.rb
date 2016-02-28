@@ -3,6 +3,7 @@ class House < ActiveRecord::Base
   has_many :chores
   has_many :mates
   has_many :expenses
+  has_many :announcements
 
   validates :name, presence: true
 
