@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228193242) do
+ActiveRecord::Schema.define(version: 20160228194548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "announcements", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "mate_id"
+    t.integer  "house_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "announcements", ["house_id"], name: "index_announcements_on_house_id", using: :btree
+  add_index "announcements", ["mate_id"], name: "index_announcements_on_mate_id", using: :btree
 
   create_table "chores", force: :cascade do |t|
     t.string   "name"
@@ -80,6 +92,8 @@ ActiveRecord::Schema.define(version: 20160228193242) do
   add_index "payments", ["expense_id"], name: "index_payments_on_expense_id", using: :btree
   add_index "payments", ["mate_id"], name: "index_payments_on_mate_id", using: :btree
 
+  add_foreign_key "announcements", "houses"
+  add_foreign_key "announcements", "mates"
   add_foreign_key "chores", "houses"
   add_foreign_key "chores", "mates"
   add_foreign_key "expenses", "houses"
