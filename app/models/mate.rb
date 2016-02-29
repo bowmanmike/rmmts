@@ -11,5 +11,9 @@ class Mate < ActiveRecord::Base
   has_many :created_chores, class_name: Chore, foreign_key: 'creator_id'
   has_many :created_houses, class_name: House, foreign_key: 'creator_id'
   has_many :announcements
+  has_many :sent_conversations, class_name: Conversation, foreign_key: 'sender_id'
+  has_many :received_conversations, class_name: Conversation, foreign_key: 'receiver_id'
+  has_many :sent_messages, through: :conversations, class_name: Message
+  has_many :received_messages, through: :conversations, class_name: Message
 
 end

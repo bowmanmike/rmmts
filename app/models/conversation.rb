@@ -1,6 +1,6 @@
 class Conversation < ActiveRecord::Base
-  belongs_to :sender, foreign_key: "sender_id", class_name: Mate
-  belongs_to :receiver, foreign_key: "receiver_id", class_name: Mate
+  belongs_to :sender, class_name: Mate
+  belongs_to :receiver, class_name: Mate
 
   has_many :messages, dependent: :destroy
 
