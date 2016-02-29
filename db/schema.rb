@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229210540) do
+ActiveRecord::Schema.define(version: 20160229210923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,14 +90,14 @@ ActiveRecord::Schema.define(version: 20160229210540) do
   create_table "messages", force: :cascade do |t|
     t.text     "body"
     t.integer  "conversation_id"
-    t.integer  "user_id"
+    t.integer  "mate_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "read",            default: false
   end
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+  add_index "messages", ["mate_id"], name: "index_messages_on_mate_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.float    "amount"
