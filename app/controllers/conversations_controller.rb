@@ -3,6 +3,11 @@ class ConversationsController < ApplicationController
     @conversations = Conversation.where(sender: current_user) + Conversation.where(receiver: current_user)
   end
 
+  def show
+    @conversation = Conversation.find(params[:id])
+    @messages = @conversation.messages
+  end
+
   def create
     if Conversation.between(params[:sender_id], params[:receiver_id]).present?
       @conversation = Conversation.between(params[:sender_id], params[:receiver_id]).first

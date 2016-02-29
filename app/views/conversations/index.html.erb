@@ -1,6 +1,9 @@
 <h3>Your Mailbox</h3>
 
 <% @conversations.each do |conversation| %>
-  <p><%= conversation.sender.full_name %></p>
-  <p><%= conversation.receiver.full_name %></p>
+  <% if conversation.sender == current_user %>
+    <p>Your conversation with <%= link_to conversation.receiver.full_name, conversation_messages_path(conversation.id) %></p>
+  <% else %>
+    <p>Your conversation with <%= link_to conversation.sender.full_name, conversation_messages_path(conversation.id) %></p>
+  <% end %>
 <% end %>
