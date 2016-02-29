@@ -16,4 +16,8 @@ class Mate < ActiveRecord::Base
   has_many :sent_messages, through: :conversations, class_name: Message
   has_many :received_messages, through: :conversations, class_name: Message
 
+  def conversations
+    self.sent_conversations + self.received_conversations
+  end
+
 end
