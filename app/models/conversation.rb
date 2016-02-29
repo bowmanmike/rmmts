@@ -4,7 +4,7 @@ class Conversation < ActiveRecord::Base
 
   has_many :messages, dependent: :destroy
 
-  validates_uniqueness_of :sender_id, scope: :reciever_id
+  validates_uniqueness_of :sender_id, scope: :receiver_id
 
   scope :between, -> (sender_id, receiver_id) do
     where("(conversations.sender_id = ? && conversations.receiver_id = ?) || (conversations.sender_id = ? && conversations.receiver_id = ?)", sender_id, receiver_id, receiver_id, sender_id)
