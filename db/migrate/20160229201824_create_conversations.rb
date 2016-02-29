@@ -1,8 +1,8 @@
 class CreateConversations < ActiveRecord::Migration
   def change
     create_table :conversations do |t|
-      t.sender_id :integer
-      t.receiver_id :integer
+      t.integer :sender_id
+      t.integer :receiver_id
 
       t.timestamps
     end

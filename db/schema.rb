@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228194548) do
+ActiveRecord::Schema.define(version: 20160229201917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(version: 20160228194548) do
   add_index "chores", ["creator_id"], name: "index_chores_on_creator_id", using: :btree
   add_index "chores", ["house_id"], name: "index_chores_on_house_id", using: :btree
   add_index "chores", ["mate_id"], name: "index_chores_on_mate_id", using: :btree
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "expenses", force: :cascade do |t|
     t.string   "name"
@@ -79,6 +86,17 @@ ActiveRecord::Schema.define(version: 20160228194548) do
   end
 
   add_index "mates", ["email"], name: "index_mates_on_email", unique: true, using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.float    "amount"
