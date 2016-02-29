@@ -1,7 +1,6 @@
 class ConversationsController < ApplicationController
   def index
-    @mates = Mates.all
-    @conversations = Conversations.all
+    @conversations = Conversation.where(sender: current_user) + Conversation.where(receiver: current_user)
   end
 
   def create

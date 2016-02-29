@@ -1,1 +1,6 @@
 <h3>Your Mailbox</h3>
+
+<% @conversations.each do |conversation| %>
+  <p><%= conversation.sender.full_name %></p>
+  <p><%= conversation.receiver.full_name %></p>
+<% end %>

@@ -20,4 +20,8 @@ class Mate < ActiveRecord::Base
     self.sent_conversations + self.received_conversations
   end
 
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
+
 end
