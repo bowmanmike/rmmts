@@ -1,6 +1,6 @@
 .top-bar {
-    background-color: $color5;
-    color: $light-gray;
+    background-color: $color2;
+    color: $color4;
     font-size: 1.5em;
     position: fixed;
     width: 100%;
@@ -8,9 +8,6 @@
     left: 0;
     padding: .5rem;
 
-    & > a {
-        color: #ffffff;
-    }
 }
 
 .top-bar-right {
@@ -18,9 +15,17 @@
     text-align: right;
     display: block;
     float: right;
+
+    & > a {
+        color: $white;
+    }
 }
 
 .top-bar-left {
     display: block;
     float: left;
+
+    & > a {
+        color: $white;
+    }
 }

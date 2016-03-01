@@ -20,16 +20,17 @@ $blue: #1565c0;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
+$white: #fefefe;
 
-$color1: #1be7ff; //rgba(27, 231, 255, 100)
-$color2: #6eeb83; //rgba(110, 235, 131, 100)
-$color3: #e4ff1a; //rgba(228, 255, 26, 100)
-$color4: #e8aa14; //rgba(232, 170, 20, 100)
-$color5: #ff5714; //rgba(255, 87, 20, 100)
+$color1: #114b5f; //rgba(17, 75, 95, 100)
+$color2: #1a936f; //rgba(26, 147, 111, 100)
+$color3: #88d498; //rgba(136, 212, 152, 100)
+$color4: #c6dabf; //rgba(198, 218, 191, 100)
+$color5: #f3e9d2; //rgba(243, 233, 210, 100)
 
 // Font Colors
 $base-font-color: $dark-gray;
-$action-color: $color2;
+$action-color: $color1;
 
 // Border
 $base-border-color: $light-gray;
@@ -38,6 +39,7 @@ $base-border: 1px solid $base-border-color;
 // Background Colors
 $base-background-color: #fff;
 $secondary-background-color: tint($base-border-color, 75%);
+$button-background-color: $color3;
 
 // Forms
 $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
