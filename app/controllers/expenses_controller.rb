@@ -47,7 +47,7 @@ class ExpensesController < ApplicationController
   private
 
   def expense_params
-    params.require(:expense).permit(:name, :description, :due_date, :amount)
+    params.require(:expense).permit(:name, :description, :due_date, :amount, :image, :image_cache)
   end
 
   def load_expense
