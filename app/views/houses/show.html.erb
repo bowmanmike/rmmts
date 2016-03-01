@@ -24,7 +24,9 @@
     <h3>Roommates</h3>
     <ul id="roommates-list">
       <% @house.mates.each do |mate| %>
-        <li class="roommate"><%= link_to "#{mate.first_name} #{mate.last_name}", mate_path(mate) %></li>
+        <li class="roommate">
+          <%= link_to "#{mate.first_name} #{mate.last_name}", mate_path(mate) %> <%= link_to "Send Message", conversations_path(sender_id: current_user.id, receiver_id: mate.id), method: 'post'%>
+        </li>
       <% end %>
     </ul>
   </div>
