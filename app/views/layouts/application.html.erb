@@ -12,10 +12,13 @@
   </head>
 
   <body>
-    
+
     <div class="top-bar">
       <div class="top-bar-left">
-        <%= link_to "rmmts", root_path %> <%= link_to "Houses", houses_path %> <%= link_to "Mates", mates_path %>
+        <%= link_to "rmmts", root_path %>
+        <%= link_to "Houses", houses_path %>
+        <%= link_to "Mates", mates_path %>
+        <%= link_to "Messages", conversations_path %>
       </div>
       <div class="top-bar-right">
         <% if current_user %>
