@@ -1,3 +1,45 @@
 // Place all the styles related to the House controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#house-header{
+  @include outer-container;
+  padding: 1rem;
+}
+
+#house-name {
+  font-size: 2rem;
+}
+
+.header-card {
+
+  @include media($small-screen-only) {
+    @include span-columns(12);
+    @include omega(2n);
+  }
+  @include media($medium-screen-up) {
+    @include span-columns(6);
+    @include omega(2n);
+  }
+}
+
+#roommates {
+  padding: 1rem;
+  background-color: #ddd;
+}
+
+#chores {
+  @include outer-container;
+  padding: 1rem;
+}
+
+.chore {
+  @include media($small-screen-only) {
+    @include span-columns(12);
+    @include omega(2n);
+  }
+  @include media($medium-screen-up) {
+    @include span-columns(6);
+    @include omega(2n);
+  }
+}
