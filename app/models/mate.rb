@@ -13,9 +13,10 @@ class Mate < ActiveRecord::Base
   has_many :announcements
   has_many :sent_conversations, class_name: Conversation, foreign_key: 'sender_id'
   has_many :received_conversations, class_name: Conversation, foreign_key: 'receiver_id'
-  has_many :sent_messages, through: :conversations, class_name: Message
-  has_many :received_messages, through: :conversations, class_name: Message
-
+  has_many :sent_messages, through: :sent_conversations, class_name: Message
+  has_many :received_messages, through: :received_conversations, class_name: Message
+  has_many :messages
+  
   def conversations
     self.sent_conversations + self.received_conversations
   end

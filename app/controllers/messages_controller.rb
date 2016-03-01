@@ -4,8 +4,8 @@ class MessagesController < ApplicationController
   end
 
   def index
-    @messages = @conversation.messages.all
-    @message = @conversation.messages.new
+    @messages = @conversation.messages
+    @message = @conversation.messages.build
   end
 
   def new
@@ -13,9 +13,10 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @conversation.messages.build(message_params)
+    @message = current_user.messages.build(message_params)
+    @message.conversation_id = @conversation.id
     if @message.save
-      redirect_to conversation_messages_path(@message)
+      redirect_to conversation_path(@conversation)
     else
       render :new
     end
@@ -23,6 +24,6 @@ class MessagesController < ApplicationController
 
   private
   def message_params
-    params.require(:messages).permit(:body, :mate_id)
+    params.require(:message).permit(:body, :mate_id)
   end
 end
