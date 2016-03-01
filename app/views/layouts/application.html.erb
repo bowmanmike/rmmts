@@ -13,35 +13,25 @@
 
   <body>
 
-    <div data-sticky-container>
-      <div class="top-bar" data-sticky data-options="marginTop:0;">
+      <div class="top-bar">
         <div class="top-bar-left">
-          <ul class="dropdown menu" data-dropdown-menu>
-            <li class="menu-text">
-              <%= link_to "rmmts", root_path %>
-            </li>
-            <li><%= link_to "Houses", houses_path %></li>
-            <li><%= link_to "Mates", mates_path %></li>
-          </ul>
+          <%= link_to "rmmts", root_path %> <%= link_to "Houses", houses_path %> <%= link_to "Mates", mates_path %>
         </div>
 
-        <div class="top-bar-right">
-          <ul class="menu">
-            <% if current_user %>
-              <li>Logged in as <%= current_user.username %></li>
-              <li><%= link_to "Log out", logout_path(@mate), method: :post %></li>
-            <% else %>
-              <li><%= link_to "Login", new_mate_path %></li>
-              <li><%= link_to "Sign up", new_session_path %></li>
-            <% end %>
-            <!-- <li><input type="search" placeholder="Search"></li>
-            <li><button type="button" class="button">Search</button></li> -->
-          </ul>
-        </div>
-      </div>
-    </div>
 
     <%= yield %>
+
+    <div class="top-bar-right">
+      <% if current_user %>
+        Logged in as <%= current_user.username %>
+        <%= link_to "Log out", logout_path(@mate), method: :post %>
+      <% else %>
+        <%= link_to "Login", new_mate_path %>
+        <%= link_to "Sign up", new_session_path %>
+      <% end %>
+    </div>
+  </div>
+
 
   </body>
 </html>
