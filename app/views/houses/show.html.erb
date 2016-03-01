@@ -14,6 +14,15 @@
   <% end %>
 <% end %>
 
+<% if current_user && current_user.house == @house %>
+  <p>Add a mate to this house:</p>
+  <%= form_tag house_path(@house), method: 'patch' do %>
+    <%= label_tag "username" %>
+    <%= text_field_tag :username_search %>
+    <%= submit_tag "Add user" %>
+  <% end %>
+<% end %>
+
 <h3>Roommates</h3>
 <ul>
   <% @house.mates.each do |mate| %>
