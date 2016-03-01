@@ -31,6 +31,7 @@ class MatesController < ApplicationController
         @mate.chores = []
         redirect_to :back
       else
+        MateMailer.join_house(@mate, @mate.house)
         redirect_to house_path(@mate.house), notice: 'account updated'
       end
     else
