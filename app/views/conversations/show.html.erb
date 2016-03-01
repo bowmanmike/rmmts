@@ -1,0 +1,14 @@
+<% if @conversation.sender == current_user %>
+  <h3>Your conversation with <%= @conversation.receiver.full_name %></h3>
+<% else %>
+  <h3>Your conversation with <%= @conversation.sender.full_name %></h3>
+<% end %>
+
+<div id="messages">
+  <% @messages.each do |message| %>
+    <div class="each-message">
+      <p><%= message.body %></p>
+      <p>Sent by <%= message.mate.full_name %> at <%= message.created_at.strftime('%A, %d %b %Y %l:%M %p') %></p>
+    </div>
+  <% end %>
+</div>
