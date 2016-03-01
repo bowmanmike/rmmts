@@ -28,12 +28,17 @@
   background-color: #ddd;
 }
 
+#announcements {
+  @include outer-container;
+  padding: 1rem;
+}
+
 #chores {
   @include outer-container;
   padding: 1rem;
 }
 
-.chore {
+.chores-card {
   @include media($small-screen-only) {
     @include span-columns(12);
     @include omega(2n);
@@ -42,4 +47,13 @@
     @include span-columns(6);
     @include omega(2n);
   }
+}
+
+#expenses {
+  @include outer-container;
+  padding: 1rem;
+}
+
+.card-header {
+
 }
