@@ -1,5 +1,6 @@
 class HousesController < ApplicationController
   before_action :load_announcements, only: [:show]
+  before_action :load_house, only: [:show, :edit, :update, :destroy]
 
 
   def index
@@ -7,7 +8,6 @@ class HousesController < ApplicationController
   end
 
   def show
-    @house = House.find(params[:id])
   end
 
   def new
@@ -26,11 +26,19 @@ class HousesController < ApplicationController
   end
 
   def edit
-    @house = House.find(params[:id])
   end
 
   def update
-    @house = House.find(params[:id])
+    if params[:username_search]
+      if Mate.find_by(username: params[:username_search])
+        @house.mates << Mate.find_by(username: params[:username_search])
+        redirect_to :back, notice: "Mate added to house"
+        return
+      else
+        redirect_to :back, notice: "Couldn't find a mate by that username"
+        return
+      end
+    end
 
     if @house.update_attributes(house_params)
       redirect_to house_path(@house.id), notice: "House Updated!"
@@ -40,7 +48,6 @@ class HousesController < ApplicationController
   end
 
   def destroy
-    @house = House.find(params[:id])
     @house.destroy
     redirect_to houses_path
   end
@@ -53,6 +60,10 @@ class HousesController < ApplicationController
 
   def load_announcements
     @announcements = House.find(params[:id]).announcements
+  end
+
+  def load_house
+    @house = House.find(params[:id])
   end
 
 end
