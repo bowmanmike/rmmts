@@ -1,4 +1,31 @@
 .top-bar {
-  width: 100%;
-  height: 68px;
+    background-color: $color2;
+    color: $color4;
+    font-size: 1.5em;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: .5rem;
+
+}
+
+.top-bar-right {
+    font-size: .8rem;
+    text-align: right;
+    display: block;
+    float: right;
+
+    & > a {
+        color: $white;
+    }
+}
+
+.top-bar-left {
+    display: block;
+    float: left;
+
+    & > a {
+        color: $white;
+    }
 }

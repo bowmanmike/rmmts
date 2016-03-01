@@ -12,33 +12,25 @@
   </head>
 
   <body>
-
-      <div class="top-bar">
-        <div class="top-bar-left">
-          <ul class="dropdown menu" data-dropdown-menu>
-            <li class="menu-text">
-              <%= link_to "rmmts", root_path %>
-            </li>
-            <li><%= link_to "Houses", houses_path %></li>
-            <li><%= link_to "Mates", mates_path %></li>
-            <li><%= link_to "Mailbox", conversations_path %></li>
-          </ul>
-        </div>
-
-
-    <%= yield %>
-
-    <div class="top-bar-right">
-      <% if current_user %>
-        Logged in as <%= current_user.username %>
-        <%= link_to "Log out", logout_path(@mate), method: :post %>
-      <% else %>
-        <%= link_to "Login", new_session_path %>
-        <%= link_to "Sign up", new_mate_path %>
-      <% end %>
+    
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <%= link_to "rmmts", root_path %> <%= link_to "Houses", houses_path %> <%= link_to "Mates", mates_path %>
+      </div>
+      <div class="top-bar-right">
+        <% if current_user %>
+          Logged in as <%= current_user.username %>
+          <%= link_to "Log out", logout_path(@mate), method: :post %>
+        <% else %>
+          <%= link_to "Login", new_session_path %>
+          <%= link_to "Sign up", new_mate_path %>
+        <% end %>
+      </div>
     </div>
-  </div>
 
+    <div class="content">
+      <%= yield %>
+    </div>
 
   </body>
 </html>
