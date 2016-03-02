@@ -1,7 +1,7 @@
 class HousesController < ApplicationController
   before_action :load_announcements, only: [:show]
   before_action :load_house, only: [:show, :edit, :update, :destroy]
-
+  before_filter :must_be_logged_in, except: [:index]
 
   def index
     @houses = House.all

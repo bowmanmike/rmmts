@@ -1,4 +1,6 @@
 class ConversationsController < ApplicationController
+before_filter :require_login
+
   def index
     @conversations = Conversation.where(sender: current_user) + Conversation.where(receiver: current_user)
     @conversations = @conversations.uniq
