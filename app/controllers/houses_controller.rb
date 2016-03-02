@@ -31,7 +31,9 @@ class HousesController < ApplicationController
   def update
     if params[:username_search]
       if Mate.find_by(username: params[:username_search])
-        @house.mates << Mate.find_by(username: params[:username_search])
+        @mate = Mate.find_by(username: params[:username_search])
+        @house.mates << @mate
+        MateMailer.join_house(@mate, @mate.house).deliver_later
         redirect_to :back, notice: "Mate added to house"
         return
       else
