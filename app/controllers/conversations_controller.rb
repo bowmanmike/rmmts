@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
   def index
     @conversations = Conversation.where(sender: current_user) + Conversation.where(receiver: current_user)
+    @conversations = @conversations.uniq
   end
 
   def show
