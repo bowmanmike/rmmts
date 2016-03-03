@@ -13,6 +13,24 @@ class Chore < ActiveRecord::Base
     TestJobJob.perform_later
   end
 
+  def check_status
+    return if !self.recurring?
+    if self.complete?
+      puts "Chore complete"
+      self.complete = false
+      update_due_date
+    else
+      puts "Chore incomplete"
+      update_due_date
+    end
+  end
+
+  def update_due_date
+    options = { self.frequency_unit.to_sym => self.frequency_integer }
+    self.due_date = self.due_date.advance(options)
+    self.save
+  end
+
   # def next_due_date
   #   # Convert today into a Date object: today
   #   today = Time.now.beginning_of_day.to_date
