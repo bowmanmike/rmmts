@@ -15,8 +15,12 @@
       <%= f.date_field :due_date %>
     </div>
     <div class="field">
-      <%= f.label :frequency %><br>
-      Every <%= f.number_field :frequency %> day(s)
+      <%= f.label :frequency_integer %><br>
+      Every <%= f.number_field :frequency_integer %> day(s)
+    </div>
+    <div class="field">
+      <%= f.label :frequency_unit %><br>
+      <%= f.text_field :frequency_unit %>
     </div>
     <div class="action">
       <%= f.submit "Save" %>
