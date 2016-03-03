@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303191337) do
+ActiveRecord::Schema.define(version: 20160303204225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,19 +70,6 @@ ActiveRecord::Schema.define(version: 20160303191337) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
-  create_table "expenses", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "due_date"
-    t.float    "amount"
-    t.integer  "house_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "image"
-  end
-
-  add_index "expenses", ["house_id"], name: "index_expenses_on_house_id", using: :btree
-
   create_table "houses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -122,19 +109,32 @@ ActiveRecord::Schema.define(version: 20160303191337) do
     t.float    "amount"
     t.datetime "paid_date"
     t.integer  "mate_id"
-    t.integer  "expense_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "purchase_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "payments", ["expense_id"], name: "index_payments_on_expense_id", using: :btree
   add_index "payments", ["mate_id"], name: "index_payments_on_mate_id", using: :btree
+  add_index "payments", ["purchase_id"], name: "index_payments_on_purchase_id", using: :btree
+
+  create_table "purchases", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "due_date"
+    t.float    "amount"
+    t.integer  "house_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "image"
+  end
+
+  add_index "purchases", ["house_id"], name: "index_purchases_on_house_id", using: :btree
 
   add_foreign_key "announcements", "houses"
   add_foreign_key "announcements", "mates"
   add_foreign_key "chores", "houses"
   add_foreign_key "chores", "mates"
-  add_foreign_key "expenses", "houses"
-  add_foreign_key "payments", "expenses"
   add_foreign_key "payments", "mates"
+  add_foreign_key "payments", "purchases"
+  add_foreign_key "purchases", "houses"
 end

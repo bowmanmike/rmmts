@@ -5,12 +5,14 @@ Rails.application.routes.draw do
   resources :houses do
     resources :chores, except: [:index]
     resources :announcements
-    resources :expenses, except: [:index] do
+  end
+
+  resources :mates do
+    resources :purchases, except: [:index] do
       resources :payments, except: [:index]
     end
   end
 
-  resources :mates
   resources :sessions, only: [:new, :create, :destroy]
   get 'login'   => 'sessions#new',    as: :login
   post 'logout' => 'sessions#destroy', as: :logout

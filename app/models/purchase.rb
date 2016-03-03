@@ -1,9 +1,9 @@
-class Expense < ActiveRecord::Base
-  belongs_to :house
+class Purchase < ActiveRecord::Base
+  belongs_to :mate
   has_many :payments
 
   mount_uploader :image, BillUploader
-  
+
   def amount_paid
     paid = self.payments.sum(:amount)
   end
