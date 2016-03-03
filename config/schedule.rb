@@ -17,9 +17,6 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 # set :environment, "development"
-#
-# every 1.minutes do
-#   rake "test_task"
-# end
+
 
 # Learn more: http://github.com/javan/whenever

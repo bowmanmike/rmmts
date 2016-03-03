@@ -40,6 +40,7 @@ class ChoresController < ApplicationController
     @chore.update_attributes(chore_params)
 
     if @chore.save
+      TestJobJob.perform_later
       redirect_to house_path(@house)
       flash[:notice] = "Chore has been updated!"
     else
@@ -67,4 +68,5 @@ class ChoresController < ApplicationController
   def chore_params
     params.require(:chore).permit(:name, :description, :due_date, :frequency, :complete)
   end
+
 end

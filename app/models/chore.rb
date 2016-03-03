@@ -5,6 +5,13 @@ class Chore < ActiveRecord::Base
 
   validates :name, presence: true
   validates :frequency, numericality: {only_integer: true}
+  
+  # after_save :test_job_job
+
+  # def test_job_job
+  #   # @chore = Chore.order(updated_at: :desc).first
+  #   TestJobJob.perform_later
+  # end
 
   def next_due_date
     # Convert today into a Date object: today
