@@ -6,7 +6,8 @@
 
 <div id="purchase-description">
   <h4>
-    Purchase due: <%= @purchase.due_date.strftime("%a, %e %b %Y") %><br>
+    Paid by: <%= @purchase.mate.username %><br>
+    Due date: <%= @purchase.due_date.strftime("%a, %e %b %Y") %><br>
     Paid: <%= number_to_currency(@purchase.amount_paid) %><br>
     Still Owed: <%= number_to_currency(@purchase.amount_owed) %>
   </h4>
