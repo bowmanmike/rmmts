@@ -5,6 +5,7 @@ class Chore < ActiveRecord::Base
 
   validates :name, presence: true
   validates :frequency_integer, numericality: {only_integer: true}
+  validates :frequency_unit, presence: true
 
   def check_status
     return if !self.recurring?
