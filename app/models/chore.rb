@@ -22,16 +22,4 @@ class Chore < ActiveRecord::Base
     self.save
   end
 
-  # def frequency_alias
-  #   case self.frequency_unit
-  #   when "days"
-  #     self.frequency_integer == 1 ? "daily" : self.frequency_unit
-  #   when "weeks"
-  #     self.frequency_integer == 1 ? "weekly" : self.frequency_unit
-  #   when "months"
-  #     self.frequency_integer == 1? "monthly" : self.frequency_unit
-  #   else
-  #     self.frequency_unit
-  #   end
-  # end
 end
