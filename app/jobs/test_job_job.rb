@@ -4,6 +4,6 @@ class TestJobJob < ActiveJob::Base
   def perform
     # chore.frequency = rand(20)
     # chore.save
-    puts "I DO A THING"
+    puts "I DO A THING MULTIPLE TIMES APPARENTLY"
   end
 end
