@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303204225) do
+ActiveRecord::Schema.define(version: 20160303213128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,13 +122,13 @@ ActiveRecord::Schema.define(version: 20160303204225) do
     t.text     "description"
     t.datetime "due_date"
     t.float    "amount"
-    t.integer  "house_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "image"
+    t.integer  "mate_id"
   end
 
-  add_index "purchases", ["house_id"], name: "index_purchases_on_house_id", using: :btree
+  add_index "purchases", ["mate_id"], name: "index_purchases_on_mate_id", using: :btree
 
   add_foreign_key "announcements", "houses"
   add_foreign_key "announcements", "mates"
@@ -136,5 +136,4 @@ ActiveRecord::Schema.define(version: 20160303204225) do
   add_foreign_key "chores", "mates"
   add_foreign_key "payments", "mates"
   add_foreign_key "payments", "purchases"
-  add_foreign_key "purchases", "houses"
 end
