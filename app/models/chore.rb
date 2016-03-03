@@ -11,14 +11,23 @@ class Chore < ActiveRecord::Base
   after_save :chore_reminder
 
   def chore_reminder
-
     unless self.complete
-      if self.mate
-        ChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
-      else
-        GroupChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
+      if self.reminder_id
+        Delayed::Job.find(self.reminder_id).delete
+        self.which_reminder?
+        return
       end
+      self.which_reminder?
+    end
+  end
 
+  def which_reminder?
+    if self.mate
+      ChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
+      Delayed::Job.last.id = self.reminder_id
+    else
+      GroupChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
+      Delayed::Job.last.id = self.reminder_id
     end
   end
 
