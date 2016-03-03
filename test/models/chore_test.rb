@@ -31,12 +31,12 @@ class ChoreTest < ActiveSupport::TestCase
 
   test "check_status_on_one_time_chore" do
     @one_time.check_status
-    assert @one_time.complete?
+    assert @one_time.complete? && @one_time.due_date == "2016-03-27"
   end
 
   test "check_status_on_recurring_chore" do
     @daily.check_status
-    assert !@daily.complete?
+    assert !@daily.complete? && @daily.due_date == "2016-03-28"
   end
 
 end
