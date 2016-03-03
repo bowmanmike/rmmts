@@ -16,11 +16,9 @@ class Chore < ActiveRecord::Base
   def check_status
     return if !self.recurring?
     if self.complete?
-      puts "Chore complete"
       self.complete = false
       update_due_date
     else
-      puts "Chore incomplete"
       update_due_date
     end
   end
