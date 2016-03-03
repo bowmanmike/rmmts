@@ -1,0 +1,36 @@
+<h1><%= @purchase.name %>: <%= number_to_currency(@purchase.amount) %></h1>
+
+<div id="make-payment">
+  <%= link_to button_tag("Make a payment"), new_mate_purchase_payment_path(@purchase.mate, @purchase) %>
+</div>
+
+<div id="purchase-description">
+  <h4>
+    Purchase due: <%= @purchase.due_date.strftime("%a, %e %b %Y") %><br>
+    Paid: <%= number_to_currency(@purchase.amount_paid) %><br>
+    Still Owed: <%= number_to_currency(@purchase.amount_owed) %>
+  </h4>
+  <p><em><%= @purchase.description %></em></p>
+</div>
+
+<div id="payment-list">
+
+  <h4>Payments</h4>
+  <% @purchase.payments.each do |payment| %>
+    <ul>
+      <li>
+        <%= payment.mate.username %>:
+        <%= number_to_currency(payment.amount) %>
+        (<%= payment.paid_date.strftime("%a, %e %b %Y") %>)
+      </li>
+    </ul>
+  <% end %>
+</div>
+
+<div id="purchase-links">
+  <% if @purchase.mate == current_user %>
+    <%= link_to "Edit purchase", edit_mate_purchase_path(@purchase.mate, @purchase) %> |
+    <%= link_to "Delete purchase", mate_purchase_path(@purchase.mate, @purchase), method: :delete, data: { confirm: "Are you sure you want to delete this purchase?" } %>
+  <% end %>
+</div>
+<%= link_to "Back to House", house_path(current_user.house) %>

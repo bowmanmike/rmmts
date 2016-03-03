@@ -2,8 +2,8 @@ class PaymentsController < ApplicationController
 
   before_filter :require_login
 
-  before_action :load_house
-  before_action :load_expense
+  before_action :load_mate
+  before_action :load_purchase
   before_action :load_payment, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -11,11 +11,11 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    @payment = @expense.payments.build(payment_params)
+    @payment = @purchase.payments.build(payment_params)
     @payment.mate = current_user
 
     if @payment.save
-      redirect_to house_expense_path(@house, @expense)
+      redirect_to mate_purchase_path(@mate, @purchase)
       flash[:notice] = "Thanks for your payment!"
     else
       render :new
@@ -29,21 +29,21 @@ class PaymentsController < ApplicationController
   end
 
   def update
-    @expense.update_attributes(expense_params)
+    @payment.update_attributes(payment_params)
 
-    if @expense.save
-      redirect_to house_path(@house)
-      flash[:notice] = "Expense has been updated!"
+    if @payment.save
+      redirect_to mate_purchase_path(@mate, @purchase)
+      flash[:notice] = "Payment has been updated!"
     else
       render :edit
     end
   end
 
   def destroy
-    @expense.destroy
+    @payment.destroy
 
-    redirect_to house_path(@house)
-    flash[:notice] = "Expense has been deleted!"
+    redirect_to mate_purchase_path(@mate, @purchase)
+    flash[:notice] = "Payment has been deleted!"
   end
 
   private
@@ -52,12 +52,12 @@ class PaymentsController < ApplicationController
     params.require(:payment).permit(:amount, :paid_date)
   end
 
-  def load_house
-    @house = House.find(params[:house_id])
+  def load_mate
+    @mate = Mate.find(params[:mate_id])
   end
 
-  def load_expense
-    @expense = Expense.find(params[:expense_id])
+  def load_purchase
+    @purchase = Purchase.find(params[:purchase_id])
   end
 
   def load_payment
