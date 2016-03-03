@@ -4,6 +4,8 @@ FactoryGirl.define do
     due_date "2016-03-27"
     frequency_unit "days"
     frequency_integer 1
+    complete true
+    recurring true
   end
 
   factory :weekly_chore, class: "Chore" do
@@ -25,5 +27,14 @@ FactoryGirl.define do
     due_date "2016-03-27"
     frequency_unit "days"
     frequency_integer "20"
+  end
+
+  factory :one_time_chore, class: "Chore" do
+    name "One-Time Chore"
+    due_date "2016-03-27"
+    frequency_unit "days"
+    frequency_integer 1
+    recurring false
+    complete true
   end
 end
