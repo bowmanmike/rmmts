@@ -78,7 +78,7 @@
             <% end %>
           </p>
           <p><%= chore.description %></p>
-          <p><%= chore.next_due_date.strftime("%a, %e %b %Y") %></p>
+          <p><%= chore.due_date.strftime("%a, %e %b %Y") %></p>
           <p>Occurs <%= chore.frequency_alias %></p>
           <%= form_for [@house, chore] do |f| %>
             <%= f.hidden_field :complete, :value => false %>
@@ -100,7 +100,7 @@
             <% end %>
           </p>
           <p><%= chore.description %></p>
-          <p>Due Date: <%= chore.next_due_date.strftime("%a, %e %b %Y") %></p>
+          <p>Due Date: <%= chore.due_date.strftime("%a, %e %b %Y") %></p>
           <p>Occurs <%= chore.frequency_alias %></p>
           <%= form_for [@house, chore] do |f| %>
             <%= f.hidden_field :complete, :value => true %>
