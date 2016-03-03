@@ -6,13 +6,6 @@ class Chore < ActiveRecord::Base
   validates :name, presence: true
   validates :frequency_integer, numericality: {only_integer: true}
 
-  after_save :test_job_job
-
-  def test_job_job
-    # @chore = Chore.order(updated_at: :desc).first
-    TestJobJob.perform_later
-  end
-
   def check_status
     return if !self.recurring?
     if self.complete?
@@ -29,18 +22,16 @@ class Chore < ActiveRecord::Base
     self.save
   end
 
-  def frequency_alias
-      
-    case self.frequency_integer
-    when 1
-      "daily"
-    when 7
-      "weekly"
-    when 14
-      "bi-weekly"
-    else
-      "every #{self.frequency} days(s)"
-    end
-
-  end
+  # def frequency_alias
+  #   case self.frequency_unit
+  #   when "days"
+  #     self.frequency_integer == 1 ? "daily" : self.frequency_unit
+  #   when "weeks"
+  #     self.frequency_integer == 1 ? "weekly" : self.frequency_unit
+  #   when "months"
+  #     self.frequency_integer == 1? "monthly" : self.frequency_unit
+  #   else
+  #     self.frequency_unit
+  #   end
+  # end
 end
