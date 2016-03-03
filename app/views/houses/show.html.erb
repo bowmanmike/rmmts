@@ -137,7 +137,7 @@
           <div class="purchase">
             <p>
               <strong>
-                <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount)}", house_purchase_path(purchase.house, purchase) %>
+                <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount)}", mate_purchase_path(purchase.mate, purchase) %>
               </strong><br>
               Purchase due: <%= purchase.due_date.strftime("%a, %e %b %Y") %><br>
               Still owed: <%= number_to_currency(purchase.amount_owed) %><br>
@@ -151,7 +151,7 @@
 
       <div id="purchases-buttons">
         <%= link_to button_tag("Add new chore"), new_house_chore_path(@house) %><br>
-        <%= link_to button_tag("Add new purchase"), new_house_purchase_path(@house) %>
+        <%= link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user) %>
       </div>
     </div>
   <% end %>
