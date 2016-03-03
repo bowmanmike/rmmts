@@ -6,12 +6,27 @@ class Chore < ActiveRecord::Base
   validates :name, presence: true
   validates :frequency, numericality: {only_integer: true}
 
-  after_save :test_job_job
+  after_save :chore_reminder
 
-  def test_job_job
-    # @chore = Chore.order(updated_at: :desc).first
-    TestJobJob.perform_later
+  def chore_reminder
+
+    unless self.complete
+      if self.mate
+        ChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
+      else
+        GroupChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
+      end
+
+    end
   end
+
+  # def chore_reminder
+  #   if self.created_at == self.updated_at
+  #     GroupChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
+  #   else
+  #     ChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
+  #   end
+  # end
 
   def next_due_date
     # Convert today into a Date object: today

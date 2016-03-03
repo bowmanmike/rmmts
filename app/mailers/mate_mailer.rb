@@ -13,4 +13,9 @@ class MateMailer < ApplicationMailer
     mail(to: @mate.email, subject: "You've joined a house!")
   end
 
+  def chore_notification(chore, mate)
+    @mate = mate
+    @chore = chore
+    mail(to: @mate.email, subject: "Reminder for #{@chore.name}")
+  end
 end
