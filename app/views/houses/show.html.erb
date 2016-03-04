@@ -146,4 +146,18 @@
     </div>
   <% end %>
 
+  <% if @house.expenses != nil %>
+    <div id="expenses" class="house-card">
+      <h3 id="expenses-header" class="card-header">Expenses</h3>
+
+      <div id="expenses-list">
+        <%= render @expenses %>
+      </div>
+
+      <div id="expenses-buttons">
+        <%= link_to button_tag("Add new expense"), new_house_expense_path(@house) %>
+      </div>
+    </div>
+  <% end %>
+
 <% end %>
