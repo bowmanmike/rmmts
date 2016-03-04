@@ -16,7 +16,7 @@ class Chore < ActiveRecord::Base
 
   def update_reminder
     if self.reminder_id && self.due_notification_id
-      Delayed::Job.find(self.reminder_id).delete if Delayed::Job.find(self.reminder_id)
+      Delayed::Job.find(self.reminder_id).delete if Delayed::Job.exists?(self.reminder_id)
       Delayed::Job.find(self.due_notification_id).delete
       self.update_column(:reminder_id, nil)
       self.update_column(:due_notification_id, nil)
@@ -67,9 +67,7 @@ class Chore < ActiveRecord::Base
 
   def delete_associated_jobs
     if self.reminder_id && self.due_notification_id
-      if Delayed::Job.find(self.reminder_id)
-        Delayed::Job.find(self.reminder_id).delete
-      end
+      Delayed::Job.find(self.reminder_id).delete if Delayed::Job.exists?(self.reminder_id)
       Delayed::Job.find(self.due_notification_id).delete
     end
   end
