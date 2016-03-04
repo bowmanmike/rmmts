@@ -1,31 +1,46 @@
 <h1><%= @purchase.name %>: <%= number_to_currency(@purchase.amount) %></h1>
+<h2><%= @purchase.description %></h2>
 
-<div id="make-payment">
-  <%= link_to button_tag("Make a payment"), new_mate_purchase_payment_path(@purchase.mate, @purchase) %>
-</div>
-
-<div id="purchase-description">
+<div id="purchase-summary">
   <h4>
-    Paid by: <%= @purchase.mate.username %><br>
-    Due date: <%= @purchase.due_date.strftime("%a, %e %b %Y") %><br>
-    Paid: <%= number_to_currency(@purchase.amount_paid) %><br>
-    Still Owed: <%= number_to_currency(@purchase.amount_owed) %>
+    <% if @purchase.mate == current_user %>
+      You paid for this purchase.<br>
+      Amount reimbursed: <%= number_to_currency(@purchase.amount_paid) %><br>
+      Amount still owed: <%= number_to_currency(@purchase.amount_owed) %>
+    <% else %>
+      Paid by: <%= @purchase.mate.username %><br>
+      <% if @purchase.paid_by?(current_user) %>
+        Thank you! You have fully paid back this expense.<br>
+      <% else %>
+        You owe: <%= number_to_currency(@purchase.amount_owed_by(current_user)) %><br>
+        You've paid: <%= number_to_currency(@purchase.amount_paid_by(current_user)) %><br>
+        Please pay by <%= @purchase.due_date.strftime("%a, %e %b %Y") %>
+      <% end %>
+    <% end %>
   </h4>
-  <p><em><%= @purchase.description %></em></p>
 </div>
 
 <div id="payment-list">
 
   <h4>Payments</h4>
-  <%= current_user.username %>: <%= number_to_currency(@purchase.amount_for_each_mate) %> (<%= @purchase.created_at.strftime("%a, %e %b %Y") %>)
-  <% @purchase.payments.each do |payment| %>
+  <%= @purchase.mate.username %>: <%= number_to_currency(@purchase.amount_for_each) %>
+  <% @house.mates.each do |housemate| %>
     <ul>
       <li>
-        <%= payment.mate.username %>:
-        <%= number_to_currency(payment.amount) %>
-        (<%= payment.paid_date.strftime("%a, %e %b %Y") %>)
+      <% unless housemate == @purchase.mate %>
+        <%= housemate.username %>: <%= number_to_currency(@purchase.amount_paid_by(housemate)) %>
+        <% unless @purchase.paid_by?(housemate) %>
+          (Still owes <%= number_to_currency(@purchase.amount_owed_by(housemate)) %>)
+        <% end %>
+      <% end %>
       </li>
     </ul>
+  <% end %>
+</div>
+
+<div id="make-payment">
+  <% unless @purchase.mate == current_user %>
+    <%= link_to button_tag("Make a payment"), new_mate_purchase_payment_path(@purchase.mate, @purchase) %>
   <% end %>
 </div>
 
