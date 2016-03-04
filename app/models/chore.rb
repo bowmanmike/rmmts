@@ -10,9 +10,6 @@ class Chore < ActiveRecord::Base
   validates :frequency_unit, presence: true
   validates :due_date, presence: true
 
-  after_create :update_reminder
-  # after_commit :update_reminder, if: :previous_changes["due_date"] || :previous_changes["mate_id"] || :previous_changes["complete"]
-  # after_update :update_reminder, if: :due_date_changed?
   after_save :update_reminder
 
   def update_reminder
