@@ -15,6 +15,10 @@
       <%= f.date_field :due_date %>
     </div>
     <div class="field">
+      <%= f.check_box :recurring %>
+      <%= f.label :recurring %>
+    </div>
+    <div class="field">
       <%= f.label :frequency_integer %><br>
       Every <%= f.number_field :frequency_integer %> day(s)
     </div>

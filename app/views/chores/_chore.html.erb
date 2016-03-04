@@ -8,7 +8,11 @@
   </p>
   <p><%= chore.description %></p>
   <p>Due Date: <%= chore.due_date.strftime("%a, %e %b %Y") %></p>
-  <p>Needs to be done every <%= chore.frequency_integer %> <%= chore.frequency_unit %></p>
+  <% if chore.recurring %>
+    <p>Needs to be done every <%= chore.frequency_integer %> <%= chore.frequency_unit %></p>
+  <% else %>
+    <p>Only happens once.</p>
+  <% end %>
   <% if chore.complete? %>
     <%= form_for [@house, chore] do |f| %>
       <%= f.hidden_field :complete, :value => false %>
