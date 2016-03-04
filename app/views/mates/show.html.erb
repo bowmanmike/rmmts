@@ -106,19 +106,21 @@
 
   <div id="mate-owed-payments-list">
     <% @mate.housemates.each do |housemate| %>
-    <ul>
-      <li class="owed-payment">
+    <p class="housemates-owed">
         <strong>Owed to <%= housemate.username %>: <%= number_to_currency(@mate.amount_owed_to(housemate)) %></strong><br>
         <% if @mate.amount_owed_to(housemate) > 0 %>
+        <ul>
           <% housemate.purchases.each do |purchase| %>
+          <li>
             <% unless purchase.paid_by?(@mate) %>
               <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount_owed_by(@mate))}", mate_purchase_path(purchase.mate, purchase) %><br>
               Payment due by: <%= purchase.due_date.strftime("%a, %e %b %Y") %><br>
             <% end %>
+          </li>
           <% end %>
+        </ul>
         <% end %>
-      </li>
-    </ul>
+    </p>
     <% end %>
   </div>
 </div>
