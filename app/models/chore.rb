@@ -74,4 +74,10 @@ class Chore < ActiveRecord::Base
     end
   end
 
+  def create_notifications
+    self.house.mates.each do |mate|
+      self.notifications.create(mate_id: mate.id, email: true, sms: false)
+    end
+  end
+
 end

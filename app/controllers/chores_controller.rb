@@ -14,6 +14,7 @@ class ChoresController < ApplicationController
     @chore.mate = nil
     @chore.creator = current_user
     @chore.complete = false
+    @chore.create_notifications
 
     if @chore.save
       redirect_to house_path(@house)
