@@ -60,7 +60,7 @@
 
     <div id="chores-complete" class="chores-card">
       <h3 class="card-header">Completed Chores</h3>
-      <% @house.chores.where(complete: true).each do |chore| %>
+      <% @chores.where(complete: true).each do |chore| %>
         <div class="chore">
           <p>
             <strong><%= link_to chore.name, house_chore_path(chore.house, chore) %></strong>
@@ -82,7 +82,7 @@
 
     <div id="chores-incomplete" class="chores-card">
       <h3 class="card-header">Incomplete Chores</h3>
-      <% @house.chores.where(complete: !true).each do |chore| %>
+      <% @chores.where(complete: !true).each do |chore| %>
         <div class="chore">
           <p>
             <strong><%= link_to chore.name, house_chore_path(chore.house, chore) %></strong>

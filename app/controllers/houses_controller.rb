@@ -1,5 +1,6 @@
 class HousesController < ApplicationController
   before_action :load_announcements, only: [:show]
+  before_action :load_chores, only: [:show]
   before_action :load_house, only: [:show, :edit, :update, :destroy]
   before_filter :must_be_logged_in, except: [:index]
 
@@ -67,6 +68,10 @@ class HousesController < ApplicationController
 
   def load_house
     @house = House.find(params[:id])
+  end
+
+  def load_chores
+    @chores = House.find(params[:id]).chores.order(due_date: :desc)
   end
 
 end
