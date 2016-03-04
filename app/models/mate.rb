@@ -53,4 +53,12 @@ class Mate < ActiveRecord::Base
 
     housemates_purchases
   end
+
+  def amount_owed_to(housemate)
+    sum = housemate.purchases.inject(0) do |sum, purchase|
+      sum + purchase.amount_owed_by(self)
+    end
+
+    sum
+  end
 end

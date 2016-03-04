@@ -105,17 +105,19 @@
   </h3>
 
   <div id="mate-owed-payments-list">
-    <% @mate.housemates_purchases.each do |purchase| %>
+    <% @mate.housemates.each do |housemate| %>
     <ul>
-      <% unless purchase.paid_by?(@mate) %>
-        <li class="owed-payment">
-          <strong>
-            <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount_owed_by(@mate))}", mate_purchase_path(purchase.mate, purchase) %>
-          </strong><br>
-          Owed to <%= purchase.mate.username %><br>
-          Payment due by: <%= purchase.due_date.strftime("%a, %e %b %Y") %>
-        </li>
-      <% end %>
+      <li class="owed-payment">
+        <strong>Owed to <%= housemate.username %>: <%= number_to_currency(@mate.amount_owed_to(housemate)) %></strong><br>
+        <% if @mate.amount_owed_to(housemate) > 0 %>
+          <% housemate.purchases.each do |purchase| %>
+            <% unless purchase.paid_by?(@mate) %>
+              <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount_owed_by(@mate))}", mate_purchase_path(purchase.mate, purchase) %><br>
+              Payment due by: <%= purchase.due_date.strftime("%a, %e %b %Y") %><br>
+            <% end %>
+          <% end %>
+        <% end %>
+      </li>
     </ul>
     <% end %>
   </div>
