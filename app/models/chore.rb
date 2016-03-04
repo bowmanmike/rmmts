@@ -9,16 +9,17 @@ class Chore < ActiveRecord::Base
   validates :frequency_integer, numericality: {only_integer: true}
   validates :frequency_unit, presence: true
   validates :due_date, presence: true
+  validate :due_date_is_future
 
+  before_destroy :delete_associated_jobs
   after_save :update_reminder
 
   def update_reminder
     if self.reminder_id && self.due_notification_id
+      Delayed::Job.find(self.reminder_id).delete if Delayed::Job.find(self.reminder_id)
       Delayed::Job.find(self.due_notification_id).delete
-      Delayed::Job.find(self.reminder_id).delete
       self.update_column(:reminder_id, nil)
       self.update_column(:due_notification_id, nil)
-
       if self.complete
         self.check_status
       else
@@ -58,6 +59,19 @@ class Chore < ActiveRecord::Base
     self.due_notification_id = nil
     self.reminder_id = nil
     self.save
+  end
+
+  def due_date_is_future
+    self.due_date > Time.now
+  end
+
+  def delete_associated_jobs
+    if self.reminder_id && self.due_notification_id
+      if Delayed::Job.find(self.reminder_id)
+        Delayed::Job.find(self.reminder_id).delete
+      end
+      Delayed::Job.find(self.due_notification_id).delete
+    end
   end
 
 end

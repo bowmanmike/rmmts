@@ -1,6 +1,5 @@
 class GroupChoreReminderJob < ActiveJob::Base
   queue_as :default
-  after_enqueue :notify_enqueued
 
   def perform(chore)
     chore.house.mates.each do |mate|
@@ -8,7 +7,4 @@ class GroupChoreReminderJob < ActiveJob::Base
     end
   end
 
-  def notify_enqueued
-    puts "PATRICKS CALLBACK: I WAS ENQUEUED!!!!!! AND THIS IS A GROUP MAILER JOB"
-  end
 end
