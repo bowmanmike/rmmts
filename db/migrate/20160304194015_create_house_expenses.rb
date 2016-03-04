@@ -1,6 +1,6 @@
 class CreateHouseExpenses < ActiveRecord::Migration
   def change
-    create_table :house_expenses do |t|
+    create_table :expenses do |t|
       t.string :name
       t.text :description
       t.float :amount
