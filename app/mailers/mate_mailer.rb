@@ -18,4 +18,17 @@ class MateMailer < ApplicationMailer
     @chore = chore
     mail(to: @mate.email, subject: "Reminder for #{@chore.name}")
   end
+
+  def chore_due(chore)
+    @chore = chore
+    if @chore.mate
+      @mate = chore.mate
+      mail(to: @mate.email, subject: "#{@chore.name} is due")
+    else
+      @chore.house.mates.each do |mate|
+        mail(to: mate.email, subject: "#{@chore.name} is due")
+      end
+    end
+  end
+
 end

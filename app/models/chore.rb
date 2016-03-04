@@ -13,10 +13,15 @@ class Chore < ActiveRecord::Base
   after_save :update_reminder
 
   def update_reminder
-    if self.reminder_id
+    if self.reminder_id && self.due_notification_id
+      Delayed::Job.find(self.due_notification_id).delete
       Delayed::Job.find(self.reminder_id).delete
       self.update_column(:reminder_id, nil)
-      unless self.complete
+      self.update_column(:due_notification_id, nil)
+
+      if self.complete
+        self.check_status
+      else
         self.set_reminder
       end
       return
@@ -32,6 +37,8 @@ class Chore < ActiveRecord::Base
       GroupChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
       self.update_column(:reminder_id, Delayed::Job.last.id)
     end
+    ChoreDueNotificationJob.set(wait_until: self.due_date).perform_later(self)
+    self.update_column(:due_notification_id, Delayed::Job.last.id)
   end
 
 
@@ -48,6 +55,8 @@ class Chore < ActiveRecord::Base
   def update_due_date
     options = { self.frequency_unit.to_sym => self.frequency_integer }
     self.due_date = self.due_date.advance(options)
+    self.due_notification_id = nil
+    self.reminder_id = nil
     self.save
   end
 
