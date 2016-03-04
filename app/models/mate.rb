@@ -55,4 +55,14 @@ class Mate < ActiveRecord::Base
 
     sum
   end
+
+  def assign_notifications
+    self.house.chores.each do |chore|
+      self.notifications.create(chore_id: chore.id, email: true, sms: false)
+    end
+  end
+
+  def remove_notifications
+    self.notifications.delete_all
+  end
 end

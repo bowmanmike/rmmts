@@ -31,9 +31,11 @@ class MatesController < ApplicationController
     if @mate.update_attributes(mate_params)
       if @mate.house == nil
         @mate.chores = []
+        @mate.remove_notifications
         redirect_to :back
       else
         MateMailer.join_house(@mate, @mate.house).deliver_later
+        @mate.assign_notifications
         redirect_to house_path(@mate.house), notice: 'account updated'
       end
     else
