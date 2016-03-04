@@ -76,20 +76,8 @@
     <h3 id="mate-purchases-header" class="card-header">Purchases</h3>
 
     <div id="mate-purchase-list">
-      <% if @mate.purchases.any? %>
-        <% @mate.purchases.each do |purchase| %>
-          <div class="purchase">
-            <p>
-              <strong>
-                <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount)}", mate_purchase_path(purchase.mate, purchase) %>
-              </strong><br>
-              Still owed: <%= number_to_currency(purchase.amount_owed) %><br>
-              <% if purchase.image.present? %>
-                Click <%= link_to "here", image_url("#{purchase.image}") %> to see a picture.
-              <% end %>
-            </p>
-          </div>
-        <% end %>
+      <% if @purchases.any? %>
+        <%= render @purchases %>
       <% else %>
         <p>
           No purchases yet.
@@ -105,22 +93,6 @@
   </h3>
 
   <div id="mate-owed-payments-list">
-    <% @mate.housemates.each do |housemate| %>
-    <p class="housemates-owed">
-        <strong>Owed to <%= housemate.username %>: <%= number_to_currency(@mate.amount_owed_to(housemate)) %></strong><br>
-        <% if @mate.amount_owed_to(housemate) > 0 %>
-        <ul>
-          <% housemate.purchases.each do |purchase| %>
-          <li>
-            <% unless purchase.paid_by?(@mate) %>
-              <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount_owed_by(@mate))}", mate_purchase_path(purchase.mate, purchase) %><br>
-              Payment due by: <%= purchase.due_date.strftime("%a, %e %b %Y") %><br>
-            <% end %>
-          </li>
-          <% end %>
-        </ul>
-        <% end %>
-    </p>
-    <% end %>
+    <%= render partial: "purchases/housemate_purchase", collection: @housemate_purchases %>
   </div>
 </div>
