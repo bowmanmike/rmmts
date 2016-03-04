@@ -8,6 +8,7 @@ class HousesController < ApplicationController
   end
 
   def show
+    @purchases = @house.purchases
   end
 
   def new
