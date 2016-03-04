@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304194015) do
+ActiveRecord::Schema.define(version: 20160304224855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,18 @@ ActiveRecord::Schema.define(version: 20160304194015) do
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
   add_index "messages", ["mate_id"], name: "index_messages_on_mate_id", using: :btree
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "mate_id"
+    t.integer  "chore_id"
+    t.boolean  "email"
+    t.boolean  "sms"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "notifications", ["chore_id"], name: "index_notifications_on_chore_id", using: :btree
+  add_index "notifications", ["mate_id"], name: "index_notifications_on_mate_id", using: :btree
+
   create_table "payments", force: :cascade do |t|
     t.float    "amount"
     t.datetime "paid_date"
@@ -155,6 +167,8 @@ ActiveRecord::Schema.define(version: 20160304194015) do
   add_foreign_key "chores", "houses"
   add_foreign_key "chores", "mates"
   add_foreign_key "expenses", "houses"
+  add_foreign_key "notifications", "chores"
+  add_foreign_key "notifications", "mates"
   add_foreign_key "payments", "mates"
   add_foreign_key "payments", "purchases"
 end
