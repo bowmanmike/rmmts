@@ -1,16 +1,5 @@
-<h3 class="card-header">House Announcements</h3>
-<div id="announcements-list">
-  <% if @announcements.blank? %>
-    <p class="no-announcement">No Announcements Yet!</p>
-  <% else %>
-    <div class="announcement">
-      <% @announcements.order(created_at: :desc).each do |announcement| %>
-        <h4><%= announcement.title %></h4>
-        <p><%= announcement.body %></p>
-        <p>Posted by: <%= announcement.mate.first_name %> <%= announcement.mate.last_name %></p>
-        <p>Posted at: <%= announcement.created_at.strftime('%A, %d %b %Y %l:%M %p') %></p>
-        <%= link_to button_tag("Edit or Delete This Announcement"), edit_house_announcement_path(@house, announcement) %><br>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+<h4><%= announcement.title %></h4>
+<p><%= announcement.body %></p>
+<p>Posted by: <%= announcement.mate.first_name %> <%= announcement.mate.last_name %></p>
+<p>Posted at: <%= announcement.created_at.strftime('%A, %d %b %Y %l:%M %p') %></p>
+<%= link_to button_tag("Edit or Delete This Announcement"), edit_house_announcement_path(@house, announcement) %><br>

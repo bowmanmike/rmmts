@@ -43,8 +43,16 @@
 <% if current_user && current_user.house == @house %>
 
   <div id="announcements" class="house-card">
-    <%= render @announcements %>
-
+    <h3 class="card-header">House Announcements</h3>
+    <div id="announcements-list">
+      <% if @announcements.blank? %>
+        <p class="no-announcement">No Announcements Yet!</p>
+      <% else %>
+        <div class="announcement">
+          <%= render @announcements %>
+        </div>
+      <% end %>
+    </div>
     <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house) %>
   </div>
 
