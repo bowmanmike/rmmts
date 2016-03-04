@@ -32,7 +32,7 @@ class Mate < ActiveRecord::Base
   end
 
   def owed_payments_sum
-    sum = self.housemates_purchases.inject(0) do |sum, purchase|
+    sum = self.housemate_purchases.inject(0) do |sum, purchase|
       sum + purchase.amount_for_each
     end
 
@@ -43,14 +43,14 @@ class Mate < ActiveRecord::Base
     housemates = self.house.mates.where.not(id: self.id)
   end
 
-  def housemates_purchases
-    housemates_purchases = []
+  def housemate_purchases
+    housemate_purchases = []
     self.housemates.each do |housemate|
       housemate.purchases.each do |purchase|
-        housemates_purchases << purchase
+        housemate_purchases << purchase
       end
     end
 
-    housemates_purchases
+    housemate_purchases
   end
 end

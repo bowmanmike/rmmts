@@ -7,7 +7,7 @@ class MatesController < ApplicationController
 
   def show
     @purchases = @mate.purchases
-    @housemates_purchases = @mate.housemates_purchases
+    @housemate_purchases = @mate.housemate_purchases
   end
 
   def new
