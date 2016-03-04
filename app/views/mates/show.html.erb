@@ -71,6 +71,27 @@
   <% end %>
 </div>
 
+<div id="mate-purchases" class="mate-card">
+    <h3 id="mate-purchases-header" class="card-header">Purchases</h3>
+
+    <div id="purchase-list">
+      <% @mate.purchases.each do |purchase| %>
+        <div class="purchase">
+          <p>
+            <strong>
+              <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount)}", mate_purchase_path(purchase.mate, purchase) %>
+            </strong><br>
+            Purchase due: <%= purchase.due_date.strftime("%a, %e %b %Y") %><br>
+            Still owed: <%= number_to_currency(purchase.amount_owed) %><br>
+            <% if purchase.image.present? %>
+              Click <%= link_to "here", image_url("#{purchase.image}") %> to see a picture.
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+</div>
+
 <% if @mate == current_user %>
   <%= link_to "Create a house", new_house_path %>
 <% end %>
