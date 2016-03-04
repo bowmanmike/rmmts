@@ -11,4 +11,8 @@ class Purchase < ActiveRecord::Base
   def amount_owed
     owed = self.amount - self.amount_paid
   end
+
+  def amount_for_each_mate
+    each = ( self.amount / self.mate.number_of_mates ).round(2)
+  end
 end

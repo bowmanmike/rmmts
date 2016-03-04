@@ -1,6 +1,6 @@
 class Mate < ActiveRecord::Base
   authenticates_with_sorcery!
-  
+
   validates :username, presence: true, uniqueness: true
   validates :email, uniqueness: true
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes["password"] }
@@ -29,6 +29,22 @@ class Mate < ActiveRecord::Base
 
   def full_name
     "#{self.first_name} #{self.last_name}"
+  end
+
+  def owed_payments_sum
+    sum = other_mates_purchases.inject(0) do |sum, purchase|
+      sum + purchase.amount_for_each_mate
+    end
+
+    sum
+  end
+
+  def other_mates_purchases
+    self.house.purchases - self.purchases
+  end
+
+  def number_of_mates
+    number_of_mates = self.house.mates.size
   end
 
 end
