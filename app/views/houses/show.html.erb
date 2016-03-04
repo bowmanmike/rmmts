@@ -128,30 +128,30 @@
 
   </div>
 
-  <% if @house.expenses != nil %>
-    <div id="expenses" class="house-card">
-      <h3 id="expenses-header" class="card-header">Expenses</h3>
+  <% if @house.purchases != nil %>
+    <div id="purchases" class="house-card">
+      <h3 id="purchases-header" class="card-header">Purchases</h3>
 
-      <div id="expense-list">
-        <% @house.expenses.each do |expense| %>
-          <div class="expense">
+      <div id="purchase-list">
+        <% @house.purchases.each do |purchase| %>
+          <div class="purchase">
             <p>
               <strong>
-                <%= link_to "#{expense.name}: #{number_to_currency(expense.amount)}", house_expense_path(expense.house, expense) %>
+                <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount)}", mate_purchase_path(purchase.mate, purchase) %>
               </strong><br>
-              Expense due: <%= expense.due_date.strftime("%a, %e %b %Y") %><br>
-              Still owed: <%= number_to_currency(expense.amount_owed) %><br>
-              <% if expense.image.present? %>
-                Click <%= link_to "here", image_url("#{expense.image}") %> to see a picture.
+              Purchase due: <%= purchase.due_date.strftime("%a, %e %b %Y") %><br>
+              Still owed: <%= number_to_currency(purchase.amount_owed) %><br>
+              <% if purchase.image.present? %>
+                Click <%= link_to "here", image_url("#{purchase.image}") %> to see a picture.
               <% end %>
             </p>
           </div>
         <% end %>
       </div>
 
-      <div id="expenses-buttons">
+      <div id="purchases-buttons">
         <%= link_to button_tag("Add new chore"), new_house_chore_path(@house) %><br>
-        <%= link_to button_tag("Add new expense"), new_house_expense_path(@house) %>
+        <%= link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user) %>
       </div>
     </div>
   <% end %>
