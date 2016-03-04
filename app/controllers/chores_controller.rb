@@ -14,9 +14,9 @@ class ChoresController < ApplicationController
     @chore.mate = nil
     @chore.creator = current_user
     @chore.complete = false
-    @chore.create_notifications
 
     if @chore.save
+      @chore.create_notifications
       redirect_to house_path(@house)
       flash[:notice] = "Chore has been added!"
     else
@@ -41,7 +41,6 @@ class ChoresController < ApplicationController
 
 
     if @chore.update_attributes(chore_params)
-      # TestJobJob.perform_later
       redirect_to house_path(@house)
       flash[:notice] = "Chore has been updated!"
     else
