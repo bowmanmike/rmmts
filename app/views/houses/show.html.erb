@@ -75,7 +75,7 @@
       <h3 id="purchases-header" class="card-header">Purchases</h3>
 
       <div id="purchase-list">
-        <%= render @purchases %>
+        <%= render @purchases || "No Purchases Right Meow" %>
       </div>
 
       <div id="purchases-buttons">
