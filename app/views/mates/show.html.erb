@@ -73,7 +73,7 @@
 </div>
 
 <div id="mate-purchases" class="mate-card">
-    <h3 id="mate-purchases-header" class="card-header">Your Purchases</h3>
+    <h3 id="mate-purchases-header" class="card-header">Purchases</h3>
 
     <div id="mate-purchase-list">
       <% if @mate.purchases.any? %>
@@ -100,11 +100,17 @@
 </div>
 
 <div id="mate-owed-payments" class="mate-card">
-  <h3 id="mate-owed-payments-header" class="card-header">Your Owed Payments</h3>
+  <h3 id="mate-owed-payments-header" class="card-header">Owed Payments</h3>
 
   <div id="mate-owed-payments-list">
     <% @mate.housemates_purchases.each do |purchase| %>
-      
+    <ul>
+      <% unless purchase.paid_by?(@mate) %>
+        <li>
+          <%= purchase.name %>: <%= number_to_currency(purchase.amount_owed_by(@mate)) %>
+        </li>
+      <% end %>
+    </ul>
     <% end %>
   </div>
 </div>
