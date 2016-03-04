@@ -39,18 +39,18 @@ class Mate < ActiveRecord::Base
   #   sum
   # end
 
-  def house_mates
-    house_mates = self.house.mates.where.not(id: self.id)
+  def housemates
+    housemates = self.house.mates.where.not(id: self.id)
   end
 
-  def house_mates_purchases
-    house_mates_purchases = []
-    house_mates.each do |mate|
-      mate.purchases.each do |purchase|
+  def housemates_purchases
+    housemates_purchases = []
+    self.housemates.each do |housemate|
+      housemate.purchases.each do |purchase|
         house_mates_purchases << purchase
       end
     end
 
-    house_mates_purchases
+    housemates_purchases
   end
 end

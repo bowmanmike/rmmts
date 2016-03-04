@@ -17,6 +17,7 @@
 <div id="payment-list">
 
   <h4>Payments</h4>
+  <%= current_user.username %>: <%= number_to_currency(@purchase.amount_for_each_mate) %> (<%= @purchase.created_at.strftime("%a, %e %b %Y") %>)
   <% @purchase.payments.each do |payment| %>
     <ul>
       <li>
