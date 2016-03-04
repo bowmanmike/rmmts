@@ -76,8 +76,8 @@
     <h3 id="mate-purchases-header" class="card-header">Purchases</h3>
 
     <div id="mate-purchase-list">
-      <% if @mate.purchases.any? %>
-        <% @mate.purchases.each do |purchase| %>
+      <% if @purchases.any? %>
+        <% @purchases.each do |purchase| %>
           <div class="purchase">
             <p>
               <strong>
@@ -105,7 +105,7 @@
   </h3>
 
   <div id="mate-owed-payments-list">
-    <% @mate.housemates_purchases.each do |purchase| %>
+    <% @housemates_purchases.each do |purchase| %>
     <ul>
       <% unless purchase.paid_by?(@mate) %>
         <li class="owed-payment">

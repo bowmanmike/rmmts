@@ -6,6 +6,8 @@ class MatesController < ApplicationController
   end
 
   def show
+    @purchases = @mate.purchases
+    @housemates_purchases = @mate.housemates_purchases
   end
 
   def new
