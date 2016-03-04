@@ -31,20 +31,26 @@ class Mate < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
-  def owed_payments_sum
-    sum = other_mates_purchases.inject(0) do |sum, purchase|
-      sum + purchase.amount_for_each_mate
+  # def owed_payments_sum
+  #   sum = other_mates_purchases.inject(0) do |sum, purchase|
+  #     sum + purchase.amount_for_each_mate
+  #   end
+  #
+  #   sum
+  # end
+
+  def house_mates
+    house_mates = self.house.mates.where.not(id: self.id)
+  end
+
+  def house_mates_purchases
+    house_mates_purchases = []
+    house_mates.each do |mate|
+      mate.purchases.each do |purchase|
+        house_mates_purchases << purchase
+      end
     end
 
-    sum
+    house_mates_purchases
   end
-
-  def other_mates_purchases
-    self.house.purchases - self.purchases
-  end
-
-  def number_of_mates
-    number_of_mates = self.house.mates.size
-  end
-
 end
