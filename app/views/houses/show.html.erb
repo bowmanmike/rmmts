@@ -45,13 +45,9 @@
   <div id="announcements" class="house-card">
     <h3 class="card-header">House Announcements</h3>
     <div id="announcements-list">
-      <% if @announcements.blank? %>
-        <p class="no-announcement">No Announcements Yet!</p>
-      <% else %>
         <div class="announcement">
-          <%= render @announcements %>
+          <%= render(@announcements) || "No announcements!" %>
         </div>
-      <% end %>
     </div>
     <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house) %>
   </div>
@@ -60,12 +56,12 @@
 
     <div id="chores-complete" class="chores-card">
       <h3 class="card-header">Completed Chores</h3>
-      <%= render @chores.where(complete: true) %>
+      <%= render(@chores.where(complete: true)) || "No complete chores yet?! Better get on that." %>
     </div>
 
     <div id="chores-incomplete" class="chores-card">
       <h3 class="card-header">Incomplete Chores</h3>
-      <%= render @chores.where(complete: !true) %>
+      <%= render(@chores.where(complete: !true)) || "All chores complete! Good Job!" %>
     </div>
 
     <div class="chores-buttons">
