@@ -16,9 +16,9 @@ class Purchase < ActiveRecord::Base
     each = ( self.amount / self.mate.house.mates.size ).round(2)
   end
 
-  def grouped_payments
-    grouped_payments = self.payments.group(:mate_id).sum(:amount)
-  end
+  # def grouped_payments
+  #   grouped_payments = self.payments.group(:mate_id).sum(:amount)
+  # end
 
   def payments_paid_by(housemate)
     housemate_payments = self.payments.where(mate_id: housemate.id)
