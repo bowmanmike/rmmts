@@ -1,0 +1,39 @@
+<div id="expense-form" class="form">
+
+  <%= form_for ([@house, @expense]) do |f| %>
+
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+      <%= f.label :amount %><br>
+      <%= f.number_field :amount, step: 0.01 %>
+    </div>
+    <div class="field">
+      <%= f.label :due_date %><br>
+      <%= f.date_field :due_date %>
+    </div>
+    <div class="field">
+      <%= f.check_box :recurring %> 
+      <%= f.label :recurring %>
+    </div>
+    <div class="field">
+      <%= f.label :frequency_integer %><br>
+      Every <%= f.number_field :frequency_integer %>
+    </div>
+    <div class="field">
+      <%= f.label :frequency_unit %><br>
+      <%= f.text_field :frequency_unit %>
+    </div>
+    <div class="action">
+      <%= f.submit "Save" %>
+    </div>
+
+  <% end %>
+
+</div>

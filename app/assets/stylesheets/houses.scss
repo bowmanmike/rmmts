@@ -49,11 +49,18 @@
   }
 }
 
-#purchases {
+#purchases-expenses {
   @include outer-container;
   padding: 1rem;
 }
 
-.card-header {
-
+.house-card {
+  @include media($small-screen-only) {
+    @include span-columns(12);
+    @include omega(2n);
+  }
+  @include media($medium-screen-up) {
+    @include span-columns(6);
+    @include omega(2n);
+  }
 }

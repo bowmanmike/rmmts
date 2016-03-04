@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304184144) do
+ActiveRecord::Schema.define(version: 20160304194015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,24 @@ ActiveRecord::Schema.define(version: 20160304184144) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "expenses", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.float    "amount"
+    t.boolean  "paid"
+    t.datetime "due_date"
+    t.integer  "frequency_integer"
+    t.string   "frequency_unit"
+    t.boolean  "recurring"
+    t.integer  "house_id"
+    t.integer  "reminder_id"
+    t.integer  "due_notification_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "expenses", ["house_id"], name: "index_expenses_on_house_id", using: :btree
 
   create_table "houses", force: :cascade do |t|
     t.string   "name"
@@ -136,6 +154,7 @@ ActiveRecord::Schema.define(version: 20160304184144) do
   add_foreign_key "announcements", "mates"
   add_foreign_key "chores", "houses"
   add_foreign_key "chores", "mates"
+  add_foreign_key "expenses", "houses"
   add_foreign_key "payments", "mates"
   add_foreign_key "payments", "purchases"
 end
