@@ -60,12 +60,12 @@
 
     <div id="chores-complete" class="chores-card">
       <h3 class="card-header">Completed Chores</h3>
-      <%= render partial: "chores/complete_chore", collection: @chores.where(complete: true), as: :chore %>
+      <%= render @chores.where(complete: true) %>
     </div>
 
     <div id="chores-incomplete" class="chores-card">
       <h3 class="card-header">Incomplete Chores</h3>
-      <%= render partial: "chores/incomplete_chore", collection: @chores.where(complete: !true), as: :chore %>
+      <%= render @chores.where(complete: !true) %>
     </div>
 
     <div class="chores-buttons">
