@@ -15,21 +15,22 @@ class Chore < ActiveRecord::Base
   def update_reminder
     if self.reminder_id
       Delayed::Job.find(self.reminder_id).delete
-      self.set_reminder
+      self.update_column(:reminder_id, nil)
+      unless self.complete
+        self.set_reminder
+      end
       return
     end
     self.set_reminder
   end
 
   def set_reminder
-    unless self.complete
-      if self.mate
-        ChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
-        self.update_column(:reminder_id, Delayed::Job.last.id)
-      else
-        GroupChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
-        self.update_column(:reminder_id, Delayed::Job.last.id)
-      end
+    if self.mate
+      ChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
+      self.update_column(:reminder_id, Delayed::Job.last.id)
+    else
+      GroupChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
+      self.update_column(:reminder_id, Delayed::Job.last.id)
     end
   end
 
