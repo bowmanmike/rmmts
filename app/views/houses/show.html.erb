@@ -42,7 +42,7 @@
 
 <% if current_user && current_user.house == @house %>
 
-  <div id="announcements" class="house-card">
+  <div id="announcements">
 
     <h3 class="card-header">House Announcements</h3>
     <div id="announcements-list">
@@ -64,7 +64,7 @@
     <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house) %>
   </div>
 
-  <div id="chores" class="house-card">
+  <div id="chores">
 
     <div id="chores-complete" class="chores-card">
       <h3 class="card-header">Completed Chores</h3>
@@ -132,32 +132,36 @@
 
   </div>
 
-  <% if @house.purchases != nil %>
-    <div id="purchases" class="house-card">
-      <h3 id="purchases-header" class="card-header">Purchases</h3>
+  <div id="purchases-expenses">
 
-      <div id="purchase-list">
-        <%= render @purchases %>
+    <% if @house.purchases != nil %>
+      <div id="purchases" class="house-card">
+        <h3 id="purchases-header" class="card-header">Purchases</h3>
+
+        <div id="purchase-list">
+          <%= render @purchases %>
+        </div>
+
+        <div id="purchases-buttons">
+          <%= link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user) %>
+        </div>
       </div>
+    <% end %>
 
-      <div id="purchases-buttons">
-        <%= link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user) %>
+    <% if @house.expenses != nil %>
+      <div id="expenses" class="house-card">
+        <h3 id="expenses-header" class="card-header">Expenses</h3>
+
+        <div id="expenses-list">
+          <%= render @expenses %>
+        </div>
+
+        <div id="expenses-buttons">
+          <%= link_to button_tag("Add new expense"), new_house_expense_path(@house) %>
+        </div>
       </div>
-    </div>
-  <% end %>
-
-  <% if @house.expenses != nil %>
-    <div id="expenses" class="house-card">
-      <h3 id="expenses-header" class="card-header">Expenses</h3>
-
-      <div id="expenses-list">
-        <%= render @expenses %>
-      </div>
-
-      <div id="expenses-buttons">
-        <%= link_to button_tag("Add new expense"), new_house_expense_path(@house) %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+    
+  </div>
 
 <% end %>
