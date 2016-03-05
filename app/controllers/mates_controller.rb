@@ -1,5 +1,6 @@
 class MatesController < ApplicationController
   before_action :load_mate, only: [:show, :edit, :update, :destroy]
+  before_action :load_mate_notifications, only: [:show]
 
   def index
     @mates = Mate.all
@@ -43,6 +44,10 @@ class MatesController < ApplicationController
     end
   end
 
+  def update_notification_settings
+
+  end
+
   def destroy
     @mate.destroy
     redirect_to root_path, notice: 'account deleted'
@@ -55,6 +60,10 @@ class MatesController < ApplicationController
 
   def load_mate
     @mate = Mate.find(params[:id])
+  end
+
+  def load_mate_notifications
+    @notifications = Notification.where(mate_id: current_user.id)
   end
 
 end
