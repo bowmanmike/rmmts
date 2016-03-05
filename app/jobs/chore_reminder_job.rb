@@ -1,5 +1,5 @@
 class ChoreReminderJob < ActiveJob::Base
-  queue_as :default
+  queue_as :chores
 
   def perform(chore)
     MateMailer.chore_notification(chore, chore.mate).deliver_later

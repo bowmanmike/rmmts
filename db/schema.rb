@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160304225414) do
+ActiveRecord::Schema.define(version: 20160305163816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,8 +85,9 @@ ActiveRecord::Schema.define(version: 20160304225414) do
     t.integer  "house_id"
     t.integer  "reminder_id"
     t.integer  "due_notification_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "update_due_date_job_id"
   end
 
   add_index "expenses", ["house_id"], name: "index_expenses_on_house_id", using: :btree

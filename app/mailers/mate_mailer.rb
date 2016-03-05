@@ -31,4 +31,16 @@ class MateMailer < ApplicationMailer
     end
   end
 
+  def expense_reminder(expense, mate)
+    @expense = expense
+    @mate = mate
+    mail(to: @mate.email, subject: "Reminder for #{@expense.name}")
+  end
+
+  def expense_due(expense, mate)
+    @expense = expense
+    @mate = mate
+    mail(to: @mate.email, subject: "Payment for #{@expense.name} is due")
+  end
+
 end
