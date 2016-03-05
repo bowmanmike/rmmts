@@ -47,6 +47,8 @@ gem 'whenever', :require => false
 
 gem 'delayed_job_active_record'
 
+gem 'twilio-ruby'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'quiet_assets'
