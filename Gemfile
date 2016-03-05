@@ -48,7 +48,7 @@ gem 'whenever', :require => false
 gem 'delayed_job_active_record'
 
 gem 'twilio-ruby'
-gem 'phony'
+gem 'phony_rails'
 gem 'figaro'
 
 group :development, :test do

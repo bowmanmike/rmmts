@@ -126,6 +126,9 @@ GEM
       rack (>= 1.2, < 3)
     pg (0.18.4)
     phony (2.15.17)
+    phony_rails (0.12.13)
+      activesupport (>= 3.0)
+      phony (~> 2.12)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -228,7 +231,7 @@ DEPENDENCIES
   mini_magick
   neat
   pg (~> 0.15)
-  phony
+  phony_rails
   pry-rails
   quiet_assets
   rails (= 4.2.5.1)
