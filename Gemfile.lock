@@ -224,7 +224,7 @@ DEPENDENCIES
   carrierwave
   delayed_job_active_record
   factory_girl_rails
-  figaro
+  figaro (~> 1.1, >= 1.1.1)
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener

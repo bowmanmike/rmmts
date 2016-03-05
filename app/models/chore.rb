@@ -95,4 +95,8 @@ class Chore < ActiveRecord::Base
     self.mate_id?
   end
 
+  def sms_reminder
+    @twilio_number = ENV["twilio_phone_number"]
+  end
+
 end
