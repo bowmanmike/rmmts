@@ -3,7 +3,6 @@ class ChoreDueNotificationJob < ActiveJob::Base
 
   def perform(chore)
     MateMailer.chore_due(chore).deliver_later
-    chore.check_status
   end
 
 end

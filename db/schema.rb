@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304184144) do
+ActiveRecord::Schema.define(version: 20160304225414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,13 +36,14 @@ ActiveRecord::Schema.define(version: 20160304184144) do
     t.boolean  "complete"
     t.integer  "house_id"
     t.integer  "mate_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "creator_id"
-    t.boolean  "recurring",           default: true
+    t.boolean  "recurring",              default: true
     t.string   "frequency_unit"
     t.integer  "reminder_id"
     t.integer  "due_notification_id"
+    t.integer  "update_due_date_job_id"
   end
 
   add_index "chores", ["creator_id"], name: "index_chores_on_creator_id", using: :btree
