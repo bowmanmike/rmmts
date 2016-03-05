@@ -24,6 +24,8 @@ class Mate < ActiveRecord::Base
   has_many :payments
   has_many :purchases
 
+  accepts_nested_attributes_for :notifications
+
   def conversations
     self.sent_conversations + self.received_conversations
   end

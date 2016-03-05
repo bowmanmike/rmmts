@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  before_action :load_chore
+  before_action :load_chore, only: [:index, :update]
 
   def index
     @notifications = current_user.notifications
@@ -17,8 +17,14 @@ class NotificationsController < ApplicationController
     end
   end
 
-  def update_notification_settings
-    @mate.notifications.update_all(notification_params)
+  def update_all
+    if current_user.notifications.update_all(notification_params)
+      flash[:notice] = "Global notification preferences updated!"
+      redirect_to house_path(current_user.house)
+    else
+      flash[:alert] = "There was a problem saving your notification preferences. Please try again."
+      redirect_to house_path(current_user.house)
+    end
   end
 
   private
