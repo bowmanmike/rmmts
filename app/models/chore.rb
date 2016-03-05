@@ -8,14 +8,19 @@ class Chore < ActiveRecord::Base
   has_many :notifications, dependent: :destroy
 
   validates :name, presence: true
-  validates :frequency_integer, numericality: {only_integer: true}
-  validates :frequency_unit, presence: true
+  validates :frequency_unit, presence: true, if: :recurring?
+  validates :frequency_integer, presence: true, if: :recurring?
+  validates :frequency_integer, numericality: {only_integer: true}, allow_blank: true
   validates_inclusion_of :frequency_unit, in: ["days", "weeks", "months", "years"]
   validates :due_date, presence: true
   validate :due_date_cannot_be_in_the_past
 
   before_destroy :delete_associated_jobs
   after_save :update_reminder
+
+  def recurring?
+    recurring == true
+  end
 
   def due_date_cannot_be_in_the_past
     if due_date.present? && due_date < Date.today
