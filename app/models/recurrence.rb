@@ -1,6 +1,6 @@
 module Recurrence
 
-  def recurrence_alias(frequency_integer, frequency_unit, week_day, month_day)
+  def recurrence_alias(frequency_integer, frequency_unit, day_of_week, day_of_month)
 
     case frequency_unit
     when "day"
