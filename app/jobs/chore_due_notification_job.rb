@@ -1,9 +1,15 @@
 class ChoreDueNotificationJob < ActiveJob::Base
-  queue_as :default
+  queue_as :chores
 
   def perform(chore)
-    MateMailer.chore_due(chore).deliver_later
-    chore.check_status
+    @chore = chore
+    if @chore.mate
+      MateMailer.chore_due(@chore, @chore.mate).deliver_later
+    else
+      @chore.house.mates.each do |mate|
+        MateMailer.chore_due(@chore, mate).deliver_later
+      end
+    end
   end
 
 end

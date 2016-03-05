@@ -1,5 +1,5 @@
 class GroupChoreReminderJob < ActiveJob::Base
-  queue_as :default
+  queue_as :chores
 
   def perform(chore)
     chore.house.mates.each do |mate|
