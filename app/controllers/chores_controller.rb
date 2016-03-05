@@ -68,7 +68,8 @@ class ChoresController < ApplicationController
   end
 
   def chore_params
-    params.require(:chore).permit(:name, :description, :due_date, :recurring, :frequency_unit, :frequency_integer, :complete)
+    params.require(:chore).permit(:name, :description, :due_date, :recurring, :complete,
+                                  :frequency_unit, :frequency_integer, :frequency_weekday)
   end
 
   def check_notification_status
