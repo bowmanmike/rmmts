@@ -44,10 +44,6 @@ class MatesController < ApplicationController
     end
   end
 
-  def update_notification_settings
-
-  end
-
   def destroy
     @mate.destroy
     redirect_to root_path, notice: 'account deleted'
