@@ -1,44 +1,69 @@
 <div class="chore">
-  <p>
-    <strong><%= link_to chore.name, house_chore_path(chore.house, chore) %></strong>
-    <% if chore.creator == current_user %>
-      <%= link_to "Edit chore", edit_house_chore_path(chore.house, chore) %> |
-      <%= link_to "Delete chore", house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" } %>
+  <div class="chore-info"><p><strong><%= link_to chore.name, house_chore_path(chore.house, chore) %></strong>
+      <% if chore.creator == current_user %>
+        <%= link_to "Edit chore", edit_house_chore_path(chore.house, chore) %> |
+        <%= link_to "Delete chore", house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" } %>
+      <% end %>
+    </p>
+    <p><%= chore.description %></p>
+    <p>Due Date: <%= chore.due_date.strftime("%a, %e %b %Y") %></p>
+    <% if chore.recurring %>
+      <p>Needs to be done every <%= chore.frequency_integer %> <%= chore.frequency_unit %></p>
+    <% else %>
+      <p>Only happens once.</p>
     <% end %>
-  </p>
-  <p><%= chore.description %></p>
-  <p>Due Date: <%= chore.due_date.strftime("%a, %e %b %Y") %></p>
-  <% if chore.recurring %>
-    <p>Needs to be done every <%= chore.frequency_integer %> <%= chore.frequency_unit %></p>
-  <% else %>
-    <p>Only happens once.</p>
-  <% end %>
-  <% if chore.complete? %>
-    <%= form_for [@house, chore] do |f| %>
-      <%= f.hidden_field :complete, :value => false %>
-      <%= f.submit "Mark as Incomplete" %>
-    <% end %>
-  <% else %>
-    <%= form_for [@house, chore] do |f| %>
-      <%= f.hidden_field :complete, :value => true %>
-      <%= f.submit "Mark as Complete" %>
-    <% end %>
-  <% end %>
-  <% if !chore.complete? %>
-    <% if chore.mate == nil %>
+  </div>
+
+  <div class="chore-complete-form">
+    <% if chore.complete? %>
       <%= form_for [@house, chore] do |f| %>
-        <%= f.hidden_field :assign_self, :value => current_user.id %>
-        <%= f.submit "Claim this chore" %>
+        <%= f.hidden_field :complete, :value => false %>
+        <%= f.submit "Mark as Incomplete" %>
       <% end %>
     <% else %>
-      <p>Claimed by <%= chore.mate.username %></p>
-    <% end %>
-
-    <% if chore.mate == current_user %>
       <%= form_for [@house, chore] do |f| %>
-        <%= f.hidden_field :assign_self, :value => nil %>
-        <%= f.submit "Unclaim this chore" %>
+        <%= f.hidden_field :complete, :value => true %>
+        <%= f.submit "Mark as Complete" %>
       <% end %>
     <% end %>
-  <% end %>
+  </div>
+
+  <div class="chore-claim-form">
+    <% if !chore.complete? %>
+      <% if chore.mate == nil %>
+        <%= form_for [@house, chore] do |f| %>
+          <%= f.hidden_field :assign_self, :value => current_user.id %>
+          <%= f.submit "Claim this chore" %>
+        <% end %>
+      <% else %>
+        <p>Claimed by <%= chore.mate.username %></p>
+      <% end %>
+
+      <% if chore.mate == current_user %>
+        <%= form_for [@house, chore] do |f| %>
+          <%= f.hidden_field :assign_self, :value => nil %>
+          <%= f.submit "Unclaim this chore" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="chore-notification-settings">
+    <%= form_for [current_user, chore.notifications.find_by(mate_id: current_user.id)] do |f| %>
+      <div class="field">
+        <%= f.check_box :email %>
+        <%= f.label :email %>
+      </div>
+
+      <div class="field">
+        <%= f.check_box :sms %>
+        <%= f.label :sms %>
+      </div>
+
+      <div class="action">
+        <%= f.submit "Update Notification Settings" %>
+      </div>
+
+    <% end %>
+  </div>
 </div>

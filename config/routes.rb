@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :purchases, except: [:index] do
       resources :payments, except: [:index]
     end
+    resources :notifications, only: [:update]
   end
 
   resources :sessions, only: [:new, :create, :destroy]
