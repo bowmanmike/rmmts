@@ -51,7 +51,7 @@ class MatesController < ApplicationController
 
   private
   def mate_params
-    params.require(:mate).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :house_id)
+    params.require(:mate).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :house_id, :phone_number)
   end
 
   def load_mate

@@ -1,6 +1,8 @@
 class Mate < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  phony_normalize :phone_number, default_country_code: "CA"
+
   validates :username, presence: true, uniqueness: true
   validates :email, uniqueness: true
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes["password"] }
