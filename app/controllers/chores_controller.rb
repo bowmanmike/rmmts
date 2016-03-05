@@ -76,7 +76,7 @@ class ChoresController < ApplicationController
     if @chore.check_claimed?
       @chore.mate.remove_notifications_on_claim(@chore)
     elsif !@chore.check_claimed?
-      @chore.house.mates.each { |mate| mate.assign_notifications }
+      @chore.house.mates.where.not(id: current_user.id).each { |mate| mate.assign_notifications }
     end
   end
 
