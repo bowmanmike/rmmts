@@ -34,6 +34,7 @@ class ChoresController < ApplicationController
     if params[:chore][:assign_self]
       @chore.mate_id = params[:chore][:assign_self]
       @chore.save
+      @chore.mate.remove_notifications_on_claim(@chore)
       redirect_to :back, notice: "You have claimed this chore"
       return
     end
