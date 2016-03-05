@@ -6,7 +6,8 @@ class ChoreDueNotificationJob < ActiveJob::Base
     if @chore.mate
       if @chore.notifications.find_by(mate_id: mate).email?
         MateMailer.chore_due(@chore, @chore.mate).deliver_later
-      elsif
+      end
+      if
         puts "Sending SMS"
       end
     else
