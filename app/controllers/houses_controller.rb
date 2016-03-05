@@ -10,6 +10,7 @@ class HousesController < ApplicationController
 
   def show
     @purchases = @house.purchases
+    @expenses = @house.expenses
   end
 
   def new

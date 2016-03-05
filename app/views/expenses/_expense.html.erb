@@ -1,0 +1,8 @@
+<div class="expense">
+  <p>
+    <strong>
+      <%= link_to "#{expense.name}: #{number_to_currency(expense.amount)}", house_expense_path(expense.house, expense) %>
+    </strong><br>
+    Due: <%= expense.due_date.strftime("%a, %e %b %Y") %>
+  </p>
+</div>

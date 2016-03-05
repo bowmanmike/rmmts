@@ -1,0 +1,15 @@
+<h1><%= @expense.name %>: <%= number_to_currency(@expense.amount) %></h1>
+<h2><%= @expense.description %></h2>
+
+<div id="expense-summary">
+  <p>
+    Next due date: <%= @expense.due_date.strftime("%a, %e %b %Y") %><br>
+    <!-- Might need to fix wording for expenses that aren't daily weekly or monthly -->
+    Paid every <%= @expense.frequency_integer %> <%= @expense.frequency_unit %>.
+  </p>
+</div>
+
+<div id="expense-links">
+  <%= link_to "Edit expense", edit_house_expense_path(@house, @expense) %> |
+  <%= link_to "Delete expense", house_expense_path(@house, @expense), method: :delete, data: { confirm: "Are you sure you want to delete this expense?" } %>
+</div>

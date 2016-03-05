@@ -44,14 +44,7 @@ class Mate < ActiveRecord::Base
   end
 
   def housemate_purchases
-    housemate_purchases = []
-    self.housemates.each do |housemate|
-      housemate.purchases.each do |purchase|
-        housemate_purchases << purchase
-      end
-    end
-
-    housemate_purchases
+    housemate_purchases = self.house.purchases.where.not(mate_id: self.id)
   end
 
   def amount_owed_to(housemate)
