@@ -6,7 +6,8 @@ class GroupChoreReminderJob < ActiveJob::Base
       notification = mate.notifications.find_by(chore_id: chore.id)
       if notification.email?
         MateMailer.chore_notification(chore, mate).deliver_later
-      elsif notification.sms?
+      end
+      if notification.sms?
         puts "Sending SMS"
       end
     end
