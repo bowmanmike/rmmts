@@ -1,10 +1,14 @@
 class Expense < ActiveRecord::Base
   include Recurrence
-  
+
   belongs_to :house
 
-  validates :frequency_integer, numericality: {only_integer: true}
-  validates :frequency_unit, presence: true
+  validates :name, presence: true
+  validates :amount, presence: true
+  validates :amount, numericality: true
+  validates :frequency_unit, presence: true, if: :recurring?
+  validates :frequency_integer, presence: true, if: :recurring?
+  validates :frequency_integer, numericality: {only_integer: true}, allow_blank: true
   validates_inclusion_of :frequency_unit, in: ["days", "weeks", "months", "years"]
   validates :due_date, presence: true
   validate :due_date_cannot_be_in_the_past
