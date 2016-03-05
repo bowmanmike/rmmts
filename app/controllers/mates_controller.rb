@@ -1,5 +1,6 @@
 class MatesController < ApplicationController
   before_action :load_mate, only: [:show, :edit, :update, :destroy]
+  before_action :load_mate_notifications, only: [:show]
 
   def index
     @mates = Mate.all
@@ -31,9 +32,11 @@ class MatesController < ApplicationController
     if @mate.update_attributes(mate_params)
       if @mate.house == nil
         @mate.chores = []
+        @mate.remove_notifications
         redirect_to :back
       else
         MateMailer.join_house(@mate, @mate.house).deliver_later
+        @mate.assign_notifications
         redirect_to house_path(@mate.house), notice: 'account updated'
       end
     else
@@ -53,6 +56,10 @@ class MatesController < ApplicationController
 
   def load_mate
     @mate = Mate.find(params[:id])
+  end
+
+  def load_mate_notifications
+    @notifications = Notification.where(mate_id: current_user.id)
   end
 
 end

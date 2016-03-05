@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304194015) do
+ActiveRecord::Schema.define(version: 20160305163816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,13 +36,14 @@ ActiveRecord::Schema.define(version: 20160304194015) do
     t.boolean  "complete"
     t.integer  "house_id"
     t.integer  "mate_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "creator_id"
-    t.boolean  "recurring",           default: true
+    t.boolean  "recurring",              default: true
     t.string   "frequency_unit"
     t.integer  "reminder_id"
     t.integer  "due_notification_id"
+    t.integer  "update_due_date_job_id"
   end
 
   add_index "chores", ["creator_id"], name: "index_chores_on_creator_id", using: :btree
@@ -84,8 +85,9 @@ ActiveRecord::Schema.define(version: 20160304194015) do
     t.integer  "house_id"
     t.integer  "reminder_id"
     t.integer  "due_notification_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "update_due_date_job_id"
   end
 
   add_index "expenses", ["house_id"], name: "index_expenses_on_house_id", using: :btree
@@ -125,6 +127,18 @@ ActiveRecord::Schema.define(version: 20160304194015) do
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
   add_index "messages", ["mate_id"], name: "index_messages_on_mate_id", using: :btree
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "mate_id"
+    t.integer  "chore_id"
+    t.boolean  "email"
+    t.boolean  "sms"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "notifications", ["chore_id"], name: "index_notifications_on_chore_id", using: :btree
+  add_index "notifications", ["mate_id"], name: "index_notifications_on_mate_id", using: :btree
+
   create_table "payments", force: :cascade do |t|
     t.float    "amount"
     t.datetime "paid_date"
@@ -155,6 +169,8 @@ ActiveRecord::Schema.define(version: 20160304194015) do
   add_foreign_key "chores", "houses"
   add_foreign_key "chores", "mates"
   add_foreign_key "expenses", "houses"
+  add_foreign_key "notifications", "chores"
+  add_foreign_key "notifications", "mates"
   add_foreign_key "payments", "mates"
   add_foreign_key "payments", "purchases"
 end

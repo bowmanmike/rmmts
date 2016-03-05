@@ -5,6 +5,8 @@ class ChoresController < ApplicationController
   before_action :load_house
   before_action :load_chore, only: [:show, :edit, :update, :destroy]
 
+  after_action :check_notification_status, only: [:update]
+
   def new
     @chore = Chore.new
   end
@@ -16,6 +18,7 @@ class ChoresController < ApplicationController
     @chore.complete = false
 
     if @chore.save
+      @chore.create_notifications
       redirect_to house_path(@house)
       flash[:notice] = "Chore has been added!"
     else
@@ -40,7 +43,6 @@ class ChoresController < ApplicationController
 
 
     if @chore.update_attributes(chore_params)
-      # TestJobJob.perform_later
       redirect_to house_path(@house)
       flash[:notice] = "Chore has been updated!"
     else
@@ -67,6 +69,15 @@ class ChoresController < ApplicationController
 
   def chore_params
     params.require(:chore).permit(:name, :description, :due_date, :recurring, :frequency_unit, :frequency_integer, :complete)
+  end
+
+  def check_notification_status
+    @chore = Chore.find(params[:id])
+    if @chore.check_claimed?
+      @chore.mate.remove_notifications_on_claim(@chore)
+    elsif !@chore.check_claimed?
+      @chore.house.mates.where.not(id: current_user.id).each { |mate| mate.assign_notifications }
+    end
   end
 
 end

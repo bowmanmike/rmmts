@@ -13,6 +13,7 @@ class Mate < ActiveRecord::Base
   has_many :created_chores, class_name: Chore, foreign_key: 'creator_id'
   has_many :created_houses, class_name: House, foreign_key: 'creator_id'
   has_many :announcements
+  has_many :notifications, dependent: :destroy
 
   has_many :sent_conversations, class_name: Conversation, foreign_key: 'sender_id'
   has_many :received_conversations, class_name: Conversation, foreign_key: 'receiver_id'
@@ -22,6 +23,8 @@ class Mate < ActiveRecord::Base
 
   has_many :payments
   has_many :purchases
+
+  accepts_nested_attributes_for :notifications
 
   def conversations
     self.sent_conversations + self.received_conversations
@@ -53,5 +56,22 @@ class Mate < ActiveRecord::Base
     end
 
     sum
+  end
+
+  def assign_notifications
+    self.house.chores.each do |chore|
+      self.notifications.create(chore_id: chore.id, email: true, sms: false)
+    end
+  end
+
+  def remove_notifications
+    self.notifications.delete_all
+  end
+
+  def remove_notifications_on_claim(chore)
+    other_mates = self.house.mates.where.not(id: self.id)
+    other_mates.each do |mate|
+      mate.notifications.where(chore_id: chore.id).delete_all
+    end
   end
 end

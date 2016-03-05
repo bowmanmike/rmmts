@@ -96,3 +96,10 @@
     <%= render partial: "purchases/housemate_purchase", collection: @housemate_purchases %>
   </div>
 </div>
+
+<% if @mate == current_user %>
+  <div class="notification-preferences">
+    <p>Update your global notification settings here.</p>
+    <%= render 'update_notifications_form' %>
+  </div>
+<% end %>

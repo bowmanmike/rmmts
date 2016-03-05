@@ -19,7 +19,7 @@
       <%= f.date_field :due_date %>
     </div>
     <div class="field">
-      <%= f.check_box :recurring %> 
+      <%= f.check_box :recurring %>
       <%= f.label :recurring %>
     </div>
     <div class="field">
@@ -28,7 +28,14 @@
     </div>
     <div class="field">
       <%= f.label :frequency_unit %><br>
-      <%= f.text_field :frequency_unit %>
+      <%= f.label "Day(s)" %>
+      <%= f.radio_button :frequency_unit, "days" %>
+      <%= f.label "Week(s)" %>
+      <%= f.radio_button :frequency_unit, "weeks" %>
+      <%= f.label "Month(s)" %>
+      <%= f.radio_button :frequency_unit, "months" %>
+      <%= f.label "Year(s)" %>
+      <%= f.radio_button :frequency_unit, "years" %>
     </div>
     <div class="action">
       <%= f.submit "Save" %>
