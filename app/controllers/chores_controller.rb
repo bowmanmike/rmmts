@@ -1,5 +1,4 @@
 class ChoresController < ApplicationController
-
   before_filter :require_login
 
   before_action :load_house
@@ -13,6 +12,7 @@ class ChoresController < ApplicationController
 
   def create
     @chore = @house.chores.build(chore_params)
+    @chore.due_date = @chore.correct_weekday
     @chore.mate = nil
     @chore.creator = current_user
     @chore.complete = false

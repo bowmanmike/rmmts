@@ -1,7 +1,6 @@
 module Recurrence
 
   def recurrence_alias(frequency_integer, frequency_unit, day_of_week, day_of_month)
-
     case frequency_unit
     when "day"
       case frequency_integer
@@ -36,7 +35,15 @@ module Recurrence
         "every #{frequency_integer} years"
       end
     end
+  end
 
+  def correct_weekday
+    unless self.due_date.strftime("%A") == self.frequency_weekday
+      weekday_sym = self.frequency_weekday.downcase.to_sym
+      new_due_date = due_date.end_of_week(weekday_sym).advance(days: 1)
+    end
+
+    new_due_date
   end
 
 end
