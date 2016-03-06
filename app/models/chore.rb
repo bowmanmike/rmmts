@@ -117,7 +117,9 @@ class Chore < ActiveRecord::Base
       to: mate.phone_number,
       body: reminder
     )
-    puts message.to
+    puts "SMS from: #{message.from}"
+    puts "SMS to: #{mate.phone_number}"
+    puts "SMS body: #{reminder}"
   end
 
 end
