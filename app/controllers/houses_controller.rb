@@ -11,6 +11,12 @@ class HousesController < ApplicationController
   def show
     @purchases = @house.purchases
     @expenses = @house.expenses
+    @announcement = @house.announcements.build
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new

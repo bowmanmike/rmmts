@@ -1,6 +1,6 @@
 <div id="chore-form" class="form">
 
-  <%= form_for ([@house, @chore]) do |f| %>
+  <%= form_for [@house, @chore], remote: true do |f| %>
 
     <div class="field">
       <%= f.label :name %><br>
@@ -18,20 +18,48 @@
       <%= f.check_box :recurring %>
       <%= f.label :recurring %>
     </div>
-    <div class="field">
-      <%= f.label :frequency_integer %><br>
-      Every <%= f.number_field :frequency_integer %>
-    </div>
-    <div class="field">
-      <%= f.label :frequency_unit %><br>
-      <%= f.label "Day(s)" %>
-      <%= f.radio_button :frequency_unit, "days" %>
-      <%= f.label "Week(s)" %>
-      <%= f.radio_button :frequency_unit, "weeks" %>
-      <%= f.label "Month(s)" %>
-      <%= f.radio_button :frequency_unit, "months" %>
-      <%= f.label "Year(s)" %>
-      <%= f.radio_button :frequency_unit, "years" %>
+    <div class="recurrence">
+      <div class="field">
+        <%= f.label :frequency_integer, "Every" %>
+        <%= f.number_field :frequency_integer %>
+      </div>
+
+      <div class="field">
+        <%= f.label :frequency_unit do %>
+          <%= f.radio_button :frequency_unit, "days" %>
+          day(s)
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :frequency_unit do %>
+          <%= f.radio_button :frequency_unit, "weeks" %>
+          week(s)
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :frequency_unit do %>
+          <%= f.radio_button :frequency_unit, "months" %>
+          month(s)
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :frequency_unit do %>
+          <%= f.radio_button :frequency_unit, "years" %>
+          year(s)
+        <% end %>
+      </div>
+
+      <div id="days-of-week" class="field">
+        On  <%= f.label :frequency_weekday do %>
+          <% Date::DAYNAMES.each do |day| %>
+            <%= f.radio_button :frequency_weekday, day %>
+            <%= day %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
     <div class="action">
       <%= f.submit "Save" %>

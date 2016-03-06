@@ -1,7 +1,7 @@
 class ExpensesController < ApplicationController
 
   before_filter :require_login
-  
+
   before_action :load_house
   before_action :load_expense, only: [:show, :edit, :update, :destroy]
 
@@ -11,6 +11,8 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = @house.expenses.build(expense_params)
+    @expense.due_date = @expense.correct_weekday
+    @expense.paid = false
 
     if @expense.save
       redirect_to house_path(@house)

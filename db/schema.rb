@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160305221527) do
     t.integer  "reminder_id"
     t.integer  "due_notification_id"
     t.integer  "update_due_date_job_id"
+    t.string   "frequency_weekday"
   end
 
   add_index "chores", ["creator_id"], name: "index_chores_on_creator_id", using: :btree
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160305221527) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "update_due_date_job_id"
+    t.string   "frequency_weekday"
   end
 
   add_index "expenses", ["house_id"], name: "index_expenses_on_house_id", using: :btree

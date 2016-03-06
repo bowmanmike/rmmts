@@ -46,27 +46,31 @@
 
     <h3 class="card-header">House Announcements</h3>
     <div id="announcements-list">
-        <div class="announcement">
-          <%= render(@announcements) || "No announcements!" %>
-        </div>
+        <%= render(@announcements) || "No announcements!" %>
     </div>
-    <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house) %>
+    <div id="new-announcement">
+      <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true %>
+    </div>
   </div>
 
   <div id="chores">
 
     <div id="chores-complete" class="chores-card">
       <h3 class="card-header">Completed Chores</h3>
-      <%= render(@chores.where(complete: true)) || "No complete chores yet?! Better get on that." %>
+      <div id="complete-chores-list">
+        <%= render(@chores.where(complete: true)) || "No complete chores yet?! Better get on that." %>
+      </div>
     </div>
 
     <div id="chores-incomplete" class="chores-card">
       <h3 class="card-header">Incomplete Chores</h3>
-      <%= render(@chores.where(complete: !true)) || "All chores complete! Good Job!" %>
+      <div id="incomplete-chores-list">
+        <%= render(@chores.where(complete: !true)) || "All chores complete! Good Job!" %>
+      </div>
     </div>
 
-    <div class="chores-buttons">
-      <%= link_to button_tag("Add new chore"), new_house_chore_path(@house) %><br>
+    <div id="add-chore-button">
+      <%= link_to button_tag("Add new chore"), new_house_chore_path(@house), remote: true %><br>
     </div>
 
   </div>

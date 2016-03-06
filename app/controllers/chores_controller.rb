@@ -1,8 +1,8 @@
 class ChoresController < ApplicationController
-
   before_filter :require_login
 
   before_action :load_house
+  before_action :load_house_chores
   before_action :load_chore, only: [:show, :edit, :update, :destroy]
 
   after_action :check_notification_status, only: [:update]
@@ -13,16 +13,21 @@ class ChoresController < ApplicationController
 
   def create
     @chore = @house.chores.build(chore_params)
+    @chore.due_date = @chore.correct_weekday
     @chore.mate = nil
     @chore.creator = current_user
     @chore.complete = false
 
-    if @chore.save
-      @chore.create_notifications
-      redirect_to house_path(@house)
-      flash[:notice] = "Chore has been added!"
-    else
-      render :new
+    respond_to do |format|
+      if @chore.save
+         @chore.create_notifications
+        format.html { redirect_to house_path(@house)
+                      flash[:notice] = "Chore has been added!" }
+        format.js {}
+      else
+        format.html { render :new }
+        format.js {}
+      end
     end
   end
 
@@ -33,28 +38,37 @@ class ChoresController < ApplicationController
   end
 
   def update
-    if params[:chore][:assign_self]
-      @chore.mate_id = params[:chore][:assign_self]
-      @chore.save
-      redirect_to :back, notice: "You have claimed this chore"
-      return
-    end
+    respond_to do |format|
+      if params[:chore][:assign_self]
+        @chore.mate_id = params[:chore][:assign_self]
+        @chore.save
+        format.html { redirect_to :back, notice: "You have claimed this chore" }
+        format.js {}
+        return
+      end
 
-
-
-    if @chore.update_attributes(chore_params)
-      redirect_to house_path(@house)
-      flash[:notice] = "Chore has been updated!"
-    else
-      render :edit
+      if @chore.update_attributes(chore_params)
+        format.html { redirect_to house_path(@house)
+                      flash[:notice] = "Chore has been updated!" }
+        format.js {}
+      else
+        format.html { render :edit }
+        format.js {}
+      end
     end
   end
 
   def destroy
-    @chore.destroy
-
-    redirect_to house_path(@house)
-    flash[:notice] = "Chore has been deleted!"
+    respond_to do |format|
+      if @chore.destroy
+        format.html { redirect_to house_path(@house)
+                      flash[:notice] = "Chore has been deleted!" }
+        format.js{}
+      else
+        format.html { render :back }
+        format.js {}
+      end
+    end
   end
 
   private
@@ -68,7 +82,12 @@ class ChoresController < ApplicationController
   end
 
   def chore_params
-    params.require(:chore).permit(:name, :description, :due_date, :recurring, :frequency_unit, :frequency_integer, :complete)
+    params.require(:chore).permit(:name, :description, :due_date, :recurring, :complete,
+                                  :frequency_unit, :frequency_integer, :frequency_weekday)
+  end
+
+  def load_house_chores
+    @chores = House.find(params[:house_id]).chores
   end
 
   def check_notification_status

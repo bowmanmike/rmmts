@@ -1,5 +1,6 @@
 class Chore < ActiveRecord::Base
   include ActiveModel::Dirty
+  include Recurrence
 
   belongs_to :house
   belongs_to :mate
@@ -8,14 +9,25 @@ class Chore < ActiveRecord::Base
   has_many :notifications, dependent: :destroy
 
   validates :name, presence: true
-  validates :frequency_integer, numericality: {only_integer: true}
-  validates :frequency_unit, presence: true
-  validates_inclusion_of :frequency_unit, in: ["days", "weeks", "months", "years"]
+  validates :frequency_unit, presence: true, if: :recurring?
+  validates :frequency_integer, presence: true, if: :recurring?
+  validates :frequency_weekday, presence: true, if: :recurring_weekly?
+  validates :frequency_integer, numericality: {only_integer: true}, allow_blank: true
+  validates_inclusion_of :frequency_unit, in: ["days", "weeks", "months", "years"], allow_blank: true
+  validates_inclusion_of :frequency_weekday, in: Date::DAYNAMES, allow_blank: true
   validates :due_date, presence: true
   validate :due_date_cannot_be_in_the_past
 
   before_destroy :delete_associated_jobs
   after_save :update_reminder
+
+  def recurring?
+    recurring == true
+  end
+
+  def recurring_weekly?
+    ( recurring == true ) && ( frequency_unit == "week" )
+  end
 
   def due_date_cannot_be_in_the_past
     if due_date.present? && due_date < Date.today
@@ -49,7 +61,7 @@ class Chore < ActiveRecord::Base
         GroupChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
         self.update_column(:reminder_id, Delayed::Job.where(queue: :chores).last.id)
       end
-      ChoreDueNotificationJob.set(wait_until: self.due_date).perform_later(self)
+      ChoreDueNotificationJob.set(wait_until: self.due_date.noon).perform_later(self)
       self.update_column(:due_notification_id, Delayed::Job.where(queue: :chores).last.id)
     end
     UpdateChoreDueDateJob.set(wait_until: self.due_date).perform_later(self)

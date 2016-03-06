@@ -1,9 +1,9 @@
 class AnnouncementsController < ApplicationController
   before_filter :require_login
   before_action :load_house, only: [:new, :create, :edit, :update]
+  before_action :load_house_announcements
 
   def index
-    @announcements = Announcement.where(house_id: params[:house_id])
   end
 
   def show
@@ -18,10 +18,14 @@ class AnnouncementsController < ApplicationController
     @announcement = @house.announcements.build(announcement_params)
     @announcement.mate = current_user
 
-    if @announcement.save
-      redirect_to house_path(@house), notice: "Announcement added to house"
-    else
-      render :new
+    respond_to do |format|
+      if @announcement.save
+        format.html { redirect_to house_path(@house), notice: "Announcement added to house" }
+        format.js {}
+      else
+        format.html { render :new }
+        format.js {}
+      end
     end
 
   end
@@ -33,24 +37,39 @@ class AnnouncementsController < ApplicationController
   def update
     @announcement = Announcement.find(params[:id])
 
-    if @announcement.update_attributes(announcement_params)
-      redirect_to house_path(@announcement.house_id), notice: "Announcement updated"
-    else
-      render :edit
+    respond_to do |format|
+      if @announcement.update_attributes(announcement_params)
+        format.html { redirect_to house_path(@announcement.house_id), notice: "Announcement updated" }
+        format.js {}
+      else
+        format.html { render :edit }
+        format.js {}
+      end
     end
 
   end
 
   def destroy
     @announcement = Announcement.find(params[:id])
-    @announcement.destroy
 
-    redirect_to house_path(params[:house_id])
+    respond_to do |format|
+      if @announcement.destroy
+        format.html { redirect_to house_path(params[:house_id]) }
+        format.js {}
+      else
+        format.html { render :back }
+        format.js {}
+      end
+    end
   end
 
   private
   def announcement_params
     params.require(:announcement).permit(:title, :body)
+  end
+
+  def load_house_announcements
+    @announcements = Announcement.where(house_id: params[:house_id])
   end
 
   def load_house

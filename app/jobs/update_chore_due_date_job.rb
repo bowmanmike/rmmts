@@ -4,4 +4,5 @@ class UpdateChoreDueDateJob < ActiveJob::Base
   def perform(chore)
     chore.check_status
   end
+
 end
