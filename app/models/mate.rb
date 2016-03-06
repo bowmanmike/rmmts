@@ -29,6 +29,8 @@ class Mate < ActiveRecord::Base
 
   accepts_nested_attributes_for :notifications
 
+  mount_uploader :mate_avatar, MateAvatarUploader
+
   def conversations
     self.sent_conversations + self.received_conversations
   end

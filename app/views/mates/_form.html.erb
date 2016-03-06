@@ -52,6 +52,11 @@
     <% end %>
   </div>
 
+  <div class="field">
+    <%= f.label :mate_avatar, "Upload a Photo!" %>
+    <%= f.file_field :mate_avatar %>
+  </div>
+
   <% if @mate.id.blank? %>
     <div class="field">
       <%= f.label :password %>
