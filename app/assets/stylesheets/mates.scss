@@ -51,6 +51,11 @@
   background-color: $white;
   padding: 1rem;
   margin: 0.5rem 0;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: $medium-gray;
+  border-bottom-left-radius: $card-border-radius;
+  border-bottom-right-radius: $card-border-radius;
 }
 
 .sub-card {
