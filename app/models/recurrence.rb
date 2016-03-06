@@ -43,6 +43,8 @@ module Recurrence
         weekday_sym = self.frequency_weekday.downcase.to_sym
         new_due_date = due_date.end_of_week(weekday_sym).advance(days: 1)
       end
+    else
+      new_due_date = self.due_date
     end
     new_due_date
   end
