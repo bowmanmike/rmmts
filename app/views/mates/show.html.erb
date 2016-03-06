@@ -1,12 +1,12 @@
-<div id="mate-announcements" class="mate-full-card">
-  <h2 id="mate-announcements-header" class="mate-full-card-header">
+<div id="mate-announcements" class="full-card">
+  <h2 id="mate-announcements-header" class="full-card-header">
     Announcements
   </h1>
-  <div id="mate-announcements-list" class="mate-full-card-list">
+  <div id="mate-announcements-list" class="full-card-list">
     <ul>
       <% @house.announcements.each do |announcement| %>
-        <li class="mate-announcement" class="mate-full-card-item">
-          <span class="mate-announcement-title">
+        <li class="mate-announcement full-card-item">
+          <span class="announcement-title">
             <%= announcement.title %>
           </span><br>
           <span>

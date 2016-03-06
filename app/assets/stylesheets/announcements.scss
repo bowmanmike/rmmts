@@ -2,16 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.mate-full-card {
+.full-card {
   @include outer-container;
   padding: 1rem;
 }
 
-.mate-full-card-list {
+.full-card-list {
   @include outer-container;
+  border-radius: $card-border-radius;
+  background-color: $white;
   padding: 1rem;
 }
 
-.mate-full-card-item {
+.full-card-item {
+}
 
+.announcement-title {
+  font-weight: 600;
 }
