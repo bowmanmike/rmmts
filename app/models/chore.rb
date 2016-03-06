@@ -90,11 +90,9 @@ class Chore < ActiveRecord::Base
   end
 
   def delete_associated_jobs
-    if self.reminder_id && self.due_notification_id
-      Delayed::Job.find(self.reminder_id).delete if Delayed::Job.exists?(self.reminder_id)
-      Delayed::Job.find(self.due_notification_id).delete
-      Delayed::Job.find(self.update_due_date_job_id).delete
-    end
+    Delayed::Job.find(self.reminder_id).delete if Delayed::Job.exists?(self.reminder_id)
+    Delayed::Job.find(self.due_notification_id).delete if Delayed::Job.exists?(self.due_notification_id)
+    Delayed::Job.find(self.update_due_date_job_id).delete if Delayed::Job.exists?(self.update_due_date_job_id)
   end
 
   def create_notifications
