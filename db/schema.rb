@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305221527) do
+ActiveRecord::Schema.define(version: 20160306165704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 20160305221527) do
     t.datetime "updated_at"
     t.integer  "house_id"
     t.string   "phone_number"
+    t.boolean  "notify_email"
+    t.boolean  "notify_sms"
   end
 
   add_index "mates", ["email"], name: "index_mates_on_email", unique: true, using: :btree
