@@ -10,7 +10,7 @@
 .full-card-list {
   @include outer-container;
   border-radius: $card-border-radius;
-  background-color: $white;
+  background-color: $light-gray;
   padding: 1rem;
 }
 
@@ -42,12 +42,23 @@
 
 .card-list {
   border-radius: $card-border-radius;
+  background-color: $light-gray;
+  padding: 1rem;
+}
+
+.card-item {
+  border-radius: $card-border-radius;
   background-color: $white;
   padding: 1rem;
+  margin: 0.5rem 0;
+}
+
+.sub-card {
+  padding-bottom: 1rem;
 }
 
 .sub-card-list {
   border-radius: $card-border-radius;
-  background-color: $white;
-  padding: 1rem;
+  background-color: $light-gray;
+  padding: 0.5rem;
 }
