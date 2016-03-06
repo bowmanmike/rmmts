@@ -24,6 +24,15 @@ class Chore < ActiveRecord::Base
     recurring == true
   end
 
+  def correct_weekday
+    unless self.due_date.strftime("%A") == self.frequency_weekday
+      weekday_sym = self.frequency_weekday.downcase.to_sym
+      new_due_date = due_date.end_of_week(weekday_sym).advance(days: 1)
+    end
+
+    new_due_date
+  end
+
   def due_date_cannot_be_in_the_past
     if due_date.present? && due_date < Date.today
       errors.add(:due_date, "Due date can't be in the past")
