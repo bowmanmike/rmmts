@@ -36,19 +36,31 @@ class ExpensesController < ApplicationController
   def update
     @expense.update_attributes(expense_params)
 
-    if @expense.save
-      redirect_to house_path(@house)
-      flash[:notice] = "Expense has been updated!"
-    else
-      render :edit
+    respond_to do |format|
+      if @expense.save
+        format.html { redirect_to house_path(@house)
+                      flash[:notice] = "Expense has been updated!" }
+        format.js {}
+      else
+        format.html { render :edit }
+        format.js {}
+      end
     end
   end
 
   def destroy
     @expense.destroy
 
-    redirect_to house_path(@house)
-    flash[:notice] = "Expense has been deleted!"
+    respond_to do |format|
+      if @expense.destroy
+        format.html { redirect_to house_path(@house)
+                      flash[:notice] = "Expense has been deleted!" }
+        format.js {}
+      else
+        format.html { render :back }
+        format.js {}
+      end
+    end
   end
 
   private
@@ -66,6 +78,6 @@ class ExpensesController < ApplicationController
   end
 
   def expense_params
-    params.require(:expense).permit(:name, :description, :amount, :paid, :due_date, :frequency_integer, :frequency_unit, :recurring)
+    params.require(:expense).permit(:name, :description, :amount, :paid, :due_date, :frequency_integer, :frequency_unit, :recurring, :frequency_weekday)
   end
 end

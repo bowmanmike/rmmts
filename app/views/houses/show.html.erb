@@ -94,7 +94,7 @@
         <h3 id="expenses-header" class="card-header">Expenses</h3>
 
         <div id="expenses-list">
-          <%= render @expenses %>
+          <%= render @expenses || "No household expenses yet!" %>
         </div>
 
         <div id="expenses-buttons">
