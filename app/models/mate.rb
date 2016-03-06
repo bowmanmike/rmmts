@@ -69,7 +69,7 @@ class Mate < ActiveRecord::Base
 
   def assign_notifications
     self.house.chores.each do |chore|
-      self.notifications.create(chore_id: chore.id, email: true, sms: false)
+      self.notifications.create(chore_id: chore.id, email: self.notify_email, sms: self.notify_sms)
     end
   end
 
