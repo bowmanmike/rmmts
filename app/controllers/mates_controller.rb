@@ -22,7 +22,10 @@ class MatesController < ApplicationController
     if @mate.save
       auto_login(@mate)
       MateMailer.welcome_email(@mate).deliver_later
-      redirect_to mate_path(@mate), notice: 'account created'
+      redirect_to mate_path(@mate.id), notice: 'account created'
+    else
+      flash[:alert] = "There was a problem creating your account. Please try again."
+      render :new
     end
   end
 
@@ -31,14 +34,17 @@ class MatesController < ApplicationController
 
   def update
     if @mate.update_attributes(mate_params)
-      if @mate.house == nil
-        @mate.chores = []
-        @mate.remove_notifications
-        redirect_to :back
-      else
+      if mate_params[:house_id].present?
         MateMailer.join_house(@mate, @mate.house).deliver_later
         @mate.assign_notifications
         redirect_to house_path(@mate.house), notice: 'account updated'
+      elsif mate_params[:notify_sms] || mate_params[:notify_email]
+        @mate.update_all_notifications
+        redirect_to house_path(@mate.house)
+      elsif mate_params[:house_id].blank?
+        @mate.chores = []
+        @mate.remove_notifications
+        redirect_to root_path
       end
     else
       render :edit
@@ -52,7 +58,7 @@ class MatesController < ApplicationController
 
   private
   def mate_params
-    params.require(:mate).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :house_id, :phone_number)
+    params.require(:mate).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :house_id, :phone_number, :notify_email, :notify_sms, :mate_avatar)
   end
 
   def load_mate

@@ -10,6 +10,11 @@
   </div>
 
   <div class="action">
-    <%= f.submit "Update This Announcement" %>
+    <% if @announcement.id? %>
+      <%= f.submit "Update This Announcement" %>
+    <% else %>
+      <%= f.submit "Create New Announcement" %>
+    <% end %>
+    <%= link_to button_tag("Close form"), house_path(@house), remote: true %>
   </div>
 <% end %>

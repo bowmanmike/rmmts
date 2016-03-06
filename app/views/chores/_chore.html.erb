@@ -52,13 +52,17 @@
   <div class="chore-notification-settings">
     <%= form_for [current_user, chore.notifications.find_by(mate_id: current_user.id)] do |f| %>
       <div class="field">
-        <%= f.check_box :email %>
-        <%= f.label :email %>
+        <%= f.label :email, for: "email_#{chore.id}" do %>
+          <%= f.check_box :email, id: "email_#{chore.id}" %>
+          Email
+        <% end %>
       </div>
 
       <div class="field">
-        <%= f.check_box :sms %>
-        <%= f.label :sms %>
+        <%= f.label :sms, for: "sms_#{chore.id}" do %>
+          <%= f.check_box :sms, id: "sms_#{chore.id}" %>
+          SMS
+        <% end %>
       </div>
 
       <div class="action">

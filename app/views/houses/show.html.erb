@@ -33,7 +33,7 @@
     <ul id="roommates-list">
       <% @house.mates.each do |mate| %>
         <li class="roommate">
-          <%= link_to "#{mate.first_name} #{mate.last_name}", mate_path(mate) %> <%= link_to "Send Message", conversations_path(sender_id: current_user.id, receiver_id: mate.id), method: 'post'%>
+          <%= image_tag mate.mate_avatar.thumb %> <%= link_to "#{mate.first_name} #{mate.last_name}", mate_path(mate) %> <%= link_to "Send Message", conversations_path(sender_id: current_user.id, receiver_id: mate.id), method: 'post'%>
         </li>
       <% end %>
     </ul>
@@ -46,7 +46,7 @@
 
     <h3 class="card-header">House Announcements</h3>
     <div id="announcements-list">
-        <%= render(@announcements) || "No announcements!" %>
+      <%= render(@announcements) || "No announcements!" %>
     </div>
     <div id="new-announcement">
       <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true %>
@@ -85,7 +85,7 @@
       </div>
 
       <div id="purchases-buttons">
-        <%= link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user) %>
+        <%= link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user), remote: true %>
       </div>
     </div>
 
@@ -94,11 +94,11 @@
         <h3 id="expenses-header" class="card-header">Expenses</h3>
 
         <div id="expenses-list">
-          <%= render @expenses %>
+          <%= render @expenses || "No household expenses yet!" %>
         </div>
 
         <div id="expenses-buttons">
-          <%= link_to button_tag("Add new expense"), new_house_expense_path(@house) %>
+          <%= link_to button_tag("Add new expense"), new_house_expense_path(@house), remote: true %>
         </div>
       </div>
     <% end %>

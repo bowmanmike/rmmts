@@ -34,21 +34,49 @@
 
   <div class="field">
     <%= f.label :phone_number %>
-    <%= f.number_field :phone_number %>
+    <%= f.telephone_field :phone_number %>
+  </div>
+
+  <p>Notification Preferences</p>
+  <div class="field">
+    <%= f.label :notify_email do %>
+      <%= f.check_box :notify_email %>
+      Email
+    <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.label :notify_sms do %>
+      <%= f.check_box :notify_sms %>
+      SMS
+    <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+    <%= f.label :mate_avatar, "Upload a Photo!" %>
+    <%= f.file_field :mate_avatar %>
   </div>
 
-  <div class="field">
-    <%= f.submit "create account" %>
-  </div>
+  <% if @mate.id.blank? %>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+  <% end %>
+
+  <% if @mate.id.blank? %>
+    <div class="field">
+      <%= f.submit "Create Account" %>
+    </div>
+  <% elsif @mate.id.present? %>
+    <div class="action">
+      <%= f.submit "Update Information" %>
+    </div>
+  <% end %>
 
 <% end %>

@@ -5,4 +5,7 @@
     </strong><br>
     Due: <%= expense.due_date.strftime("%a, %e %b %Y") %>
   </p>
+  <%= link_to button_tag("edit"), edit_house_expense_path(expense.house, expense), remote: true %>
+  <%= link_to button_tag("delete"), house_expense_path(expense.house, expense), method: :delete, remote: true %>
+  <div id="edit-expense-form"></div>
 </div>
