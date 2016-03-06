@@ -22,3 +22,18 @@
 .announcement-title {
   font-weight: 600;
 }
+
+.card {
+  border-radius: $card-border-radius;
+  background-color: $white;
+  padding: 1rem;
+
+  @include media($small-screen-only) {
+    @include span-columns(12);
+    @include omega(3n);
+  }
+  @include media($medium-screen-up) {
+    @include span-columns(6);
+    @include omega(3n);
+  }
+}
