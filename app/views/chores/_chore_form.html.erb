@@ -1,6 +1,6 @@
 <div id="chore-form" class="form">
 
-  <%= form_for ([@house, @chore]) do |f| %>
+  <%= form_for [@house, @chore], remote: true do |f| %>
 
     <div class="field">
       <%= f.label :name %><br>

@@ -1,0 +1,2 @@
+$('#incomplete-chores-list').html('<%= j(render(@chores.where(complete: !true))) %>');
+$('#complete-chores-list').html('<%= j(render(@chores.where(complete: true))) %>');
