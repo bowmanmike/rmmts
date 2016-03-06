@@ -1,6 +1,7 @@
 <div id="house-header">
   <div class="header-card">
     <h1 id="house-name"><%= @house.name %></h1>
+    <%= image_tag @house.house_image %>
     <div id="house-buttons">
       <% if current_user %>
         <% if current_user.house == @house %>
@@ -32,9 +33,11 @@
     <h3>Roommates</h3>
     <ul id="roommates-list">
       <% @house.mates.each do |mate| %>
-        <li class="roommate">
-          <%= image_tag mate.mate_avatar.thumb %> <%= link_to "#{mate.first_name} #{mate.last_name}", mate_path(mate) %> <%= link_to "Send Message", conversations_path(sender_id: current_user.id, receiver_id: mate.id), method: 'post'%>
-        </li>
+      <% unless mate == current_user %>
+          <li class="roommate">
+            <%= image_tag mate.mate_avatar.thumb %> <%= link_to "#{mate.first_name} #{mate.last_name}", mate_path(mate) %> <%= link_to "Send Message", conversations_path(sender_id: current_user.id, receiver_id: mate.id), method: 'post'%>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </div>

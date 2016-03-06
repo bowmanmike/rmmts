@@ -20,6 +20,7 @@
         <dd><%= link_to house.name, house_path(house) %></dd>
         <dd><i>created on</i> <%= house.created_at %></dd>
       </dl>
+      <%= image_tag house.house_image.thumb %>
     <% end %>
   </div>
   <!-- belongs to houses -->
@@ -33,6 +34,8 @@
             <dd><i>added by</i> <%= @mate.house.creator.username %></dd>
           <% end %>
         </dl>
+        <%= image_tag @mate.house.house_image.thumb %>
+        
         <div id="leave-house">
 
           <% if @mate == current_user %>

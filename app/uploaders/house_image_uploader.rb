@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class MateAvatarUploader < CarrierWave::Uploader::Base
+class HouseImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -32,10 +32,10 @@ class MateAvatarUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  process resize_to_fit: [250, 250]
+  process :resize_to_fit => [200, 200]
 
   version :thumb do
-    process resize_to_fit: [50, 50]
+    process :resize_to_fit => [50, 50]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

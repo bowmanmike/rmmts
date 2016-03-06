@@ -8,4 +8,6 @@ class House < ActiveRecord::Base
 
   validates :name, presence: true
 
+  mount_uploader :house_image, HouseImageUploader
+
 end

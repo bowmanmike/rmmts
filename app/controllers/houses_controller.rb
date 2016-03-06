@@ -70,7 +70,7 @@ class HousesController < ApplicationController
   private
 
   def house_params
-    params.require(:house).permit(:name)
+    params.require(:house).permit(:name, :house_image)
   end
 
   def load_announcements
