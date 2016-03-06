@@ -46,11 +46,11 @@
 
     <h3 class="card-header">House Announcements</h3>
     <div id="announcements-list">
-        <div class="announcement">
-          <%= render(@announcements) || "No announcements!" %>
-        </div>
+        <%= render(@announcements) || "No announcements!" %>
     </div>
-    <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house) %>
+    <div id="new-announcement">
+      <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house, @announcement), remote: true %>
+    </div>
   </div>
 
   <div id="chores">
