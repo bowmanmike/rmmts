@@ -18,7 +18,7 @@
   </div>
 </div>
 
-<div id="mate-duties" class="full card">
+<div id="mate-duties" class="full-card">
 
   <div id="mate-chores" class="card">
     <h2 id="mate-chores-header" class="card-header">
@@ -48,6 +48,43 @@
         <p>This mate has no chores, lazy bum...</p>
       <% end %>
     </div>
+  </div>
+
+  <div id="mate-expenses" class="card">
+    <h2 id="mate-expenses-header" class="card-header">
+      Expenses
+    </h2>
+    <div id="mate-expenses-list" class="card-list">
+      <% if @house.expenses.any? %>
+        <% @house.expenses.each do |expense| %>
+          <dl>
+            <dd><%= link_to expense.name, house_expense_path(@house, expense) %></dd>
+            <dd>Due: <%= expense.due_date %></dd>
+          </dl>
+          <% end %>
+
+          <%= link_to "Edit expense", edit_house_expense_path(expense.house, expense) %> |
+          <%= link_to "Delete expense", house_expense_path(expense.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this expense?" } %>
+      <% else %>
+        <p>No current expenses.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="mate-purchases" class="card">
+    <div id="mate-owed-payments" class="sub-card">
+      <h2 id="mate-owed-payments-header" class="card-header">
+        You Owe
+      </h2>
+      <div id="mate-owed-payments-list" class="sub-card-list">
+        <h4 id="mate-owed-payments-header" class="sub-card-header">
+          Total owed: <%= number_to_currency(@mate.owed_payments_sum) %>
+        </h4>
+
+        <%= render partial: "purchases/housemate_purchase", collection: @housemate_purchases %>
+      </div>
+    </div>
+
   </div>
 
 </div>

@@ -1,11 +1,11 @@
 <ul>
   <% unless housemate_purchase.paid_by?(@mate) %>
-    <li class="owed-payment">
+    <li class="owed-payment sub-card-item">
       <strong>
-        <%= link_to "#{housemate_purchase.name}: #{number_to_currency(housemate_purchase.amount_owed_by(@mate))}", mate_purchase_path(housemate_purchase.mate, housemate_purchase) %>
+        <%= link_to "#{housemate_purchase.name}", mate_purchase_path(housemate_purchase.mate, housemate_purchase) %>
       </strong><br>
-      Owed to <%= housemate_purchase.mate.username %><br>
-      Payment due by: <%= housemate_purchase.due_date.strftime("%a, %e %b %Y") %>
+      <%= number_to_currency(housemate_purchase.amount_owed_by(@mate)) %> owed to <%= housemate_purchase.mate.username %><br>
+      Due: <%= housemate_purchase.due_date.strftime("%a, %e %b %Y") %>
     </li>
   <% end %>
 </ul>

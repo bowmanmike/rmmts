@@ -23,17 +23,31 @@
   font-weight: 600;
 }
 
-.card {
-  border-radius: $card-border-radius;
-  background-color: $white;
+#mate-duties {
   padding: 1rem;
+}
+
+.card {
+  @include outer-container;
 
   @include media($small-screen-only) {
     @include span-columns(12);
     @include omega(3n);
   }
   @include media($medium-screen-up) {
-    @include span-columns(6);
+    @include span-columns(4);
     @include omega(3n);
   }
+}
+
+.card-list {
+  border-radius: $card-border-radius;
+  background-color: $white;
+  padding: 1rem;
+}
+
+.sub-card-list {
+  border-radius: $card-border-radius;
+  background-color: $white;
+  padding: 1rem;
 }
