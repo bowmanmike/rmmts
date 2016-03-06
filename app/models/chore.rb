@@ -1,7 +1,7 @@
 class Chore < ActiveRecord::Base
   include ActiveModel::Dirty
   include Recurrence
-  
+
   belongs_to :house
   belongs_to :mate
   belongs_to :creator, class_name: Mate
@@ -11,7 +11,7 @@ class Chore < ActiveRecord::Base
   validates :name, presence: true
   validates :frequency_unit, presence: true, if: :recurring?
   validates :frequency_integer, presence: true, if: :recurring?
-  validates :frequency_weekday, presence: true, if: :recurring?
+  validates :frequency_weekday, presence: true, if: :recurring_weekly?
   validates :frequency_integer, numericality: {only_integer: true}, allow_blank: true
   validates_inclusion_of :frequency_unit, in: ["days", "weeks", "months", "years"], allow_blank: true
   validates_inclusion_of :frequency_weekday, in: Date::DAYNAMES, allow_blank: true
@@ -23,6 +23,10 @@ class Chore < ActiveRecord::Base
 
   def recurring?
     recurring == true
+  end
+
+  def recurring_weekly?
+    ( recurring == true ) && ( frequency_unit == "week" )
   end
 
   def due_date_cannot_be_in_the_past
