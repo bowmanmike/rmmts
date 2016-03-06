@@ -15,5 +15,6 @@
     <% else %>
       <%= f.submit "Create New Announcement" %>
     <% end %>
+    <%= link_to button_tag("Close form"), house_path(@house), remote: true %>
   </div>
 <% end %>
