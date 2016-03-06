@@ -50,16 +50,16 @@ class Chore < ActiveRecord::Base
   def set_reminder
     unless self.complete
       if self.mate
-        ChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon.localtime).perform_later(self)
+        ChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
         self.update_column(:reminder_id, Delayed::Job.where(queue: :chores).last.id)
       else
-        GroupChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon.localtime).perform_later(self)
+        GroupChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
         self.update_column(:reminder_id, Delayed::Job.where(queue: :chores).last.id)
       end
-      ChoreDueNotificationJob.set(wait_until: self.due_date.noon.localtime).perform_later(self)
+      ChoreDueNotificationJob.set(wait_until: self.due_date.noon).perform_later(self)
       self.update_column(:due_notification_id, Delayed::Job.where(queue: :chores).last.id)
     end
-    UpdateChoreDueDateJob.set(wait_until: self.due_date.localtime).perform_later(self)
+    UpdateChoreDueDateJob.set(wait_until: self.due_date).perform_later(self)
     self.update_column(:update_due_date_job_id, Delayed::Job.where(queue: :chores).last.id)
   end
 
