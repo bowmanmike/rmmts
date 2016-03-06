@@ -4,6 +4,8 @@ class PaymentsController < ApplicationController
 
   before_action :load_mate
   before_action :load_purchase
+  before_action :load_expense
+  before_action :load_house
   before_action :load_payment, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -11,12 +13,27 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    @payment = @purchase.payments.build(payment_params)
-    @payment.mate = current_user
+    if params[:mate_id] && params[:purchase_id]
+      @payment = @purchase.payments.build(payment_params)
+      @payment.mate = current_user
+    end
+
+    if params[:house_id] && params[:expense_id]
+      @payment = @expense.payments.build(payment_params)
+      @payment.mate = current_user
+      @payment.target_due_date = @expense.due_date
+    end
 
     if @payment.save
-      redirect_to mate_purchase_path(@mate, @purchase)
-      flash[:notice] = "Thanks for your payment!"
+      if params[:mate_id] && params[:purchase_id]
+        redirect_to mate_purchase_path(@mate, @purchase)
+        flash[:notice] = "Thanks for your payment!"
+      elsif params[:house_id] && params[:expense_id]
+        @expense.is_paid?
+        @expense.save
+        redirect_to house_expense_path(@house, @expense)
+        flash[:notice] = "Thanks for your payment!"
+      end
     else
       render :new
     end
@@ -53,11 +70,27 @@ class PaymentsController < ApplicationController
   end
 
   def load_mate
-    @mate = Mate.find(params[:mate_id])
+    if params[:mate_id]
+      @mate = Mate.find(params[:mate_id])
+    end
   end
 
   def load_purchase
-    @purchase = Purchase.find(params[:purchase_id])
+    if params[:purchase_id]
+      @purchase = Purchase.find(params[:purchase_id])
+    end
+  end
+
+  def load_expense
+    if params[:expense_id]
+      @expense = Expense.find(params[:expense_id])
+    end
+  end
+
+  def load_house
+    if params[:house_id]
+      @house = House.find(params[:house_id])
+    end
   end
 
   def load_payment

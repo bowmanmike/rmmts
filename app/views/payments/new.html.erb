@@ -1,3 +1,9 @@
 <h1>Make a Payment</h1>
 
-<%= render 'payment_form' %>
+<% if params[:mate_id] && params[:purchase_id] %>
+  <%= render 'purchase_payment_form' %>
+<% end %>
+
+<% if params[:house_id] && params[:expense_id] %>
+  <%= render 'expense_payment_form' %>
+<% end %>

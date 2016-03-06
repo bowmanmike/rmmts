@@ -1,14 +1,13 @@
 <div id="payment-form" class="form">
 
-  <%= form_for ([@mate, @purchase, @payment]) do |f| %>
+  <%= form_for ([@house, @expense, @payment]) do |f| %>
 
     <div class="field">
       <%= f.label :amount %><br>
       <%= f.number_field :amount, step: 0.01 %>
     </div>
     <div class="field">
-      <%= f.label :paid_date %><br>
-      <%= f.date_field :paid_date %>
+      <%= f.hidden_field :paid_date, :value => Date.today %>
     </div>
     <div class="action">
       <%= f.submit "Save" %>

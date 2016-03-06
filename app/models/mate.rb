@@ -26,6 +26,7 @@ class Mate < ActiveRecord::Base
 
   has_many :payments
   has_many :purchases
+  has_many :expenses, through: :payments
 
   accepts_nested_attributes_for :notifications
 
@@ -66,6 +67,14 @@ class Mate < ActiveRecord::Base
       end
 
       sum
+    end
+  end
+
+  def expense_amount_paid(expense)
+    if self.payments.where(expense_id: expense.id)
+      self.payments.where(expense_id: expense.id, target_due_date: expense.due_date).sum(:amount)
+    else
+      0
     end
   end
 

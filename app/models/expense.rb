@@ -2,6 +2,8 @@ class Expense < ActiveRecord::Base
   include Recurrence
 
   belongs_to :house
+  has_many :payments
+  has_many :mates, through: :payments
 
   validates :name, presence: true
   validates :frequency_unit, presence: true, if: :recurring?
@@ -62,7 +64,7 @@ class Expense < ActiveRecord::Base
   def check_status
     return if !self.recurring?
     update_due_date
-    self.update_column(:complete, false)
+    self.update_column(:paid, false)
     self.update_column(:reminder_id, nil)
     self.update_column(:due_notification_id, nil)
     self.update_column(:update_due_date_job_id, nil)
@@ -78,6 +80,22 @@ class Expense < ActiveRecord::Base
     Delayed::Job.find(self.reminder_id).delete if Delayed::Job.exists?(self.reminder_id)
     Delayed::Job.find(self.due_notification_id).delete if Delayed::Job.exists?(self.due_notification_id)
     Delayed::Job.find(self.update_due_date_job_id).delete if Delayed::Job.exists?(self.update_due_date_job_id)
+  end
+
+  def amount_owing
+    self.amount - self.current_cycle_total_payments
+  end
+
+  def current_cycle_total_payments
+    total = []
+    self.payments.each do |payment|
+      total << payment.amount if payment.target_due_date == self.due_date
+    end
+    total.reduce(:+)
+  end
+
+  def is_paid?
+    self.paid = true if self.amount <= self.amount_owed
   end
 
 end

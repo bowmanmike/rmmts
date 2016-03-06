@@ -3,7 +3,7 @@
 
 <div id="expense-summary">
   <p>
-    Next due date: <%= @expense.due_date.strftime("%a, %e %b %Y") %><br>
+    Due date: <%= @expense.due_date.strftime("%a, %e %b %Y") %><br>
     <!-- Might need to fix wording for expenses that aren't daily weekly or monthly -->
     Paid every <%= @expense.frequency_integer %> <%= @expense.frequency_unit %>.
   </p>
@@ -12,4 +12,20 @@
 <div id="expense-links">
   <%= link_to "Edit expense", edit_house_expense_path(@house, @expense) %> |
   <%= link_to "Delete expense", house_expense_path(@house, @expense), method: :delete, data: { confirm: "Are you sure you want to delete this expense?" } %>
+</div>
+
+<div id="payment-list">
+
+  <h4>Payments</h4>
+  <p>Amount owed: <%= @expense.amount_owing %></p>
+  <% @expense.house.mates.each do |mate| %>
+    <dl>
+      <dd><%= mate.username %></dd>
+      <dd>Paid: <%= mate.expense_amount_paid(@expense) %></dd>
+    </dl>
+  <% end %>
+</div>
+
+<div id="make-payment">
+    <%= link_to button_tag("Make a payment"), new_house_expense_payment_path(@expense.house, @expense) %>
 </div>
