@@ -1,3 +1,23 @@
+<div id="mate-announcements" class="mate-full-card">
+  <h1 id="mate-announcements-header">
+    Announcements
+  </h1>
+  <div id="mate-announcements-list" class="mate-full-card-list">
+    <ul>
+      <% @house.announcements.each do |announcement| %>
+        <li class="mate-announcement" class="mate-full-card-item">
+          <span class="mate-announcement-title">
+            <%= announcement.title %>
+          </span><br>
+          <span>
+            <%= announcement.body %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
 <h1>Profile for <%= @mate.username %></h1>
 
 <div class="mate-details">
@@ -21,12 +41,12 @@
   <!-- belongs to houses -->
   <div class="belongs-to-houses">
     <p><strong>Your current house</strong></p>
-      <% if @mate.house %>
+      <% if @house %>
         <dl>
-          <dd><%= link_to @mate.house.name, house_path(@mate.house) %></dd>
-          <dd><i>created on</i> <%= @mate.house.created_at %></dd>
-          <% unless @mate.house.creator == current_user %>
-            <dd><i>added by</i> <%= @mate.house.creator.username %></dd>
+          <dd><%= link_to @house.name, house_path(@house) %></dd>
+          <dd><i>created on</i> <%= @house.created_at %></dd>
+          <% unless @house.creator == current_user %>
+            <dd><i>added by</i> <%= @house.creator.username %></dd>
           <% end %>
         </dl>
         <div id="leave-house">
@@ -51,12 +71,12 @@
   <% if @mate.chores.any? %>
     <% @mate.chores.each do |chore| %>
       <dl>
-        <dd><%= link_to chore.name, house_chore_path(@mate.house, chore) %></dd>
+        <dd><%= link_to chore.name, house_chore_path(@house, chore) %></dd>
         <dd>Due: <%= chore.due_date %></dd>
       </dl>
 
       <% if @mate == current_user %>
-        <%= form_for [@mate.house, chore] do |f| %>
+        <%= form_for [@house, chore] do |f| %>
           <%= f.hidden_field :assign_self, :value => nil %>
           <%= f.submit "Unclaim this chore" %>
         <% end %>
