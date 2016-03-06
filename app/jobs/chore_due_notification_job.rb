@@ -4,10 +4,21 @@ class ChoreDueNotificationJob < ActiveJob::Base
   def perform(chore)
     @chore = chore
     if @chore.mate
-      MateMailer.chore_due(@chore, @chore.mate).deliver_later
+      if @chore.notifications.find_by(mate_id: mate).email?
+        MateMailer.chore_due(@chore, @chore.mate).deliver_later
+      end
+      if
+        puts "Sending SMS"
+      end
     else
       @chore.house.mates.each do |mate|
-        MateMailer.chore_due(@chore, mate).deliver_later
+        notification = mate.notifications.find_by(chore_id: @chore.id)
+        if notification.email?
+          MateMailer.chore_due(@chore, mate).deliver_later
+        end
+        if notification.sms?
+          puts "Sending SMS"
+        end
       end
     end
   end

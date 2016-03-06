@@ -67,4 +67,11 @@ class Mate < ActiveRecord::Base
   def remove_notifications
     self.notifications.delete_all
   end
+
+  def remove_notifications_on_claim(chore)
+    other_mates = self.house.mates.where.not(id: self.id)
+    other_mates.each do |mate|
+      mate.notifications.where(chore_id: chore.id).delete_all
+    end
+  end
 end

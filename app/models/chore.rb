@@ -91,4 +91,8 @@ class Chore < ActiveRecord::Base
     end
   end
 
+  def check_claimed?
+    self.mate_id?
+  end
+
 end
