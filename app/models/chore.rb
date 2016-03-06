@@ -16,6 +16,8 @@ class Chore < ActiveRecord::Base
   validates_inclusion_of :frequency_weekday, in: Date::DAYNAMES, allow_blank: true
   validates :due_date, presence: true
   validate :due_date_cannot_be_in_the_past
+  validates :reassignment_style, presence: true, if: :recurring?
+  validates_inclusion_of :reassignment_style, in: ["claimable", "random", "rotating"]
 
   before_destroy :delete_associated_jobs
   after_save :update_reminder

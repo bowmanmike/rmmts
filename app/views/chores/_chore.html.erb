@@ -15,6 +15,16 @@
     <% end %>
   </div>
 
+  <div class="chore-reassignment-style">
+    <% if chore.reassignment_style == "claimable" %>
+    <p>This chore is unassigned by default, and claimable by any roommate.</p>
+    <% elsif chore.reassignment_style == "rotating" %>
+    <p>This chore rotates its assignment through all roommates after each due date.</p>
+    <% elsif chore.reassignment_style == "random" %>
+    <p>This chore randomly assigns itself to a new roommate every time its due date passes.</p>
+    <% end %>
+  </div>
+
   <div class="chore-complete-form">
     <% if chore.complete? %>
       <%= form_for [@house, chore], remote: true do |f| %>
