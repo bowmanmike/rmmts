@@ -54,32 +54,10 @@
 
       <div id="days-of-week" class="field">
         On  <%= f.label :frequency_weekday do %>
-        <%= f.radio_button :frequency_weekday, "Monday" %>
-        Monday
-        <% end %>
-        <%= f.label :frequency_weekday do %>
-        <%= f.radio_button :frequency_weekday, "Tuesday" %>
-        Tuesday
-        <% end %>
-        <%= f.label :frequency_weekday do %>
-        <%= f.radio_button :frequency_weekday, "Wednesday" %>
-        Wednesday
-        <% end %>
-        <%= f.label :frequency_weekday do %>
-        <%= f.radio_button :frequency_weekday, "Thursday" %>
-        Thursday
-        <% end %>
-        <%= f.label :frequency_weekday do %>
-        <%= f.radio_button :frequency_weekday, "Friday" %>
-        Friday
-        <% end %>
-        <%= f.label :frequency_weekday do %>
-        <%= f.radio_button :frequency_weekday, "Saturday" %>
-        Saturday
-        <% end %>
-        <%= f.label :frequency_weekday do %>
-        <%= f.radio_button :frequency_weekday, "Sunday" %>
-        Sunday
+          <% Date::DAYNAMES.each do |day| %>
+            <%= f.radio_button :frequency_weekday, day %>
+            <%= day %>
+          <% end %>
         <% end %>
       </div>
     </div>
