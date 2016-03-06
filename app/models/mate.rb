@@ -38,11 +38,13 @@ class Mate < ActiveRecord::Base
   end
 
   def owed_payments_sum
-    sum = self.housemate_purchases.inject(0) do |sum, purchase|
-      sum + purchase.amount_for_each
-    end
+    if self.house
+      sum = self.housemate_purchases.inject(0) do |sum, purchase|
+        sum + purchase.amount_for_each
+      end
 
-    sum
+      sum
+    end
   end
 
   def housemates
@@ -50,15 +52,19 @@ class Mate < ActiveRecord::Base
   end
 
   def housemate_purchases
-    housemate_purchases = self.house.purchases.where.not(mate_id: self.id)
+    if self.house
+      housemate_purchases = self.house.purchases.where.not(mate_id: self.id)
+    end
   end
 
   def amount_owed_to(housemate)
-    sum = housemate.purchases.inject(0) do |sum, purchase|
-      sum + purchase.amount_owed_by(self)
-    end
+    if self.house
+      sum = housemate.purchases.inject(0) do |sum, purchase|
+        sum + purchase.amount_owed_by(self)
+      end
 
-    sum
+      sum
+    end
   end
 
   def assign_notifications
@@ -77,4 +83,13 @@ class Mate < ActiveRecord::Base
       mate.notifications.where(chore_id: chore.id).delete_all
     end
   end
+
+  def update_all_notifications
+    self.notifications.each do |notification|
+      notification.email = self.notify_email
+      notification.sms = self.notify_sms
+      notification.save
+    end
+  end
+
 end

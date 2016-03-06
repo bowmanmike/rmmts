@@ -1,12 +1,17 @@
-<%= form_for [current_user, Notification.new], url: mate_update_all_path(current_user) do |f| %>
+<%= form_for current_user do |f| %>
+
   <div class="field">
-    <%= f.label :sms %>
-    <%= f.check_box :sms %>
+    <%= f.label :notify_email do %>
+      <%= f.check_box :notify_email %>
+      Email
+    <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :email %>
-    <%= f.check_box :email %>
+    <%= f.label :notify_sms do %>
+      <%= f.check_box :notify_sms %>
+      SMS
+    <% end %>
   </div>
 
   <div class="action">

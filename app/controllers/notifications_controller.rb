@@ -17,16 +17,6 @@ class NotificationsController < ApplicationController
     end
   end
 
-  def update_all
-    if current_user.notifications.update_all(notification_params)
-      flash[:notice] = "Global notification preferences updated!"
-      redirect_to house_path(current_user.house)
-    else
-      flash[:alert] = "There was a problem saving your notification preferences. Please try again."
-      redirect_to house_path(current_user.house)
-    end
-  end
-
   private
 
   def notification_params

@@ -21,7 +21,10 @@ class MatesController < ApplicationController
     if @mate.save
       auto_login(@mate)
       MateMailer.welcome_email(@mate).deliver_later
-      redirect_to mate_path(@mate), notice: 'account created'
+      redirect_to mate_path(@mate.id), notice: 'account created'
+    else
+      flash[:alert] = "There was a problem creating your account. Please try again."
+      render :new
     end
   end
 
@@ -51,7 +54,7 @@ class MatesController < ApplicationController
 
   private
   def mate_params
-    params.require(:mate).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :house_id, :phone_number)
+    params.require(:mate).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :house_id, :phone_number, :notify_email, :notify_sms)
   end
 
   def load_mate

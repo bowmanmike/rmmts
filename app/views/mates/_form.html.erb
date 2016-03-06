@@ -37,6 +37,21 @@
     <%= f.number_field :phone_number %>
   </div>
 
+  <p>Notification Preferences</p>
+  <div class="field">
+    <%= f.label :notify_email do %>
+      <%= f.check_box :notify_email %>
+      Email
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :notify_sms do %>
+      <%= f.check_box :notify_sms %>
+      SMS
+    <% end %>
+  </div>
+
   <div class="field">
     <%= f.label :password %>
     <%= f.password_field :password %>
