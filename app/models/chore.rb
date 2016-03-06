@@ -72,11 +72,6 @@ class Chore < ActiveRecord::Base
     self.update_column(:due_notification_id, nil)
     self.update_column(:update_due_date_job_id, nil)
     update_reminder
-    # self.complete = false
-    # self.reminder_id = nil
-    # self.due_notification_id = nil
-    # self.update_due_date_job_id = nil
-    # self.save
   end
 
   def update_due_date

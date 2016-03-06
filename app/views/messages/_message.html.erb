@@ -1,4 +1,7 @@
 <div class="each-message">
-  <p><%= message.body %></p>
-  <p>Sent by <%= message.mate.full_name %> on <%= message.created_at.strftime('%A, %d %b %Y at %l:%M %p') %></p>
+  <p class="message-body"><%= message.body %></p>
+  <p>Sent by <%= message.mate.full_name %> on <%= message.created_at.localtime.strftime('%A, %d %b %Y at %l:%M %p') %></p>
+  <% if message.mate_id == current_user.id %>
+    <%= link_to (button_tag "Delete this message"), conversation_message_path(message.conversation, message), remote: true, method: :delete, data: { confirm: "Are you sure you want to delete this message?"} %>
+  <% end %>
 </div>

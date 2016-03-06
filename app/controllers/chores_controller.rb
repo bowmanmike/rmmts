@@ -25,7 +25,8 @@ class ChoresController < ApplicationController
                       flash[:notice] = "Chore has been added!" }
         format.js {}
       else
-        format.html { render :new }
+        format.html { render :new
+                      flash[:alert] = "There was a problem creating your chore. Please try again."}
         format.js {}
       end
     end
