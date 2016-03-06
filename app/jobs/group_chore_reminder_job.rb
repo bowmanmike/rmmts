@@ -8,7 +8,7 @@ class GroupChoreReminderJob < ActiveJob::Base
         MateMailer.chore_notification(chore, mate).deliver_later
       end
       if notification.sms?
-        # chore.sms_reminder
+        # chore.sms_reminder(mate)
       end
     end
   end

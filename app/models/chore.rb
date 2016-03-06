@@ -95,14 +95,14 @@ class Chore < ActiveRecord::Base
     self.mate_id?
   end
 
-  def sms_reminder
-    @twilio_number = ENV["twilio_phone_number"]
+  def sms_reminder(mate)
+    @twilio_number = ENV["TWILIO_NUMBER"]
     @client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
     time_str = self.due_date.strftime("%a, %e %b %Y")
-    reminder = "Hey #{@chore.mate.first_name}, don't for get to #{@chore.name} before #{time_str}!"
+    reminder = "Hey #{mate.first_name}, don't for get to #{self.name} before #{time_str}!"
     message = @client.account.messages.create(
       from: @twilio_number,
-      to: @chore.mate.phone_number,
+      to: mate.phone_number,
       body: reminder
     )
     puts message.to
