@@ -1,2 +1,2 @@
-$('#new-announcement').html('<%= link_to button_tag("Add New Announcement"), house_path(@house), remote: true %>');
+$('#new-announcement').html('<%= j(link_to button_tag("Add New Announcement"), house_path(@house), remote: true) %>');
 $('#announcements-list').html('<%= j(render @announcements) %>');

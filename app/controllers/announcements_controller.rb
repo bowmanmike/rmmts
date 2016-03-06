@@ -1,6 +1,6 @@
 class AnnouncementsController < ApplicationController
   before_filter :require_login
-  before_action :load_house, only: [:new, :create, :edit, :update]
+  before_action :load_house, only: [:new, :create, :edit, :update, :destroy]
   before_action :load_house_announcements
 
   def index
