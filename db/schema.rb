@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306194635) do
+ActiveRecord::Schema.define(version: 20160306223850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160306194635) do
     t.integer  "due_notification_id"
     t.integer  "update_due_date_job_id"
     t.string   "frequency_weekday"
+    t.string   "reassignment_style"
   end
 
   add_index "chores", ["creator_id"], name: "index_chores_on_creator_id", using: :btree
