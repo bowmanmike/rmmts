@@ -4,9 +4,9 @@ class MessagesController < ApplicationController
   before_action do
     @conversation = Conversation.find(params[:conversation_id])
   end
+  before_action :load_messages
 
   def index
-    @messages = @conversation.messages
     @message = @conversation.messages.build
   end
 
@@ -17,15 +17,24 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.messages.build(message_params)
     @message.conversation_id = @conversation.id
-    if @message.save
-      redirect_to conversation_path(@conversation)
-    else
-      render :new
+
+    respond_to do |format|
+      if @message.save
+        format.html { redirect_to conversation_path(@conversation) }
+        format.js {}
+      else
+        format.html { render :new }
+        format.js {}
+      end
     end
   end
 
   private
   def message_params
     params.require(:message).permit(:body)
+  end
+
+  def load_messages
+    @messages = @conversation.messages.order(created_at: :desc)
   end
 end
