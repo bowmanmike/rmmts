@@ -29,6 +29,21 @@ class MessagesController < ApplicationController
     end
   end
 
+  def destroy
+    @message = Message.find(params[:id])
+    @message.body = "This messge has been deleted."
+    respond_to do |format|
+      if @message.save
+        format.html { redirect_to conversation_path(@message.conversation.id)
+                      flash[:notice] = "This message has been deleted." }
+        format.js {}
+      else
+        format.html { render :new }
+        format.js {}
+      end
+    end
+  end
+
   private
   def message_params
     params.require(:message).permit(:body)
