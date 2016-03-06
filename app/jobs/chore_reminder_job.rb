@@ -8,7 +8,7 @@ class ChoreReminderJob < ActiveJob::Base
     end
 
     if notification.sms?
-      puts "Sending SMS"
+      chore.sms_reminder(chore.mate)
     end
   end
 

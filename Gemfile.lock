@@ -82,6 +82,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
+    figaro (1.1.1)
+      thor (~> 0.14)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -123,6 +125,10 @@ GEM
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
     pg (0.18.4)
+    phony (2.15.17)
+    phony_rails (0.12.13)
+      activesupport (>= 3.0)
+      phony (~> 2.12)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -189,6 +195,10 @@ GEM
     tilt (2.0.2)
     turbolinks (2.5.3)
       coffee-rails
+    twilio-ruby (4.11.1)
+      builder (>= 2.1.2)
+      jwt (~> 1.0)
+      multi_json (>= 1.3.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -214,12 +224,14 @@ DEPENDENCIES
   carrierwave
   delayed_job_active_record
   factory_girl_rails
+  figaro (~> 1.1, >= 1.1.1)
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener
   mini_magick
   neat
   pg (~> 0.15)
+  phony_rails
   pry-rails
   quiet_assets
   rails (= 4.2.5.1)
@@ -228,6 +240,7 @@ DEPENDENCIES
   sorcery
   spring
   turbolinks
+  twilio-ruby
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
   whenever

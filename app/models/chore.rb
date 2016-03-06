@@ -1,7 +1,7 @@
 class Chore < ActiveRecord::Base
   include ActiveModel::Dirty
   include Recurrence
-  
+
   belongs_to :house
   belongs_to :mate
   belongs_to :creator, class_name: Mate
@@ -11,7 +11,7 @@ class Chore < ActiveRecord::Base
   validates :name, presence: true
   validates :frequency_unit, presence: true, if: :recurring?
   validates :frequency_integer, presence: true, if: :recurring?
-  validates :frequency_weekday, presence: true, if: :recurring?
+  validates :frequency_weekday, presence: true, if: :recurring_weekly?
   validates :frequency_integer, numericality: {only_integer: true}, allow_blank: true
   validates_inclusion_of :frequency_unit, in: ["days", "weeks", "months", "years"], allow_blank: true
   validates_inclusion_of :frequency_weekday, in: Date::DAYNAMES, allow_blank: true
@@ -23,6 +23,10 @@ class Chore < ActiveRecord::Base
 
   def recurring?
     recurring == true
+  end
+
+  def recurring_weekly?
+    ( recurring == true ) && ( frequency_unit == "week" )
   end
 
   def due_date_cannot_be_in_the_past
@@ -101,6 +105,21 @@ class Chore < ActiveRecord::Base
 
   def check_claimed?
     self.mate_id?
+  end
+
+  def sms_reminder(mate)
+    @twilio_number = ENV["TWILIO_NUMBER"]
+    @client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
+    time_str = self.due_date.strftime("%a, %e %b %Y")
+    reminder = "Hey #{mate.first_name}, don't for get to #{self.name} before #{time_str}!"
+    message = @client.account.messages.create(
+      from: @twilio_number,
+      to: mate.phone_number,
+      body: reminder
+    )
+    puts "SMS from: #{message.from}"
+    puts "SMS to: #{mate.phone_number}"
+    puts "SMS body: #{reminder}"
   end
 
 end
