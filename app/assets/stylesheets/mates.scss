@@ -2,16 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.full-card {
+.full-container {
   @include outer-container;
   padding: 1rem;
 }
 
-.full-card-list {
-  @include outer-container;
+.full-card {
+  padding: 1rem;
   border-radius: $card-border-radius;
   background-color: $light-gray;
-  padding: 1rem;
+}
+
+.full-card-list {
 }
 
 .full-card-item {
@@ -28,7 +30,11 @@
 }
 
 .card {
-  @include outer-container;
+  border-radius: $card-border-radius;
+  background-color: $light-gray;
+  padding: 1rem;
+
+  @include span-columns(4);
 
   @include media($small-screen-only) {
     @include span-columns(12);
@@ -41,9 +47,7 @@
 }
 
 .card-list {
-  border-radius: $card-border-radius;
-  background-color: $light-gray;
-  padding: 1rem;
+
 }
 
 .card-item {
@@ -66,4 +70,39 @@
   border-radius: $card-border-radius;
   background-color: $light-gray;
   padding: 0.5rem;
+}
+
+.chore-summary {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.chore-name {
+  font-size: 1.1rem;
+}
+
+.chore-date {
+  font-size: 0.8rem;
+  color: $medium-gray;
+}
+
+.expense-summary {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.expense-name {
+  font-size: 1.1rem;
+}
+
+.expense-date {
+  font-size: 0.8rem;
+  color: $medium-gray;
+}
+
+.expense-amount {
+  font-size: 2rem;
+  font-weight: 600;
 }

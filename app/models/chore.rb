@@ -16,6 +16,8 @@ class Chore < ActiveRecord::Base
   validates_inclusion_of :frequency_weekday, in: Date::DAYNAMES, allow_blank: true
   validates :due_date, presence: true
   validate :due_date_cannot_be_in_the_past
+  validates :reassignment_style, presence: true, if: :recurring?
+  validates_inclusion_of :reassignment_style, in: ["claimable", "random", "rotating"]
 
   before_destroy :delete_associated_jobs
   after_save :update_reminder
@@ -72,11 +74,6 @@ class Chore < ActiveRecord::Base
     self.update_column(:due_notification_id, nil)
     self.update_column(:update_due_date_job_id, nil)
     update_reminder
-    # self.complete = false
-    # self.reminder_id = nil
-    # self.due_notification_id = nil
-    # self.update_due_date_job_id = nil
-    # self.save
   end
 
   def update_due_date

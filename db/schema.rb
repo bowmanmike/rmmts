@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20160306231059) do
     t.boolean  "complete"
     t.integer  "house_id"
     t.integer  "mate_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.integer  "creator_id"
     t.boolean  "recurring",              default: true
     t.string   "frequency_unit"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160306231059) do
     t.integer  "due_notification_id"
     t.integer  "update_due_date_job_id"
     t.string   "frequency_weekday"
+    t.string   "reassignment_style",     default: "claimable"
   end
 
   add_index "chores", ["creator_id"], name: "index_chores_on_creator_id", using: :btree

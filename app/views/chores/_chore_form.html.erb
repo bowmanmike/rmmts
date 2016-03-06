@@ -61,6 +61,29 @@
         <% end %>
       </div>
     </div>
+
+    <p>How do you want the chore to be reassigned after it's due date?</p>
+    <div class="field">
+      <%= f.label :reassignment_style do %>
+        <%= f.radio_button :reassignment_style, "claimable" %>
+        Claimable
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :reassignment_style do %>
+        <%= f.radio_button :reassignment_style, "rotating" %>
+        Rotating
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :reassignment_style do %>
+        <%= f.radio_button :reassignment_style, "random" %>
+        Random
+      <% end %>
+    </div>
+
     <div class="action">
       <%= f.submit "Save" %>
       <%= link_to button_tag("Close form"), house_path(@house), remote: true %>

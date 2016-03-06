@@ -25,7 +25,8 @@ class ChoresController < ApplicationController
                       flash[:notice] = "Chore has been added!" }
         format.js {}
       else
-        format.html { render :new }
+        format.html { render :new
+                      flash[:alert] = "There was a problem creating your chore. Please try again."}
         format.js {}
       end
     end
@@ -83,7 +84,8 @@ class ChoresController < ApplicationController
 
   def chore_params
     params.require(:chore).permit(:name, :description, :due_date, :recurring, :complete,
-                                  :frequency_unit, :frequency_integer, :frequency_weekday)
+                                  :frequency_unit, :frequency_integer, :frequency_weekday,
+                                  :reassignment_style)
   end
 
   def load_house_chores

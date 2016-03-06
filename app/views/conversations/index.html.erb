@@ -3,7 +3,17 @@
 <% @conversations.each do |conversation| %>
   <% if conversation.sender == current_user %>
     <p>Your conversation with <%= link_to conversation.receiver.full_name, conversation_path(conversation.id) %></p>
+    <div class="recent-messages">
+      <% if conversation.messages.length > 0 %>
+        <%= conversation.messages.last.mate.first_name %>: <%= conversation.messages.last.body %><br>
+      <% end %>
+    </div>
   <% else %>
     <p>Your conversation with <%= link_to conversation.sender.full_name, conversation_path(conversation.id) %></p>
+    <div class="recent-messages">
+      <% if conversation.messages.length > 0 %>
+        <%= conversation.messages.last.mate.first_name %>: <%= conversation.messages.last.body %><br>
+      <% end %>
+    </div>
   <% end %>
 <% end %>
