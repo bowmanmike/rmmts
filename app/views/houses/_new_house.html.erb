@@ -4,6 +4,11 @@
     <%= f.text_field :name %>
   </div>
 
+  <div class="field">
+    <%= f.label :house_image, "Upload an image for your house!" %>
+    <%= f.file_field :house_image %>
+  </div>
+
   <div class="action">
     <%= f.submit "Create New House" %>
   </div>

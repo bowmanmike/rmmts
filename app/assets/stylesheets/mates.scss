@@ -1,3 +1,69 @@
 // Place all the styles related to the mates controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.full-card {
+  @include outer-container;
+  padding: 1rem;
+}
+
+.full-card-list {
+  @include outer-container;
+  border-radius: $card-border-radius;
+  background-color: $light-gray;
+  padding: 1rem;
+}
+
+.full-card-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px $dark-gray;
+}
+
+.announcement-title {
+  font-weight: 600;
+}
+
+#mate-duties {
+  padding: 1rem;
+}
+
+.card {
+  @include outer-container;
+
+  @include media($small-screen-only) {
+    @include span-columns(12);
+    @include omega(3n);
+  }
+  @include media($medium-screen-up) {
+    @include span-columns(4);
+    @include omega(3n);
+  }
+}
+
+.card-list {
+  border-radius: $card-border-radius;
+  background-color: $light-gray;
+  padding: 1rem;
+}
+
+.card-item {
+  border-radius: $card-border-radius;
+  background-color: $white;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: $medium-gray;
+  border-bottom-left-radius: $card-border-radius;
+  border-bottom-right-radius: $card-border-radius;
+}
+
+.sub-card {
+  padding-bottom: 1rem;
+}
+
+.sub-card-list {
+  border-radius: $card-border-radius;
+  background-color: $light-gray;
+  padding: 0.5rem;
+}
