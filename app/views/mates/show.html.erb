@@ -1,3 +1,115 @@
+<div id="mate-announcements" class="full-card">
+  <h3 id="mate-announcements-header" class="full-card-header">
+    Announcements
+  </h3>
+  <div id="mate-announcements-list" class="full-card-list">
+    <ul>
+      <% @house.announcements.each do |announcement| %>
+        <li class="mate-announcement full-card-item">
+          <span class="announcement-title">
+            <%= announcement.title %>
+          </span><br>
+          <span>
+            <%= announcement.body %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div id="mate-duties" class="full-card">
+
+  <div id="mate-chores" class="card">
+    <h3 id="mate-chores-header" class="card-header">
+      Chores
+    </h3>
+    <div id="mate-chores-list" class="card-list">
+      <% if @house.chores.any? %>
+        <% @house.chores.each do |chore| %>
+          <div class="mates-chores-item card-item">
+            <dl>
+              <dd>
+                <%= link_to chore.name, house_chore_path(@house, chore) %>
+              </dd>
+              <dd>Due: <%= chore.due_date %></dd>
+            </dl>
+
+            <% if chore.mate == current_user %>
+              <%= form_for [@house, chore] do |f| %>
+                <%= f.hidden_field :assign_self, :value => nil %>
+                <%= f.submit "unclaim" %>
+              <% end %>
+            <% else %>
+              <%= form_for [@house, chore] do |f| %>
+                <%= f.hidden_field :assign_self, :value => current_user.id %>
+                <%= f.submit "claim" %>
+              <% end %>
+            <% end %>
+
+            <%= link_to button_tag("edit"), edit_house_chore_path(chore.house, chore) %>
+            <%= link_to button_tag("delete"), house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" } %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>This mate has no chores, lazy bum...</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="mate-expenses" class="card">
+    <h3 id="mate-expenses-header" class="card-header">
+      Expenses
+    </h3>
+    <div id="mate-expenses-list" class="card-list">
+      <% if @house.expenses.any? %>
+        <% @house.expenses.each do |expense| %>
+          <div class="mate-expenses-item card-item">
+            <dl>
+              <dd><%= link_to expense.name, house_expense_path(@house, expense) %></dd>
+              <dd>Due: <%= expense.due_date %></dd>
+            </dl>
+            <%= link_to "Edit", edit_house_expense_path(expense.house, expense) %> |
+            <%= link_to "Delete", house_expense_path(expense.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this expense?" } %>
+          </div>
+          <% end %>
+      <% else %>
+        <p>No current expenses.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="mate-purchases-payments" class="card">
+    <div id="mate-owed-payments" class="sub-card">
+      <h3 id="mate-owed-payments-header" class="sub-card-header">
+        You Owe
+      </h3>
+      <div id="mate-owed-payments-list" class="sub-card-list">
+        <h4 id="mate-owed-payments-header">
+          <%= number_to_currency(@mate.owed_payments_sum) %>
+        </h4>
+
+        <%= render partial: "purchases/housemate_purchase", collection: @housemate_purchases %>
+      </div>
+    </div>
+
+    <div id="mate-purchases" class="sub-card">
+      <h3 id="mate-purchases-header" class="sub-card-header">
+        Your Purchases
+      </h3>
+      <div id="mate-purchases-list" class="sub-card-list">
+        <% if @purchases.any? %>
+          <%= render @purchases %>
+        <% else %>
+          <p>
+            No purchases yet.
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <h1>Profile for <%= @mate.username %></h1>
 
 <div class="mate-avatar">
@@ -26,12 +138,12 @@
   <!-- belongs to houses -->
   <div class="belongs-to-houses">
     <p><strong>Your current house</strong></p>
-      <% if @mate.house %>
+      <% if @house %>
         <dl>
-          <dd><%= link_to @mate.house.name, house_path(@mate.house) %></dd>
-          <dd><i>created on</i> <%= @mate.house.created_at %></dd>
-          <% unless @mate.house.creator == current_user %>
-            <dd><i>added by</i> <%= @mate.house.creator.username %></dd>
+          <dd><%= link_to @house.name, house_path(@house) %></dd>
+          <dd><i>created on</i> <%= @house.created_at %></dd>
+          <% unless @house.creator == current_user %>
+            <dd><i>added by</i> <%= @house.creator.username %></dd>
           <% end %>
         </dl>
         <%= image_tag @mate.house.house_image.thumb %>
@@ -58,12 +170,12 @@
   <% if @mate.chores.any? %>
     <% @mate.chores.each do |chore| %>
       <dl>
-        <dd><%= link_to chore.name, house_chore_path(@mate.house, chore) %></dd>
+        <dd><%= link_to chore.name, house_chore_path(@house, chore) %></dd>
         <dd>Due: <%= chore.due_date %></dd>
       </dl>
 
       <% if @mate == current_user %>
-        <%= form_for [@mate.house, chore] do |f| %>
+        <%= form_for [@house, chore] do |f| %>
           <%= f.hidden_field :assign_self, :value => nil %>
           <%= f.submit "Unclaim this chore" %>
         <% end %>

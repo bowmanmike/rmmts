@@ -1,19 +1,28 @@
 // Typography
+// $lato: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $nunito: 'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $hind: 'Hind', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$muli: 'Muli', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$montserrat: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $base-font-family: $helvetica;
-$heading-font-family: $base-font-family;
+$heading-font-family: $montserrat;
 
 // Font Sizes
 $base-font-size: 1em;
+$heading-font-size: 1.5rem;
+$button-font-size: 0.8rem;
 
 // Line height
-$base-line-height: 1.5;
-$heading-line-height: 1.2;
+$base-line-height: 1.35;
+$heading-line-height: 1.1;
 
 // Other Sizes
 $base-border-radius: 3px;
 $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
+$card-border-radius: 5px;
+$button-border-radius: 20px;
 
 // Colors
 $blue: #1565c0;
@@ -21,6 +30,7 @@ $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
 $white: #fefefe;
+$off-white: #eff5f8;
 
 $color1: #114b5f; //rgba(17, 75, 95, 100)
 $color2: #1a936f; //rgba(26, 147, 111, 100)
@@ -37,7 +47,7 @@ $base-border-color: $light-gray;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: $color5;
+$base-background-color: $off-white;
 $secondary-background-color: tint($base-border-color, 75%);
 $button-background-color: $color3;
 

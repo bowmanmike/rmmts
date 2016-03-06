@@ -2,12 +2,12 @@
   appearance: none;
   background-color: $button-background-color;
   border: 0;
-  border-radius: $base-border-radius;
+  border-radius: $button-border-radius;
   color: #fff;
   cursor: pointer;
   display: inline-block;
   font-family: $base-font-family;
-  font-size: $base-font-size;
+  font-size: $button-font-size;
   -webkit-font-smoothing: antialiased;
   font-weight: 600;
   line-height: 1;

@@ -1,6 +1,7 @@
 class MatesController < ApplicationController
   before_action :load_mate, only: [:show, :edit, :update, :destroy]
   before_action :load_mate_notifications, only: [:show]
+  before_action :load_house
 
   def index
     @mates = Mate.all
@@ -66,6 +67,10 @@ class MatesController < ApplicationController
 
   def load_mate_notifications
     @notifications = Notification.where(mate_id: current_user.id)
+  end
+
+  def load_house
+    @house = @mate.house
   end
 
 end
