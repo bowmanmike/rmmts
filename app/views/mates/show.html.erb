@@ -25,14 +25,14 @@
       Chores
     </h2>
     <div id="mate-chores-list" class="card-list">
-      <% if @mate.chores.any? %>
-        <% @mate.chores.each do |chore| %>
+      <% if @house.chores.any? %>
+        <% @house.chores.each do |chore| %>
           <dl>
             <dd><%= link_to chore.name, house_chore_path(@house, chore) %></dd>
             <dd>Due: <%= chore.due_date %></dd>
           </dl>
 
-          <% if @mate == current_user %>
+          <% if chore.mate == current_user %>
             <%= form_for [@house, chore] do |f| %>
               <%= f.hidden_field :assign_self, :value => nil %>
               <%= f.submit "Unclaim this chore" %>
@@ -71,22 +71,35 @@
     </div>
   </div>
 
-  <div id="mate-purchases" class="card">
+  <div id="mate-purchases-payments" class="card">
     <div id="mate-owed-payments" class="sub-card">
-      <h2 id="mate-owed-payments-header" class="card-header">
+      <h3 id="mate-owed-payments-header" class="sub-card-header">
         You Owe
-      </h2>
+      </h3>
       <div id="mate-owed-payments-list" class="sub-card-list">
-        <h4 id="mate-owed-payments-header" class="sub-card-header">
-          Total owed: <%= number_to_currency(@mate.owed_payments_sum) %>
+        <h4 id="mate-owed-payments-header">
+          <%= number_to_currency(@mate.owed_payments_sum) %>
         </h4>
 
         <%= render partial: "purchases/housemate_purchase", collection: @housemate_purchases %>
       </div>
     </div>
 
+    <div id="mate-purchases" class="sub-card">
+      <h3 id="mate-purchases-header" class="sub-card-header">
+        Your Purchases
+      </h3>
+      <div id="mate-purchases-list" class="sub-card-list">
+        <% if @purchases.any? %>
+          <%= render @purchases %>
+        <% else %>
+          <p>
+            No purchases yet.
+          </p>
+        <% end %>
+      </div>
+    </div>
   </div>
-
 </div>
 
 <h1>Profile for <%= @mate.username %></h1>
