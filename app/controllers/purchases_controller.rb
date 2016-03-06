@@ -4,6 +4,7 @@ class PurchasesController < ApplicationController
 
   before_action :load_house
   before_action :load_mate
+  before_action :load_house_purchases
   before_action :load_purchase, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -13,11 +14,15 @@ class PurchasesController < ApplicationController
   def create
     @purchase = @mate.purchases.build(purchase_params)
 
-    if @purchase.save
-      redirect_to house_path(@house)
-      flash[:notice] = "Purchase has been added!"
-    else
-      render :new
+    respond_to do |format|
+      if @purchase.save
+        format.html { redirect_to house_path(@house)
+                      flash[:notice] = "Purchase has been added!" }
+        format.js {}
+      else
+        format.html { render :new }
+        format.js {}
+      end
     end
   end
 
@@ -30,19 +35,31 @@ class PurchasesController < ApplicationController
   def update
     @purchase.update_attributes(purchase_params)
 
-    if @purchase.save
-      redirect_to house_path(@house)
-      flash[:notice] = "Purchase has been updated!"
-    else
-      render :edit
+    respond_to do |format|
+      if @purchase.save
+        format.html { redirect_to house_path(@house)
+                      flash[:notice] = "Purchase has been updated!" }
+        format.js {}
+      else
+        format.html { render :edit }
+        format.js {}
+      end
     end
   end
 
   def destroy
     @purchase.destroy
 
-    redirect_to house_path(@house)
-    flash[:notice] = "Purchase has been deleted!"
+    respond_to do |format|
+      if @purchase.destroy
+        format.html { redirect_to house_path(@house)
+                      flash[:notice] = "Purchase has been deleted!" }
+        format.js {}
+      else
+        format.html { render :back }
+        format.js {}
+      end
+    end
   end
 
   private
@@ -61,5 +78,9 @@ class PurchasesController < ApplicationController
 
   def load_house
     @house = current_user.house
+  end
+
+  def load_house_purchases
+    @purchases = @house.purchases
   end
 end
