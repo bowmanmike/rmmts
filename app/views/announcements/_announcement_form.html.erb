@@ -10,6 +10,10 @@
   </div>
 
   <div class="action">
-    <%= f.submit "Update This Announcement" %>
+    <% if @announcement.id? %>
+      <%= f.submit "Update This Announcement" %>
+    <% else %>
+      <%= f.submit "Create New Announcement" %>
+    <% end %>
   </div>
 <% end %>
