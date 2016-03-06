@@ -6,6 +6,7 @@ $(document).on('ready page:load', function() {
       e.preventDefault();
 
       $("#new_message").submit();
+      $("#message_body").val('');
     }
 
   });
