@@ -85,7 +85,7 @@
       </div>
 
       <div id="purchases-buttons">
-        <%= link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user) %>
+        <%= link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user), remote: true %>
       </div>
     </div>
 
