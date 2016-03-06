@@ -3,6 +3,7 @@ class ExpensesController < ApplicationController
   before_filter :require_login
 
   before_action :load_house
+  before_action :load_house_expenses
   before_action :load_expense, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -14,11 +15,15 @@ class ExpensesController < ApplicationController
     @expense.due_date = @expense.correct_weekday
     @expense.paid = false
 
-    if @expense.save
-      redirect_to house_path(@house)
-      flash[:notice] = "Expense has been added!"
-    else
-      render :new
+    respond_to do |format|
+      if @expense.save
+        format.html { redirect_to house_path(@house)
+                      flash[:notice] = "Expense has been added!" }
+        format.js {}
+      else
+        format.html { render :new }
+        format.js {}
+      end
     end
   end
 
@@ -54,6 +59,10 @@ class ExpensesController < ApplicationController
 
   def load_house
     @house = House.find(params[:house_id])
+  end
+
+  def load_house_expenses
+    @expenses = @house.expenses
   end
 
   def expense_params

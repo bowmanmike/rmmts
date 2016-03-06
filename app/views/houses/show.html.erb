@@ -98,7 +98,7 @@
         </div>
 
         <div id="expenses-buttons">
-          <%= link_to button_tag("Add new expense"), new_house_expense_path(@house) %>
+          <%= link_to button_tag("Add new expense"), new_house_expense_path(@house), remote: true %>
         </div>
       </div>
     <% end %>

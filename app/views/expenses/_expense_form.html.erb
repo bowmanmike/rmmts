@@ -1,6 +1,6 @@
 <div id="expense-form" class="form">
 
-  <%= form_for ([@house, @expense]) do |f| %>
+  <%= form_for [@house, @expense], remote: true do |f| %>
 
     <div class="field">
       <%= f.label :name %><br>
@@ -39,6 +39,7 @@
     </div>
     <div class="action">
       <%= f.submit "Save" %>
+      <%= link_to button_tag("Close form"), house_path(@house), remote: true %>
     </div>
 
   <% end %>
