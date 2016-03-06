@@ -24,8 +24,9 @@
       </div>
       <div class="top-bar-right">
         <% if current_user %>
-          Logged in as <%= current_user.username %>
-          <%= link_to "Log out", logout_path(@mate), method: :post %>
+          Logged in as <%= current_user.username %> |
+          <%= link_to "Edit Profile", edit_mate_path(current_user) %> |
+          <%= link_to "Log out", logout_path(current_user), method: :post %>
         <% else %>
           <%= link_to "Login", new_session_path %>
           <%= link_to "Sign up", new_mate_path %>

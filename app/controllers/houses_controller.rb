@@ -5,7 +5,11 @@ class HousesController < ApplicationController
   before_filter :must_be_logged_in, except: [:index]
 
   def index
-    @houses = House.all
+    if current_user && current_user.house_id?
+      redirect_to house_path(current_user.house)
+    else
+      @houses = House.all
+    end
   end
 
   def show
