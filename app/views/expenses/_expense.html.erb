@@ -1,11 +1,12 @@
-<div class="expense">
-  <p>
-    <strong>
-      <%= link_to "#{expense.name}: #{number_to_currency(expense.amount)}", house_expense_path(expense.house, expense) %>
-    </strong><br>
-    Due: <%= expense.due_date.strftime("%a, %e %b %Y") %>
-  </p>
-  <%= link_to button_tag("edit"), edit_house_expense_path(expense.house, expense), remote: true %>
-  <%= link_to button_tag("delete"), house_expense_path(expense.house, expense), method: :delete, remote: true %>
+<div class="expense-item card-item">
+  <dl class="expense-summary">
+    <dd class="expense-name">
+      <%= link_to expense.name, house_expense_path(@house, expense) %>
+      <span class="expense-date"> on <%= expense.due_date.strftime("%A, %B %e") %></span>
+    </dd>
+    <dd class="expense-amount"><%= number_to_currency(expense.amount) %></dd>
+  </dl>
+  <%= link_to "edit", edit_house_expense_path(expense.house, expense), remote: true %> |
+  <%= link_to "delete", house_expense_path(expense.house, expense), method: :delete, data: {confirm: "Are you sure you want to delete this expense?"}, remote: true %>
   <div id="edit-expense-form"></div>
 </div>
