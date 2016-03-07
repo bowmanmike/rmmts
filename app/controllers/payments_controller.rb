@@ -29,7 +29,7 @@ class PaymentsController < ApplicationController
         redirect_to mate_purchase_path(@mate, @purchase)
         flash[:notice] = "Thanks for your payment!"
       elsif params[:house_id] && params[:expense_id]
-        @expense.is_paid?
+        @expense.paid = true if @expense.is_paid?
         @expense.save
         redirect_to house_expense_path(@house, @expense)
         flash[:notice] = "Thanks for your payment!"

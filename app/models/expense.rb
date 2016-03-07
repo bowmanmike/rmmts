@@ -99,7 +99,7 @@ class Expense < ActiveRecord::Base
   end
 
   def is_paid?
-    self.paid = true if self.amount <= self.amount_owing
+    self.amount <= self.current_cycle_total_payments
   end
 
 end
