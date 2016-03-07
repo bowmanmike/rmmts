@@ -91,11 +91,15 @@ class Expense < ActiveRecord::Base
     self.payments.each do |payment|
       total << payment.amount if payment.target_due_date == self.due_date
     end
-    total.reduce(:+)
+    if total.reduce(:+) == nil
+      0
+    else
+      total.reduce(:+)
+    end
   end
 
   def is_paid?
-    self.paid = true if self.amount <= self.amount_owed
+    self.paid = true if self.amount <= self.amount_owing
   end
 
 end
