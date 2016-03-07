@@ -137,4 +137,19 @@ class Chore < ActiveRecord::Base
     puts "SMS body: #{reminder}"
   end
 
+  def sms_due(mate)
+    @twilio_number = ENV["TWILIO_NUMBER"]
+    @client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
+    time_str = self.due_date.strftime("%a, %e %b %Y")
+    reminder = "Hey #{mate.first_name}, #{self.name} is due soo at #{time_str}. Is it done yet?"
+    message = @client.account.messages.create(
+      from: @twilio_number,
+      to: mate.phone_number,
+      body: reminder
+    )
+    puts "SMS from: #{message.from}"
+    puts "SMS to: #{mate.phone_number}"
+    puts "SMS body: #{reminder}"
+  end
+
 end
