@@ -44,6 +44,7 @@
     @include span-columns(4);
     @include omega(3n);
   }
+
 }
 
 .card-list {
@@ -60,6 +61,10 @@
   border-bottom-color: $medium-gray;
   border-bottom-left-radius: $card-border-radius;
   border-bottom-right-radius: $card-border-radius;
+
+  &:hover {
+    background-color:$off-white;
+  }
 }
 
 .sub-card {
