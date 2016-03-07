@@ -19,6 +19,10 @@ class PaymentsController < ApplicationController
     end
 
     if params[:house_id] && params[:expense_id]
+      if @expense.is_paid?
+        redirect_to house_expense_path(@house, @expense), notice: "This household expense is already fully paid"
+        return
+      end
       @payment = @expense.payments.build(payment_params)
       @payment.mate = current_user
       @payment.target_due_date = @expense.due_date
