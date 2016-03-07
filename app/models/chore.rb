@@ -69,6 +69,7 @@ class Chore < ActiveRecord::Base
   def check_status
     return if !self.recurring?
     update_due_date
+    self.reassign_mate if self.check_claimed?
     self.update_column(:complete, false)
     self.update_column(:reminder_id, nil)
     self.update_column(:due_notification_id, nil)
@@ -82,7 +83,26 @@ class Chore < ActiveRecord::Base
   end
 
   def reassign_mate
-    
+    style = self.reassignment_style
+    case style
+    when "claimable"
+      self.update_column(:mate_id, nil)
+    when "rotating"
+      new_mate =
+      self.update_column(:mate_id, find_new_mate)
+    when "random"
+      new_mate = self.house.mates.sample
+      self.update_column(:mate_id, new_mate)
+    end
+  end
+
+  def find_new_mate
+    previous_mate = self.mate_id
+    mate_ary = self.house.mates.map(&:id)
+    new_mate = mate_ary[mate_ary.find_index(previous_mate) + 1]
+    if new_mate == nil
+      self.mate_id = mate_ary.first
+    end
   end
 
   def delete_associated_jobs
