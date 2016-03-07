@@ -22,10 +22,11 @@
 
 <div id="mate-duties" class="full-container">
 
-  <div id="mate-chores" class="sub-container card">
-    <h3 id="mate-chores-header" class="card-header">
-      Chores
-    </h3>
+  <div id="mate-chores" class="chores-container">
+    <div id="mate-chores-header" class="card-header">
+      <h3>Chores</h3>
+      <%= link_to image_tag('plus-24.svg', class: "small-icon"), new_house_chore_path(@house), class: "add-new-icon", remote: true %>
+    </div>
     <div id="mate-chores-list" class="card-list">
       <% if @house.chores.any? %>
         <% @house.chores.each do |chore| %>
@@ -57,20 +58,20 @@
         <p>This mate has no chores, lazy bum...</p>
       <% end %>
     </div>
-    <%= image_tag 'plus-24.svg' %>
+
   </div>
 
-  <div id="mate-expenses" class="sub-container card">
-    <h3 id="mate-expenses-header" class="card-header">
-      Expenses
-    </h3>
-    <div id="mate-expenses-list" class="card-list">
-      <%= render(partial: "expenses/expense", collection: @house.expenses, as: :expense) || "No current expenses." %>
+  <div class="expenses-purchases-container">
+    <div id="mate-expenses" class="card">
+      <h3 id="mate-expenses-header" class="card-header">
+        Expenses
+      </h3>
+      <div id="mate-expenses-list" class="card-list">
+        <%= render(partial: "expenses/expense", collection: @house.expenses, as: :expense) || "No current expenses." %>
+      </div>
     </div>
-  </div>
 
-  <div id="mate-purchases-payments" class="sub-container">
-    <div id="mate-owed-payments" class="sub-card">
+    <div id="mate-owed-payments" class="purchases-sub-container sub-card">
       <h3 id="mate-owed-payments-header" class="sub-card-header">
         You Owe: <%= number_to_currency(@mate.sum_owed_to_mates) %>
       </h3>
@@ -79,17 +80,17 @@
       </div>
     </div>
 
-    <div id="mate-purchases" class="sub-card">
+    <div id="mate-purchases" class="purchases-sub-container sub-card">
       <h3 id="mate-purchases-header" class="sub-card-header">
         You Are Owed: <%= number_to_currency(@mate.sum_owed_to_self) %>
       </h3>
       <div id="mate-purchases-list" class="sub-card-list">
         <% if @purchases.any? %>
-          <%= render @purchases %>
+        <%= render @purchases %>
         <% else %>
-          <p>
-            No purchases yet.
-          </p>
+        <p>
+          No purchases yet.
+        </p>
         <% end %>
       </div>
     </div>

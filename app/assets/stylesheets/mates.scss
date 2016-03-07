@@ -7,6 +7,21 @@
   padding: 1rem;
 }
 
+.chores-container {
+  @include span-columns(6);
+  padding: 1rem;
+  border-radius: $card-border-radius;
+  background-color: $card-background-color;
+}
+
+.expenses-purchases-container {
+  @include span-columns(6);
+}
+
+// .purchases-sub-container {
+//   @include span-columns(3);
+// }
+
 .full-card {
   padding: 1rem;
   border-radius: $card-border-radius;
@@ -28,21 +43,21 @@
 #mate-duties {
   padding: 1rem;
 }
-
-.sub-container {
-
-  @include span-columns(4);
-
-  @include media($small-screen-only) {
-    @include span-columns(12);
-    @include omega(3n);
-  }
-  @include media($medium-screen-up) {
-    @include span-columns(4);
-    @include omega(3n);
-  }
-
-}
+//
+// .sub-container {
+//
+//   @include span-columns(3);
+//
+//   // @include media($small-screen-only) {
+//   //   @include span-columns(12);
+//   //   @include omega(3n);
+//   // }
+//   // @include media($medium-screen-up) {
+//   //   @include span-columns(4);
+//   //   @include omega(3n);
+//   // }
+//
+// }
 
 .card {
   padding: 1rem;
