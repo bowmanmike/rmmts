@@ -26,11 +26,10 @@
     <h3 id="mate-chores-header" class="card-header">
       Chores
     </h3>
-    <%= favicon_link_tag 'plus.ico' %>
     <div id="mate-chores-list" class="card-list">
       <% if @house.chores.any? %>
         <% @house.chores.each do |chore| %>
-          <div class="mates-chores-item card-item">
+          <div class="chore card-item">
             <dl class="chore-summary">
               <dd class="chore-name">
                 <%= link_to chore.name, house_chore_path(@house, chore) %>
@@ -58,6 +57,7 @@
         <p>This mate has no chores, lazy bum...</p>
       <% end %>
     </div>
+    <%= image_tag 'plus-24.svg' %>
   </div>
 
   <div id="mate-expenses" class="sub-container card">
