@@ -85,7 +85,9 @@
       </h3>
       <div id="mate-purchases-list" class="sub-card-list">
         <% if @purchases.any? %>
-          <%= render @purchases %>
+          <div id="mate-purchases-partial">
+            <%= render @purchases %>
+          </div>
         <% else %>
           <p>
             No purchases yet.
