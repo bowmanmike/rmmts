@@ -88,11 +88,11 @@ class Chore < ActiveRecord::Base
     when "claimable"
       self.update_column(:mate_id, nil)
     when "rotating"
-      new_mate =
-      self.update_column(:mate_id, find_new_mate)
+      new_mate = self.find_new_mate
+      self.update_column(:mate_id, new_mate.id)
     when "random"
       new_mate = self.house.mates.sample
-      self.update_column(:mate_id, new_mate)
+      self.update_column(:mate_id, new_mate.id)
     end
   end
 
@@ -101,7 +101,7 @@ class Chore < ActiveRecord::Base
     mate_ary = self.house.mates.map(&:id)
     new_mate = mate_ary[mate_ary.find_index(previous_mate) + 1]
     if new_mate == nil
-      self.mate_id = mate_ary.first
+      new_mate = mate_ary.first
     end
   end
 
