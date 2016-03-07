@@ -35,10 +35,8 @@ class ExpensesController < ApplicationController
   end
 
   def update
-    @expense.update_attributes(expense_params)
-
     respond_to do |format|
-      if @expense.save
+      if @expense.update_attributes(expense_params)
         format.html { redirect_to house_path(@house)
                       flash[:notice] = "Expense has been updated!" }
         format.js {}
