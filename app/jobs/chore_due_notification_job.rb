@@ -4,7 +4,7 @@ class ChoreDueNotificationJob < ActiveJob::Base
   def perform(chore)
     @chore = chore
     if @chore.mate
-      if @chore.notifications.find_by(mate_id: mate).email?
+      if @chore.notifications.find_by(mate_id: @chore.mate).email?
         MateMailer.chore_due(@chore, @chore.mate).deliver_later
       end
       if
