@@ -29,7 +29,7 @@
           <%= link_to "Edit Profile", edit_mate_path(current_user) %> |
           <%= link_to "Log out", logout_path, method: :post %>
         <% else %>
-          <%= link_to "Login", new_session_path, id: "login-link" %>
+          <%= link_to "Login", new_session_path, id: "login-link", remote: true %>
           <%= link_to "Sign up", new_mate_path, id: "signup-link" %>
         <% end %>
       </div>
