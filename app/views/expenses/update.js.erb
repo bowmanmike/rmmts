@@ -1,2 +1,4 @@
 $('#expenses-list').html('<%= j(render @expenses) %>');
 $('#expenses-buttons').html('<%= j(link_to button_tag("Add new expense"), new_house_expense_path(@house), remote: true) %>');
+$('#expense-form').html('');
+$('#mate-expenses-list').html('<%= j(render(partial: "expenses/expense", collection: @house.expenses, as: :expense) || "No current expenses.") %>')
