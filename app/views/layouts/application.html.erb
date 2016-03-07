@@ -27,19 +27,22 @@
           Logged in as <%= current_user.username %> |
           <%= link_to "View Profile", mate_path(current_user) %> |
           <%= link_to "Edit Profile", edit_mate_path(current_user) %> |
-          <%= link_to "Log out", logout_path(current_user), method: :post %>
+          <%= link_to "Log out", logout_path, method: :post %>
         <% else %>
-          <%= link_to "Login", new_session_path %>
-          <%= link_to "Sign up", new_mate_path %>
+          <%= link_to "Login", new_session_path, id: "login-link" %>
+          <%= link_to "Sign up", new_mate_path, id: "signup-link" %>
         <% end %>
       </div>
     </div>
 
-    
+    <div id="overlay">
 
-    <div class="content">
-      <%= yield %>
+      <div class="popup-form"></div>
+
+      <div class="content">
+        <%= yield %>
+      </div>
+
     </div>
-
   </body>
 </html>
