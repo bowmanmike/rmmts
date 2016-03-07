@@ -81,6 +81,10 @@ class Chore < ActiveRecord::Base
     self.update_column(:due_date, self.due_date.advance(options))
   end
 
+  def reassign_mate
+    
+  end
+
   def delete_associated_jobs
     Delayed::Job.find(self.reminder_id).delete if Delayed::Job.exists?(self.reminder_id)
     Delayed::Job.find(self.due_notification_id).delete if Delayed::Job.exists?(self.due_notification_id)

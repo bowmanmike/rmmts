@@ -66,21 +66,21 @@
     <div class="field">
       <%= f.label :reassignment_style do %>
         <%= f.radio_button :reassignment_style, "claimable" %>
-        Claimable
+        Claimable - This chore is unassigned by default, and can be claimed by anybody.
       <% end %>
     </div>
 
     <div class="field">
       <%= f.label :reassignment_style do %>
         <%= f.radio_button :reassignment_style, "rotating" %>
-        Rotating
+        Rotating - If claimed, this chore rotates through all roommates after each deadline.
       <% end %>
     </div>
 
     <div class="field">
       <%= f.label :reassignment_style do %>
         <%= f.radio_button :reassignment_style, "random" %>
-        Random
+        Random - If claimed, this chore randomly assigns itself to a new roommate after each deadline.
       <% end %>
     </div>
 
