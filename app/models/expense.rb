@@ -16,7 +16,7 @@ class Expense < ActiveRecord::Base
   validates :due_date, presence: true
   validate :due_date_cannot_be_in_the_past
 
-  before_update :update_payment_due_dates, if: :due_date_changed?
+  before_save :update_payment_due_dates, if: :due_date_changed?
   before_destroy :delete_associated_jobs
   after_save :update_reminder
 

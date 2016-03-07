@@ -3,7 +3,11 @@
     <strong>
       <%= link_to "#{expense.name}: #{number_to_currency(expense.amount)}", house_expense_path(expense.house, expense) %>
     </strong><br>
-    Due: <%= expense.due_date.strftime("%a, %e %b %Y") %>
+    <% if expense.is_paid? %>
+      This expense is paid for this cycle!
+    <% else %>
+      <%= number_to_currency(expense.amount_owing) %> still owing, due by <%= expense.due_date.strftime("%a, %e %b %Y") %>
+    <% end %>
   </p>
   <%= link_to button_tag("edit"), edit_house_expense_path(expense.house, expense), remote: true %>
   <%= link_to button_tag("delete"), house_expense_path(expense.house, expense), method: :delete, remote: true %>

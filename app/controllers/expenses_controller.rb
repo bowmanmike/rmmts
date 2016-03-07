@@ -28,6 +28,7 @@ class ExpensesController < ApplicationController
   end
 
   def show
+    @mates = @expense.mates
   end
 
   def edit
