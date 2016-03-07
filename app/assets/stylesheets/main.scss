@@ -1,9 +1,10 @@
 .popup-form {
   z-index: 0;
-  top: 15%;
+  top: 10%;
   position: absolute;
   opacity: 0;
   padding: 1rem;
+  margin: auto;
 
   @include media($medium-screen-up) {
     @include span-columns(6);
