@@ -21,16 +21,20 @@ $base-border-radius: 3px;
 $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
-$card-border-radius: 3px;
+
 $button-border-radius: 20px;
+
+$card-border-radius: 3px;
+$card-item-height: 8rem;
 
 // Colors
 $blue: #1565c0;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
-$white: #fefefe;
-$off-white: #eff5f8;
+$lightest-gray: #eee;
+$off-white: #f6f6f6;
+$white: #fff;
 
 $color1: #114b5f; //rgba(17, 75, 95, 100)
 $color2: #1a936f; //rgba(26, 147, 111, 100)
@@ -49,7 +53,12 @@ $base-border: 1px solid $base-border-color;
 // Background Colors
 $base-background-color: $off-white;
 $secondary-background-color: tint($base-border-color, 75%);
+
 $button-background-color: $color3;
+
+$card-background-color: $lightest-gray;
+$card-item-background-color: $white;
+$card-item-background-color-hover: $off-white;
 
 // Forms
 $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);

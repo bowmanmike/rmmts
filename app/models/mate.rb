@@ -39,10 +39,20 @@ class Mate < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
-  def owed_payments_sum
+  def sum_owed_to_mates
     if self.house
       sum = self.housemate_purchases.inject(0) do |sum, purchase|
         sum + purchase.amount_for_each
+      end
+
+      sum
+    end
+  end
+
+  def sum_owed_to_self
+    if self.house
+      sum = self.purchases.inject(0) do |sum, purchase|
+        sum + purchase.amount_owed
       end
 
       sum

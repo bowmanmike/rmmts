@@ -10,7 +10,7 @@
 .full-card {
   padding: 1rem;
   border-radius: $card-border-radius;
-  background-color: $light-gray;
+  background-color: $card-background-color;
 }
 
 .full-card-list {
@@ -29,10 +29,7 @@
   padding: 1rem;
 }
 
-.card {
-  border-radius: $card-border-radius;
-  background-color: $light-gray;
-  padding: 1rem;
+.sub-container {
 
   @include span-columns(4);
 
@@ -47,13 +44,27 @@
 
 }
 
-.card-list {
-
+.card {
+  padding: 1rem;
+  border-radius: $card-border-radius;
+  background-color: $card-background-color;
 }
 
-.card-item {
+.sub-card {
   border-radius: $card-border-radius;
-  background-color: $white;
+  background-color: $card-background-color;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-list {
+}
+
+.card-item,
+.sub-card-item {
+  height: $card-item-height;
+  border-radius: $card-border-radius;
+  background-color: $card-item-background-color;
   padding: 1rem;
   margin: 0.5rem 0;
   border-bottom-style: solid;
@@ -63,7 +74,7 @@
   border-bottom-right-radius: $card-border-radius;
 
   &:hover {
-    background-color:$off-white;
+    background-color: $card-item-background-color-hover;
   }
 }
 
@@ -72,9 +83,6 @@
 }
 
 .sub-card-list {
-  border-radius: $card-border-radius;
-  background-color: $light-gray;
-  padding: 0.5rem;
 }
 
 .chore-summary {
