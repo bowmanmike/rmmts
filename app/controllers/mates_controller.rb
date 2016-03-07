@@ -19,13 +19,18 @@ class MatesController < ApplicationController
   def create
     @mate = Mate.new(mate_params)
 
-    if @mate.save
-      auto_login(@mate)
-      MateMailer.welcome_email(@mate).deliver_later
-      redirect_to mate_path(@mate.id), notice: 'account created'
-    else
-      flash[:alert] = "There was a problem creating your account. Please try again."
-      render :new
+    respond_to do |format|
+      if @mate.save
+        format.html { auto_login(@mate)
+                      MateMailer.welcome_email(@mate).deliver_later
+                      redirect_to mate_path(@mate.id)
+                      flash[:notice] = 'account created' }
+        format.js {}
+      else
+        format.html { flash[:alert] = "There was a problem creating your account. Please try again."
+                      render :new }
+        format.js {}
+      end
     end
   end
 

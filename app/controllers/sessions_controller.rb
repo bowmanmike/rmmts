@@ -18,7 +18,8 @@ class SessionsController < ApplicationController
           format.html { redirect_to root_path, notice: "login successful" }
           format.js {}
         else
-          render :new, notice: "login failed"
+          format.html { render :new, notice: "login failed" }
+          format.js { redirect_to root_path}
         end
     end
   end
