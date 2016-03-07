@@ -15,4 +15,8 @@ $(document).on('ready page:load', function() {
     $('.popup-form').removeClass('is-active');
     $('#overlay').removeClass('is-active');
   });
+
+  $('.popup-form').on('submit', function() {
+    $(this).add('#overlay').removeClass('is-active');
+  })
 })

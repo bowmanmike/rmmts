@@ -1,19 +1,28 @@
 .popup-form {
-    height: 25%;
-    width: 75%;
-    z-index: 0;
-    top: 15%;
-    left: 15%;
-    position: absolute;
-    opacity: 0;
-    transition: all 0.25s ease-in;
+  z-index: 0;
+  top: 15%;
+  position: absolute;
+  opacity: 0;
+  padding: 1rem;
 
-    &.is-active {
-      opacity: 1;
-      z-index: 100;
-      background-color: $base-background-color;
-      cursor: default;
-    }
+  @include media($medium-screen-up) {
+    @include span-columns(6);
+    @include shift(3);
+  }
+
+  @include media($small-screen-only) {
+    @include span-columns(12);
+  }
+
+
+  transition: all 0.25s ease-in;
+
+  &.is-active {
+    opacity: 1;
+    z-index: 100;
+    background-color: $base-background-color;
+    cursor: default;
+  }
 }
 
 #overlay {
