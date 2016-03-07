@@ -17,6 +17,11 @@ class ChoresController < ApplicationController
     @chore.mate = nil
     @chore.creator = current_user
     @chore.complete = false
+    if @chore.reassignment_style == "random"
+      @chore.mate_id = @chore.house.mates.sample.id
+    elsif @chore.reassignment_style == "rotating"
+      @chore.mate_id = current_user.id
+    end
 
     respond_to do |format|
       if @chore.save

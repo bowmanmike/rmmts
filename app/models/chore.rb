@@ -69,6 +69,7 @@ class Chore < ActiveRecord::Base
   def check_status
     return if !self.recurring?
     update_due_date
+    self.reassign_mate if self.check_claimed?
     self.update_column(:complete, false)
     self.update_column(:reminder_id, nil)
     self.update_column(:due_notification_id, nil)
@@ -82,7 +83,27 @@ class Chore < ActiveRecord::Base
   end
 
   def reassign_mate
-    
+    style = self.reassignment_style
+    case style
+    when "claimable"
+      self.update_column(:mate_id, nil)
+    when "rotating"
+      new_mate_id = self.find_new_mate_id
+      self.update_column(:mate_id, new_mate_id)
+    when "random"
+      new_mate = self.house.mates.sample
+      self.update_column(:mate_id, new_mate.id)
+    end
+  end
+
+  def find_new_mate_id
+    previous_mate = self.mate_id
+    mate_ary = self.house.mates.map(&:id)
+    self.mate_id = mate_ary[mate_ary.find_index(previous_mate) + 1]
+    if self.mate_id == nil
+      self.mate_id = mate_ary.first
+    end
+    self.mate_id
   end
 
   def delete_associated_jobs
@@ -106,6 +127,21 @@ class Chore < ActiveRecord::Base
     @client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
     time_str = self.due_date.strftime("%a, %e %b %Y")
     reminder = "Hey #{mate.first_name}, don't for get to #{self.name} before #{time_str}!"
+    message = @client.account.messages.create(
+      from: @twilio_number,
+      to: mate.phone_number,
+      body: reminder
+    )
+    puts "SMS from: #{message.from}"
+    puts "SMS to: #{mate.phone_number}"
+    puts "SMS body: #{reminder}"
+  end
+
+  def sms_due(mate)
+    @twilio_number = ENV["TWILIO_NUMBER"]
+    @client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
+    time_str = self.due_date.strftime("%a, %e %b %Y")
+    reminder = "Hey #{mate.first_name}, #{self.name} is due soo at #{time_str}. Is it done yet?"
     message = @client.account.messages.create(
       from: @twilio_number,
       to: mate.phone_number,
