@@ -10,6 +10,10 @@ $(document).on('ready page:load', function() {
     showPopUp();
   })
 
+  $(document).on('click', '#edit-mate-link', function(e) {
+    e.preventDefault();
+    showPopUp();
+  })
 
   $('html').on('click', '.popup', function(e) {
     e.stopPropagation();
