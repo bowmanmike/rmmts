@@ -92,9 +92,21 @@
 .card-item:hover{
   background-color: $card-item-background-color-hover;
 
-  & > .chore-links > .item-icon-link {
+  & > .card-links > .item-icon-link {
     opacity: 0.4;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
+}
+
+.card-summary {
+  float: left;
+}
+
+.card-links {
+  float: right;
 }
 
 .sub-card {
@@ -114,13 +126,6 @@
   margin-bottom: 0.5rem;
 }
 
-.chore-summary {
-  float: left;
-}
-
-.chore-links {
-  float: right;
-}
 
 .chore-name {
   font-size: 1.1rem;
