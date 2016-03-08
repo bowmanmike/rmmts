@@ -23,6 +23,7 @@
     z-index: 100;
     background-color: $base-background-color;
     cursor: default;
+    position: fixed;
   }
 }
 
@@ -37,7 +38,6 @@
   transition: all 0.25s ease-in;
 
   &.is-active {
-    position: fixed;
     background-color: black;
     z-index: 99;
     opacity: 0.75;

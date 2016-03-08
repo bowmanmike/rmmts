@@ -8,7 +8,7 @@
       Click <%= link_to "here", image_url("#{purchase.image}") %> to see a picture.
     <% end %>
     <% if purchase.mate == current_user %>
-      <%= link_to button_tag("edit"), edit_mate_purchase_path(purchase.mate, purchase), remote: true %>
+      <%= link_to button_tag("edit"), edit_mate_purchase_path(purchase.mate, purchase), remote: true, class: "edit-purchase-button" %>
       <%= link_to button_tag("delete"), mate_purchase_path(purchase.mate, purchase), method: :delete, remote: true %>
     <% end %>
   </p>

@@ -7,7 +7,7 @@
     </dd>
     <dd class="expense-amount"><%= number_to_currency(expense.amount) %></dd>
   </dl>
-  <%= link_to "edit", edit_house_expense_path(expense.house, expense), remote: true %> |
+  <%= link_to "edit", edit_house_expense_path(expense.house, expense), remote: true, class: "edit-expense-button" %> |
   <%= link_to "delete", house_expense_path(expense.house, expense), method: :delete, data: {confirm: "Are you sure you want to delete this expense?"}, remote: true %>
   <div id="edit-expense-form"></div>
 </div>

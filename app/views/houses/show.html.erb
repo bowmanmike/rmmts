@@ -73,7 +73,7 @@
     </div>
 
     <div id="add-chore-button">
-      <%= link_to button_tag("Add new chore"), new_house_chore_path(@house), remote: true %><br>
+      <%= link_to button_tag("Add new chore"), new_house_chore_path(@house), remote: true, class: "new-chore-button" %><br>
     </div>
 
   </div>
@@ -88,7 +88,7 @@
       </div>
 
       <div id="purchases-buttons">
-        <%= link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user), remote: true %>
+        <%= link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user), remote: true, class: "new-purchase-button" %>
       </div>
     </div>
 
@@ -101,7 +101,7 @@
         </div>
 
         <div id="expenses-buttons">
-          <%= link_to button_tag("Add new expense"), new_house_expense_path(@house), remote: true %>
+          <%= link_to button_tag("Add new expense"), new_house_expense_path(@house), remote: true, class: "new-expense-button" %>
         </div>
       </div>
     <% end %>

@@ -18,4 +18,34 @@ $(document).on('ready page:load', function() {
 
     showPopUp();
   })
+
+  $(document).on('click', '.new-chore-button', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
+
+  $(document).on('click', '.edit-expense-button', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
+
+  $(document).on('click', '.new-expense-button', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
+
+  $(document).on('click', '.new-purchase-button', function(e) {
+    e.preventDefault()
+
+    showPopUp();
+  })
+
+  $(document).on('click', '.edit-purchase-button', function(e) {
+    e.preventDefault()
+
+    showPopUp();
+  })
 });
