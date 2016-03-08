@@ -4,7 +4,7 @@ class House < ActiveRecord::Base
   has_many :expenses
   has_many :mates
   has_many :purchases, through: :mates
-  has_many :announcements
+  has_many :announcements, dependent: :destroy
 
   validates :name, presence: true
 
