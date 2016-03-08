@@ -25,18 +25,25 @@
   <div id="mate-chores" class="chores-container">
     <div id="mate-chores-header" class="card-header">
       <h3>Chores</h3>
-      <%= link_to image_tag("plus-24.svg", class: "small-icon"), new_house_chore_path(@house), class: "small-icon-link", remote: true %>
+      <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link", remote: true %>
     </div>
     <div id="mate-chores-list" class="card-list">
       <% if @house.chores.any? %>
         <% @house.chores.each do |chore| %>
           <div class="chore card-item">
-            <dl class="chore-summary">
-              <dd class="chore-name">
-                <%= link_to chore.name, house_chore_path(@house, chore) %>
-              </dd>
-              <dd class="chore-date">Due <%= chore.due_date.strftime("%A, %B %e") %></dd>
-            </dl>
+            <div class="chore-summary">
+              <dl>
+                <dd class="chore-name">
+                  <%= link_to chore.name, house_chore_path(@house, chore) %>
+                </dd>
+                <dd class="chore-date">Due <%= chore.due_date.strftime("%A, %B %e") %></dd>
+              </dl>
+            </div>
+
+            <div class="chore-links">
+              <%= link_to image_tag("edit.svg", class: "item-icon"), edit_house_chore_path(chore.house, chore), class: "item-icon-link" %>
+              <%= link_to image_tag("x.svg", class: "item-icon"), house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" }, class: "item-icon-link" %>
+            </div>
 
             <% if chore.mate == current_user %>
             <%= form_for [@house, chore] do |f| %>
@@ -50,8 +57,6 @@
             <% end %>
             <% end %>
 
-            <%= link_to "edit", edit_house_chore_path(chore.house, chore) %> |
-            <%= link_to "delete", house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" } %>
           </div>
         <% end %>
       <% else %>
@@ -65,7 +70,7 @@
     <div id="mate-expenses" class="card">
       <div id="mate-expenses-header" class="card-header">
         <h3>Expenses</h3>
-        <%= link_to image_tag("plus-24.svg", class: "small-icon"), new_house_chore_path(@house), class: "small-icon-link", remote: true %>
+        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link", remote: true %>
       </div>
       <div id="mate-expenses-list" class="card-list">
         <%= render(partial: "expenses/expense", collection: @house.expenses, as: :expense) || "No current expenses." %>

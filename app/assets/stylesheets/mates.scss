@@ -87,9 +87,13 @@
   border-bottom-color: $medium-gray;
   border-bottom-left-radius: $card-border-radius;
   border-bottom-right-radius: $card-border-radius;
+}
 
-  &:hover {
-    background-color: $card-item-background-color-hover;
+.card-item:hover{
+  background-color: $card-item-background-color-hover;
+
+  & > .chore-links > .item-icon-link {
+    opacity: 0.4;
   }
 }
 
@@ -108,6 +112,14 @@
   padding: 0;
   margin-top: 0;
   margin-bottom: 0.5rem;
+}
+
+.chore-summary {
+  float: left;
+}
+
+.chore-links {
+  float: right;
 }
 
 .chore-name {
