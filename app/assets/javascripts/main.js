@@ -11,7 +11,7 @@ $(document).on('ready page:load', function() {
   })
 
 
-  $('html').on('click', '.popup-form', function(e) {
+  $('html').on('click', '.popup', function(e) {
     e.stopPropagation();
   })
 
@@ -29,6 +29,10 @@ var showPopUp = function() {
   $('.popup').addClass('is-active');
   $('.popup-form').addClass('is-active');
   $('body').addClass('noscroll');
+
+  $('.close-popup-link').on('click', function() {
+    hidePopUp();
+  })
 }
 
 var hidePopUp = function() {

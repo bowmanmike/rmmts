@@ -8,6 +8,16 @@
   border-radius: 3%;
   border: 10px $popup-border-color solid;
 
+  .popup-layout {
+    text-align: right;
+  }
+
+  .close-popup-link {
+    text-decoration: underline;
+    color: $medium-gray;
+    cursor: pointer;
+  }
+
   @include media($medium-screen-up) {
     @include span-columns(6);
     @include shift(3);
