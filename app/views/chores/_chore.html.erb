@@ -1,15 +1,12 @@
-<div class="chore-complete-form">
-
-</div>
 <div class="chore card-item">
   <div class="check-mark-wrapper chore-complete-form">
     <% if chore.complete? %>
-      <%= form_for [@house, chore], class: "incomplete-chore-form", remote: true do |f| %>
+      <%= form_for [@house, chore], class: "chore-complete-form", remote: true do |f| %>
         <%= f.hidden_field :complete, :value => false %>
-        <%= f.submit "", class: "check-mark" %>
+        <%= f.submit "", class: "check-mark is-checked" %>
       <% end %>
     <% else %>
-      <%= form_for [@house, chore], class: "complete-chore-form", remote: true do |f| %>
+      <%= form_for [@house, chore], class: "chore-complete-form", remote: true do |f| %>
         <%= f.hidden_field :complete, :value => true %>
         <%= f.submit "", class: "check-mark" %>
       <% end %>
