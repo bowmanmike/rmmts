@@ -58,7 +58,7 @@ class Expense < ActiveRecord::Base
       ExpenseDueNotificationJob.set(wait_until: self.due_date.noon).perform_later(self)
       self.update_column(:due_notification_id, Delayed::Job.where(queue: :expenses).last.id)
     end
-    UpdateExpenseDueDateJob.set(wait_until: self.due_date).perform_later(self)
+    UpdateExpenseDueDateJob.set(wait_until: self.due_date.end_of_day).perform_later(self)
     self.update_column(:update_due_date_job_id, Delayed::Job.where(queue: :expenses).last.id)
   end
 

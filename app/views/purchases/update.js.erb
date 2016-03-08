@@ -1,2 +1,4 @@
 $('#purchases-buttons').html('<%= j(link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user), remote: true) %>');
 $('#purchase-list').html('<%= j(render @purchases) %>');
+$('#mate-purchases-partial').html('<%= j(render @purchases) %>');
+$('#purchase-form').html('');

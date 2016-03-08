@@ -50,7 +50,7 @@ class Chore < ActiveRecord::Base
   end
 
   def set_reminder
-    unless self.complete
+    unless self.complete || self.due_date_is_today || self.due_date_is_tomorrow
       if self.mate
         ChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
         self.update_column(:reminder_id, Delayed::Job.where(queue: :chores).last.id)
@@ -58,10 +58,14 @@ class Chore < ActiveRecord::Base
         GroupChoreReminderJob.set(wait_until: (self.due_date - 1.days).to_date.noon).perform_later(self)
         self.update_column(:reminder_id, Delayed::Job.where(queue: :chores).last.id)
       end
+    end
+
+    unless self.complete || self.due_date_is_today
       ChoreDueNotificationJob.set(wait_until: self.due_date.noon).perform_later(self)
       self.update_column(:due_notification_id, Delayed::Job.where(queue: :chores).last.id)
     end
-    UpdateChoreDueDateJob.set(wait_until: self.due_date).perform_later(self)
+
+    UpdateChoreDueDateJob.set(wait_until: self.due_date.end_of_day).perform_later(self)
     self.update_column(:update_due_date_job_id, Delayed::Job.where(queue: :chores).last.id)
   end
 
@@ -80,6 +84,14 @@ class Chore < ActiveRecord::Base
   def update_due_date
     options = { self.frequency_unit.to_sym => self.frequency_integer }
     self.update_column(:due_date, self.due_date.advance(options))
+  end
+
+  def due_date_is_tomorrow
+    self.created_at.to_date == (self.due_date.to_date - 1)
+  end
+
+  def due_date_is_today
+    self.created_at.to_date == self.due_date.to_date
   end
 
   def reassign_mate
