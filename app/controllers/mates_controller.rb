@@ -10,6 +10,7 @@ class MatesController < ApplicationController
   def show
     @purchases = @mate.purchases
     @housemate_purchases = @mate.housemate_purchases
+    @chores = @house.chores.where(mate_id: [@mate.id, nil])
   end
 
   def new
