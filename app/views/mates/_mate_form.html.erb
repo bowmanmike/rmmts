@@ -60,10 +60,18 @@
       <% end %>
     </div>
 
-    <div class="field">
-      <%= f.label :mate_avatar, "Upload a Photo!" %>
-      <%= f.file_field :mate_avatar %>
-    </div>
+    <% if @mate.mate_avatar.present? %>
+      <%= image_tag @mate.mate_avatar %>
+      <div class="field">
+        <%= f.label :mate_avatar, "Change your photo" %>
+        <%= f.file_field :mate_avatar %>
+      </div>
+    <% else %>
+      <div class="field">
+        <%= f.label :mate_avatar, "Upload a Photo!" %>
+        <%= f.file_field :mate_avatar %>
+      </div>
+    <% end %>
 
     <% if @mate.id.blank? %>
       <div class="field">
