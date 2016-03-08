@@ -88,4 +88,13 @@
     <% end %>
 
   <% end %>
+
+  <% if @mate.house_id.present? %>
+    <p>You currently reside in <%= link_to @mate.house.name, house_path(@mate.house) %></p>
+    <%= form_for @mate do |f| %>
+      <%= f.hidden_field :house_id, :value => nil %>
+      <%= f.submit "Leave This House" %>
+    <% end %>
+  <% end %>
+
 </div>
