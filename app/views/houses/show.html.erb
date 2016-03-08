@@ -18,9 +18,9 @@
       <% end %>
 
       <% if current_user == @house.creator %>
-        <%= form_tag house_path(@house), method: :patch do %>
+        <%= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
           <%= label_tag "username" %>
-          <%= text_field_tag :username_search %>
+          <%= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
           <%= submit_tag "Add mate to house" %>
         <% end %>
       <% end %>
