@@ -3,7 +3,7 @@
   <div class="card-summary">
     <dl>
       <dd class="expense-name">
-        <%= link_to expense.name, house_expense_path(@house, expense) %>
+        <%= link_to expense.name, house_expense_path(@house, expense), remote: true, class: "show-expense-link" %>
         <span class="expense-date"> on <%= expense.due_date.strftime("%A, %B %e") %></span>
       </dd>
       <dd class="expense-amount"><%= number_to_currency(expense.amount) %></dd>

@@ -29,6 +29,11 @@ class ExpensesController < ApplicationController
 
   def show
     @mates = @expense.mates
+
+    respond_to do |format|
+      format.html { render @expense }
+      format.js {}
+    end
   end
 
   def edit

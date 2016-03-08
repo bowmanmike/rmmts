@@ -38,6 +38,10 @@ class ChoresController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html { render @chore }
+      format.js {}
+    end
   end
 
   def edit

@@ -1,7 +1,7 @@
 <div class="chore">
   <dl class="chore-info">
     <dd class="chore-name">
-      <%= link_to chore.name, house_chore_path(chore.house, chore) %>
+      <%= link_to chore.name, house_chore_path(chore.house, chore), remote: true, class: "show-chore-link" %>
     </dd>
     <dd class="chore-date">
       Due <%= chore.due_date.strftime("%A, %B %e") %>

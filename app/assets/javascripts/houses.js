@@ -20,6 +20,12 @@ $(document).on('ready page:load', function() {
     showPopUp();
   })
 
+  $(document).on('click', '.show-chore-link', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
+
   $(document).on('click', '.edit-chore-button', function(e) {
     e.preventDefault();
 
@@ -32,6 +38,12 @@ $(document).on('ready page:load', function() {
     showPopUp();
   })
 
+  $(document).on('click', '.show-expense-link', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
+
   $(document).on('click', '.edit-expense-button', function(e) {
     e.preventDefault();
 
@@ -39,6 +51,12 @@ $(document).on('ready page:load', function() {
   })
 
   $(document).on('click', '.new-expense-button', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
+
+  $(document).on('click', '.show-purchase-link', function(e) {
     e.preventDefault();
 
     showPopUp();

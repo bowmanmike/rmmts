@@ -1,7 +1,7 @@
 <div class="purchase sub-card-item">
   <p>
     <strong>
-      <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount)}", mate_purchase_path(purchase.mate, purchase) %>
+      <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount)}", mate_purchase_path(purchase.mate, purchase), remote: true, class: "show-purchase-link" %>
     </strong><br>
     Still owed: <%= number_to_currency(purchase.amount_owed) %><br>
     <% if purchase.image.present? %>
