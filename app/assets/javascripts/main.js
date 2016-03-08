@@ -44,4 +44,5 @@ var hidePopUp = function() {
   $('#overlay').removeClass('is-active');
   $('.popup-form').removeClass('is-active');
   $('body').removeClass('noscroll');
+  $('.popup-form').html('');
 }
