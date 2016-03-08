@@ -26,10 +26,10 @@ $(document).on('ready page:load', function() {
 
 var showPopUp = function() {
   $('#overlay').addClass('is-active');
-  $('.popup-form').addClass('is-active');
+  $('.popup').addClass('is-active');
 }
 
 var hidePopUp = function() {
-  $('.popup-form').removeClass('is-active').html('');
+  $('.popup').removeClass('is-active').html('');
   $('#overlay').removeClass('is-active');
 }
