@@ -1,82 +1,84 @@
-<%= form_for @mate do |f| %>
+<div id="mate-form">
+  <%= form_for @mate do |f| %>
 
-  <% if @mate.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@mate.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <% if @mate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mate.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-    <ul>
-    <% @mate.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+      <ul>
+      <% @mate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
     <% end %>
-    </ul>
-  </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone_number %>
-    <%= f.telephone_field :phone_number %>
-  </div>
-
-  <p>Notification Preferences</p>
-  <div class="field">
-    <%= f.label :notify_email do %>
-      <%= f.check_box :notify_email %>
-      Email
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :notify_sms do %>
-      <%= f.check_box :notify_sms %>
-      SMS
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :mate_avatar, "Upload a Photo!" %>
-    <%= f.file_field :mate_avatar %>
-  </div>
-
-  <% if @mate.id.blank? %>
     <div class="field">
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
     </div>
-  <% end %>
 
-  <% if @mate.id.blank? %>
     <div class="field">
-      <%= f.submit "Create Account" %>
+      <%= f.label :username %>
+      <%= f.text_field :username %>
     </div>
-  <% elsif @mate.id.present? %>
-    <div class="action">
-      <%= f.submit "Update Information" %>
-    </div>
-  <% end %>
 
-<% end %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :phone_number %>
+      <%= f.telephone_field :phone_number %>
+    </div>
+
+    <p>Notification Preferences</p>
+    <div class="field">
+      <%= f.label :notify_email do %>
+        <%= f.check_box :notify_email %>
+        Email
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :notify_sms do %>
+        <%= f.check_box :notify_sms %>
+        SMS
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :mate_avatar, "Upload a Photo!" %>
+      <%= f.file_field :mate_avatar %>
+    </div>
+
+    <% if @mate.id.blank? %>
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+    <% end %>
+
+    <% if @mate.id.blank? %>
+      <div class="field">
+        <%= f.submit "Create Account" %>
+      </div>
+    <% elsif @mate.id.present? %>
+      <div class="action">
+        <%= f.submit "Update Information" %>
+      </div>
+    <% end %>
+
+  <% end %>
+</div>

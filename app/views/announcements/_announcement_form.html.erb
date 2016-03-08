@@ -1,20 +1,22 @@
-<%= form_for [@house, @announcement], remote: true do |f| %>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
+<div id="announcement-form">
+  <%= form_for [@house, @announcement], remote: true do |f| %>
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
 
-  <div class="field">
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </div>
+    <div class="field">
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
 
-  <div class="action">
-    <% if @announcement.id? %>
-      <%= f.submit "Update This Announcement" %>
-    <% else %>
-      <%= f.submit "Create New Announcement" %>
-    <% end %>
-    <%= link_to button_tag("Close form"), house_path(@house), remote: true %>
-  </div>
-<% end %>
+    <div class="action">
+      <% if @announcement.id? %>
+        <%= f.submit "Update This Announcement" %>
+      <% else %>
+        <%= f.submit "Create New Announcement" %>
+      <% end %>
+      <%= link_to button_tag("Close form"), house_path(@house), remote: true %>
+    </div>
+  <% end %>
+</div>

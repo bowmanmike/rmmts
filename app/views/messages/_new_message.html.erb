@@ -1,11 +1,12 @@
-<%= form_for [@conversation, @new_message], remote: true do |f| %>
-  <div class="field">
-    <%= f.label :body, "New Message" %>
-    <%= f.text_area :body %>
-  </div>
+<div id="message-form"><%= form_for [@conversation, @new_message], remote: true do |f| %>
+    <div class="field">
+      <%= f.label :body, "New Message" %>
+      <%= f.text_area :body %>
+    </div>
 
-  <div class="action">
-    Press <strong><em>Enter</em></strong> to submit, <strong><em>Shift + Enter</em></strong> to begin a new line.<br>
-    <%= f.submit "Send Message" %>
-  </div>
-<% end %>
+    <div class="action">
+      Press <strong><em>Enter</em></strong> to submit, <strong><em>Shift + Enter</em></strong> to begin a new line.<br>
+      <%= f.submit "Send Message" %>
+    </div>
+  <% end %>
+</div>
