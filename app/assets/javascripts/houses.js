@@ -2,21 +2,6 @@
 // All this logic will automatically be available in application.js.
 $(document).on('ready page:load', function() {
 
-  var usernames = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: '/usernames.json',
-    remote: '/usernames.json'
-  });
-
-  $('#username-search .query').typeahead(null, {
-    // displayKey: 'username',
-    name: 'mates',
-    // display: 'username',
-    source:
-  });
-
-
   $(document).on('click', '#new-announcement-button', function(e) {
     e.preventDefault();
 

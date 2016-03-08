@@ -5,6 +5,7 @@ class MatesController < ApplicationController
 
   def usernames
     @mates = Mate.all
+    # render json: @mates
     respond_to do |format|
       format.json
     end
