@@ -30,7 +30,6 @@
   background-color: transparent;
   min-height: 100%;
   width: 100%;
-  position: fixed;
   top: 0;
   left: 0;
   z-index: -1;
@@ -38,6 +37,7 @@
   transition: all 0.25s ease-in;
 
   &.is-active {
+    position: fixed;
     background-color: black;
     z-index: 99;
     opacity: 0.75;
