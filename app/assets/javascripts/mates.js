@@ -13,4 +13,16 @@ $(document).on('ready page:load', function() {
       source: usernames
     });
   });
+
+  $(document).on('click', '.show-chore-link', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  });
+
+  $(document).on('click', '.show-owed-purchases-link', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
 });
