@@ -72,5 +72,5 @@ $(document).on('ready page:load', function() {
     e.preventDefault()
 
     showPopUp();
-  })
+  });
 });

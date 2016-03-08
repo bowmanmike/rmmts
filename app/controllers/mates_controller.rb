@@ -1,7 +1,15 @@
 class MatesController < ApplicationController
   before_action :load_mate, only: [:show, :edit, :update, :destroy]
   before_action :load_mate_notifications, only: [:show]
-  before_action :load_house, except: [:new, :create]
+  before_action :load_house, except: [:usernames, :new, :create]
+
+  def usernames
+    @mates = Mate.all
+    # render json: @mates
+    respond_to do |format|
+      format.json
+    end
+  end
 
   def index
     @mates = Mate.all

@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require main
 //= require houses
+//= require typeahead.bundle.js
 //= require_tree .
