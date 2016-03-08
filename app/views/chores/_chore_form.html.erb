@@ -1,4 +1,11 @@
 <div id="chore-form" class="form">
+  <div class="chore-form-header">
+    <% if @chore.id.present? %>
+      <h3>Update Chore Info</h3>
+    <% else %>
+      <h3>Add New Chore</h3>
+    <% end %>
+  </div>
 
   <%= form_for [@house, @chore], remote: true do |f| %>
 
@@ -28,28 +35,28 @@
 
       <div class="frequency_units">
         <div class="field">
-          <%= f.label :frequency_unit do %>
+          <%= f.label :frequency_unit_days do %>
             <%= f.radio_button :frequency_unit, "days", checked: true %>
             day(s)
           <% end %>
         </div>
 
         <div class="field">
-          <%= f.label :frequency_unit do %>
+          <%= f.label :frequency_unit_weeks do %>
             <%= f.radio_button :frequency_unit, "weeks" %>
             week(s)
           <% end %>
         </div>
 
         <div class="field">
-          <%= f.label :frequency_unit do %>
+          <%= f.label :frequency_unit_months do %>
             <%= f.radio_button :frequency_unit, "months" %>
             month(s)
           <% end %>
         </div>
 
         <div class="field">
-          <%= f.label :frequency_unit do %>
+          <%= f.label :frequency_unit_years do %>
             <%= f.radio_button :frequency_unit, "years" %>
             year(s)
           <% end %>
@@ -57,8 +64,10 @@
       </div>
 
       <div id="days-of-week" class="field">
-        On (optional) <%= f.label :frequency_weekday do %>
+        On (optional)
           <% Date::DAYNAMES.each do |day| %>
+          <% weekday = "frequency_weekday_#{day}".to_sym.downcase %>
+          <%= f.label weekday do %>
             <%= f.radio_button :frequency_weekday, day %>
             <%= day %>
           <% end %>
@@ -66,21 +75,21 @@
       </div>
       <p>How do you want the chore to be reassigned after it's due date?</p>
       <div class="field">
-        <%= f.label :reassignment_style do %>
+        <%= f.label :reassignment_style_claimable do %>
         <%= f.radio_button :reassignment_style, "claimable", checked: true %>
         Claimable - This chore is unassigned by default, and can be claimed by anybody.
         <% end %>
       </div>
 
       <div class="field">
-        <%= f.label :reassignment_style do %>
+        <%= f.label :reassignment_style_rotating do %>
         <%= f.radio_button :reassignment_style, "rotating" %>
         Rotating - If claimed, this chore rotates through all roommates after each deadline.
         <% end %>
       </div>
 
       <div class="field">
-        <%= f.label :reassignment_style do %>
+        <%= f.label :reassignment_style_random do %>
         <%= f.radio_button :reassignment_style, "random" %>
         Random - If claimed, this chore randomly assigns itself to a new roommate after each deadline.
         <% end %>
@@ -89,7 +98,6 @@
 
     <div class="action">
       <%= f.submit "Save" %>
-      <%= link_to button_tag("Close form"), house_path(@house), remote: true %>
     </div>
 
   <% end %>

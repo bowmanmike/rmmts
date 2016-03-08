@@ -110,3 +110,19 @@ input#chore_frequency_integer {
   display: inline-block;
   width: 60px;
 }
+
+.chore-form-header {
+  text-align: center;
+}
+
+.action {
+  width: 100%;
+}
+
+.popup-form {
+
+  input[type="submit"] {
+      width: 100%;
+  }
+
+}

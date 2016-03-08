@@ -3,10 +3,10 @@
   top: 5%;
   position: absolute;
   opacity: 0;
-  padding: 1rem;
+  padding: 0.5rem;
   margin: auto;
-  border-radius: 5%;
-  border: 10px $color2 solid;
+  border-radius: 3%;
+  border: 10px $popup-border-color solid;
 
   @include media($medium-screen-up) {
     @include span-columns(6);
