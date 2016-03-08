@@ -9,7 +9,7 @@
       </dd>
       <dd class="chore-recurring">
         <% if chore.recurring %>
-        <p>Needs to be done every <%= chore.frequency_integer %> <%= chore.frequency_unit %></p>
+        <p>Every <%= pluralize(chore.frequency_integer, chore.frequency) %></p>
         <% else %>
         <p>Only happens once.</p>
         <% end %>
