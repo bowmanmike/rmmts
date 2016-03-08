@@ -1,4 +1,8 @@
 <div class="chore card-item">
+  <div class="check-mark-wrapper">
+    <%= image_tag "checkmark.svg", class: "check-mark" %>
+  </div>
+
   <div class="card-summary">
     <dl>
       <dd class="chore-name">
@@ -9,12 +13,80 @@
       </dd>
       <dd class="chore-recurring">
         <% if chore.recurring %>
-        <p>Every <%= pluralize(chore.frequency_integer, chore.frequency) %></p>
+          Repeats very <%= pluralize(chore.frequency_integer, chore.frequency) %>
         <% else %>
-        <p>Only happens once.</p>
+          Only happens once
+        <% end %>
+      </dd>
+      <dd class="chore-reassignment">
+        <% if chore.reassignment_style == "claimable" %>
+          Unassigned by default
+        <% elsif chore.reassignment_style == "rotating" %>
+          Assigned by rotation
+        <% elsif chore.reassignment_style == "random" %>
+          Assigned randomly
         <% end %>
       </dd>
     </dl>
+
+    <div class="chore-claim-form">
+      <% if !chore.complete? %>
+        <% if chore.mate == nil %>
+          <%= form_for [@house, chore], remote: true do |f| %>
+            <%= f.hidden_field :assign_self, :value => current_user.id %>
+            <%= f.submit "claim" %>
+          <% end %>
+        <% else %>
+          <p>Claimed by <%= chore.mate.username %></p>
+        <% end %>
+
+        <% if chore.mate == current_user %>
+          <%= form_for [@house, chore], remote: true do |f| %>
+            <%= f.hidden_field :assign_self, :value => nil %>
+            <%= f.submit "unclaim" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div id="edit-chore-form"></div>
+
+    <div class="chore-complete-form">
+      <% if chore.complete? %>
+        <%= form_for [@house, chore], remote: true do |f| %>
+          <%= f.hidden_field :complete, :value => false %>
+          <%= f.submit "Mark as Incomplete" %>
+        <% end %>
+      <% else %>
+        <%= form_for [@house, chore], remote: true do |f| %>
+          <%= f.hidden_field :complete, :value => true %>
+          <%= f.submit "Mark as Complete" %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="chore-notification-settings">
+      <%= form_for [current_user, chore.notifications.find_by(mate_id: current_user.id)] do |f| %>
+        <div class="field">
+          <%= f.label :email, for: "email_#{chore.id}" do %>
+            <%= f.check_box :email, id: "email_#{chore.id}" %>
+            Email
+          <% end %>
+        </div>
+
+        <div class="field">
+          <%= f.label :sms, for: "sms_#{chore.id}" do %>
+            <%= f.check_box :sms, id: "sms_#{chore.id}" %>
+            SMS
+          <% end %>
+        </div>
+
+        <div class="action">
+          <%= f.submit "Update Notification Settings" %>
+        </div>
+
+      <% end %>
+    </div>
   </div>
 
   <div class="card-links">
@@ -22,72 +94,4 @@
     <%= link_to image_tag("x.svg", class: "item-icon"), house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" }, class: "item-icon-link" %>
   </div>
 
-  <div class="chore-claim-form">
-    <% if !chore.complete? %>
-      <% if chore.mate == nil %>
-        <%= form_for [@house, chore], remote: true do |f| %>
-          <%= f.hidden_field :assign_self, :value => current_user.id %>
-          <%= f.submit "claim" %>
-        <% end %>
-      <% else %>
-        <p>Claimed by <%= chore.mate.username %></p>
-      <% end %>
-
-      <% if chore.mate == current_user %>
-        <%= form_for [@house, chore], remote: true do |f| %>
-          <%= f.hidden_field :assign_self, :value => nil %>
-          <%= f.submit "unclaim" %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div id="edit-chore-form"></div>
-
-  <div class="chore-reassignment-style">
-    <% if chore.reassignment_style == "claimable" %>
-      <p>This chore is unassigned by default, and claimable by any roommate.</p>
-    <% elsif chore.reassignment_style == "rotating" %>
-      <p>This chore rotates its assignment through all roommates after each due date.</p>
-    <% elsif chore.reassignment_style == "random" %>
-      <p>This chore randomly assigns itself to a new roommate every time its due date passes.</p>
-    <% end %>
-  </div>
-
-  <div class="chore-complete-form">
-    <% if chore.complete? %>
-      <%= form_for [@house, chore], remote: true do |f| %>
-        <%= f.hidden_field :complete, :value => false %>
-        <%= f.submit "Mark as Incomplete" %>
-      <% end %>
-    <% else %>
-      <%= form_for [@house, chore], remote: true do |f| %>
-        <%= f.hidden_field :complete, :value => true %>
-        <%= f.submit "Mark as Complete" %>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div class="chore-notification-settings">
-    <%= form_for [current_user, chore.notifications.find_by(mate_id: current_user.id)] do |f| %>
-      <div class="field">
-        <%= f.label :email, for: "email_#{chore.id}" do %>
-          <%= f.check_box :email, id: "email_#{chore.id}" %>
-          Email
-        <% end %>
-      </div>
-
-      <div class="field">
-        <%= f.label :sms, for: "sms_#{chore.id}" do %>
-          <%= f.check_box :sms, id: "sms_#{chore.id}" %>
-          SMS
-        <% end %>
-      </div>
-
-      <div class="action">
-        <%= f.submit "Update Notification Settings" %>
-      </div>
-
-    <% end %>
-  </div>
 </div>
