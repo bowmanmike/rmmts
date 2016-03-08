@@ -70,7 +70,7 @@ class ChoresController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if @chore.destroy
+      if @chore.notifications.destroy_all && @chore.destroy
         format.html { redirect_to house_path(@house)
                       flash[:notice] = "Chore has been deleted!" }
         format.js{}
