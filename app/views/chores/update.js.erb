@@ -1,5 +1,4 @@
-$('#incomplete-chores-list').html('<%= j(render(@chores.where(complete: !true))) %>');
-$('#complete-chores-list').html('<%= j(render(@chores.where(complete: true))) %>');
+$('#mate-chores-list').html('<%= j(render(@chores.order(complete: :asc, due_date: :asc))) %>');
 $('#add-chore-button').html('<%= j(link_to button_tag("Add new chore"), new_house_chore_path(@house), remote: true) %><br>');
 <% if @chores.where(complete: !true).empty? %>
   $('#incomplete-chores-list').html('No complete chores yet?! Better get on that.');

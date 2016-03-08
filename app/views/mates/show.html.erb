@@ -28,39 +28,7 @@
       <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
     </div>
     <div id="mate-chores-list" class="card-list">
-      <% if @house.chores.any? %>
-        <% @house.chores.each do |chore| %>
-          <div class="chore card-item">
-            <div class="card-summary">
-              <dl>
-                <dd class="chore-name">
-                  <%= link_to chore.name, house_chore_path(@house, chore), class: "show-chore-link", remote: true %>
-                </dd>
-                <dd class="chore-date">Due <%= chore.due_date.strftime("%A, %B %e") %></dd>
-              </dl>
-            </div>
-
-            <div class="card-links">
-              <%= link_to image_tag("edit.svg", class: "item-icon"), edit_house_chore_path(chore.house, chore), class: "item-icon-link edit-chore-button", remote: true %>
-              <%= link_to image_tag("x.svg", class: "item-icon"), house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" }, class: "item-icon-link", remote: true %>
-            </div>
-
-            <% if chore.mate == current_user %>
-            <%= form_for [@house, chore] do |f| %>
-            <%= f.hidden_field :assign_self, :value => nil %>
-            <%= f.submit "unclaim" %>
-            <% end %>
-            <% else %>
-            <%= form_for [@house, chore] do |f| %>
-            <%= f.hidden_field :assign_self, :value => current_user.id %>
-            <%= f.submit "claim" %>
-            <% end %>
-            <% end %>
-          </div>
-        <% end %>
-      <% else %>
-        <p>This mate has no chores, lazy bum...</p>
-      <% end %>
+      <%= render @chores %>
     </div>
 
   </div>
@@ -104,65 +72,3 @@
     </div>
   </div>
 </div>
-
-<h1>Profile for <%= @mate.username %></h1>
-
-<div class="mate-avatar">
-  <%= image_tag @mate.mate_avatar %>
-</div>
-
-<div class="mate-details">
-  <dl>
-    <dd>Name: <%= @mate.first_name %> <%= @mate.last_name %></dd>
-    <dd>Email: <%= @mate.email %></dd>
-  </dl>
-</div>
-
-<div class="mate-houses">
-  <!-- created houses -->
-  <div class="created-houses">
-    <p><strong>Your created houses</strong></p>
-    <% @mate.created_houses.each do |house| %>
-      <dl>
-        <dd><%= link_to house.name, house_path(house) %></dd>
-        <dd><i>created on</i> <%= house.created_at %></dd>
-      </dl>
-      <%= image_tag house.house_image.thumb %>
-    <% end %>
-  </div>
-  <!-- belongs to houses -->
-  <div class="belongs-to-houses">
-    <p><strong>Your current house</strong></p>
-      <% if @house %>
-        <dl>
-          <dd><%= link_to @house.name, house_path(@house) %></dd>
-          <dd><i>created on</i> <%= @house.created_at %></dd>
-          <% unless @house.creator == current_user %>
-            <dd><i>added by</i> <%= @house.creator.username %></dd>
-          <% end %>
-        </dl>
-        <%= image_tag @mate.house.house_image.thumb %>
-
-        <div id="leave-house">
-
-          <% if @mate == current_user %>
-            <%= form_for current_user do |f| %>
-              <%= f.hidden_field :house_id, :value => nil %>
-              <%= f.submit "Leave This House" %>
-            <% end %>
-          <% end %>
-
-        <% else %>
-          <p>You are not part of a household yet...</p>
-          <%= link_to "Create a house", new_house_path %>
-        <% end %>
-      </div>
-  </div>
-</div>
-
-<% if @mate == current_user %>
-  <div class="notification-preferences">
-    <p>Update your global notification settings here.</p>
-    <%= render 'update_notifications_form' %>
-  </div>
-<% end %>
