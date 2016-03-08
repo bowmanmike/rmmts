@@ -1,15 +1,5 @@
 $(document).on('ready page:load', function() {
 
-  var showPopUp = function() {
-    $('#overlay').addClass('is-active');
-    $('.popup-form').addClass('is-active');
-  }
-
-  var hidePopUp = function() {
-    $('.popup-form').removeClass('is-active');
-    $('#overlay').removeClass('is-active');
-  }
-
   $(document).on('click', '#login-link', function(e) {
     e.preventDefault();
     showPopUp();
@@ -33,3 +23,13 @@ $(document).on('ready page:load', function() {
     $(this).add('#overlay').removeClass('is-active');
   })
 })
+
+var showPopUp = function() {
+  $('#overlay').addClass('is-active');
+  $('.popup-form').addClass('is-active');
+}
+
+var hidePopUp = function() {
+  $('.popup-form').removeClass('is-active');
+  $('#overlay').removeClass('is-active');
+}

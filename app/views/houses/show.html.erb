@@ -52,7 +52,7 @@
       <%= render(@announcements) || "No announcements!" %>
     </div>
     <div id="new-announcement">
-      <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true %>
+      <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true, id: "new-announcement-button" %>
     </div>
   </div>
 
