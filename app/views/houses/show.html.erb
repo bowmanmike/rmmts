@@ -25,7 +25,7 @@
         <% end %>
       <% end %>
 
-      <%= link_to button_tag("Edit or Delete this House"), edit_house_path(@house) %>
+      <%= link_to button_tag("Edit or Delete this House"), edit_house_path(@house), remote: true, id: "edit-house-button" %>
     </div>
   </div>
 
