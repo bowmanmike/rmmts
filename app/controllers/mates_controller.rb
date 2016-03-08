@@ -1,13 +1,13 @@
 class MatesController < ApplicationController
   before_action :load_mate, only: [:show, :edit, :update, :destroy]
   before_action :load_mate_notifications, only: [:show]
-  before_action :load_house, except: :usernames
+  before_action :load_house, except: [:usernames, :new, :create]
 
   def usernames
     @mates = Mate.all
     respond_to do |format|
       format.json
-    end 
+    end
   end
 
   def index
@@ -29,7 +29,8 @@ class MatesController < ApplicationController
     if @mate.save
       auto_login(@mate)
       MateMailer.welcome_email(@mate).deliver_later
-      redirect_to mate_path(@mate.id), notice: 'account created'
+      redirect_to mate_path(@mate.id)
+      flash[:notice] = 'account created'
     else
       flash[:alert] = "There was a problem creating your account. Please try again."
       render :new

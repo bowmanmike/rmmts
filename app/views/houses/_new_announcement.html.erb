@@ -1,15 +1,17 @@
-<%= form_for [@house, @announcement], remote: true do |f| %>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
+<div id="announcement-form">
+  <%= form_for [@house, @announcement], remote: true do |f| %>
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
 
-  <div class="field">
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </div>
+    <div class="field">
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
 
-  <div class="action">
-    <%= f.submit "Create New Announcement" %>
-  </div>
-<% end %>
+    <div class="action">
+      <%= f.submit "Create New Announcement" %>
+    </div>
+  <% end %>
+</div>

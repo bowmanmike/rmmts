@@ -82,3 +82,11 @@ select {
   max-width: 100%;
   width: auto;
 }
+
+input#chore_recurring {
+    display: inline-block;
+}
+
+label {
+    display: inline-block;
+}

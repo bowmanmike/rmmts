@@ -1,10 +1,14 @@
 class SessionsController < ApplicationController
 
   def new
-    @mate = Mate.new
+    respond_to do |format|
+      format.html { @mate = Mate.new }
+      format.js
+    end
   end
 
   def create
+
     if Mate.find_by(username: params[:login])
       params[:login] = Mate.find_by(username: params[:login]).email
     end
