@@ -20,16 +20,18 @@ $(document).on('ready page:load', function() {
   });
 
   $('.popup-form').on('submit', function() {
-    $(this).add('#overlay').removeClass('is-active');
+    $(this).add('#overlay').add('.popup').removeClass('is-active');
   })
 })
 
 var showPopUp = function() {
   $('#overlay').addClass('is-active');
   $('.popup').addClass('is-active');
+  $('.popup-form').addClass('is-active');
 }
 
 var hidePopUp = function() {
-  $('.popup').removeClass('is-active').html('');
+  $('.popup').removeClass('is-active');
   $('#overlay').removeClass('is-active');
+  $('.popup-form').removeClass('is-active');
 }
