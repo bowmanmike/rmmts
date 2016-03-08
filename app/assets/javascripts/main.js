@@ -30,6 +30,6 @@ var showPopUp = function() {
 }
 
 var hidePopUp = function() {
-  $('.popup-form').removeClass('is-active');
+  $('.popup-form').removeClass('is-active').html('');
   $('#overlay').removeClass('is-active');
 }
