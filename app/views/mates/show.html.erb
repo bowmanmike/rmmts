@@ -25,7 +25,7 @@
   <div id="mate-chores" class="chores-container">
     <div id="mate-chores-header" class="card-header">
       <h3>Chores</h3>
-      <%= link_to image_tag('plus-24.svg', class: "small-icon"), new_house_chore_path(@house), class: "add-new-icon", remote: true %>
+      <%= link_to image_tag("plus-24.svg", class: "small-icon"), new_house_chore_path(@house), class: "small-icon-link", remote: true %>
     </div>
     <div id="mate-chores-list" class="card-list">
       <% if @house.chores.any? %>
@@ -63,9 +63,10 @@
 
   <div class="expenses-purchases-container">
     <div id="mate-expenses" class="card">
-      <h3 id="mate-expenses-header" class="card-header">
-        Expenses
-      </h3>
+      <div id="mate-expenses-header" class="card-header">
+        <h3>Expenses</h3>
+        <%= link_to image_tag("plus-24.svg", class: "small-icon"), new_house_chore_path(@house), class: "small-icon-link", remote: true %>
+      </div>
       <div id="mate-expenses-list" class="card-list">
         <%= render(partial: "expenses/expense", collection: @house.expenses, as: :expense) || "No current expenses." %>
       </div>

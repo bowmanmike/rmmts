@@ -1,0 +1,25 @@
+.card-header > h3 {
+    float: left;
+}
+
+.card-header > a {
+    float: right;
+}
+
+.card-header {
+    display: block;
+    height: 2rem;
+}
+
+.small-icon-link {
+    opacity: 0.3;
+
+    &:hover {
+      opacity: 0.8;
+    }
+}
+
+.small-icon {
+    height: 1rem;
+    width: 1rem;
+}
