@@ -4,4 +4,8 @@ $(document).on('ready page:load', function() {
   $(document).on('change', '#chore_recurring', function() {
     $('.recurrence').toggle()
   });
-})
+
+  $('.check-mark').on('click', function() {
+    $(this).toggleClass('is-checked');
+  });
+});

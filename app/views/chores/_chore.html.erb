@@ -1,6 +1,19 @@
+<div class="chore-complete-form">
+
+</div>
 <div class="chore card-item">
-  <div class="check-mark-wrapper">
-    <%= image_tag "checkmark.svg", class: "check-mark" %>
+  <div class="check-mark-wrapper chore-complete-form">
+    <% if chore.complete? %>
+      <%= form_for [@house, chore], class: "incomplete-chore-form", remote: true do |f| %>
+        <%= f.hidden_field :complete, :value => false %>
+        <%= f.submit "", class: "check-mark" %>
+      <% end %>
+    <% else %>
+      <%= form_for [@house, chore], class: "complete-chore-form", remote: true do |f| %>
+        <%= f.hidden_field :complete, :value => true %>
+        <%= f.submit "", class: "check-mark" %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="card-summary">
@@ -13,7 +26,7 @@
       </dd>
       <dd class="chore-recurring">
         <% if chore.recurring %>
-          Repeats very <%= pluralize(chore.frequency_integer, chore.frequency) %>
+          Repeats every <%= pluralize(chore.frequency_integer, chore.frequency) %>
         <% else %>
           Only happens once
         <% end %>
@@ -51,19 +64,6 @@
 
     <div id="edit-chore-form"></div>
 
-    <div class="chore-complete-form">
-      <% if chore.complete? %>
-        <%= form_for [@house, chore], remote: true do |f| %>
-          <%= f.hidden_field :complete, :value => false %>
-          <%= f.submit "Mark as Incomplete" %>
-        <% end %>
-      <% else %>
-        <%= form_for [@house, chore], remote: true do |f| %>
-          <%= f.hidden_field :complete, :value => true %>
-          <%= f.submit "Mark as Complete" %>
-        <% end %>
-      <% end %>
-    </div>
 
     <div class="chore-notification-settings">
       <%= form_for [current_user, chore.notifications.find_by(mate_id: current_user.id)] do |f| %>

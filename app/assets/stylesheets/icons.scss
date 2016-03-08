@@ -33,6 +33,11 @@
   margin-right: 0.5rem;
 }
 
-.check-mark {
+input[type="submit"].check-mark {
+  background: image-url("checkmark.svg");
   opacity: 0.2;
+
+  &.is-checked {
+    opacity: 0.8;
+  }
 }
