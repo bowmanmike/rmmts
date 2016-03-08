@@ -51,6 +51,9 @@ gem 'twilio-ruby'
 gem 'phony_rails'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 
+# Use Nokogiri to parse svg files
+gem 'nokogiri'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'quiet_assets'
