@@ -6,4 +6,16 @@ $(document).on('ready page:load', function() {
 
     showPopUp();
   })
+
+  $(document).on('click', '.edit-announcement-button', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
+
+  $(document).on('click', '.edit-chore-button', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
 });
