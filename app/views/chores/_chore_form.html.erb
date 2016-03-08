@@ -19,37 +19,41 @@
       <%= f.label :recurring %>
     </div>
     <div class="recurrence">
-      <div class="field">
-        <%= f.label :frequency_integer, "Every" %>
-        <%= f.number_field :frequency_integer %>
+      <div class="frequency_integer">
+        <div class="field">
+          <%= f.label :frequency_integer, "Every" %>
+          <%= f.number_field :frequency_integer %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= f.label :frequency_unit do %>
-          <%= f.radio_button :frequency_unit, "days" %>
-          day(s)
-        <% end %>
-      </div>
+      <div class="frequency_units">
+        <div class="field">
+          <%= f.label :frequency_unit do %>
+            <%= f.radio_button :frequency_unit, "days" %>
+            day(s)
+          <% end %>
+        </div>
 
-      <div class="field">
-        <%= f.label :frequency_unit do %>
-          <%= f.radio_button :frequency_unit, "weeks" %>
-          week(s)
-        <% end %>
-      </div>
+        <div class="field">
+          <%= f.label :frequency_unit do %>
+            <%= f.radio_button :frequency_unit, "weeks" %>
+            week(s)
+          <% end %>
+        </div>
 
-      <div class="field">
-        <%= f.label :frequency_unit do %>
-          <%= f.radio_button :frequency_unit, "months" %>
-          month(s)
-        <% end %>
-      </div>
+        <div class="field">
+          <%= f.label :frequency_unit do %>
+            <%= f.radio_button :frequency_unit, "months" %>
+            month(s)
+          <% end %>
+        </div>
 
-      <div class="field">
-        <%= f.label :frequency_unit do %>
-          <%= f.radio_button :frequency_unit, "years" %>
-          year(s)
-        <% end %>
+        <div class="field">
+          <%= f.label :frequency_unit do %>
+            <%= f.radio_button :frequency_unit, "years" %>
+            year(s)
+          <% end %>
+        </div>
       </div>
 
       <div id="days-of-week" class="field">

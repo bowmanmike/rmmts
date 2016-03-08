@@ -90,3 +90,23 @@ input#chore_recurring {
 label {
     display: inline-block;
 }
+
+input#chore_frequency_integer {
+    width: 50px;
+    display: inline-block;
+}
+
+.recurrence {
+  &::nth-child(1) {
+    display: inline-block;
+  }
+}
+
+.frequency_units {
+    display: inline-block;
+}
+
+.frequency_integer {
+  display: inline-block;
+  width: 60px;
+}
