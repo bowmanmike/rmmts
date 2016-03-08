@@ -1,3 +1,25 @@
 // Place all the styles related to the Chores controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.chores-container {
+  @include span-columns(6);
+  padding: 1rem;
+  border-radius: $card-border-radius;
+  background-color: $card-background-color;
+}
+
+.chore-info {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.chore-name {
+  font-size: 1.1rem;
+}
+
+.chore-date {
+  font-size: 0.8rem;
+  color: $medium-gray;
+}
