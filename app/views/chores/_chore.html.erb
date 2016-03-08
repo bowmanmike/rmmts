@@ -62,29 +62,31 @@
     <div id="edit-chore-form"></div>
 
 
-    <div class="chore-notification-settings">
-      <%= form_for [current_user, chore.notifications.find_by(mate_id: current_user.id)] do |f| %>
-        <div class="field">
-          <%= f.label :email, for: "email_#{chore.id}" do %>
-            <%= f.check_box :email, id: "email_#{chore.id}" %>
-            Email
-          <% end %>
-        </div>
+    <% if chore.notifications.where(mate_id: current_user.id).any? %>
+      <div class="chore-notification-settings">
+        <%= form_for [current_user, chore.notifications.find_by(mate_id: current_user.id)] do |f| %>
+          <div class="field">
+            <%= f.label :email, for: "email_#{chore.id}" do %>
+              <%= f.check_box :email, id: "email_#{chore.id}" %>
+              Email
+            <% end %>
+          </div>
 
-        <div class="field">
-          <%= f.label :sms, for: "sms_#{chore.id}" do %>
-            <%= f.check_box :sms, id: "sms_#{chore.id}" %>
-            SMS
-          <% end %>
-        </div>
+          <div class="field">
+            <%= f.label :sms, for: "sms_#{chore.id}" do %>
+              <%= f.check_box :sms, id: "sms_#{chore.id}" %>
+              SMS
+            <% end %>
+          </div>
 
-        <div class="action">
-          <%= f.submit "Update Notification Settings" %>
-        </div>
+          <div class="action">
+            <%= f.submit "Update Notification Settings" %>
+          </div>
 
-      <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="card-links">
     <%= link_to image_tag("edit.svg", class: "item-icon"), edit_house_chore_path(chore.house, chore), class: "item-icon-link edit-chore-button", remote: true %>
