@@ -28,10 +28,12 @@ var showPopUp = function() {
   $('#overlay').addClass('is-active');
   $('.popup').addClass('is-active');
   $('.popup-form').addClass('is-active');
+  $('body').addClass('noscroll');
 }
 
 var hidePopUp = function() {
   $('.popup').removeClass('is-active');
   $('#overlay').removeClass('is-active');
   $('.popup-form').removeClass('is-active');
+  $('body').removeClass('noscroll');
 }

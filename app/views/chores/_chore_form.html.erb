@@ -4,11 +4,11 @@
 
     <div class="field">
       <%= f.label :name %><br>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, placeholder: "Clean the bathroom" %>
     </div>
     <div class="field">
       <%= f.label :description %><br>
-      <%= f.text_area :description %>
+      <%= f.text_area :description, placeholder: "- Clean the sink \n- Clean the tub" %>
     </div>
     <div class="field">
       <%= f.label :due_date %><br>
@@ -22,14 +22,14 @@
       <div class="frequency_integer">
         <div class="field">
           <%= f.label :frequency_integer, "Every" %>
-          <%= f.number_field :frequency_integer %>
+          <%= f.number_field :frequency_integer, placeholder: 2 %>
         </div>
       </div>
 
       <div class="frequency_units">
         <div class="field">
           <%= f.label :frequency_unit do %>
-            <%= f.radio_button :frequency_unit, "days" %>
+            <%= f.radio_button :frequency_unit, "days", checked: true %>
             day(s)
           <% end %>
         </div>
@@ -57,7 +57,7 @@
       </div>
 
       <div id="days-of-week" class="field">
-        On  <%= f.label :frequency_weekday do %>
+        On (optional) <%= f.label :frequency_weekday do %>
           <% Date::DAYNAMES.each do |day| %>
             <%= f.radio_button :frequency_weekday, day %>
             <%= day %>
@@ -67,7 +67,7 @@
       <p>How do you want the chore to be reassigned after it's due date?</p>
       <div class="field">
         <%= f.label :reassignment_style do %>
-        <%= f.radio_button :reassignment_style, "claimable" %>
+        <%= f.radio_button :reassignment_style, "claimable", checked: true %>
         Claimable - This chore is unassigned by default, and can be claimed by anybody.
         <% end %>
       </div>

@@ -5,6 +5,8 @@
   opacity: 0;
   padding: 1rem;
   margin: auto;
+  border-radius: 5%;
+  border: 10px $color2 solid;
 
   @include media($medium-screen-up) {
     @include span-columns(6);
@@ -13,6 +15,10 @@
 
   @include media($small-screen-only) {
     @include span-columns(12);
+    &.is-active {
+      overflow: scroll;
+      max-height: 30rem;
+    }
   }
 
 
@@ -33,6 +39,8 @@
   width: 100%;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   z-index: -2;
 
   transition: all 0.25s ease-in;
@@ -44,4 +52,8 @@
     cursor: pointer;
     position: fixed;
   }
+}
+
+.noscroll {
+  overflow: hidden;
 }
