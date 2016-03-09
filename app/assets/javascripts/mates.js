@@ -26,4 +26,10 @@ $(document).on('ready page:load', function() {
     showPopUp();
   })
 
+  $(document).on('click', '.new-housemate-purchase-link', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
+
 });
