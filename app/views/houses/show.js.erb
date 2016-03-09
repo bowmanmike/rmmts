@@ -1,4 +1,6 @@
-$('#new-announcement').html('<%= j(link_to button_tag("Add New Announcement"), house_path(@house), remote: true) %>');
+// this file may be redundant now...
+
+$('#new-announcement').html('<%= j(link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true) %>');
 
 $('#add-chore-button').html('<%= j(link_to button_tag("Add new chore"), new_house_chore_path(@house), remote: true) %><br>');
 $('#edit-chore-form').html('');
