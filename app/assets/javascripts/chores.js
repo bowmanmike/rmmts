@@ -14,6 +14,8 @@ $(document).on('ready page:load', function() {
 
     $(this).parents('.chore-front').addClass('hide-card');
     $(this).parents('.chore-front').siblings('.chore-back').removeClass('hide-card');
+
+    $(this).parents('.chore').addClass('is-flipped');
   });
 
   $('.hide-notification-options').on('click', function(e) {
