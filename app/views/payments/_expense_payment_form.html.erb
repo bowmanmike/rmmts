@@ -4,7 +4,7 @@
     <h3>Make a Payment towards <%= @expense.name %></h3>
   </div>
 
-  <%= form_for ([@house, @expense, @payment]) do |f| %>
+  <%= form_for [@house, @expense, @payment], remote: true do |f| %>
 
     <div class="field">
       <%= f.label :amount %><br>

@@ -6,6 +6,7 @@
         <span class="expense-date"> on <%= expense.due_date.strftime("%A, %B %e") %></span>
       </dd>
       <dd class="expense-amount"><%= number_to_currency(expense.amount) %></dd>
+      <dd class="expense-amount-reminating">Amount remaining: <%= number_to_currency(expense.amount - expense.payments.sum(:amount)) %></dd>
     </dl>
   </div>
 

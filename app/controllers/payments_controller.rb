@@ -7,6 +7,8 @@ class PaymentsController < ApplicationController
   before_action :load_expense
   before_action :load_house
   before_action :load_payment, only: [:show, :edit, :update, :destroy]
+  before_action :load_purchases
+  before_action :load_expenses
 
   def new
     @payment = Payment.new
@@ -38,18 +40,24 @@ class PaymentsController < ApplicationController
       @payment.target_due_date = @expense.due_date
     end
 
-    if @payment.save
-      if params[:mate_id] && params[:purchase_id]
-        redirect_to mate_purchase_path(@mate, @purchase)
-        flash[:notice] = "Thanks for your payment!"
-      elsif params[:house_id] && params[:expense_id]
-        @expense.paid = true if @expense.is_paid?
-        @expense.save
-        redirect_to house_expense_path(@house, @expense)
-        flash[:notice] = "Thanks for your payment!"
+    respond_to do |format|
+      if @payment.save
+        format.html do
+          if params[:mate_id] && params[:purchase_id]
+            redirect_to mate_purchase_path(@mate, @purchase)
+            flash[:notice] = "Thanks for your payment!"
+          elsif params[:house_id] && params[:expense_id]
+            @expense.paid = true if @expense.is_paid?
+            @expense.save
+            redirect_to house_expense_path(@house, @expense)
+            flash[:notice] = "Thanks for your payment!"
+          end
+        end
+        format.js
+      else
+        format.html { render :new }
+        format.js
       end
-    else
-      render :new
     end
   end
 
@@ -109,5 +117,13 @@ class PaymentsController < ApplicationController
 
   def load_payment
     @payment = Payment.find(params[:id])
+  end
+
+  def load_purchases
+    @purchases = current_user.house.purchases
+  end
+
+  def load_expenses
+    @expenses = current_user.house.expenses
   end
 end
