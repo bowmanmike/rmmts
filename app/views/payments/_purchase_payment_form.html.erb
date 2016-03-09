@@ -4,11 +4,11 @@
     <h3>Make a Payment towards <%= @purchase.name %></h3>
   </div>
 
-  <%= form_for ([@mate, @purchase, @payment]) do |f| %>
+  <%= form_for [@mate, @purchase, @payment], remote: true do |f| %>
 
     <div class="field">
       <%= f.label :amount %><br>
-      <%= f.number_field :amount, step: 0.01 %>
+      <%= f.number_field :amount, step: 0.01, value: @purchase.amount_for_each %>
     </div>
     <div class="field">
       <%= f.hidden_field :paid_date, :value => Date.today %>
