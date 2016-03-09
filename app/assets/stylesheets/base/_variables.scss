@@ -2,11 +2,12 @@
 // $lato: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 // $nunito: 'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 // $hind: 'Hind', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$muli: 'Muli', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$montserrat: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $muli: 'Muli', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $montserrat: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $raleway: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$varela-round: 'Varela Round', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $base-font-family: $helvetica;
-$heading-font-family: $montserrat;
+$heading-font-family: $varela-round;
 $site-logo-font-family: $raleway;
 
 // Font Sizes
@@ -28,7 +29,7 @@ $base-z-index: 0;
 $button-border-radius: 20px;
 
 $card-border-radius: 3px;
-$card-item-height: 8rem;
+$card-item-height: 5.5rem;
 
 // Colors
 $blue: #1565c0;
