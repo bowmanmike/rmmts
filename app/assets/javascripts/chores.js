@@ -12,14 +12,14 @@ $(document).on('ready page:load', function() {
   $('.show-notification-options').on('click', function(e) {
     e.preventDefault();
 
-    $(this).parents('.chore').addClass('hide-card');
-    $(this).parents('.chore').siblings('.notification-settings').removeClass('hide-card');
+    $(this).parents('.chore-front').addClass('hide-card');
+    $(this).parents('.chore-front').siblings('.chore-back').removeClass('hide-card');
   });
 
   $('.hide-notification-options').on('click', function(e) {
     e.preventDefault();
 
-    $(this).parents('.notification-settings').addClass('hide-card');
-    $(this).parents('.notification-settings').siblings('.chore').removeClass('hide-card');
+    $(this).parents('.chore-back').addClass('hide-card');
+    $(this).parents('.chore-back').siblings('.chore-front').removeClass('hide-card');
   });
 });
