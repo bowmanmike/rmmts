@@ -63,14 +63,26 @@ $(document).on('ready page:load', function() {
   })
 
   $(document).on('click', '.new-purchase-button', function(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     showPopUp();
   })
 
   $(document).on('click', '.edit-purchase-button', function(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     showPopUp();
   });
+
+  $(document).on('click', '.new-expense-payment-button', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
+
+  $(document).on('click', '.new-purchase-payment-button', function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
 });

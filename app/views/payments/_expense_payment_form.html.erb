@@ -1,5 +1,9 @@
 <div id="payment-form" class="form">
 
+  <div class="payment-form-header">
+    <h3>Make a Payment towards <%= @expense.name %></h3>
+  </div>
+
   <%= form_for ([@house, @expense, @payment]) do |f| %>
 
     <div class="field">

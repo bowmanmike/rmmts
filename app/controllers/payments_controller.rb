@@ -10,6 +10,16 @@ class PaymentsController < ApplicationController
 
   def new
     @payment = Payment.new
+
+    respond_to do |format|
+      if params[:expense_id]
+        format.html { render 'expense_payments' }
+        format.js {}
+      elsif params[:purchase_id]
+        format.html { render 'purchase_payments' }
+        format.js {}
+      end
+    end
   end
 
   def create
