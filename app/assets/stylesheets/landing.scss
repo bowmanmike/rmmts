@@ -33,12 +33,12 @@
   display: inline-block;
   border-radius: 50%;
   position: relative;
-  background-color: RGBa(4, 8, 25, 0.9);
+  background-color: RGBa(4, 8, 25, 0.75);
 }
-#color-overlay {
-  height: 100%;
-  background-color: RGBa(4, 8, 25, 0.7);
-}
+// #color-overlay {
+//   height: 100%;
+//   background-color: RGBa(4, 8, 25, 0.7);
+// }
 #landing-page-title {
   padding-top: 1rem;
   color: white;
@@ -48,7 +48,7 @@
   transform: translate(-50%,-50%);
 }
 #landing-page-title > h1 {
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Josefin Sans', sans-serif;
   @include media($small-screen-only) {
     font-size: 2.8rem;
   }
@@ -65,5 +65,12 @@
   @include span-columns(12);
   @include media($small-screen-only) {
     top: 75%;
+    font-size: 1.5rem;
+  }
+  @include media($medium-screen-up) {
+    font-size: 1.5rem;
+  }
+  @include media($large-screen-up) {
+    font-size: 1.5rem;
   }
 }
