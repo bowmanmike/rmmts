@@ -46,14 +46,15 @@
 
 <% if current_user && current_user.house == @house %>
 
-  <div id="announcements">
-
-    <h3 class="card-header">House Announcements</h3>
-    <div id="announcements-list">
-      <%= render(@announcements) || "No announcements!" %>
-    </div>
-    <div id="new-announcement">
-      <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true, id: "new-announcement-button" %>
+  <div id="announcements" class="full-container">
+    <div class="full-card">
+      <h3 class="full-card-header">House Announcements</h3>
+      <div id="announcements-list" class="full-card-list">
+        <%= render(@announcements) || "No announcements!" %>
+      </div>
+      <div id="new-announcement">
+        <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true, id: "new-announcement-button" %>
+      </div>
     </div>
   </div>
 

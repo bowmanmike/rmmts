@@ -1,8 +1,7 @@
 <div class="announcement">
-  <h4><%= announcement.title %></h4>
+  <p class="announcement-title"><%= announcement.title %></p>
   <p><%= announcement.body %></p>
-  <p>Posted by: <%= announcement.mate.first_name %> <%= announcement.mate.last_name %></p>
-  <p>Posted at: <%= announcement.created_at.strftime('%A, %d %b %Y %l:%M %p') %></p>
+  <p class="announcement-posted">Posted by <%= announcement.mate.first_name %> <%= announcement.mate.last_name %> at <%= announcement.created_at.strftime('%a, %b %d %Y %l:%M %p') %></p>
   <%= link_to button_tag("Edit"), edit_house_announcement_path(@house, announcement), remote: true, class: "edit-announcement-button" %>
   <%= link_to button_tag("Delete"), house_announcement_path(@house, announcement), method: :delete, data: { confirm: "Are you sure you want to delete this annoucnement?" }, remote: true %>
 </div>
