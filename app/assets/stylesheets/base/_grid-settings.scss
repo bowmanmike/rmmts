@@ -8,11 +8,13 @@ $gutter: 1em;
 
 // Neat Breakpoints
 $medium-screen: 560px;
-$large-screen: 960px;
 $medium-large-screen: 860px;
+$large-screen: 960px;
+$x-large-screen: 1300px;
 
 $small-screen-only: new-breakpoint(max-width ($medium-screen - 1px));
 $medium-screen-up: new-breakpoint(min-width $medium-screen);
 $medium-screen-only: new-breakpoint(min-width $medium-screen max-width ($large-screen - 1px));
 $large-screen-up: new-breakpoint(min-width $large-screen);
 $medium-large-screen-up: new-breakpoint(min-width $medium-large-screen);
+$x-large-screen-up: new-breakpoint(min-width $x-large-screen);
