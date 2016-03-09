@@ -20,8 +20,7 @@
 }
 
 .chore-date,
-.chore-recurring,
-.chore-reassignment,
+.chore-back-details,
 .chore-claim-form {
   font-size: 0.8rem;
   color: $medium-gray;
@@ -54,4 +53,22 @@
 .chore-claim-button {
   padding: 0.1rem;
   font-size: 0.5rem;
+}
+
+.chore-back-details {
+  display: inline-block;
+  float: left;
+}
+
+.notifications-form {
+  display: inline;
+  float: left;
+  width: 13rem;
+  margin-left: 2rem;
+}
+
+.notifications-field {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 0.8rem;
 }

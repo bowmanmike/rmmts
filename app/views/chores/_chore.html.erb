@@ -57,16 +57,14 @@
 
   <div class="chore-back card-item hide-card">
     <div class="card-summary">
-      <div class="chore-recurring">
+      <div class="chore-back-details">
         <p>
           <% if chore.recurring %>
-            (Repeats every <%= pluralize(chore.frequency_integer, chore.frequency) %>)
+            Repeats every <%= pluralize(chore.frequency_integer, chore.frequency) %>
           <% else %>
-            (Only happens once)
+            Only happens once
           <% end %>
         </p>
-      </div>
-      <div class="chore-reassignment">
         <p>
           <% if chore.reassignment_style == "claimable" %>
             Unassigned by default
@@ -78,29 +76,31 @@
         </p>
       </div>
       <% if chore.notifications.where(mate_id: current_user.id).any? %>
+      <div class="notifications-form">
         <%= form_for [current_user, chore.notifications.find_by(mate_id: current_user.id)] do |f| %>
-          <div class="field">
+          <div class="field notifications-field">
             <%= f.label :email, for: "email_#{chore.id}" do %>
               <%= f.check_box :email, id: "email_#{chore.id}" %>
               Email
             <% end %>
           </div>
 
-          <div class="field">
+          <div class="field notifications-field">
             <%= f.label :sms, for: "sms_#{chore.id}" do %>
               <%= f.check_box :sms, id: "sms_#{chore.id}" %>
               SMS
             <% end %>
           </div>
 
-          <div class="action">
+          <div class="action notifications-submit">
             <%= f.submit "Update Notification Settings" %>
           </div>
         <% end %>
+        </div>
       <% end %>
     </div>
-      <div class="card-links">
-        <%= button_tag image_tag("x.svg", class: "item-icon"), class: "item-icon-link hide-notification-options" %>
-      </div>
+    <div class="card-links">
+      <%= button_tag image_tag("x.svg", class: "item-icon"), class: "item-icon-link hide-notification-options" %>
     </div>
+  </div>
 </div>
