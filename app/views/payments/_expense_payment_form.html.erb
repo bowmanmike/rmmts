@@ -1,6 +1,10 @@
 <div id="payment-form" class="form">
 
-  <%= form_for ([@house, @expense, @payment]) do |f| %>
+  <div class="payment-form-header">
+    <h3>Make a Payment towards <%= @expense.name %></h3>
+  </div>
+
+  <%= form_for [@house, @expense, @payment], remote: true do |f| %>
 
     <div class="field">
       <%= f.label :amount %><br>

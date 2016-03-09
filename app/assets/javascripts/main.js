@@ -10,6 +10,10 @@ $(document).on('ready page:load', function() {
     showPopUp();
   })
 
+  $(document).on('click', '#edit-mate-link', function(e) {
+    e.preventDefault();
+    showPopUp();
+  })
 
   $('html').on('click', '.popup', function(e) {
     e.stopPropagation();
@@ -40,4 +44,5 @@ var hidePopUp = function() {
   $('#overlay').removeClass('is-active');
   $('.popup-form').removeClass('is-active');
   $('body').removeClass('noscroll');
+  $('.popup-form').html('');
 }

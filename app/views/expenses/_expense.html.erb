@@ -1,4 +1,3 @@
-
 <div class="expense-item card-item">
   <div class="card-summary">
     <dl>
@@ -7,6 +6,7 @@
         <span class="expense-date"> on <%= expense.due_date.strftime("%A, %B %e") %></span>
       </dd>
       <dd class="expense-amount"><%= number_to_currency(expense.amount) %></dd>
+      <dd class="expense-amount-reminating">Amount remaining: <%= number_to_currency(expense.amount - expense.payments.sum(:amount)) %></dd>
     </dl>
   </div>
 
@@ -14,5 +14,5 @@
     <%= link_to image_tag("edit.svg", class: "item-icon"), edit_house_expense_path(expense.house, expense), class: "item-icon-link edit-expense-button", remote: true %>
     <%= link_to image_tag("x.svg", class: "item-icon"), house_expense_path(expense.house, expense), method: :delete, data: {confirm: "Are you sure you want to delete this expense?"}, class: "item-icon-link", remote: true %>
   </div>
-  <div id="edit-expense-form"></div>
+  <%= link_to button_tag("Make a Payment"), new_house_expense_payment_path(expense.house, expense), class: "new-expense-payment-button", remote: true %>
 </div>

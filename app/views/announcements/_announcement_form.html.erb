@@ -1,13 +1,20 @@
 <div id="announcement-form">
+
+  <% if @announcement.id.present? %>
+    <h3>Update Announcement</h3>
+  <% else %>
+    <h3>New Announcement</h3>
+  <% end %>
+
   <%= form_for [@house, @announcement], remote: true do |f| %>
     <div class="field">
       <%= f.label :title %>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, placeholder: "Party on Friday!" %>
     </div>
 
     <div class="field">
       <%= f.label :body %>
-      <%= f.text_area :body %>
+      <%= f.text_area :body, placeholder: "Hey guys, we're having a party on friday! Invite your friends!" %>
     </div>
 
     <div class="action">

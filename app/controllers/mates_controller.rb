@@ -18,6 +18,7 @@ class MatesController < ApplicationController
   def show
     @purchases = @mate.purchases
     @housemate_purchases = @mate.housemate_purchases
+    @chores = @house.chores.where(mate_id: [@mate.id, nil]).order(complete: :asc, due_date: :asc)
   end
 
   def new
@@ -39,6 +40,10 @@ class MatesController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html { render 'mate_form' }
+      format.js {}
+    end
   end
 
   def update

@@ -1,0 +1,5 @@
+<% if params[:expense_id] %>
+  $('.popup-form').html("<%=j render 'expense_payment_form' %>")
+<% elsif params[:purchase_id] %>
+  $('.popup-form').html("<%=j render 'purchase_payment_form' %>")
+<% end %>

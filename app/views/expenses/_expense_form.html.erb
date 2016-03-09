@@ -1,64 +1,72 @@
 <div id="expense-form" class="form">
 
+  <% if @expense.id.present? %>
+    <h3>Update Expense Info</h3>
+  <% else %>
+    <h3>Add New Expense</h3>
+  <% end %>
+
   <%= form_for [@house, @expense], remote: true do |f| %>
 
     <div class="field">
       <%= f.label :name %><br>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, placeholder: "Rent" %>
     </div>
     <div class="field">
       <%= f.label :description %><br>
-      <%= f.text_area :description %>
+      <%= f.text_area :description, placeholder: "Paying for the house." %>
     </div>
     <div class="field">
       <%= f.label :amount %><br>
-      <%= f.number_field :amount, step: 0.01 %>
+      <%= f.number_field :amount, step: 0.01, placeholder: 150.00 %>
     </div>
     <div class="field">
       <%= f.label :due_date %><br>
       <%= f.date_field :due_date %>
     </div>
     <div class="field">
-      <%= f.check_box :recurring %>
+      <%= f.check_box :recurring, checked: true %>
       <%= f.label :recurring %>
     </div>
     <div class="recurrence">
       <div class="field">
         <%= f.label :frequency_integer, "Every" %>
-        <%= f.number_field :frequency_integer %>
+        <%= f.number_field :frequency_integer, placeholder: 1 %>
       </div>
 
       <div class="field">
-        <%= f.label :frequency_unit do %>
+        <%= f.label :frequency_unit_days do %>
           <%= f.radio_button :frequency_unit, "days" %>
           day(s)
         <% end %>
       </div>
 
       <div class="field">
-        <%= f.label :frequency_unit do %>
+        <%= f.label :frequency_unit_weeks do %>
           <%= f.radio_button :frequency_unit, "weeks" %>
           week(s)
         <% end %>
       </div>
 
       <div class="field">
-        <%= f.label :frequency_unit do %>
-          <%= f.radio_button :frequency_unit, "months" %>
+        <%= f.label :frequency_unit_months do %>
+          <%= f.radio_button :frequency_unit, "months", checked: true %>
           month(s)
         <% end %>
       </div>
 
       <div class="field">
-        <%= f.label :frequency_unit do %>
+        <%= f.label :frequency_unit_years do %>
           <%= f.radio_button :frequency_unit, "years" %>
           year(s)
         <% end %>
       </div>
 
       <div id="days-of-week" class="field">
-        On  <%= f.label :frequency_weekday do %>
-          <% Date::DAYNAMES.each do |day| %>
+        On (optional)
+        <% Date::DAYNAMES.each do |day| %>
+        <% weekday = "frequency_weekday_#{day}".to_sym.downcase %>
+          <%= f.label weekday do %>
             <%= f.radio_button :frequency_weekday, day %>
             <%= day %>
           <% end %>

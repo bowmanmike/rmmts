@@ -1,8 +1,15 @@
 <div id="house-form">
+
+  <% if @house.id.present? %>
+    <h3>Update House Information</h3>
+  <% else %>
+    <h3>Create New House</h3>
+  <% end %>
+
   <%= form_for @house do |f| %>
     <div class="field">
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, placeholder: "123 Fake St." %>
     </div>
 
     <div class="field">

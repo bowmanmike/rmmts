@@ -1,4 +1,11 @@
 <div id="mate-form">
+
+  <% if @mate.id.present? %>
+    <h3>Update Profile Information</h3>
+  <% else %>
+    <h3>Sign Up!</h3>
+  <% end %>
+
   <%= form_for @mate do |f| %>
 
     <% if @mate.errors.any? %>
@@ -15,27 +22,27 @@
 
     <div class="field">
       <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
+      <%= f.text_field :first_name, placeholder: "Pete" %>
     </div>
 
     <div class="field">
       <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
+      <%= f.text_field :last_name, placeholder: "Jones" %>
     </div>
 
     <div class="field">
       <%= f.label :username %>
-      <%= f.text_field :username %>
+      <%= f.text_field :username, placeholder: "petejones15" %>
     </div>
 
     <div class="field">
       <%= f.label :email %>
-      <%= f.email_field :email %>
+      <%= f.email_field :email, placeholder: "petejones@email.com" %>
     </div>
 
     <div class="field">
       <%= f.label :phone_number %>
-      <%= f.telephone_field :phone_number %>
+      <%= f.telephone_field :phone_number, placeholder: "(416) 555-1234" %>
     </div>
 
     <p>Notification Preferences</p>
@@ -53,10 +60,18 @@
       <% end %>
     </div>
 
-    <div class="field">
-      <%= f.label :mate_avatar, "Upload a Photo!" %>
-      <%= f.file_field :mate_avatar %>
-    </div>
+    <% if @mate.mate_avatar.present? %>
+      <%= image_tag @mate.mate_avatar %>
+      <div class="field">
+        <%= f.label :mate_avatar, "Change your photo" %>
+        <%= f.file_field :mate_avatar %>
+      </div>
+    <% else %>
+      <div class="field">
+        <%= f.label :mate_avatar, "Upload a Photo!" %>
+        <%= f.file_field :mate_avatar %>
+      </div>
+    <% end %>
 
     <% if @mate.id.blank? %>
       <div class="field">
@@ -81,4 +96,13 @@
     <% end %>
 
   <% end %>
+
+  <% if @mate.house_id.present? %>
+    <p>You currently reside in <%= link_to @mate.house.name, house_path(@mate.house) %></p>
+    <%= form_for @mate do |f| %>
+      <%= f.hidden_field :house_id, :value => nil %>
+      <%= f.submit "Leave This House" %>
+    <% end %>
+  <% end %>
+
 </div>

@@ -1,0 +1,97 @@
+// Place all the styles related to the mates controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.full-container {
+  @include outer-container;
+  padding: 1rem;
+}
+
+.full-card {
+  padding: 1rem;
+  border-radius: $card-border-radius;
+  background-color: $card-background-color;
+}
+
+.full-card-list {
+}
+
+.full-card-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px $dark-gray;
+}
+
+.card {
+  padding: 1rem;
+  border-radius: $card-border-radius;
+  background-color: $card-background-color;
+}
+
+.sub-card {
+  border-radius: $card-border-radius;
+  background-color: $card-background-color;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-header > h3 {
+    float: left;
+}
+
+.card-header > a {
+    float: right;
+}
+
+.card-header {
+    display: block;
+    height: 2rem;
+}
+
+.card-list {
+}
+
+.card-item,
+.sub-card-item {
+  height: $card-item-height;
+  border-radius: $card-border-radius;
+  background-color: $card-item-background-color;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: $medium-gray;
+  border-bottom-left-radius: $card-border-radius;
+  border-bottom-right-radius: $card-border-radius;
+}
+
+.card-item:hover{
+  background-color: $card-item-background-color-hover;
+
+  & > .card-links > .item-icon-link {
+    opacity: 0.3;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.card-summary {
+  float: left;
+
+  & > dl {
+    margin: 0;
+    padding-top: 0.4rem;
+  }
+}
+
+.card-links {
+  float: right;
+}
+
+.sub-card {
+  padding-bottom: 1rem;
+}
+
+.sub-card-list {
+}
