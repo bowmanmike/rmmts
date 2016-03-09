@@ -1,3 +1,11 @@
 // Place all the styles related to the announcements controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.announcement-title {
+  font-weight: 600;
+}
+
+.announcement-posted {
+  font-size: 0.8rem;
+  color: $medium-gray;
+}
