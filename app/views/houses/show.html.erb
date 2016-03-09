@@ -96,17 +96,17 @@
     </div>
 
     <% if @house.expenses != nil %>
-      <div id="expenses" class="house-card">
-        <h3 id="expenses-header" class="card-header">Expenses</h3>
-
-        <div id="expenses-list">
+    <div class="expenses-purchases-container">
+      <div id="expenses" class="card">
+        <div id="expenses-header" class="card-header">
+          <h3>Expenses</h3>
+          <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link edit-expense-button", remote: true %>
+        </div>
+        <div id="expenses-list" class="card-list">
           <%= render @expenses || "No household expenses yet!" %>
         </div>
-
-        <div id="expenses-buttons">
-          <%= link_to button_tag("Add new expense"), new_house_expense_path(@house), remote: true, class: "new-expense-button" %>
-        </div>
       </div>
+    </div>
     <% end %>
 
   </div>
