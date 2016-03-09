@@ -5,18 +5,18 @@ $(document).on('ready page:load', function() {
     $('.recurrence').toggle()
   });
 
-  $('.check-mark').on('click', function() {
+  $(document).on('click', '.check-mark', function() {
     $(this).toggleClass('is-checked');
   });
 
-  $('.show-notification-options').on('click', function(e) {
+  $(document).on('click', '.show-notification-options', function(e) {
     e.preventDefault();
 
     $(this).parents('.chore-front').addClass('hide-card');
     $(this).parents('.chore-front').siblings('.chore-back').removeClass('hide-card');
   });
 
-  $('.hide-notification-options').on('click', function(e) {
+  $(document).on('click', '.hide-notification-options', function(e) {
     e.preventDefault();
 
     $(this).parents('.chore-back').addClass('hide-card');
