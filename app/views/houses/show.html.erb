@@ -46,37 +46,39 @@
 
 <% if current_user && current_user.house == @house %>
 
-  <div id="announcements">
-
-    <h3 class="card-header">House Announcements</h3>
-    <div id="announcements-list">
-      <%= render(@announcements) || "No announcements!" %>
-    </div>
-    <div id="new-announcement">
-      <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true, id: "new-announcement-button" %>
+  <div id="announcements" class="full-container">
+    <div class="full-card">
+      <h3 class="full-card-header">House Announcements</h3>
+      <div id="announcements-list" class="full-card-list">
+        <%= render(@announcements) || "No announcements!" %>
+      </div>
+      <div id="new-announcement">
+        <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true, id: "new-announcement-button" %>
+      </div>
     </div>
   </div>
 
-  <div id="chores">
+  <div id="chores" class="full-container">
 
-    <div id="chores-complete" class="chores-card">
-      <h3 class="card-header">Completed Chores</h3>
+    <div id="chores-complete" class="chores-container">
+      <div id="complete-chores-header" class="card-header">
+        <h3>Completed Chores</h3>
+        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
+      </div>
       <div id="complete-chores-list">
         <%= render(@chores.where(complete: true)) || "No complete chores yet?! Better get on that." %>
       </div>
     </div>
 
-    <div id="chores-incomplete" class="chores-card">
-      <h3 class="card-header">Incomplete Chores</h3>
+    <div id="chores-incomplete" class="chores-container">
+      <div id="incomplete-chores-header" class="card-header">
+        <h3 class="card-header">Incomplete Chores</h3>
+        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
+      </div>
       <div id="incomplete-chores-list">
         <%= render(@chores.where(complete: !true)) || "All chores complete! Good Job!" %>
       </div>
     </div>
-
-    <div id="add-chore-button">
-      <%= link_to button_tag("Add new chore"), new_house_chore_path(@house), remote: true, class: "new-chore-button" %><br>
-    </div>
-
   </div>
 
   <div id="purchases-expenses">
@@ -94,17 +96,17 @@
     </div>
 
     <% if @house.expenses != nil %>
-      <div id="expenses" class="house-card">
-        <h3 id="expenses-header" class="card-header">Expenses</h3>
-
-        <div id="expenses-list">
+    <div class="expenses-purchases-container">
+      <div id="expenses" class="card">
+        <div id="expenses-header" class="card-header">
+          <h3>Expenses</h3>
+          <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link edit-expense-button", remote: true %>
+        </div>
+        <div id="expenses-list" class="card-list">
           <%= render @expenses || "No household expenses yet!" %>
         </div>
-
-        <div id="expenses-buttons">
-          <%= link_to button_tag("Add new expense"), new_house_expense_path(@house), remote: true, class: "new-expense-button" %>
-        </div>
       </div>
+    </div>
     <% end %>
 
   </div>
