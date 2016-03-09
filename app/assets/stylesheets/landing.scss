@@ -52,7 +52,6 @@
   position: fixed;
   top: 85%;
   @include span-columns(12);
-
   @include media($small-screen-only) {
     top: 75%;
   }
