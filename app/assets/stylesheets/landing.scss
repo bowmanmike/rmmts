@@ -19,40 +19,50 @@
 }
 #landing-page-circle {
   @include media($small-screen-only) {
-    // @include span-columns(8);
-    // @include shift(2);
     width: 75%;
     margin-top: 5%;
   }
   @include media($medium-screen-up) {
-    // @include span-columns(6);
-    // @include shift(3);
     width: 50%;
     margin-top: 5%;
   }
   @include  media($large-screen-up) {
-    // @include span-columns(4);
-    // @include shift(4);
     width: 40%;
     margin-top: 2%;
   }
   display: inline-block;
   border-radius: 50%;
   position: relative;
-  background-color: RGBa(4, 8, 25, 0.75);
+  background-color: RGBa(4, 8, 25, 0.9);
+}
+#color-overlay {
+  height: 100%;
+  background-color: RGBa(4, 8, 25, 0.7);
 }
 #landing-page-title {
+  padding-top: 1rem;
   color: white;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
 }
+#landing-page-title > h1 {
+  font-family: 'Indie Flower', cursive;
+  @include media($small-screen-only) {
+    font-size: 2.8rem;
+  }
+  @include media($medium-screen-up) {
+    font-size: 3.4rem;
+  }
+  @include media($large-screen-up) {
+    font-size: 4rem;
+  }
+}
 #landing-page-links {
   position: fixed;
   top: 85%;
   @include span-columns(12);
-
   @include media($small-screen-only) {
     top: 75%;
   }
