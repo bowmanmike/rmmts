@@ -19,5 +19,3 @@
 
 # Ignore secrets
 /config/secrets.yml
-
-/app/assets/images
