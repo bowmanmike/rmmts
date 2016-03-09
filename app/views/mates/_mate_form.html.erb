@@ -63,7 +63,7 @@
     </div>
 
     <% if @mate.mate_avatar.present? %>
-      <%= image_tag @mate.mate_avatar, height: 150 %>
+      <%= image_tag @mate.mate_avatar, height: 150, class: "mate-avatar" %>
       <div class="field">
         <%= f.label :mate_avatar, "Change your photo" %>
         <%= f.file_field :mate_avatar %>
