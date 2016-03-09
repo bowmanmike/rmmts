@@ -20,7 +20,7 @@
 #landing-page-circle {
   @include media($small-screen-only) {
     width: 75%;
-    margin-top: 5%;
+    margin-top: 15%;
   }
   @include media($medium-screen-up) {
     width: 50%;
@@ -64,7 +64,6 @@
   top: 85%;
   @include span-columns(12);
   @include media($small-screen-only) {
-    top: 75%;
     font-size: 1.5rem;
   }
   @include media($medium-screen-up) {
@@ -73,4 +72,10 @@
   @include media($large-screen-up) {
     font-size: 1.5rem;
   }
+}
+#more-info-button {
+  @include span-columns(12);
+  font-size: 1.3rem;
+  position: fixed;
+  top: 90%;
 }

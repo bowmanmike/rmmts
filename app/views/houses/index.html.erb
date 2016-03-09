@@ -3,13 +3,17 @@
 
     <div id="landing-page-circle">
       <div id="landing-page-title">
-        <h1>Welcome to RMMTS</h1>
+        <h1>welcome to chortal</h1>
       </div>
     </div>
 
     <div id="landing-page-links">
       <strong><%= link_to "Login", new_session_path, id: "login-link", remote: true %></strong> |
       <strong><%= link_to "Sign up", new_mate_path, id: "signup-link", remote: true %></strong>
+    </div>
+
+    <div id="more-info-button">
+      <%= link_to "more info", houses_path %>
     </div>
 
 
