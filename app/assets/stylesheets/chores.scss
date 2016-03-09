@@ -19,17 +19,39 @@
   font-size: 1.1rem;
 }
 
-.chore-date {
+.chore-date,
+.chore-recurring,
+.chore-reassignment,
+.chore-claim-form {
   font-size: 0.8rem;
   color: $medium-gray;
 }
 
-.chore-recurring {
-  font-size: 0.8rem;
-  color: $medium-gray;
+.chore-claim-form {
+  display: inline;
+
+  & > form {
+    display: inline;
+
+    & > input {
+      padding: 0.2rem;
+      border-radius: 0;
+      font-family: $base-font-family;
+      font-size: 0.7rem;
+      margin: 0 0 0 0.2rem;
+    }
+  }
 }
 
-.chore-reassignment {
-  font-size: 0.8rem;
-  color: $medium-gray;
+// .chore {
+//
+//   &.is-flipped {
+//     backface-visibility: visible !important;
+//     animation-name: flipOutY;
+//   }
+// }
+
+.chore-claim-button {
+  padding: 0.1rem;
+  font-size: 0.5rem;
 }
