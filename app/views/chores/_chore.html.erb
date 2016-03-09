@@ -64,8 +64,7 @@
           <% else %>
             Only happens once
           <% end %>
-        </p>
-        <p>
+          <br>
           <% if chore.reassignment_style == "claimable" %>
             Unassigned by default
           <% elsif chore.reassignment_style == "rotating" %>
@@ -92,8 +91,8 @@
             <% end %>
           </div>
 
-          <div class="action notifications-submit">
-            <%= f.submit "Update Notification Settings" %>
+          <div class="action">
+            <%= f.submit "Update Notifications", class: "notifications-submit" %>
           </div>
         <% end %>
         </div>
