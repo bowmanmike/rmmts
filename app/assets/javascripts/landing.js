@@ -5,7 +5,13 @@ $(document).on('ready page:load', function() {
 
     $('#info-div').css({
       height: '30%',
-      width: '100%' 
+      width: '100%'
+    });
+  });
+
+  $(document).on('click', '#close-info-div', function() {
+    $('#info-div').css({
+      height: '0'
     });
   });
 
