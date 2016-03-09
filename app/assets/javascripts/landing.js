@@ -1,9 +1,12 @@
 $(document).on('ready page:load', function() {
 
-  $('#landing-page-circle').height($('#landing-page-circle').width());
+  $(document).on('click', '#more-info-button', function(e) {
+    e.preventDefault();
 
-  $(window).resize(function(){
-    $('#landing-page-circle').height($('#landing-page-circle').width());
+    $('#info-div').css({
+      height: '30%',
+      width: '100%' 
+    });
   });
 
 });

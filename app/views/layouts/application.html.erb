@@ -14,7 +14,7 @@
   </head>
 
   <body>
-
+    <% if current_user %>
     <div class="top-bar">
       <div class="top-bar-left">
         <%= link_to "rmmts", root_path %>
@@ -36,6 +36,7 @@
         <% end %>
       </div>
     </div>
+    <% end %>
 
     <div id="overlay"></div>
 

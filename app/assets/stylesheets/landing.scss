@@ -1,49 +1,16 @@
 #landing-page-content {
   text-align: center;
-  position: fixed;
-  top: 0;
+  background-color: #1995AD;
   width: 100%;
-  background-image: url('gower_houses.jpg');
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: auto 100%;
-  @include media($small-screen-only) {
-    height: 50%;
-  }
-  @include media($medium-screen-up) {
-    height: 55%;
-  }
-  @include media($large-screen-up) {
-    height: 75%;
-  }
-}
-#landing-page-circle {
-  @include media($small-screen-only) {
-    width: 75%;
-    margin-top: 15%;
-  }
-  @include media($medium-screen-up) {
-    width: 50%;
-    margin-top: 5%;
-  }
-  @include  media($large-screen-up) {
-    width: 40%;
-    margin-top: 2%;
-  }
-  display: inline-block;
-  border-radius: 50%;
-  position: relative;
-  background-color: RGBa(4, 8, 25, 0.75);
-}
-// #color-overlay {
-//   height: 100%;
-//   background-color: RGBa(4, 8, 25, 0.7);
-// }
-#landing-page-title {
-  padding-top: 1rem;
-  color: white;
+  height: 50%;
   position: absolute;
-  top: 50%;
+  top: 0;
+}
+
+#landing-page-title {
+  color: #F1F1F2;
+  position: absolute;
+  top: 80%;
   left: 50%;
   transform: translate(-50%,-50%);
 }
@@ -60,8 +27,8 @@
   }
 }
 #landing-page-links {
-  position: fixed;
-  top: 85%;
+  position: absolute;
+  top: 110%;
   @include span-columns(12);
   @include media($small-screen-only) {
     font-size: 1.5rem;
@@ -72,10 +39,22 @@
   @include media($large-screen-up) {
     font-size: 1.5rem;
   }
+  a {
+    color: #021C1E;
+  }
 }
 #more-info-button {
+  a {
+    color: #021C1E;
+  }
   @include span-columns(12);
   font-size: 1.3rem;
+  position: absolute;
+  top: 120%;
+}
+#info-div {
+  background-color: #f2b632;
   position: fixed;
-  top: 90%;
+  bottom: 0;
+  height: 0;
 }

@@ -1,28 +1,27 @@
 <div id="landing-page-content">
-  <div id="color-overlay">
-
-    <div id="landing-page-circle">
-      <div id="landing-page-title">
-        <h1>welcome to chortal</h1>
-      </div>
-    </div>
-
-    <div id="landing-page-links">
-      <strong><%= link_to "Login", new_session_path, id: "login-link", remote: true %></strong> |
-      <strong><%= link_to "Sign up", new_mate_path, id: "signup-link", remote: true %></strong>
-    </div>
-
-    <div id="more-info-button">
-      <%= link_to "more info", houses_path %>
-    </div>
-
-
-    <% if current_user %>
-      <div id="houses-list">
-        <% @houses.each do |house| %>
-          <%= link_to house.name, house_path(house) %>
-        <% end %>
-      </div>
-    <% end %>
+  <div id="landing-page-title">
+    <h1>welcome to chortal</h1>
   </div>
+
+  <div id="landing-page-links">
+    <strong><%= link_to "Login", new_session_path, id: "login-link", remote: true %></strong> |
+    <strong><%= link_to "Sign up", new_mate_path, id: "signup-link", remote: true %></strong>
+  </div>
+
+  <div id="more-info-button">
+    <%= link_to "more info", houses_path %>
+  </div>
+
+  <div id="info-div">
+    <p>Some info here...</p>
+  </div>
+
+
+  <% if current_user %>
+    <div id="houses-list">
+      <% @houses.each do |house| %>
+        <%= link_to house.name, house_path(house) %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
