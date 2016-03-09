@@ -22,25 +22,10 @@
         <dd class="chore-date">
           Due <%= chore.due_date.strftime("%A, %B %e") %>
         </dd>
-        <dd class="chore-recurring">
-          <% if chore.recurring %>
-            (Repeats every <%= pluralize(chore.frequency_integer, chore.frequency) %>)
-          <% else %>
-            (Only happens once)
-          <% end %>
-        </dd>
-        <dd class="chore-reassignment">
-          <% if chore.reassignment_style == "claimable" %>
-            Unassigned by default
-          <% elsif chore.reassignment_style == "rotating" %>
-            Assigned by rotation
-          <% elsif chore.reassignment_style == "random" %>
-            Assigned randomly
-          <% end %>
-        </dd>
         <dd class="chore-claim-form">
           <% if !chore.complete? %>
             <% if chore.mate == nil %>
+              <strong>Unclaimed </strong>
               <%= form_for [@house, chore], remote: true do |f| %>
                 <%= f.hidden_field :assign_self, :value => current_user.id %>
                 <%= f.submit "claim", class: "chore-claim-button" %>
@@ -70,18 +55,36 @@
 
   </div>
 
-  <% if chore.notifications.where(mate_id: current_user.id).any? %>
-    <div class="chore-back card-item hide-card">
-      <div class="card-summary">
+  <div class="chore-back card-item hide-card">
+    <div class="card-summary">
+      <div class="chore-back-details">
+        <p>
+          <% if chore.recurring %>
+            Repeats every <%= pluralize(chore.frequency_integer, chore.frequency) %>
+          <% else %>
+            Only happens once
+          <% end %>
+          <br>
+          <% if chore.reassignment_style == "claimable" %>
+            Unassigned by default
+          <% elsif chore.reassignment_style == "rotating" %>
+            Assigned by rotation
+          <% elsif chore.reassignment_style == "random" %>
+            Assigned randomly
+          <% end %>
+        </p>
+      </div>
+      <% if chore.notifications.where(mate_id: current_user.id).any? %>
+      <div class="notifications-form">
         <%= form_for [current_user, chore.notifications.find_by(mate_id: current_user.id)] do |f| %>
-          <div class="field">
+          <div class="field notifications-field">
             <%= f.label :email, for: "email_#{chore.id}" do %>
               <%= f.check_box :email, id: "email_#{chore.id}" %>
               Email
             <% end %>
           </div>
 
-          <div class="field">
+          <div class="field notifications-field">
             <%= f.label :sms, for: "sms_#{chore.id}" do %>
               <%= f.check_box :sms, id: "sms_#{chore.id}" %>
               SMS
@@ -89,13 +92,14 @@
           </div>
 
           <div class="action">
-            <%= f.submit "Update Notification Settings" %>
+            <%= f.submit "Update Notifications", class: "notifications-submit" %>
           </div>
         <% end %>
-      </div>
-      <div class="card-links">
-        <%= button_tag image_tag("x.svg", class: "item-icon"), class: "item-icon-link hide-notification-options" %>
-      </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    <div class="card-links">
+      <%= button_tag image_tag("x.svg", class: "item-icon"), class: "item-icon-link hide-notification-options" %>
+    </div>
+  </div>
 </div>
