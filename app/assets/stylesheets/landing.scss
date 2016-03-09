@@ -7,14 +7,24 @@
   background-image: url('gower_houses.jpg');
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  background-size: 100% auto;
+  @include media($small-screen-only) {
+    background-size: auto 100%;
+  }
+  @include media($medium-screen-up) {
+    background-size: auto 100%;
+  }
+  @include media($medium-large-screen-up) {
+    background-size: 110% auto;
+  }
+  @include media($large-screen-up) {
+    background-size: 100% auto;
+  }
 }
-#background-shading {
-  background-color: RGBa(19 40 88, 0.75);
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-}
+// #background-shading {
+//   background-color: RGBa(19 40 88, 0.75);
+//   height: 100%;
+//   width: 100%;
+// }
 #landing-page-title {
   color: #F1F1F2;
   position: absolute;
