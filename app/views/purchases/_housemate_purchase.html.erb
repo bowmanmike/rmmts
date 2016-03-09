@@ -6,6 +6,7 @@
       </strong><br>
       <%= number_to_currency(housemate_purchase.amount_owed_by(@mate)) %> owed to <%= housemate_purchase.mate.username %><br>
       Due: <%= housemate_purchase.due_date.strftime("%a, %e %b %Y") %>
+      <%= link_to button_tag("Make a Payment"), mate_purchase_payments_path(@mate, housemate_purchase) %>
     </li>
   <% end %>
 </ul>
