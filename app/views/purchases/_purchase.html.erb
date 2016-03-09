@@ -3,6 +3,7 @@
     <strong>
       <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount)}", mate_purchase_path(purchase.mate, purchase), remote: true, class: "show-purchase-link" %>
     </strong><br>
+    Bought by: <%= purchase.mate.full_name %><br>
     Still owed: <%= number_to_currency(purchase.amount_owed) %><br>
     Your share: <%= number_to_currency(purchase.amount_for_each) %>
     <% if purchase.image.present? %>
