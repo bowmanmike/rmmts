@@ -1,12 +1,20 @@
-<ul>
-  <% unless housemate_purchase.paid_by?(@mate) %>
-    <li class="owed-payment sub-card-item">
-      <strong>
-        <%= link_to "#{housemate_purchase.name}", mate_purchase_path(housemate_purchase.mate, housemate_purchase), remote: true, class: "show-owed-purchases-link" %>
-      </strong><br>
-      <%= number_to_currency(housemate_purchase.amount_owed_by(@mate)) %> owed to <%= housemate_purchase.mate.username %><br>
-      Due: <%= housemate_purchase.due_date.strftime("%a, %e %b %Y") %>
-      <%= link_to button_tag("Make a Payment"), new_mate_purchase_payment_path(housemate_purchase.mate, housemate_purchase), class: "new-housemate-purchase-link", remote: true %>
-    </li>
-  <% end %>
-</ul>
+<% unless housemate_purchase.paid_by?(@mate) %>
+  <div class="purchase-item card-item">
+    <div class="purchase-summary card-summary">
+      <dl>
+        <dd class="purchase-name">
+          <%= link_to "#{housemate_purchase.name}", mate_purchase_path(housemate_purchase.mate, housemate_purchase), remote: true, class: "show-owed-purchases-link" %> <span class="purchase-by">
+        </dd>
+        <dd class="purchase-amount">
+          <%= number_to_currency(housemate_purchase.amount_owed_by(@mate)) %>
+        </dd>
+        <dd class="purchase-by">
+          Owed to <%= housemate_purchase.mate.username %>
+          <span class="purchase-pay">
+            <%= link_to button_tag("Pay"), new_mate_purchase_payment_path(housemate_purchase.mate, housemate_purchase), class: "new-purchase-payment-button", remote: true %>
+          </span>
+        </dd>
+      </dl>
+    </div>
+  </div>
+<% end %>
