@@ -4,7 +4,10 @@
 
 .full-container {
   @include outer-container;
-  padding: 1rem;
+  padding-top: 0rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
 }
 
 .full-card {
@@ -47,15 +50,18 @@
   margin-bottom: 0.5rem;
 }
 
+.full-card-header > h3,
 .card-header > h3 {
     float: left;
     margin-bottom: 0;
 }
 
+.full-card-header > a,
 .card-header > a {
     float: right;
 }
 
+.full-card-header,
 .card-header {
     display: block;
     height: 2rem;
@@ -80,7 +86,8 @@
   border-bottom-left-radius: $card-border-radius;
   border-bottom-right-radius: $card-border-radius;
 
-  &.expense-item {
+  &.expense-item,
+  &.purchase-item {
     height: $expense-card-item-height;
   }
 }
@@ -97,6 +104,9 @@
   }
 
   & > .expense-summary > dl > .expense-pay > .new-expense-payment-button button {
+    opacity: 1;
+  }
+  & > .purchase-summary > dl > .purchase-pay > .new-purchase-payment-button button {
     opacity: 1;
   }
 }
