@@ -8,7 +8,7 @@ $(document).on('ready page:load', function() {
     showPopUp();
   })
 
-  $(document).on('click', '#new-announcement-button', function(e) {
+  $(document).on('click', '.new-announcement-button', function(e) {
     e.preventDefault();
 
     showPopUp();

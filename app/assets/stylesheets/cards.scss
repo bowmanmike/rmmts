@@ -50,15 +50,18 @@
   margin-bottom: 0.5rem;
 }
 
+.full-card-header > h3,
 .card-header > h3 {
     float: left;
     margin-bottom: 0;
 }
 
+.full-card-header > a,
 .card-header > a {
     float: right;
 }
 
+.full-card-header,
 .card-header {
     display: block;
     height: 2rem;

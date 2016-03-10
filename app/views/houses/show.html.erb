@@ -48,21 +48,19 @@
 
   <div id="announcements" class="full-container">
     <div class="full-card">
-      <h3 class="full-card-header">
-        House Announcements
-        <%= button_tag "Show", id: "show-announcements-button" %>
-        <%= button_tag "Hide", id: "hide-announcements-button" %>
-      </h3> |
+      <div class="full-card-header">
+        <h3>Announcements</h3>
+        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_announcement_path(@house), class: "medium-icon-link new-announcement-button", remote: true %>
+      </div>
       <% if @announcements.any? %>
-        <div id="announcement-counter">
-          <p><strong><%= @announcements.count %></strong> announcements</p>
+        <div class="announcement-counter">
+          <strong><%= @announcements.count %></strong> announcements
+          <%= button_tag "Show", id: "show-announcements-button" %>
+          <%= button_tag "Hide", id: "hide-announcements-button", class: "hidden-button" %>
         </div>
       <% end %>
       <div id="announcements-list" class="full-card-list">
         <%= render(@announcements) || "No announcements!" %>
-      </div>
-      <div id="new-announcement">
-        <%= link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true, id: "new-announcement-button" %>
       </div>
     </div>
   </div>
@@ -96,7 +94,7 @@
     <div class="expenses card-container">
       <div class="expenses-header card-header">
         <h3>Expenses</h3>
-        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link edit-expense-button", remote: true %>
+        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link new-expense-button", remote: true %>
       </div>
       <div class="expenses-list card-list">
         <%= render @expenses || "No household expenses yet!" %>
