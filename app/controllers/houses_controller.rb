@@ -51,6 +51,8 @@ class HousesController < ApplicationController
         @mate = Mate.find_by(username: params[:username_search])
         @house.mates << @mate
         MateMailer.join_house(@mate, @mate.house).deliver_later
+        @mate.assign_notifications
+        @mate.create_conversations
         redirect_to :back, notice: "Mate added to house"
         return
       else
