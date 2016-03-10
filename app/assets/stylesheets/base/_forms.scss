@@ -119,32 +119,6 @@ input#chore_frequency_integer {
   width: 100%;
 }
 
-.popup-form {
-
-  input[type="submit"] {
-      width: 100%;
-  }
-
-}
-
-.mate-house-info {
-
-  p {
-    display: inline-block;
-  }
-
-  form {
-    display: inline-block;
-  }
-
-  .action {
-    width: auto;
-    display: inline-block;
-
-    input.leave-house-button {
-      width: auto;
-      padding: 0.4rem;
-
-    }
-  }
+input {
+  width: 100%;
 }

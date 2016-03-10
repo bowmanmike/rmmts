@@ -126,3 +126,29 @@ input#mate_mate_avatar {
     padding-left: 2rem;
   }
 }
+
+.mate-house-info {
+
+  text-align: center;
+
+  p {
+    display: inline-block;
+  }
+
+  form {
+    display: inline-block;
+
+    @include media($small-screen-only) {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  .action {
+    display: inline-block;
+
+    input.leave-house-button {
+      padding: 0.4rem;
+    }
+  }
+}
