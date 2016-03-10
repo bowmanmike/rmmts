@@ -52,7 +52,12 @@
         House Announcements
         <%= button_tag "Show", id: "show-announcements-button" %>
         <%= button_tag "Hide", id: "hide-announcements-button" %>
-      </h3>
+      </h3> | 
+      <% if @announcements.any? %>
+        <div id="announcement-counter">
+          <p><strong><%= @announcements.count %></strong> announcements</p>
+        </div>
+      <% end %>
       <div id="announcements-list" class="full-card-list">
         <%= render(@announcements) || "No announcements!" %>
       </div>
