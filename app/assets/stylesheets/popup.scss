@@ -108,12 +108,13 @@
 }
 
 .mate-avatar-settings {
-    display: inline-block;
-    width: 66%;
-    position: relative;
+  display: inline-block;
+  width: 66%;
+  position: relative;
 
-    @include media($small-and-medium-screens) {
-      display: block;
-      margin: 0 auto;
-    }
+  @include media($small-and-medium-screens) {
+    display: block;
+    margin: 0 auto;
+  }
+
 }
