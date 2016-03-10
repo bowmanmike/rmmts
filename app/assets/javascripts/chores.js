@@ -1,6 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(document).on('ready page:load', function() {
+
   $(document).on('change', '#chore_recurring', function() {
     $('.recurrence').toggle()
   });
@@ -11,10 +12,9 @@ $(document).on('ready page:load', function() {
 
   $(document).on('click', '.show-notification-options', function(e) {
     e.preventDefault();
-    $('.chore-back').addClass('animated flipInX');
-    $('.chore-front').addClass('animated flipInX');
+    $(this).parents('.chore-front').addClass('animated flipInX');
     $(this).parents('.chore-front').addClass('hide-card');
-    $(this).parents('.chore-front').siblings('.chore-back').removeClass('hide-card');
+    $(this).parents('.chore-front').siblings('.chore-back').addClass('animated flipInX').removeClass('hide-card');
   });
 
   $(document).on('click', '.hide-notification-options', function(e) {
