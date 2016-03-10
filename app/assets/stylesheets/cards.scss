@@ -21,6 +21,14 @@
   border-bottom: 1px $dark-gray;
 }
 
+.card-container {
+  @include span-columns(6);
+  padding: 1rem;
+  border-radius: $card-border-radius;
+  background-color: $card-background-color;
+  height: 34rem;
+}
+
 .card {
   padding: 1rem;
   border-radius: $card-border-radius;
@@ -48,6 +56,9 @@
 }
 
 .card-list {
+  overflow: auto;
+  width: 100%;
+  height: 30rem;
 }
 
 .card-item,
