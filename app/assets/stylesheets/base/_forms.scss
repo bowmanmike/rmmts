@@ -77,6 +77,10 @@ textarea {
   width: 100%;
 }
 
+[type="submit"] {
+  width: 100%;
+}
+
 select {
   margin-bottom: $base-spacing;
   max-width: 100%;
@@ -113,12 +117,4 @@ input#chore_frequency_integer {
 
 .chore-form-header {
   text-align: center;
-}
-
-.action {
-  width: 100%;
-}
-
-input {
-  width: 100%;
 }
