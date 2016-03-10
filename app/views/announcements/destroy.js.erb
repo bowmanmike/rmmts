@@ -1,5 +1,6 @@
 $('#announcements-list').html('<%= j(render @announcements) %>');
-$('#new-announcement').html('<%= j(link_to button_tag("Add New Announcement"), house_path(@house), remote: true) %>');
+$('#new-announcement').html('<%= j(link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true, id: "new-announcement-button") %>');
 <% if @announcements.empty? %>
   $('#announcements-list').html('No announcements!');
 <% end %>
+$('#announcement-counter').html('<p><strong><%= @announcements.count %></strong> announcements</p>');
