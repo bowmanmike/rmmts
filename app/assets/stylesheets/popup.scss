@@ -118,3 +118,11 @@
   }
 
 }
+
+input#mate_mate_avatar {
+  padding-left: 3rem;
+
+  @include media($small-and-medium-screens) {
+    padding-left: 2rem;
+  }
+}

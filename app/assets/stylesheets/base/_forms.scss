@@ -126,3 +126,20 @@ input#chore_frequency_integer {
   }
 
 }
+
+.mate-house-info {
+
+  p {
+    display: inline-block;
+  }
+
+  .action {
+    display: inline-block;
+    width: auto;
+
+    input[type="submit"] {
+      // width: auto;
+      display: inline-block;
+    }
+  }
+}
