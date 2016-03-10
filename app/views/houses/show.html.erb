@@ -3,12 +3,6 @@
     <h1 id="house-name"><%= @house.name %></h1>
     <%= image_tag @house.house_image %>
     <div id="house-buttons">
-      <% if current_user == @house.creator %>
-        <%= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
-          <%= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
-          <%= button_tag "Add mate to house" %>
-        <% end %>
-      <% end %>
 
       <% if current_user %>
         <% if current_user.house == @house %>
@@ -41,6 +35,12 @@
         <% end %>
       <% end %>
     </ul>
+    <% if current_user == @house.creator %>
+      <%= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
+        <%= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
+        <%= button_tag "Add +" %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
