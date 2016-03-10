@@ -102,12 +102,12 @@
     <% end %>
 
     <% if @mate.id.blank? %>
-      <div class="field">
-        <%= f.submit "Create Account" %>
+      <div class="action">
+        <%= f.submit "Create Account", class: "mate-form-submit" %>
       </div>
     <% elsif @mate.id.present? %>
       <div class="action">
-        <%= f.submit "Update Information" %>
+        <%= f.submit "Update Information", class: "mate-form-submit" %>
       </div>
     <% end %>
 

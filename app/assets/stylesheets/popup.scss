@@ -48,6 +48,11 @@
   }
 
   .popup-form {
+
+    .mate-form-submit {
+      display: block;
+      width: 100%;
+    }
     @include media($small-screen-only) {
       img {
         float: none;
@@ -157,9 +162,14 @@ input#mate_mate_avatar {
   .action {
     display: inline-block;
 
+    @include media($small-screen-only) {
+      display: block;
+    }
+
     input.leave-house-button {
       padding: 0.4rem;
       margin-bottom: 0.5rem;
+      width: 100%;
     }
   }
 }
