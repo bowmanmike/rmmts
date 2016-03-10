@@ -79,6 +79,10 @@
   border-bottom-color: $medium-gray;
   border-bottom-left-radius: $card-border-radius;
   border-bottom-right-radius: $card-border-radius;
+
+  &.expense-item {
+    height: $expense-card-item-height;
+  }
 }
 
 .card-item:hover {
@@ -92,7 +96,7 @@
     }
   }
 
-  & > .expense-pay > .new-expense-payment-button button {
+  & > .expense-summary > dl > .expense-pay > .new-expense-payment-button button {
     opacity: 1;
   }
 }
@@ -108,6 +112,11 @@
 
 .card-links {
   float: right;
+  text-align: right;
+
+  &.expense-links {
+    margin-top: 0.5rem;
+  }
 }
 
 .sub-card {
