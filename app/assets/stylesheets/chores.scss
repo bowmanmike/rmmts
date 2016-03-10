@@ -43,35 +43,27 @@
 //   }
 // }
 
-.chore-claim-button {
-  padding: 0.1rem;
-  font-size: 0.5rem;
-}
-
 .chore-back-details {
-  display: inline-block;
-  float: left;
-  padding: 1rem;
+  margin-left: 0.8rem;
 }
 
 .notifications-form {
-  display: inline;
-  float: left;
-  padding: 0.8rem;
   width: 13rem;
-  margin-left: 2rem;
+  margin-left: 0.8rem;
 }
 
 .notifications-field {
   display: inline-block;
+  margin-right: 0.4rem;
   font-weight: 400;
   font-size: 0.8rem;
+  width: initial;
 }
 
 input.notifications-submit {
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 0;
   font-family: $base-font-family;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   margin: 0 0 0 0.2rem;
 }

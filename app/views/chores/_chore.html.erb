@@ -20,7 +20,7 @@
           <%= link_to chore.name, house_chore_path(chore.house, chore), class: "show-chore-link", remote: true %>
         </dd>
         <dd class="chore-date">
-          Due <%= chore.due_date.strftime("%A, %B %e") %>
+          Due <%= chore.due_date.strftime("%a, %b %e") %>
         </dd>
         <dd class="chore-claim-form">
           <% if !chore.complete? %>
@@ -28,16 +28,16 @@
               <strong>Unclaimed </strong>
               <%= form_for [@house, chore], remote: true do |f| %>
                 <%= f.hidden_field :assign_self, :value => current_user.id %>
-                <%= f.submit "claim", class: "chore-claim-button" %>
+                <%= f.submit "claim", class: "small-button" %>
               <% end %>
             <% else %>
-              <strong>Claimed by <%= chore.mate.username %></strong>
+              <span class="claimed-by"><strong><%= chore.mate.username %></strong></span>
             <% end %>
 
             <% if chore.mate == current_user %>
               <%= form_for [@house, chore], remote: true do |f| %>
                 <%= f.hidden_field :assign_self, :value => nil %>
-                <%= f.submit "unclaim", class: "chore-claim-button" %>
+                <%= f.submit "unclaim", class: "small-button" %>
               <% end %>
             <% end %>
           <% end %>
@@ -48,9 +48,9 @@
     </div>
 
     <div class="card-links">
+      <%= button_tag image_tag("menu.svg", class: "item-icon"), class: "item-icon-link show-notification-options" %><br>
+      <%= link_to image_tag("edit.svg", class: "item-icon"), edit_house_chore_path(chore.house, chore), class: "item-icon-link edit-chore-button", remote: true %><br>
       <%= link_to image_tag("x.svg", class: "item-icon"), house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" }, class: "item-icon-link", remote: true %>
-      <%= link_to image_tag("edit.svg", class: "item-icon"), edit_house_chore_path(chore.house, chore), class: "item-icon-link edit-chore-button", remote: true %>
-      <%= button_tag image_tag("menu.svg", class: "item-icon"), class: "item-icon-link show-notification-options" %>
     </div>
 
   </div>
@@ -91,8 +91,8 @@
             <% end %>
           </div>
 
-          <div class="action">
-            <%= f.submit "Update Notifications", class: "notifications-submit" %>
+          <div class="action notifications-field">
+            <%= f.submit "Update", class: "notifications-submit" %>
           </div>
         <% end %>
         </div>
