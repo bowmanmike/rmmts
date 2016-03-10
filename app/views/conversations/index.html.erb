@@ -1,16 +1,18 @@
 <h3 class="conversation-index-header">Your Messages</h3>
 
-<div class="all-conversations"><% @conversations.each do |conversation| %>
-    <% if conversation.sender == current_user %>
-      <div class="each-conversation">
-        <p>Your conversation with <%= link_to conversation.receiver.full_name, conversation_path(conversation.id), remote: true %></p>
-      </div>
-    <% else %>
-      <div class="each-conversation">
-        <p>Your conversation with <%= link_to conversation.sender.full_name, conversation_path(conversation.id), remote: true %></p>
-      </div>
-    <% end %>
-  <% end %></div>
+<div class="messaging-global">
+  <div class="all-conversations"><% @conversations.each do |conversation| %>
+      <% if conversation.sender == current_user %>
+        <div class="each-conversation">
+          <p>Your conversation with <%= link_to conversation.receiver.full_name, conversation_path(conversation.id), remote: true %></p>
+        </div>
+      <% else %>
+        <div class="each-conversation">
+          <p>Your conversation with <%= link_to conversation.sender.full_name, conversation_path(conversation.id), remote: true %></p>
+        </div>
+      <% end %>
+    <% end %></div>
 
-<div class="messages"></div>
-<div class="send-message"></div>
+  <div class="messages"></div>
+  <div class="send-message"></div>
+</div>

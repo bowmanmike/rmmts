@@ -10,4 +10,8 @@ $(document).on('ready page:load', function() {
     }
 
   });
+
+  $(document).on('submit', '#new_message', function() {
+    $('#message_body').val('');
+  });
 })

@@ -1,17 +1,37 @@
 // Place all the styles related to the Conversations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.messaging-global {
+  @include outer-container(100%);
+}
+
 .all-conversations {
   @include span-columns(12);
+
+  @include media($medium-screen-up) {
+    @include span-columns(4);
+
+    display: inline-block;
+  }
 }
 
 .messages,
 .new-message {
   @include span-columns(12);
+
+  @include media($medium-screen-up) {
+    @include span-columns(6);
+
+    display: inline-block;
+  }
 }
 
 .message-instructions {
   display:none;
+
+  @include media($medium-screen-up) {
+    display: block;
+  }
 }
 
 .messages {
@@ -24,6 +44,14 @@
   position: fixed;
   bottom: 0;
   left: 0;
+
+  @include media($medium-screen-up) {
+    @include span-columns(6);
+    @include shift(4);
+    position: inherit;
+    bottom: auto;
+    left: auto;
+  }
 
   .action {
   @include span-columns(12);
