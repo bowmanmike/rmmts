@@ -40,3 +40,14 @@
   margin-left: 0.5rem;
   margin-right: 1.2rem;
 }
+
+.nav-avatar {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 50%;
+
+  & > img {
+    width: auto;
+  }
+}
