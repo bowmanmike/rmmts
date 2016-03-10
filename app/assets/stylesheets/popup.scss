@@ -179,3 +179,17 @@ input#mate_mate_avatar {
     }
   }
 }
+
+.mate-firstname-field,
+.mate-lastname-field,
+.mate-email-field,
+.mate-phonenumber-field,
+.mate-username-field {
+  display: inline-block;
+  width: 49%;
+}
+
+.image-placeholder {
+  height: 150px;
+  width: 200px;
+}
