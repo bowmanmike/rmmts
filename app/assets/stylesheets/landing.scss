@@ -39,7 +39,7 @@
   transform: translate(-50%,-50%);
 }
 #landing-page-title > h1 {
-  font-family: 'Oxygen', sans-serif;
+  font-family: 'Poiret One', cursive;
   letter-spacing: 0.2rem;
   @include media($small-screen-only) {
     font-size: 2.8rem;
@@ -52,44 +52,50 @@
   }
 }
 #landing-page-links {
+  color: #254157;
+  display: inline-block;
   position: absolute;
-  top: 110%;
+  top: 105%;
+  font-size: 1.5rem;
   @include span-columns(12);
-  @include media($small-screen-only) {
-    font-size: 1.5rem;
-  }
-  @include media($medium-screen-up) {
-    font-size: 1.5rem;
-  }
-  @include media($large-screen-up) {
-    font-size: 1.5rem;
-  }
   a {
-    color: #021C1E;
+    @include button(pill, #1A936F);
   }
 }
 #link-background-shading {
   height: 100%;
   width: 100%;
-  background-color: RGBa(178, 178, 178, 0.2);
+  background-color: white;
+  // @include linear-gradient(to top, #673ab7, #BC3AB7);
 }
 #more-info-button {
   a {
-    color: #021C1E;
+    color: #254157;
   }
-  @include span-columns(12);
+  a:hover {
+    color: #542437;
+    font-weight: bold;
+  }
   font-size: 1.3rem;
   position: absolute;
-  top: 130%;
+  top: 145%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 #info-div {
   color: white;
-  background-color: #B21A2C;
+  background-color: #542437;
   position: fixed;
   bottom: 0;
   height: 0;
   width: 100%;
   p {
     padding-top: 2rem;
+  }
+  a {
+    color: white;
+  }
+  a:hover {
+    font-weight: bold;
   }
 }
