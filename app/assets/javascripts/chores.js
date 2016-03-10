@@ -15,10 +15,6 @@ $(document).on('ready page:load', function() {
     $(this).parents('.chore-front').addClass('animated flipInX');
     $(this).parents('.chore-front').addClass('hide-card');
     $(this).parents('.chore-front').siblings('.chore-back')
-                                   .css({
-                                     'overflow': 'auto',
-                                     height: 'auto'
-                                   })
                                    .addClass('animated flipInX')
                                    .removeClass('hide-card');
   });
