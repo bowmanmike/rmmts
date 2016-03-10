@@ -3,8 +3,7 @@
     <dl>
       <dd class="purchase-name">
         <%= link_to "#{purchase.name}", mate_purchase_path(purchase.mate, purchase), remote: true, class: "show-purchase-link" %>
-        <span class="purchase-date">by <%= purchase.mate.username %></span>
-        </span>
+        <span class="purchase-by">by <%= purchase.mate.username %></span>
       </dd>
       <dd class="purchase-amount">
         <%= number_to_currency(purchase.amount) %>
@@ -18,7 +17,7 @@
         <% end %>
       </dd>
     </dl>
-  </div>
+
   <div class="card-links">
     <% if purchase.mate == current_user %>
       <%= link_to image_tag("edit.svg", class: "item-icon"), edit_mate_purchase_path(purchase.mate, purchase), remote: true, class: "item-icon-link edit-purchase-button" %><br>

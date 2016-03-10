@@ -41,19 +41,36 @@
 
 <div class="purchases-container full-container">
 
-    <div id="mate-owed-payments" class="purchases-sub-container sub-card">
-      <h3 id="mate-owed-payments-header" class="sub-card-header">
-        You Owe: <%= number_to_currency(@mate.sum_owed_to_mates) %>
-      </h3>
+    <div id="mate-owed-payments" class="purchases-container card-container">
+      <div id="mate-owed-payments-header" class="card-header">
+        <h3>
+          <% if @mate == current_user %>
+            You Owe:
+          <% else %>
+            <%= @mate.username.capitalize %> Owes: 
+          <% end %>
+          <%= number_to_currency(@mate.sum_owed_to_mates) %>
+        </h3>
+      </div>
       <div id="mate-owed-payments-list" class="sub-card-list">
         <%= render partial: "purchases/housemate_purchase", collection: @housemate_purchases %>
       </div>
     </div>
 
-    <div id="mate-purchases" class="purchases-sub-container sub-card">
-      <h3 id="mate-purchases-header" class="sub-card-header">
-        You Are Owed: <%= number_to_currency(@mate.sum_owed_to_self) %>
-      </h3>
+    <div id="mate-purchases" class="purchases-container card-container">
+      <div id="mate-purchases-header" class="card-header">
+        <h3>
+          <% if @mate == current_user %>
+            You Are Owed:
+          <% else %>
+            <%= @mate.username.capitalize %> Is Owed:
+          <% end %>
+          <%= number_to_currency(@mate.sum_owed_to_self) %>
+        </h3>
+        <% if @mate == current_user %>
+          <%= link_to image_tag("add.svg", class: "medium-icon"), new_mate_purchase_path(@mate), class: "medium-icon-link new-purchase-button", remote: true %>
+        <% end %>
+      </div>
       <div id="mate-purchases-list" class="sub-card-list">
         <% if @purchases.any? %>
           <div id="mate-purchases-partial">

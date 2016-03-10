@@ -33,9 +33,21 @@
 }
 
 .site-logo {
+  color: $white;
   font-family: $site-logo-font-family;
   font-weight: 800;
   font-size: $site-logo-font-size;
   margin-left: 0.5rem;
   margin-right: 1.2rem;
+}
+
+.nav-avatar {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 50%;
+
+  & > img {
+    width: auto;
+  }
 }
