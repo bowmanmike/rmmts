@@ -22,7 +22,7 @@
 
 <div id="mate-duties" class="full-container">
 
-  <div id="mate-chores" class="chores-container">
+  <div id="mate-chores" class="chores-container card-container">
     <div id="mate-chores-header" class="card-header">
       <h3>Chores</h3>
       <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
@@ -30,19 +30,19 @@
     <div id="mate-chores-list" class="card-list">
       <%= render @chores %>
     </div>
-
   </div>
-
-  <div class="expenses-purchases-container">
-    <div id="mate-expenses" class="card">
-      <div id="mate-expenses-header" class="card-header">
-        <h3>Expenses</h3>
-        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link edit-expense-button", remote: true %>
-      </div>
-      <div id="mate-expenses-list" class="card-list">
-        <%= render(partial: "expenses/expense", collection: @house.expenses, as: :expense) || "No current expenses." %>
-      </div>
+  <div id="mate-expenses" class="card-container">
+    <div id="mate-expenses-header" class="card-header">
+      <h3>Expenses</h3>
+      <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link edit-expense-button", remote: true %>
     </div>
+    <div id="mate-expenses-list" class="card-list">
+      <%= render(partial: "expenses/expense", collection: @house.expenses, as: :expense) || "No current expenses." %>
+    </div>
+  </div>
+</div>
+
+<div class="purchases-container full-container">
 
     <div id="mate-owed-payments" class="purchases-sub-container sub-card">
       <h3 id="mate-owed-payments-header" class="sub-card-header">
