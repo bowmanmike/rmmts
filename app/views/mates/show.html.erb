@@ -1,23 +1,18 @@
-<div id="mate-announcements" class="full-container">
+<div id="announcements" class="full-container">
   <div class="full-card">
-    <h3 id="mate-announcements-header" class="full-card-header">
-      Announcements
-      <%= button_tag "Show", id: "show-announcements-button" %>
-      <%= button_tag "Hide", id: "hide-announcements-button" %>
-    </h3>
-    <div id="mate-announcements-list" class="full-card-list">
-      <ul>
-        <% @house.announcements.each do |announcement| %>
-        <li class="mate-announcement full-card-item">
-          <span class="announcement-title">
-            <%= announcement.title %>
-          </span><br>
-          <span>
-            <%= announcement.body %>
-          </span>
-        </li>
-        <% end %>
-      </ul>
+    <div class="full-card-header">
+      <h3>Announcements</h3>
+      <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_announcement_path(@house), class: "medium-icon-link new-announcement-button", remote: true %>
+    </div>
+    <% if @announcements.any? %>
+      <div class="announcement-counter">
+        <strong><%= @announcements.count %></strong> announcements
+        <%= button_tag "Show", id: "show-announcements-button" %>
+        <%= button_tag "Hide", id: "hide-announcements-button", class: "hidden-button" %>
+      </div>
+    <% end %>
+    <div id="announcements-list" class="full-card-list">
+      <%= render(@announcements) || "No announcements!" %>
     </div>
   </div>
 </div>

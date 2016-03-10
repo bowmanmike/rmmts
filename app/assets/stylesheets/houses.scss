@@ -38,10 +38,6 @@
 .full-card-list {
   overflow: hidden;
 }
-#chores {
-  @include outer-container;
-  padding: 1rem;
-}
 
 .chores-card {
   @include media($small-screen-only) {
@@ -52,11 +48,6 @@
     @include span-columns(6);
     @include omega(2n);
   }
-}
-
-#purchases-expenses {
-  @include outer-container;
-  padding: 1rem;
 }
 
 .house-card {

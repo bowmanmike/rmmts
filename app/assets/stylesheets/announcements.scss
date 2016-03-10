@@ -9,7 +9,23 @@
   font-size: 0.8rem;
   color: $medium-gray;
 }
-.full-card-header,
-#announcement-counter {
+
+.announcement-counter {
   display: inline-block;
+}
+
+#announcements-list {
+  padding-top: 1.5rem;
+}
+
+.hidden-button {
+  display: none;
+}
+
+#show-announcements-button,
+#hide-announcements-button {
+  font-size: 0.8rem;
+  width: 3rem;
+  padding: 0.3rem 0.3rem;
+  border-radius: 0;
 }
