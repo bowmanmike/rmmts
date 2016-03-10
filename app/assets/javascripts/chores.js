@@ -11,7 +11,8 @@ $(document).on('ready page:load', function() {
 
   $(document).on('click', '.show-notification-options', function(e) {
     e.preventDefault();
-
+    $('.chore-back').addClass('animated flipInX');
+    $('.chore-front').addClass('animated flipInX');
     $(this).parents('.chore-front').addClass('hide-card');
     $(this).parents('.chore-front').siblings('.chore-back').removeClass('hide-card');
   });
