@@ -1,3 +1,38 @@
 // Place all the styles related to the Conversations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.all-conversations {
+  @include span-columns(12);
+}
+
+.messages,
+.new-message {
+  @include span-columns(12);
+}
+
+.message-instructions {
+  display:none;
+}
+
+.messages {
+  max-height: 20rem;
+  overflow: scroll;
+}
+
+.send-message {
+
+  .action {
+  @include span-columns(12);
+
+    input {
+      width: 100%;
+    }
+  }
+}
+
+.send-message {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
