@@ -98,11 +98,21 @@
   top: -4rem;
   width: 33%;
 
+  .field {
+    display: inline-block;
+    text-align: center;
+  }
+
   @include media($small-and-medium-screens) {
     display: block;
     margin-top: 0;
     top: 0;
     width: 99%;
+    text-align: center;
+
+    label {
+      margin: 0 1rem;
+    }
   }
 
 }
@@ -149,6 +159,7 @@ input#mate_mate_avatar {
 
     input.leave-house-button {
       padding: 0.4rem;
+      margin-bottom: 0.5rem;
     }
   }
 }
