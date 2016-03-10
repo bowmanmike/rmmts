@@ -38,10 +38,6 @@
 .full-card-list {
   overflow: hidden;
 }
-#chores {
-  @include outer-container;
-  padding: 1rem;
-}
 
 .chores-card {
   @include media($small-screen-only) {

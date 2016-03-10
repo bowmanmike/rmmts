@@ -52,7 +52,7 @@
         House Announcements
         <%= button_tag "Show", id: "show-announcements-button" %>
         <%= button_tag "Hide", id: "hide-announcements-button" %>
-      </h3> | 
+      </h3> |
       <% if @announcements.any? %>
         <div id="announcement-counter">
           <p><strong><%= @announcements.count %></strong> announcements</p>
@@ -68,7 +68,7 @@
   </div>
 
   <div id="chores" class="full-container">
-    
+
     <div id="chores-incomplete" class="chores-container card-container">
       <div id="incomplete-chores-header" class="card-header">
         <h3>Incomplete Chores</h3>
@@ -91,7 +91,20 @@
 
   </div>
 
-  <div id="purchases-expenses">
+  <div class="full-container">
+
+    <div class="expenses card-container">
+      <div id="expenses-header" class="card-header">
+        <h3>Expenses</h3>
+        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link edit-expense-button", remote: true %>
+      </div>
+      <div id="expenses-list" class="card-list">
+        <%= render @expenses || "No household expenses yet!" %>
+      </div>
+    </div>
+
+
+  </div>
 
     <div id="purchases" class="house-card">
       <h3 id="purchases-header" class="card-header">Purchases</h3>
@@ -104,20 +117,6 @@
         <%= link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user), remote: true, class: "new-purchase-button" %>
       </div>
     </div>
-
-    <% if @house.expenses != nil %>
-    <div class="expenses-purchases-container">
-      <div id="expenses" class="card">
-        <div id="expenses-header" class="card-header">
-          <h3>Expenses</h3>
-          <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link edit-expense-button", remote: true %>
-        </div>
-        <div id="expenses-list" class="card-list">
-          <%= render @expenses || "No household expenses yet!" %>
-        </div>
-      </div>
-    </div>
-    <% end %>
 
   </div>
 
