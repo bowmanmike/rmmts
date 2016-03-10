@@ -78,15 +78,17 @@
       <div class="notifications-form">
         <%= form_for [current_user, chore.notifications.find_by(mate_id: current_user.id)] do |f| %>
           <div class="field notifications-field">
-            <%= f.label :email, for: "email_#{chore.id}" do %>
+            <%= f.label :email, for: "email_#{chore.id}", class: "label-switch" do %>
               <%= f.check_box :email, id: "email_#{chore.id}" %>
+              <div class="checkbox"></div>
               Email
             <% end %>
           </div>
 
           <div class="field notifications-field">
-            <%= f.label :sms, for: "sms_#{chore.id}" do %>
+            <%= f.label :sms, for: "sms_#{chore.id}", class: "label-switch" do %>
               <%= f.check_box :sms, id: "sms_#{chore.id}" %>
+              <div class="checkbox"></div>
               SMS
             <% end %>
           </div>

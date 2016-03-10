@@ -1,6 +1,6 @@
 $('#mate-chores-list').html('<%= j(render(@chores.order(complete: :asc, due_date: :asc))) %>');
-$('#complete-chores-list').html('<%= j(render(@chores.where(complete: true))) %>');
-$('#incomplete-chores-list').html('<%= j(render(@chores.where(complete: !true))) %>');
+$('.complete-chores-list').html('<%= j(render(@chores.where(complete: true))) %>');
+$('.incomplete-chores-list').html('<%= j(render(@chores.where(complete: !true))) %>');
 $('#add-chore-button').html('<%= j(link_to button_tag("Add new chore"), new_house_chore_path(@house), remote: true) %><br>');
 <% if @chores.where(complete: !true).empty? %>
   $('#incomplete-chores-list').html('No complete chores yet?! Better get on that.');

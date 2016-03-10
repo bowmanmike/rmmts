@@ -25,13 +25,11 @@
 }
 
 #title-background-shading {
-  // position: fixed;
   height: 100%;
   width: 100%;
   background-color: RGBa(19, 40, 88, 0.6);
 }
 #landing-page-title {
-  // color: red;
   color: white;
   position: absolute;
   top: 80%;
@@ -39,7 +37,7 @@
   transform: translate(-50%,-50%);
 }
 #landing-page-title > h1 {
-  font-family: 'Oxygen', sans-serif;
+  font-family: 'Raleway', sans-serif;
   letter-spacing: 0.2rem;
   @include media($small-screen-only) {
     font-size: 2.8rem;
@@ -52,44 +50,49 @@
   }
 }
 #landing-page-links {
+  color: white;
+  display: inline-block;
   position: absolute;
-  top: 110%;
+  top: 105%;
+  font-size: 1.5rem;
   @include span-columns(12);
-  @include media($small-screen-only) {
-    font-size: 1.5rem;
-  }
-  @include media($medium-screen-up) {
-    font-size: 1.5rem;
-  }
-  @include media($large-screen-up) {
-    font-size: 1.5rem;
-  }
   a {
-    color: #021C1E;
+    @include button(pill, #1A936F);
   }
 }
 #link-background-shading {
   height: 100%;
   width: 100%;
-  background-color: RGBa(178, 178, 178, 0.2);
+  background-color: #263F6E;
+  // @include linear-gradient(to top, #673ab7, #BC3AB7);
 }
 #more-info-button {
   a {
-    color: #021C1E;
+    color: white;
   }
-  @include span-columns(12);
+  a:hover {
+    font-weight: bold;
+  }
   font-size: 1.3rem;
   position: absolute;
-  top: 130%;
+  top: 155%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 #info-div {
   color: white;
-  background-color: #B21A2C;
+  background-color: #562347;
   position: fixed;
   bottom: 0;
   height: 0;
   width: 100%;
   p {
     padding-top: 2rem;
+  }
+  a {
+    color: white;
+  }
+  a:hover {
+    font-weight: bold;
   }
 }

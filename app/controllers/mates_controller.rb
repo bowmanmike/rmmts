@@ -4,7 +4,7 @@ class MatesController < ApplicationController
   before_action :load_house, except: [:usernames, :new, :create]
 
   def usernames
-    @mates = Mate.all
+    @mates = Mate.where("id != #{current_user.id}")
     # render json: @mates
     respond_to do |format|
       format.json
