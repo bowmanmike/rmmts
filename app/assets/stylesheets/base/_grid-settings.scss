@@ -17,4 +17,5 @@ $medium-screen-up: new-breakpoint(min-width $medium-screen);
 $medium-screen-only: new-breakpoint(min-width $medium-screen max-width ($large-screen - 1px));
 $large-screen-up: new-breakpoint(min-width $large-screen);
 $medium-large-screen-up: new-breakpoint(min-width $medium-large-screen);
+$small-and-medium-screens: new-breakpoint(max-width ($medium-large-screen - 1px));
 $x-large-screen-up: new-breakpoint(min-width $x-large-screen);

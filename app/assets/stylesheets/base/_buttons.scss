@@ -38,3 +38,13 @@
   padding: 0.1rem;
   font-size: 0.5rem;
 }
+
+.popup-form {
+  input {
+    border-radius: $button-border-radius
+  }
+}
+
+.leave-house-button {
+  font-size: 1rem;
+}

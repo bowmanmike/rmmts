@@ -126,3 +126,25 @@ input#chore_frequency_integer {
   }
 
 }
+
+.mate-house-info {
+
+  p {
+    display: inline-block;
+  }
+
+  form {
+    display: inline-block;
+  }
+
+  .action {
+    width: auto;
+    display: inline-block;
+
+    input.leave-house-button {
+      width: auto;
+      padding: 0.4rem;
+
+    }
+  }
+}

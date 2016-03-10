@@ -6,6 +6,18 @@
     <h3>Sign Up!</h3>
   <% end %>
 
+  <div class="mate-house-info">
+    <% if @mate.house_id.present? %>
+      <p>You currently reside in <%= link_to @mate.house.name, house_path(@mate.house) %></p>
+      <%= form_for @mate do |f| %>
+        <div class="action">
+          <%= f.hidden_field :house_id, :value => nil %>
+          <%= f.submit "Leave This House", class: "leave-house-button" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
   <%= form_for @mate do |f| %>
 
     <% if @mate.errors.any? %>
@@ -45,33 +57,37 @@
       <%= f.telephone_field :phone_number, placeholder: "(416) 555-1234" %>
     </div>
 
-    <p>Notification Preferences</p>
-    <div class="field">
-      <%= f.label :notify_email do %>
-        <%= f.check_box :notify_email %>
-        Email
-      <% end %>
+    <div class="notification-preferences">
+      <p>Notification Preferences</p>
+      <div class="field">
+        <%= f.label :notify_email do %>
+          <%= f.check_box :notify_email %>
+          Email
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :notify_sms do %>
+          <%= f.check_box :notify_sms %>
+          SMS
+        <% end %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :notify_sms do %>
-        <%= f.check_box :notify_sms %>
-        SMS
+    <div class="mate-avatar-settings">
+      <% if @mate.mate_avatar.present? %>
+        <%= image_tag @mate.mate_avatar, height: 150, class: "mate-avatar" %>
+        <div class="field">
+          <%= f.label :mate_avatar, "Change your photo" %>
+          <%= f.file_field :mate_avatar %>
+        </div>
+      <% else %>
+        <div class="field">
+          <%= f.label :mate_avatar, "Upload a Photo!" %>
+          <%= f.file_field :mate_avatar %>
+        </div>
       <% end %>
     </div>
-
-    <% if @mate.mate_avatar.present? %>
-      <%= image_tag @mate.mate_avatar %>
-      <div class="field">
-        <%= f.label :mate_avatar, "Change your photo" %>
-        <%= f.file_field :mate_avatar %>
-      </div>
-    <% else %>
-      <div class="field">
-        <%= f.label :mate_avatar, "Upload a Photo!" %>
-        <%= f.file_field :mate_avatar %>
-      </div>
-    <% end %>
 
     <% if @mate.id.blank? %>
       <div class="field">
@@ -95,14 +111,6 @@
       </div>
     <% end %>
 
-  <% end %>
-
-  <% if @mate.house_id.present? %>
-    <p>You currently reside in <%= link_to @mate.house.name, house_path(@mate.house) %></p>
-    <%= form_for @mate do |f| %>
-      <%= f.hidden_field :house_id, :value => nil %>
-      <%= f.submit "Leave This House" %>
-    <% end %>
   <% end %>
 
 </div>

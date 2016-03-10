@@ -1,0 +1,128 @@
+.popup {
+  z-index: -1;
+  top: 5%;
+  position: absolute;
+  opacity: 0;
+  padding: 0.5rem;
+  margin: auto;
+  border-radius: 3%;
+  border: 10px $popup-border-color solid;
+
+  .popup-layout {
+    text-align: right;
+  }
+
+  .close-popup-link {
+    text-decoration: underline;
+    color: $medium-gray;
+    cursor: pointer;
+  }
+
+  @include media($medium-screen-up) {
+    @include span-columns(6);
+    @include shift(3);
+  }
+
+  @include media($small-screen-only) {
+    @include span-columns(12);
+    &.is-active {
+      max-height: 30rem;
+    }
+
+    @include media($medium-screen-only) {
+      overflow: scroll;
+      max-height: 30rem;
+    }
+  }
+
+
+  transition: all 0.25s ease-in;
+
+  &.is-active {
+    opacity: 1;
+    z-index: 100;
+    background-color: $base-background-color;
+    cursor: default;
+    position: fixed;
+    overflow: scroll;
+  }
+
+  .popup-form {
+    @include media($small-screen-only) {
+      img {
+        float: none;
+        margin: 0 auto;
+        display: block;
+      }
+
+      .notification-preferences {
+        margin: 1rem 0;
+      }
+    }
+  }
+}
+
+#overlay {
+  background-color: transparent;
+  min-height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -2;
+
+  transition: all 0.25s ease-in;
+
+  &.is-active {
+    background-color: black;
+    z-index: 99;
+    opacity: 0.75;
+    cursor: pointer;
+    position: fixed;
+  }
+}
+
+.noscroll {
+  overflow: hidden;
+}
+
+.notification-preferences {
+  display: inline-block;
+  border: 4px solid $nav-bar-background-color;
+  border-radius: 5%;
+  padding: 0.5rem;
+  margin-top: -4rem;
+  display: inline-block;
+  position: relative;
+  top: -4rem;
+  width: 33%;
+
+  @include media($small-and-medium-screens) {
+    display: block;
+    margin-top: 0;
+    top: 0;
+    width: 99%;
+  }
+
+}
+
+.mate-avatar-settings {
+  display: inline-block;
+  width: 66%;
+  position: relative;
+
+  @include media($small-and-medium-screens) {
+    display: block;
+    margin: 0 auto;
+  }
+
+}
+
+input#mate_mate_avatar {
+  padding-left: 3rem;
+
+  @include media($small-and-medium-screens) {
+    padding-left: 2rem;
+  }
+}
