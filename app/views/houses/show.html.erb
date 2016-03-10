@@ -48,7 +48,11 @@
 
   <div id="announcements" class="full-container">
     <div class="full-card">
-      <h3 class="full-card-header">House Announcements</h3>
+      <h3 class="full-card-header">
+        House Announcements
+        <%= button_tag "Show", id: "show-announcements-button" %>
+        <%= button_tag "Hide", id: "hide-announcements-button" %>
+      </h3>
       <div id="announcements-list" class="full-card-list">
         <%= render(@announcements) || "No announcements!" %>
       </div>
