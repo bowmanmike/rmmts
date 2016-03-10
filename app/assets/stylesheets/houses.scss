@@ -50,11 +50,6 @@
   }
 }
 
-#purchases-expenses {
-  @include outer-container;
-  padding: 1rem;
-}
-
 .house-card {
   @include media($small-screen-only) {
     @include span-columns(12);

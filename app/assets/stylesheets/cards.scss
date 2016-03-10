@@ -83,7 +83,8 @@
   border-bottom-left-radius: $card-border-radius;
   border-bottom-right-radius: $card-border-radius;
 
-  &.expense-item {
+  &.expense-item,
+  &.purchase-item {
     height: $expense-card-item-height;
   }
 }
@@ -100,6 +101,9 @@
   }
 
   & > .expense-summary > dl > .expense-pay > .new-expense-payment-button button {
+    opacity: 1;
+  }
+  & > .purchase-summary > dl > .purchase-pay > .new-purchase-payment-button button {
     opacity: 1;
   }
 }

@@ -1,18 +1,32 @@
-<div class="purchase sub-card-item">
-  <p>
-    <strong>
-      <%= link_to "#{purchase.name}: #{number_to_currency(purchase.amount)}", mate_purchase_path(purchase.mate, purchase), remote: true, class: "show-purchase-link" %>
-    </strong><br>
-    Bought by: <%= purchase.mate.full_name %><br>
-    Still owed: <%= number_to_currency(purchase.amount_owed) %><br>
-    Your share: <%= number_to_currency(purchase.amount_for_each) %>
-    <% if purchase.image.present? %>
-      Click <%= link_to "here", image_url("#{purchase.image}") %> to see a picture.
-    <% end %>
-    <%= link_to button_tag("Make a Payment"), new_mate_purchase_payment_path(purchase.mate, purchase), class: "new-purchase-payment-button", remote: true %><br>
+<div class="purchase-item card-item">
+  <div class="purchase-summary card-summary">
+    <dl>
+      <dd class="purchase-name">
+        <%= link_to "#{purchase.name}", mate_purchase_path(purchase.mate, purchase), remote: true, class: "show-purchase-link" %>
+        <span class="purchase-date">by <%= purchase.mate.username %></span>
+        </span>
+      </dd>
+      <dd class="purchase-amount">
+        <%= number_to_currency(purchase.amount) %>
+      </dd>
+      <dd class="purchase-amount-remaining">
+        Still owed: <%= number_to_currency(purchase.amount_owed) %>
+      </dd>
+      <dd class="purchase-pay">
+        <% if purchase.mate != current_user %>
+          <%= link_to button_tag("Pay"), new_mate_purchase_payment_path(purchase.mate, purchase), class: "new-purchase-payment-button", remote: true %>
+        <% end %>
+      </dd>
+    </dl>
+  </div>
+  <div class="card-links">
     <% if purchase.mate == current_user %>
-      <%= link_to button_tag("edit"), edit_mate_purchase_path(purchase.mate, purchase), remote: true, class: "edit-purchase-button" %>
-      <%= link_to button_tag("delete"), mate_purchase_path(purchase.mate, purchase), method: :delete, remote: true %>
+      <%= link_to image_tag("edit.svg", class: "item-icon"), edit_mate_purchase_path(purchase.mate, purchase), remote: true, class: "item-icon-link" %><br>
+      <%= link_to image_tag("x.svg", class: "item-icon"), mate_purchase_path(purchase.mate, purchase), method: :delete, data: {confirm: "Are you sure you want to delete this purchase?"}, class: "item-icon-link", remote: true %><br>
     <% end %>
-  </p>
+
+    <% if purchase.image.present? %>
+      <%= link_to image_tag("attachment.svg", class: "item-icon"), image_url("#{purchase.image}"), class: "item-icon-link" %>
+    <% end %>
+  </div>
 </div>
