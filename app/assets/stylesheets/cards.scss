@@ -14,6 +14,11 @@
   padding: 1rem;
   border-radius: $card-border-radius;
   background-color: $card-background-color;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: $medium-gray;
+  border-bottom-left-radius: $card-border-radius;
+  border-bottom-right-radius: $card-border-radius;
 }
 
 .full-card-list {
@@ -35,6 +40,11 @@
   @include media($small-screen-only) {
     @include span-columns(12);
   }
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: $medium-gray;
+  border-bottom-left-radius: $card-border-radius;
+  border-bottom-right-radius: $card-border-radius;
 }
 
 .card {

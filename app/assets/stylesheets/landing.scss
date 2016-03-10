@@ -25,13 +25,11 @@
 }
 
 #title-background-shading {
-  // position: fixed;
   height: 100%;
   width: 100%;
   background-color: RGBa(19, 40, 88, 0.6);
 }
 #landing-page-title {
-  // color: red;
   color: white;
   position: absolute;
   top: 80%;
@@ -39,7 +37,7 @@
   transform: translate(-50%,-50%);
 }
 #landing-page-title > h1 {
-  font-family: 'Poiret One', cursive;
+  font-family: 'Raleway', sans-serif;
   letter-spacing: 0.2rem;
   @include media($small-screen-only) {
     font-size: 2.8rem;
@@ -52,7 +50,7 @@
   }
 }
 #landing-page-links {
-  color: #254157;
+  color: white;
   display: inline-block;
   position: absolute;
   top: 105%;
@@ -65,26 +63,25 @@
 #link-background-shading {
   height: 100%;
   width: 100%;
-  background-color: white;
+  background-color: $color1;
   // @include linear-gradient(to top, #673ab7, #BC3AB7);
 }
 #more-info-button {
   a {
-    color: #254157;
+    color: white;
   }
   a:hover {
-    color: #542437;
     font-weight: bold;
   }
   font-size: 1.3rem;
   position: absolute;
-  top: 145%;
+  top: 155%;
   left: 50%;
   transform: translate(-50%,-50%);
 }
 #info-div {
   color: white;
-  background-color: #542437;
+  background-color: #562347;
   position: fixed;
   bottom: 0;
   height: 0;
