@@ -34,6 +34,8 @@
 }
 #announcements-list {
   height: 0;
+}
+.full-card-list {
   overflow: hidden;
 }
 #chores {
@@ -66,4 +68,7 @@
     @include span-columns(6);
     @include omega(2n);
   }
+}
+.top-bar {
+  z-index: 1;
 }
