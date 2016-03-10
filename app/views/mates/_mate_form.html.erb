@@ -12,7 +12,7 @@
       <%= form_for @mate do |f| %>
         <div class="action">
           <%= f.hidden_field :house_id, :value => nil %>
-          <%= f.submit "Leave This House" %>
+          <%= f.submit "Leave This House", class: "leave-house-button" %>
         </div>
       <% end %>
     <% end %>

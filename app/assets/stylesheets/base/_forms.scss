@@ -133,13 +133,18 @@ input#chore_frequency_integer {
     display: inline-block;
   }
 
-  .action {
+  form {
     display: inline-block;
-    width: auto;
+  }
 
-    input[type="submit"] {
-      // width: auto;
-      display: inline-block;
+  .action {
+    width: auto;
+    display: inline-block;
+
+    input.leave-house-button {
+      width: auto;
+      padding: 0.4rem;
+
     }
   }
 }
