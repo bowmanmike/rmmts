@@ -27,6 +27,11 @@
   border-radius: $card-border-radius;
   background-color: $card-background-color;
   height: 34rem;
+  margin-bottom: 1rem;
+
+  @include media($small-screen-only) {
+    @include span-columns(12);
+  }
 }
 
 .card {
