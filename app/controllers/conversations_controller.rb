@@ -10,6 +10,11 @@ before_filter :require_login
     @conversation = Conversation.find(params[:id])
     @messages = @conversation.messages.order(created_at: :desc)
     @new_message = current_user.messages.build
+
+    respond_to do |format|
+      format.html { render @conversation }
+      format.js
+    end
   end
 
   def create
