@@ -4,10 +4,6 @@
   <h3>Your conversation with <%= conversation.sender.full_name %></h3><br>
 <% end %>
 
-<div id="new-message-form">
-  <%= render '/messages/new_message' %>
-</div>
-
 <div id="messages">
   <%= render @messages %>
 </div>
