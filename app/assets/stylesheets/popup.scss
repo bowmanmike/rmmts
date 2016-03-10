@@ -53,6 +53,12 @@
       display: block;
       width: 100%;
     }
+
+    .chore-form-submit {
+      display: block;
+      width: 100%;
+    }
+
     @include media($small-screen-only) {
       img {
         float: none;
