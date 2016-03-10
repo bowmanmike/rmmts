@@ -2,24 +2,19 @@
   <div class="expense-summary card-summary">
     <dl>
       <dd class="expense-name">
-        <%= link_to expense.name, house_expense_path(@house, expense), remote: true, class: "show-expense-link" %>
+        <%= link_to expense.name, house_expense_path(@house, expense), remote: true, class: "show-expense-link" %> <span class="expense-date">on <%= expense.due_date.strftime("%A, %B %e") %></span>
       </dd>
-      <dd class="expense-date">
-        Due on <%= expense.due_date.strftime("%A, %B %e") %></span>
+      <dd class="expense-amount">
+        <%= number_to_currency(expense.amount) %>
       </dd>
       <dd class="expense-amount-remaining">
         Remaining: <%= number_to_currency(expense.amount - expense.payments.sum(:amount)) %>
       </dd>
+      <dd class="expense-pay"><%= link_to button_tag("Pay"), new_house_expense_payment_path(expense.house, expense), class: "new-expense-payment-button", remote: true %></dd>
     </dl>
   </div>
-  <div class="expense-amount">
-    <%= number_to_currency(expense.amount) %>
-  </div>
-  <div class="expense-pay">
-    <%= link_to button_tag("Pay"), new_house_expense_payment_path(expense.house, expense), class: "new-expense-payment-button", remote: true %>
-  </div>
   <div class="card-links">
-    <%= link_to image_tag("edit.svg", class: "item-icon"), edit_house_expense_path(expense.house, expense), class: "item-icon-link edit-expense-button", remote: true %>
-    <%= link_to image_tag("x.svg", class: "item-icon"), house_expense_path(expense.house, expense), method: :delete, data: {confirm: "Are you sure you want to delete this expense?"}, class: "item-icon-link", remote: true %>
+    <%= link_to image_tag("edit.svg", class: "item-icon"), edit_house_expense_path(expense.house, expense), class: "item-icon-link edit-expense-button", remote: true %><br>
+    <%= link_to image_tag("x.svg", class: "item-icon"), house_expense_path(expense.house, expense), method: :delete, data: {confirm: "Are you sure you want to delete this expense?"}, class: "item-icon-link", remote: true %><br>
   </div>
 </div>

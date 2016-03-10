@@ -18,20 +18,18 @@
 }
 
 .expense-amount {
-  padding-top: 1.3rem;
-  padding-left: 2rem;
-  float: left;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 600;
 }
 
 .expense-amount-remaining {
+  display: inline-block;
   font-size: 0.8rem;
   color: $medium-gray;
 }
 
 .expenses-purchases-container {
-  
+
 }
 
 .expense-item {
@@ -39,19 +37,17 @@
 }
 
 .expense-pay {
-  float: left;
-  margin-top: 2rem;
-  margin-left: 1rem;
+  display: inline-block;
+  margin-left: 0.3rem;
 }
 
 .new-expense-payment-button {
 
-  & >button {
+  & > button {
     padding: 0.4rem;
     border-radius: 0;
     font-family: $base-font-family;
     font-size: 0.8rem;
-    margin: 0 0 0 0.2rem;
     opacity: 0;
   }
 }
