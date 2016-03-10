@@ -24,7 +24,7 @@ before_filter :require_login
       @conversation = Conversation.create(conversation_params)
     end
 
-    redirect_to conversation_path(@conversation)
+    redirect_to conversations_path
   end
 
   private
