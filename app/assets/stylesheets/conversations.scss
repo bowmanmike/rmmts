@@ -20,7 +20,7 @@
   @include span-columns(12);
 
   @include media($medium-screen-up) {
-    @include span-columns(6);
+    @include span-columns(8);
 
     display: inline-block;
   }
@@ -35,23 +35,31 @@
 }
 
 .messages {
-  max-height: 20rem;
+  max-height: 34rem;
   min-height: 20rem;
   overflow: scroll;
+
+  @include media($medium-screen-up) {
+    max-height: 26rem;
+  }
 }
 
-.send-message {
+.new-message {
+  height: 5rem;
   width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
 
   @include media($medium-screen-up) {
-    @include span-columns(6);
+    @include span-columns(8);
     @include shift(4);
-    position: inherit;
+    position: relative;
     bottom: auto;
     left: auto;
+    height: 8rem;
+    top: -9rem;
+    margin-bottom: 0;
   }
 
   .action {
@@ -83,4 +91,8 @@
   &:nth-of-type(odd) {
     background-color: $lightest-gray;
   }
+}
+
+.conversation-index-header {
+  margin-bottom: 0;
 }
