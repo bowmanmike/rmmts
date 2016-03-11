@@ -116,7 +116,12 @@
   & > .expense-summary > dl > .expense-pay > .new-expense-payment-button button {
     opacity: 1;
   }
+
   & > .purchase-summary > dl > .purchase-pay > .new-purchase-payment-button button {
+    opacity: 1;
+  }
+
+  & > .purchase-summary > dl > .purchase-by > .purchase-pay > .new-purchase-payment-button button {
     opacity: 1;
   }
 }
@@ -147,4 +152,36 @@
 
 .hide-card {
   display: none;
+}
+#roommates {
+  text-align: center;
+  padding: 1rem;
+  border-radius: $card-border-radius;
+  background-color: $card-background-color;
+  border-bottom-style: solid;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: $medium-gray;
+  border-bottom-left-radius: $card-border-radius;
+  border-bottom-right-radius: $card-border-radius;
+}
+.roommate {
+  position: relative;
+  display: inline-block;
+  padding: 0 1rem 0 1rem;
+  img {
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    overflow: hidden;
+  }
+  // p {
+  //   position: absolute;
+  //   top: 25%;
+  //   left: 3rem;
+  // }
+  // a {
+  //   height: 2rem;
+  //   width: auto;
+  // }
 }

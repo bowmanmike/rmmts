@@ -20,7 +20,7 @@ $(document).on('ready page:load', function() {
     showPopUp();
   });
 
-  $(document).on('click', '.show-owed-purchases-link', function(e) {
+  $(document).on('click', '.new-purchase-button', function(e) {
     e.preventDefault();
 
     showPopUp();
