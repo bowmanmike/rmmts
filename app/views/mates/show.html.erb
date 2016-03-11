@@ -76,7 +76,11 @@
       </h3>
     </div>
     <div id="mate-owed-payments-list" class="card-list">
-      <%= render partial: "purchases/housemate_purchase", collection: @housemate_purchases %>
+      <% if @housemate_purchases.any? %>
+        <%= render @housemate_purchases %>
+      <% else %>
+        <p>No purchases yet.</p>
+      <% end %>
     </div>
   </div>
 
@@ -100,9 +104,7 @@
           <%= render @purchases %>
         </div>
       <% else %>
-        <p>
-          No purchases yet.
-        </p>
+        <p>No purchases yet.</p>
       <% end %>
     </div>
   </div>
