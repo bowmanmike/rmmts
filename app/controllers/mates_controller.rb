@@ -43,10 +43,10 @@ class MatesController < ApplicationController
   end
 
   def edit
-    respond_to do |format|
-      format.html { render 'mate_form' }
-      format.js {}
-    end
+    # respond_to do |format|
+    #   format.html { render 'mate_form' }
+    #   format.js {}
+    # end
   end
 
   def update
