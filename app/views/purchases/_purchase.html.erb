@@ -3,7 +3,7 @@
     <dl>
       <dd class="purchase-name">
         <%= link_to "#{purchase.name}", mate_purchase_path(purchase.mate, purchase), remote: true, class: "show-purchase-link" %>
-        <span class="purchase-by">by <%= purchase.mate.username %></span>
+        <span class="purchase-by">by <%= purchase.mate.first_name %></span>
       </dd>
       <dd class="purchase-amount">
         <%= number_to_currency(purchase.amount) %>

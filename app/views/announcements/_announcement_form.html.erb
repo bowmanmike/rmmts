@@ -19,9 +19,9 @@
 
     <div class="action">
       <% if @announcement.id? %>
-        <%= f.submit "Update This Announcement" %>
+        <%= f.submit "Update This Announcement", class: "announcement-form-submit" %>
       <% else %>
-        <%= f.submit "Create New Announcement" %>
+        <%= f.submit "Create New Announcement", class: "announcement-form-submit" %>
       <% end %>
     </div>
   <% end %>

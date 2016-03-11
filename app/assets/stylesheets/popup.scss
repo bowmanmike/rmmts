@@ -1,6 +1,6 @@
 .popup {
   z-index: -1;
-  top: 5%;
+  top: 10%;
   position: absolute;
   opacity: 0;
   padding: 0.5rem;
@@ -49,12 +49,15 @@
 
   .popup-form {
 
-    .mate-form-submit {
-      display: block;
-      width: 100%;
-    }
-
-    .chore-form-submit {
+    .mate-form-submit,
+    .chore-form-submit,
+    .announcement-form-submit,
+    .expense-form-submit,
+    .house-form-submit,
+    .expense-payment-form-submit,
+    .purchase-payment-form-submit,
+    .purchase-form-submit {
+      @include button(pill, #1A936F);
       display: block;
       width: 100%;
     }

@@ -35,14 +35,6 @@
   }
 }
 
-// .chore {
-//
-//   &.is-flipped {
-//     backface-visibility: visible !important;
-//     animation-name: flipOutY;
-//   }
-// }
-
 .chore-back-details {
   margin-left: 0.8rem;
 }
@@ -70,4 +62,9 @@ input.notifications-submit {
 
 .reassignment-style-description {
   font-weight: normal;
+}
+
+.show-notification-options,
+.hide-notification-options {
+  cursor: pointer;
 }
