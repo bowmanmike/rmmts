@@ -10,7 +10,7 @@ $(document).on('ready page:load', function() {
     showPopUp();
   })
 
-  $(document).on('click', '#edit-mate-link', function(e) {
+  $(document).on('click', '.edit-mate-link', function(e) {
     e.preventDefault();
     showPopUp();
   })

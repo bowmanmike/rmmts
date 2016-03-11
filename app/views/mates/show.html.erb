@@ -1,3 +1,20 @@
+<div class="full-container">
+  <div class="profile-card">
+    <%= image_tag @mate.mate_avatar, class: "mate-profile-avatar" %>
+    <div class="mate-summary">
+      <h3><%= @mate.full_name %></h3>
+      <p>
+        Username: <%= @mate.username %><br>
+        Lives at <%= @mate.house.name %>
+      </p>
+    </div>
+
+    <% if @mate == current_user %>
+      <%= link_to button_tag("Edit profile"), edit_mate_path(@mate), class: "edit-mate-link", remote: true %>
+    <% end %>
+  </div>
+</div>
+
 <div id="announcements" class="full-container">
   <% if current_user.house == nil %>
     <h2>Welcome to Chortal! To get started, create or join a house, or wait to be invited by your housemates.</h2>
