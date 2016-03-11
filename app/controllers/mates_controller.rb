@@ -32,11 +32,11 @@ class MatesController < ApplicationController
     if @mate.save
       auto_login(@mate)
       MateMailer.welcome_email(@mate).deliver_later
-      redirect_to mate_path(@mate.id)
+      redirect_to root_path
       flash[:notice] = 'account created'
     else
       flash[:alert] = "There was a problem creating your account. Please try again."
-      render :new
+      redirect_to root_path
     end
   end
 

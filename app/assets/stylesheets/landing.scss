@@ -28,6 +28,7 @@
   height: 100%;
   width: 100%;
   background-color: RGBa(19, 40, 88, 0.6);
+  // background-color: RGBa(125, 264, 167, 0.4);
 }
 #landing-page-title {
   color: white;
@@ -50,29 +51,27 @@
   }
 }
 #landing-page-links {
-  color: white;
+  font-family: 'Lobster', cursive;
+  color: $light-gray;
   display: inline-block;
   position: absolute;
   top: 105%;
   font-size: 1.5rem;
   @include span-columns(12);
   a {
-    @include button(pill, #FF6427);
+    color: $light-gray;
+    font-size: 2rem;
+  }
+  a:hover {
+    color: #FF6427;
   }
 }
 #link-background-shading {
   height: 100%;
   width: 100%;
   background-color: #333333;
-  // @include linear-gradient(to top, #673ab7, #BC3AB7);
 }
 #more-info-button {
-  // a {
-  //   color: white;
-  // }
-  // a:hover {
-  //   font-weight: bold;
-  // }
   button {
     @include button(#263C6D);
     font-size: 1rem;
@@ -85,7 +84,7 @@
 }
 #info-div {
   color: white;
-  background-color: #263C6D;
+  background-color: #1D2C4F;
   position: fixed;
   bottom: 0;
   height: 0;
