@@ -18,6 +18,7 @@ class MatesController < ApplicationController
   def show
     if current_user.house
       @announcements = @house.announcements
+      @expenses = @house.expenses.order(due_date: :asc)
       @purchases = @mate.purchases
       @housemate_purchases = @mate.housemate_purchases
       @chores = @house.chores.where(mate_id: [@mate.id, nil]).order(complete: :asc, due_date: :asc)
