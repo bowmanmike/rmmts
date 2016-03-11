@@ -35,8 +35,11 @@
 }
 
 .small-button {
-  padding: 0.1rem;
-  font-size: 0.5rem;
+  @include button(pill, #1A936F);
+  font-size: 0.8rem;
+  width: 3rem;
+  padding: 0.3rem 0.3rem;
+  border-radius: 0;
 }
 
 .popup-form {

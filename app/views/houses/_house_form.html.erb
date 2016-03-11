@@ -19,9 +19,9 @@
 
     <div class="action">
       <% if @house.id.present? %>
-        <%= f.submit "Submit Changes" %>
+        <%= f.submit "Submit Changes", class: "house-form-submit" %>
       <% else %>
-        <%= f.submit "Create New House" %>
+        <%= f.submit "Create New House", class: "house-form-submit" %>
       <% end %>
     </div>
   <% end %>
