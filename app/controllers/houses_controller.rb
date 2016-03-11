@@ -14,6 +14,7 @@ class HousesController < ApplicationController
 
   def show
     @purchases = @house.purchases
+    @chores = @house.chores.order(due_date: :asc)
     @expenses = @house.expenses.order(due_date: :asc)
     @announcement = @house.announcements.build
 
