@@ -33,7 +33,6 @@
   @include span-columns(12);
 
   padding: 1rem;
-  max-height: 28rem;
   border-radius: $card-border-radius;
   background-color: $card-background-color;
   margin-bottom: 1rem;
@@ -84,7 +83,6 @@
 .card-list {
   width: 100%;
   overflow: auto;
-  max-height: 24rem;
 
   @include media($medium-screen-up) {
     height: 24rem;
