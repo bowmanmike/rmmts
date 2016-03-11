@@ -47,12 +47,12 @@
           <% if @mate == current_user %>
             You Owe:
           <% else %>
-            <%= @mate.username.capitalize %> Owes: 
+            <%= @mate.username.capitalize %> Owes:
           <% end %>
           <%= number_to_currency(@mate.sum_owed_to_mates) %>
         </h3>
       </div>
-      <div id="mate-owed-payments-list" class="sub-card-list">
+      <div id="mate-owed-payments-list" class="card-list">
         <%= render partial: "purchases/housemate_purchase", collection: @housemate_purchases %>
       </div>
     </div>
