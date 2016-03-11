@@ -96,3 +96,9 @@
 .conversation-index-header {
   margin-bottom: 0;
 }
+
+.new-message-submit {
+  @include button(pill, #1A936F);
+  display: block;
+  width: 100%;
+}

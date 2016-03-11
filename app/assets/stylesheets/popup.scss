@@ -57,6 +57,7 @@
     .expense-payment-form-submit,
     .purchase-payment-form-submit,
     .purchase-form-submit {
+      @include button(pill, #1A936F);
       display: block;
       width: 100%;
     }
