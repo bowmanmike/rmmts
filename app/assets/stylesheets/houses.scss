@@ -72,3 +72,16 @@
 #house-edit-delete-links {
   padding-bottom: 1rem;
 }
+
+#house-form {
+  @include span-columns(8);
+  @include shift(2);
+  margin-top: 5rem;
+  height: 13rem;
+
+  input.house-form-submit {
+    @include button(pill, #1A936F);
+    display: block;
+    width: 100%;
+  }
+}
