@@ -30,9 +30,9 @@
     </div>
     <div class="action">
       <% if @purchase.id.present? %>
-        <%= f.submit "Update Purchase Info" %>
+        <%= f.submit "Update Purchase Info", class: "purchase-form-submit" %>
       <% else %>
-        <%= f.submit "Add New Purchase" %>
+        <%= f.submit "Add New Purchase", class: "purchase-form-submit" %>
       <% end %>
     </div>
 
