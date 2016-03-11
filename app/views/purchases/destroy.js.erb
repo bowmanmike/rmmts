@@ -1,5 +1,5 @@
-$('#purchase-list').html('<%= j(render @purchases) %>');
+$('.purchases-list').html('<%= j(render @purchases) %>');
 $('#purchases-buttons').html('<%= j(link_to button_tag("Add new purchase"), new_mate_purchase_path(current_user), remote: true) %>');
 <% if @purchases.empty? %>
-  $('#purchase-list').html('No Purchases Right Meow');
+  $('.purchases-list').html('No Purchases Right Meow');
 <% end %>

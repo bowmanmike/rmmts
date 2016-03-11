@@ -1,5 +1,5 @@
-$('#expenses-list').html('<%= j(render @expenses) %>');
+$('.expenses-list').html('<%= j(render @expenses) %>');
 $('#expenses-buttons').html('<%= j(link_to button_tag("Add new expense"), new_house_expense_path(@house), remote: true) %>');
 <% if @expenses.empty? %>
-  $('#expenses-list').html('No household expenses yet!');
+  $('.expenses-list').html('No household expenses yet!');
 <% end %>
