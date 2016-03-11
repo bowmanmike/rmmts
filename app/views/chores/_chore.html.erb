@@ -48,7 +48,7 @@
     </div>
 
     <div class="card-links">
-      <%= button_tag image_tag("menu.svg", class: "item-icon"), class: "item-icon-link show-notification-options" %><br>
+      <%= image_tag "menu.svg", class: "item-icon item-icon-link show-notification-options" %><br>
       <%= link_to image_tag("edit.svg", class: "item-icon"), edit_house_chore_path(chore.house, chore), class: "item-icon-link edit-chore-button", remote: true %><br>
       <%= link_to image_tag("x.svg", class: "item-icon"), house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" }, class: "item-icon-link", remote: true %>
     </div>
@@ -101,7 +101,7 @@
       <% end %>
     </div>
     <div class="card-links">
-      <%= button_tag image_tag("x.svg", class: "item-icon"), class: "item-icon-link hide-notification-options" %>
+      <%= image_tag "x.svg", class: "item-icon item-icon-link hide-notification-options" %>
     </div>
   </div>
 </div>
