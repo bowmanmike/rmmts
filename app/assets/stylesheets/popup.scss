@@ -58,7 +58,8 @@
     .expense-payment-form-submit,
     .purchase-payment-form-submit,
     .purchase-form-submit,
-    .login-form-submit {
+    .login-form-submit,
+    .leave-house-button {
       @include button(pill, #1A936F);
       display: block;
       width: 100%;
