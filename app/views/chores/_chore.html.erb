@@ -31,7 +31,7 @@
                 <%= f.submit "claim", class: "small-button" %>
               <% end %>
             <% else %>
-              <span class="claimed-by"><strong><%= chore.mate.username %></strong></span>
+              <span class="claimed-by"><strong><%= chore.mate.first_name %></strong></span>
             <% end %>
 
             <% if chore.mate == current_user %>

@@ -47,7 +47,7 @@
           <% if @mate == current_user %>
             You Owe:
           <% else %>
-            <%= @mate.username.capitalize %> Owes:
+            <%= @mate.first_name.capitalize %> Owes:
           <% end %>
           <%= number_to_currency(@mate.sum_owed_to_mates) %>
         </h3>
@@ -63,7 +63,7 @@
           <% if @mate == current_user %>
             You Are Owed:
           <% else %>
-            <%= @mate.username.capitalize %> Is Owed:
+            <%= @mate.first_name.capitalize %> Is Owed:
           <% end %>
           <%= number_to_currency(@mate.sum_owed_to_self) %>
         </h3>
