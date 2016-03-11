@@ -3,3 +3,4 @@ $('#purchases-buttons').html('<%= j(link_to button_tag("Add new purchase"), new_
 <% if @purchases.empty? %>
   $('.purchases-list').html('No Purchases Right Meow');
 <% end %>
+$('#mate-purchases-list').html('<%= j(render(partial: "purchases/purchase", collection: @mate.purchases, as: :purchase)) %>');
