@@ -116,7 +116,12 @@
   & > .expense-summary > dl > .expense-pay > .new-expense-payment-button button {
     opacity: 1;
   }
+
   & > .purchase-summary > dl > .purchase-pay > .new-purchase-payment-button button {
+    opacity: 1;
+  }
+
+  & > .purchase-summary > dl > .purchase-by > .purchase-pay > .new-purchase-payment-button button {
     opacity: 1;
   }
 }

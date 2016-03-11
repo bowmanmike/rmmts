@@ -14,29 +14,39 @@
   </head>
 
   <body>
-    <% if current_user %>
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <%= link_to "chortal", root_path, class: "site-logo" %>
-        <% if current_user %>
-          <%= link_to "house", house_path(current_user.house) if current_user.house.present? %>
-          <%= link_to "houses", houses_path if current_user.house.blank? %>
-          <%= link_to "messages", conversations_path %>
-        <% end %>
+    <header class="navigation" role="banner">
+      <div class="navigation-wrapper">
+        <%= link_to "chortal", root_path, class: "site-logo logo" %>
+        <%= link_to "MENU", "", class: "navigation-menu-button", id: "js-mobile-menu"  %>
+        <nav role="navigation">
+          <ul id="js-navigation-menu" class="navigation-menu show">
+            <% if current_user %>
+              <li class="nav-link">
+                <%= link_to "House", house_path(current_user.house) if current_user.house.present? %>
+                <%= link_to "Houses", houses_path if current_user.house.blank? %>
+              </li>
+              <li class="nav-link">
+                <%= link_to "Messages", conversations_path %>
+              </li>
+              <li class="nav-link">
+                <%= link_to "#{current_user.username.capitalize}", mate_path(current_user) %>
+                <!-- <%#= link_to "Edit Profile", edit_mate_path(current_user), id: "edit-mate-link", remote: true %> -->
+              </li>
+              <li class="nav-link">
+                <%= link_to "Log out", logout_path, method: :post %>
+              </li>
+            <% else %>
+              <li class="nav-link">
+                <%= link_to "Login", new_session_path, id: "login-link", remote: true %>
+              </li>
+              <li class="nav-link">
+                <%= link_to "Sign up", new_mate_path, id: "signup-link", remote: true %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
       </div>
-      <div class="top-bar-right">
-        <% if current_user %>
-          Logged in as <%= current_user.username %> |
-          <%= link_to "View Profile", mate_path(current_user) %> |
-          <%= link_to "Edit Profile", edit_mate_path(current_user), id: 'edit-mate-link', remote: true %> |
-          <%= link_to "Log out", logout_path, method: :post %>
-        <% else %>
-          <%= link_to "Login", new_session_path, id: "login-link", remote: true %>
-          <%= link_to "Sign up", new_mate_path, id: "signup-link", remote: true %>
-        <% end %>
-      </div>
-    </div>
-    <% end %>
+    </header>
 
     <div id="overlay"></div>
 
