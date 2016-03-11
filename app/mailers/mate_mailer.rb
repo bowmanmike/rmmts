@@ -4,7 +4,7 @@ class MateMailer < ApplicationMailer
     @mate = mate
     @homepage = houses_url
     @newhouse = new_house_url
-    mail(to: @mate.email, subject: "Welcome to rmmts!")
+    mail(to: @mate.email, subject: "Welcome to Chortal!")
   end
 
   def join_house(mate, house)
