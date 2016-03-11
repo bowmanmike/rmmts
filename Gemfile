@@ -50,6 +50,7 @@ gem 'delayed_job_active_record'
 gem 'twilio-ruby'
 gem 'phony_rails'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem 'pry-rails'
 
 # Use Nokogiri to parse svg files
 gem 'nokogiri'
@@ -61,7 +62,6 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'byebug'
   gem 'factory_girl_rails'
-  gem 'pry-rails'
 end
 
 group :development do
