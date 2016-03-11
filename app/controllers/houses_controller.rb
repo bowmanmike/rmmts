@@ -14,7 +14,7 @@ class HousesController < ApplicationController
 
   def show
     @purchases = @house.purchases
-    @expenses = @house.expenses
+    @expenses = @house.expenses.order(due_date: :asc)
     @announcement = @house.announcements.build
 
     respond_to do |format|
