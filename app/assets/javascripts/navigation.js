@@ -1,13 +1,12 @@
-$(document).ready(function() {
+$(document).on('ready page:load', function() {
   var menuToggle = $('#js-mobile-menu').unbind();
-  $('#js-navigation-menu').removeClass("show");
+
+  if (window.matchMedia("(max-width: 599px)").matches) {
+    $('#js-navigation-menu').removeClass("show");
+  }
 
   menuToggle.on('click', function(e) {
     e.preventDefault();
-    $('#js-navigation-menu').slideToggle(function(){
-      if($('#js-navigation-menu').is(':hidden')) {
-        $('#js-navigation-menu').removeAttr('style');
-      }
-    });
+    $('#js-navigation-menu').slideToggle();
   });
 });

@@ -128,11 +128,15 @@
 
 .card-summary {
   float: left;
-  width: 11.3rem;
 
   & > dl {
     margin: 0;
     padding-top: 0.4rem;
+  }
+
+  @include media($small-screen-only) {
+    width: 11.3rem;
+    overflow-x: hidden;
   }
 }
 

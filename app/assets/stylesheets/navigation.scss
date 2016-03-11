@@ -17,7 +17,7 @@ header.navigation {
   $navigation-active-link-color: transparentize(white, 0.5);
   $navigation-submenu-padding: 1em;
   $navigation-submenu-width: 12em;
-  $horizontal-bar-mode: $medium-screen;
+  $horizontal-bar-mode: $medium-screen-up;
 
   background-color: $navigation-background;
   border-bottom: 1px solid darken($navigation-background, 10);
@@ -93,13 +93,14 @@ header.navigation {
 
     &.show {
       display: block;
+
+      @include media ($horizontal-bar-mode) {
+        display: inline;
+        margin: 0;
+        padding: 0;
+      }
     }
 
-    @include media ($horizontal-bar-mode) {
-      display: inline;
-      margin: 0;
-      padding: 0;
-    }
   }
 
   // The nav items
