@@ -36,6 +36,14 @@ class Mate < ActiveRecord::Base
     self.sent_conversations + self.received_conversations
   end
 
+  def create_conversations
+    self.house.mates.where.not(id: self.id).each do |housemate|
+      if Conversation.between(self.id, housemate.id).length == 0
+        Conversation.create(sender_id: self.id, receiver_id: housemate.id)
+      end
+    end
+  end
+
   def full_name
     "#{self.first_name} #{self.last_name}"
   end

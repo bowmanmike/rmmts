@@ -1,0 +1,11 @@
+<% if conversation.sender == current_user %>
+  <h3>Your conversation with <%= conversation.receiver.full_name %></h3><br>
+<% else %>
+  <h3>Your conversation with <%= conversation.sender.full_name %></h3><br>
+<% end %>
+
+<% if conversation.messages.any? %>
+  <%= render @messages %>
+<% else %>
+  <p>No messages yet!</p>
+<% end %>

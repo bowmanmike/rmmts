@@ -52,6 +52,7 @@ class MatesController < ApplicationController
       if mate_params[:house_id].present?
         MateMailer.join_house(@mate, @mate.house).deliver_later
         @mate.assign_notifications
+        @mate.create_conversations
         redirect_to house_path(@mate.house), notice: 'account updated'
       elsif mate_params[:notify_sms] || mate_params[:notify_email]
         @mate.update_all_notifications
