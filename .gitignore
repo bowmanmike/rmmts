@@ -21,3 +21,7 @@
 /config/secrets.yml
 
 .fog
+
+# Ignore test coverage results
+# Results can be found in /coverage/index.html
+coverage
