@@ -55,8 +55,7 @@ gem 'pry-rails'
 # Use Nokogiri to parse svg files
 gem 'nokogiri'
 
-gem 'carrierwave_direct'
-gem 'fog-aws'
+gem 'cloudinary'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

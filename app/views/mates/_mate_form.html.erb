@@ -67,7 +67,7 @@
       <% else %>
         <div class="field">
           <div class="image-placeholder">
-            <%= image_tag "https://s3.amazonaws.com/chortal/avatar-placeholder.png", height: 150, class: "mate-avatar" %>
+            <%= cl_image_tag("avatar-placeholder_h5gdno.png"), class: "mate-avatar" %>
           </div>
           <%= f.label :mate_avatar, "Upload a Photo!" %>
           <%= f.file_field :mate_avatar %>
