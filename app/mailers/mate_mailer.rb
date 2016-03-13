@@ -37,4 +37,9 @@ class MateMailer < ApplicationMailer
     mail(to: @mate.email, subject: "Payment for #{@expense.name} is due")
   end
 
+  def reset_password_email(mate)
+    @mate = mate
+    mail(to: @mate.email, subject: "Reset Password")
+  end
+
 end
