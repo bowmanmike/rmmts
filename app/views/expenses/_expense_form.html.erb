@@ -6,7 +6,7 @@
     <h3>Add New Expense</h3>
   <% end %>
 
-  <%= form_for [@house, @expense], remote: true do |f| %>
+  <%= form_for [@house, @expense], remote: true, authenticity_token: true do |f| %>
 
     <div class="field">
       <%= f.label :name %><br>

@@ -1,5 +1,5 @@
 <div id="announcement-form">
-  <%= form_for [@house, @announcement], remote: true do |f| %>
+  <%= form_for [@house, @announcement], remote: true, authenticity_token: true do |f| %>
     <div class="field">
       <%= f.label :title %>
       <%= f.text_field :title %>
