@@ -57,6 +57,10 @@ gem 'nokogiri'
 
 gem 'cloudinary'
 
+group :test do
+  gem 'simplecov', :require => false
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'quiet_assets'
