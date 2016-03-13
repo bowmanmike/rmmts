@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306231059) do
+ActiveRecord::Schema.define(version: 20160313203854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20160306231059) do
   add_index "houses", ["creator_id"], name: "index_houses_on_creator_id", using: :btree
 
   create_table "mates", force: :cascade do |t|
-    t.string   "email",                           null: false
+    t.string   "email",                                          null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.string   "first_name"
@@ -116,9 +116,12 @@ ActiveRecord::Schema.define(version: 20160306231059) do
     t.datetime "updated_at"
     t.integer  "house_id"
     t.string   "phone_number"
-    t.boolean  "notify_email",     default: true
-    t.boolean  "notify_sms",       default: true
+    t.boolean  "notify_email",                    default: true
+    t.boolean  "notify_sms",                      default: true
     t.string   "mate_avatar"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
   end
 
   add_index "mates", ["email"], name: "index_mates_on_email", unique: true, using: :btree
