@@ -6,7 +6,7 @@
     <h3>Add a Purchase</h3>
   <% end %>
 
-  <%= form_for [@mate, @purchase], remote: true do |f| %>
+  <%= form_for [@mate, @purchase], remote: true, authenticity_token: true do |f| %>
 
     <div class="field">
       <%= f.label :name %><br>

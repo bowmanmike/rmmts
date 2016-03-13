@@ -6,7 +6,7 @@
     <h3>New Announcement</h3>
   <% end %>
 
-  <%= form_for [@house, @announcement], remote: true do |f| %>
+  <%= form_for [@house, @announcement], remote: true, authenticity_token: true do |f| %>
     <div class="field">
       <%= f.label :title %>
       <%= f.text_field :title, placeholder: "Party on Friday!" %>
