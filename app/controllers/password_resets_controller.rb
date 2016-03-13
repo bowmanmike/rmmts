@@ -1,6 +1,13 @@
 class PasswordResetsController < ApplicationController
   skip_before_filter :require_login
 
+  def new
+    respond_to do |format|
+      format.html { render '/password_resets/_request_reset_form' }
+      format.js {}
+    end
+  end
+
   def create
     @mate = Mate.find_by_email(params[:email])
 

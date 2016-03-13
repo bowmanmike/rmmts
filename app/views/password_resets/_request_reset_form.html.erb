@@ -1,0 +1,12 @@
+<div class="request-password-reset">
+  <%= form_tag password_reset_path, method: :post do %>
+    <div class="field">
+      <%= label_tag :email %>
+      <%= email_field_tag :email %>
+    </div>
+
+    <div class="action">
+      <%= submit_tag "Request Password Reset" %>
+    </div>
+  <% end %>
+</div>
