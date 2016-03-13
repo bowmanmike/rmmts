@@ -7,7 +7,7 @@
     <% end %>
   </div>
 
-  <%= form_for [@house, @chore], remote: true do |f| %>
+  <%= form_for [@house, @chore], remote: true, authenticity_token: true do |f| %>
 
     <div class="field">
       <%= f.label :name %><br>
