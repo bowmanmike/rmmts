@@ -39,6 +39,7 @@ class MateMailer < ApplicationMailer
 
   def reset_password_email(mate)
     @mate = mate
+    @url = edit_password_reset_url(@mate.reset_password_token)
     mail(to: @mate.email, subject: "Reset Password")
   end
 
