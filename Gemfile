@@ -58,6 +58,10 @@ gem 'nokogiri'
 gem 'carrierwave_direct'
 gem 'fog-aws'
 
+group :test do
+  gem 'simplecov', :require => false
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'quiet_assets'
