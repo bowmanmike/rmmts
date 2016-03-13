@@ -1,2 +1,36 @@
-<h1>PasswordResets#edit</h1>
-<p>Find me in app/views/password_resets/edit.html.erb</p>
+<h1>Reset Your Password</h1>
+
+<%= form_for @mate, :url => password_reset_path(@token), :html => {:method => :put} do |f| %>
+  <% if @mate.errors.any? %>
+    <div id="error-explanation">
+      <h2><%= pluralize(@mate.errors.count, "error") %> prohibited this change from being saved:</h2>
+
+      <ul>
+        <% @mate.errors.full_messages.each do |error| %>
+          <li><%= error.message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class="action">
+    <%= f.submit "Set New Password" %>
+  </div>
+
+
+<% end %>
