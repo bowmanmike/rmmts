@@ -6,7 +6,6 @@ class ChoresController < ApplicationController
   before_action :load_chore, only: [:show, :edit, :update, :destroy]
 
   after_action :check_notification_status, only: [:update]
-  after_action :check_points_status, only: [:update]
 
   def new
     @chore = Chore.new
@@ -108,21 +107,6 @@ class ChoresController < ApplicationController
       @chore.mate.remove_notifications_on_claim(@chore)
     elsif !@chore.check_claimed?
       @chore.house.mates.where.not(id: current_user.id).each { |mate| mate.assign_notifications }
-    end
-  end
-
-  def check_points_status
-    @mate = Mate.find(@chore.mate_id)
-
-    if @chore.complete
-      @point = @mate.points.build
-      @point.point_attributes(@chore)
-      @point.save
-    else
-      if Point.where(category_id: @chore.id, category: "Chore", mate_id: @mate.id, due_date: @chore.due_date)
-        @point = Point.where(category_id: @chore.id, category: "Chore", mate_id: @mate.id, due_date: @chore.due_date).first
-        @point.destroy
-      end
     end
   end
 

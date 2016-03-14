@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
   before_action :load_purchases
   before_action :load_expenses
 
-  after_action :check_points_status, only: [:create, :update]
+  after_action :assign_points, only: [:create]
 
   def new
     @payment = Payment.new
@@ -44,6 +44,7 @@ class PaymentsController < ApplicationController
 
     respond_to do |format|
       if @payment.save
+
         format.html do
           if params[:mate_id] && params[:purchase_id]
             redirect_to mate_purchase_path(@mate, @purchase)
@@ -129,29 +130,13 @@ class PaymentsController < ApplicationController
     @expenses = current_user.house.expenses
   end
 
-  def check_points_status
-    @mate = current_user
-
-    if @payment.expense_id
-      if @expense.has_paid?(@mate)
-        unless Point.where(mate_id: @mate.id, category: "Expense", category_id: @expense.id, due_date: @expense.due_date)
-          @point = @mate.points.build
-          @point.point_attributes(@expense)
-          @point.save
-          return
-        end
-      end
-    elsif @payment.purchase_id
-      if @purchase.paid_by?(@mate)
-        unless Point.where(mate_id: @mate.id, category: "Purchase", category_id: @purchase.id, due_date: @purchase.due_date)
-          @point = @mate.points.build
-          @point.point_attributes(@purchase)
-          @point.save
-          return
-        end
-      end
+  def assign_points
+    if @payment.expense_id != nil
+      @expense = Expense.find(@payment.expense_id)
+      Point.assign_points(@expense, @payment.mate)
+    elsif @payment.purchase_id != nil
+      @purchase = Purchase.find(@payment.purchase_id)
+      Point.assign_points(@purchase, @payment.mate)
     end
-
   end
-
 end
