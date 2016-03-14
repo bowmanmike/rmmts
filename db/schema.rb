@@ -169,6 +169,20 @@ ActiveRecord::Schema.define(version: 20160314155649) do
   add_index "payments", ["mate_id"], name: "index_payments_on_mate_id", using: :btree
   add_index "payments", ["purchase_id"], name: "index_payments_on_purchase_id", using: :btree
 
+  create_table "points", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "amount"
+    t.datetime "completed_date"
+    t.datetime "due_date"
+    t.string   "category"
+    t.integer  "category_id"
+    t.integer  "mate_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "points", ["mate_id"], name: "index_points_on_mate_id", using: :btree
+
   create_table "purchases", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -191,4 +205,5 @@ ActiveRecord::Schema.define(version: 20160314155649) do
   add_foreign_key "notifications", "mates"
   add_foreign_key "payments", "mates"
   add_foreign_key "payments", "purchases"
+  add_foreign_key "points", "mates"
 end

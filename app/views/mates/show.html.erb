@@ -9,6 +9,15 @@
       </p>
     </div>
 
+    <div class="mate-point-summary">
+      <div class="point-total">
+        <%= link_to (@mate.points.sum(:amount) || 0), mate_points_path(@mate) %>
+      </div>
+      <div class="point-subtitle">
+        Points
+      </div>
+    </div>
+
     <% if @mate == current_user %>
       <%= link_to button_tag("Edit profile"), edit_mate_path(@mate), class: "edit-mate-link", remote: true %>
     <% end %>

@@ -17,10 +17,11 @@ Rails.application.routes.draw do
       resources :payments, except: [:index]
     end
     resources :notifications, only: [:update]
-    post :update_all, controller: "notifications"
     member do
       get :activate
     end
+
+    resources :points, only: [:index, :create, :update]
   end
 
   resources :sessions, only: [:new, :create, :destroy]
