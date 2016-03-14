@@ -1,6 +1,13 @@
 class PasswordResetsController < ApplicationController
   skip_before_filter :require_login
 
+  def index
+    respond_to do |format|
+      # format.html { render :edit }
+      format.js {}
+    end
+  end
+
   def create
     @mate = Mate.find_by_email(params[:email])
 
