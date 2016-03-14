@@ -134,15 +134,19 @@ class PaymentsController < ApplicationController
 
     if @payment.expense_id
       if @expense.has_paid?(@mate)
-        @point = @mate.points.build
-        @point.point_attributes(@expense)
-        @point.save
+        unless Point.where(category: "Expense", category_id: @expense.id, due_date: @expense.due_date)
+          @point = @mate.points.build
+          @point.point_attributes(@expense)
+          @point.save
+        end
       end
     elsif @payment.purchase_id
       if @purchase.paid_by?(@mate)
-        @point = @mate.points.build
-        @point.point_attributes(@purchase)
-        @point.save
+        unless Point.where(category: "Purchase", category_id: @purchase.id, due_date: @purchase.due_date)
+          @point = @mate.points.build
+          @point.point_attributes(@purchase)
+          @point.save
+        end
       end
     end
 
