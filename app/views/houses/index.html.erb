@@ -33,8 +33,8 @@
 
 <% if current_user %>
   <% if !current_user.house %>
-    <% @houses.each do |house| %>
-      <p><%= link_to house.name, house_path(house) %>, created by <%= house.creator.username %> on <%= house.created_at %></p>
-    <% end %>
+    <div id="houses-list">
+      <%= render @houses %>
+    </div>
   <% end %>
 <% end %>
