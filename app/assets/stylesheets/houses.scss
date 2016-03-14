@@ -86,9 +86,17 @@
   }
 }
 
+.house-search,
 #houses-list {
   @include span-columns(8);
   @include shift(2);
-
   margin-top: 2rem;
+}
+
+.house-search {
+
+  input[type="submit"] {
+    @include button(pill, #1A936F);
+    width: 100%;
+  }
 }

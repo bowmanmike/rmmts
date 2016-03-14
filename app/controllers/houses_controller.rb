@@ -8,7 +8,11 @@ class HousesController < ApplicationController
     if current_user && current_user.house_id?
       redirect_to house_path(current_user.house)
     else
-      @houses = House.all
+      if params[:search]
+        @houses = House.where("name iLIKE ?", "%#{params[:search]}%")
+      else
+        @houses = House.all
+      end
     end
   end
 

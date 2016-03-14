@@ -1,8 +1,11 @@
-<%= form_for @houses do |f| %>
+<%= form_tag houses_path, method: :get, remote: true, id: "house-search-form" do %>
 
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, placeholder: "123 Fake St." %>
+    <%= text_field_tag :search, params[:search], placeholder: "123 Fake St.", class: "house-search-field" %>
+  </div>
+
+  <div class="action">
+    <%= submit_tag "Search" %>
   </div>
 
 <% end %>
