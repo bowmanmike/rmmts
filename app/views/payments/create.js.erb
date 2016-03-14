@@ -1,7 +1,7 @@
 <% if params[:expense_id] %>
-  $('#expenses-list').html("<%=j render partial: '/expenses/expense', collection: @expenses %>");
+  $('.expenses-list').html("<%=j render partial: '/expenses/expense', collection: @expenses %>");
   $('#mate-expenses-list').html("<%=j render partial: '/expenses/expense', collection: @expenses %>");
 <% elsif params[:purchase_id] %>
-  $('#purchases-list').html("<%=j render partial: '/purchases/purchase', collection: @purchases %>");
+  $('.purchases-list').html("<%=j render partial: '/purchases/purchase', collection: @purchases %>");
   $('#mate-purchases-list').html("<%=j render partial: '/purchases/purchase', collection: @purchases %>");
 <% end %>
