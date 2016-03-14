@@ -33,6 +33,11 @@
 
 <% if current_user %>
   <% if !current_user.house %>
+
+    <div class="house-search">
+      <%= render 'house_search_form' %>
+    </div>
+
     <div id="houses-list">
       <%= render @houses %>
     </div>

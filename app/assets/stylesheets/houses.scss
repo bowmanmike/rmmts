@@ -85,3 +85,10 @@
     width: 100%;
   }
 }
+
+#houses-list {
+  @include span-columns(8);
+  @include shift(2);
+
+  margin-top: 2rem;
+}
