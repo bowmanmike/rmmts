@@ -2,6 +2,10 @@ class PointsController < ApplicationController
 
   before_action :load_mate
 
+  def index
+    @points = @mate.points
+  end
+
   def create
     @point = @mate.points.build(point_params)
     @point.points_attributes(item)
