@@ -109,8 +109,14 @@
 }
 
 .houses-list {
+
   @include media($medium-screen-up) {
     @include span-columns(8);
     @include omega;
   }
+}
+
+.house-image {
+  height: 15rem;
+  border: 1px solid black;
 }
