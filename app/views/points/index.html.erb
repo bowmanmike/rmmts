@@ -1,0 +1,9 @@
+<div class="mate-points">
+  <h1><%= @mate.first_name %>'s Points</h1>
+  <h3>Total: <%= @mate.points.sum(:amount) %> points</h3>
+
+  <h4>Points Earned</h4>
+  <div class="points-transactions">
+    <%= render @points %>
+  </div>
+</div>

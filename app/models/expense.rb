@@ -88,16 +88,52 @@ class Expense < ActiveRecord::Base
     self.amount - self.current_cycle_total_payments
   end
 
+  def current_cycle_payments
+    payments = []
+    self.payments.each do |payment|
+      payments << payment if payment.target_due_date == self.due_date
+    end
+    payments
+  end
+
   def current_cycle_total_payments
     total = []
-    self.payments.each do |payment|
-      total << payment.amount if payment.target_due_date == self.due_date
+    self.current_cycle_payments.each do |payment|
+      total << payment.amount
     end
     if total.reduce(:+) == nil
       0
     else
       total.reduce(:+)
     end
+  end
+
+  def current_cycle_mate_payments(mate)
+    mate_payments = []
+    self.current_cycle_payments.each do |payment|
+      mate_payments << payment if payment.mate_id == mate.id
+    end
+    mate_payments
+  end
+
+  def current_cycle_total_mate_payments(mate)
+    mate_total = []
+    self.current_cycle_mate_payments(mate).each do |payment|
+      mate_total << payment.amount
+    end
+    if mate_total.reduce(:+) == nil
+      0
+    else
+      mate_total.reduce(:+)
+    end
+  end
+
+  def mate_amount
+    (self.amount / self.house.mates.size).round(2)
+  end
+
+  def has_paid?(mate)
+    self.mate_amount <= self.current_cycle_total_mate_payments(mate)
   end
 
   def is_paid?
