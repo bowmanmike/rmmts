@@ -282,7 +282,7 @@ Rails.application.config.sorcery.configure do |config|
     # your mailer class. Required.
     # Default: `nil`
     #
-    user.user_activation_mailer = MateMailers
+    user.user_activation_mailer = MateMailer
 
 
     # when true sorcery will not automatically
@@ -302,7 +302,7 @@ Rails.application.config.sorcery.configure do |config|
     # activation success email method on your mailer class.
     # Default: `:activation_success_email`
     #
-    # user.activation_success_email_method_name =
+    user.activation_success_email_method_name = nil
 
 
     # do you want to prevent or allow users that did not activate by email to login?

@@ -45,15 +45,13 @@ class MateMailer < ApplicationMailer
 
   def activation_needed_email(mate)
     @mate = mate
-    @url = "localhost:3000/#{mate.activation_token}/activate" # => Local testing only
-    # @url = "http://chortal.herokuapp.com/#{mate.activation_token}/activate" =>  Uncomment for deployment
+    @url = "http://chortal.herokuapp.com/mates/#{mate.activation_token}/activate"
     mail(to: @mate.email, subject: "Account Activation Required for chortal")
   end
 
   def activation_success_email(mate)
     @mate = mate
-    @url = "localhost:3000/login" # => Local testing only
-    # @url = "http://chortal.herokuapp.com/login" # => Uncomment for deployment
+    @url = "http://chortal.herokuapp.com/"
     mail(to: @mate.email, subject: "Activation Successful!")
   end
 

@@ -1,7 +1,9 @@
 class MatesController < ApplicationController
   before_action :load_mate, only: [:show, :edit, :update, :destroy]
   before_action :load_mate_notifications, only: [:show]
-  before_action :load_house, except: [:usernames, :new, :create]
+  before_action :load_house, except: [:usernames, :new, :create, :activate]
+
+  skip_before_filter :require_login, only: [:index, :new, :create, :activate]
 
   def usernames
     @mates = Mate.where("id != #{current_user.id}")
@@ -73,6 +75,15 @@ class MatesController < ApplicationController
   def destroy
     @mate.destroy
     redirect_to root_path, notice: 'account deleted'
+  end
+
+  def activate
+    if (@mate = Mate.load_from_activation_token(params[:id]))
+      @mate.activate!
+      redirect_to root_path, notice: "Activation successful!"
+    else
+      not_authenticated
+    end
   end
 
   private

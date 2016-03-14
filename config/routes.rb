@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     end
     resources :notifications, only: [:update]
     post :update_all, controller: "notifications"
+    member do
+      get :activate
+    end
   end
 
   resources :sessions, only: [:new, :create, :destroy]
