@@ -20,6 +20,7 @@ class Chore < ActiveRecord::Base
   validates_inclusion_of :reassignment_style, in: ["claimable", "random", "rotating"]
 
   before_destroy :delete_associated_jobs
+  before_save :check_chore_points
   after_save :update_reminder
 
   def recurring?
@@ -162,6 +163,12 @@ class Chore < ActiveRecord::Base
     puts "SMS from: #{message.from}"
     puts "SMS to: #{mate.phone_number}"
     puts "SMS body: #{reminder}"
+  end
+
+  def check_chore_points
+    if self.complete_changed?
+      Point.assign_points(self)
+    end
   end
 
 end

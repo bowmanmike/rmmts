@@ -10,6 +10,8 @@ class PaymentsController < ApplicationController
   before_action :load_purchases
   before_action :load_expenses
 
+  after_action :assign_points, only: [:create]
+
   def new
     @payment = Payment.new
 
@@ -42,6 +44,7 @@ class PaymentsController < ApplicationController
 
     respond_to do |format|
       if @payment.save
+
         format.html do
           if params[:mate_id] && params[:purchase_id]
             redirect_to mate_purchase_path(@mate, @purchase)
@@ -71,7 +74,7 @@ class PaymentsController < ApplicationController
     @payment.update_attributes(payment_params)
 
     if @payment.save
-      redirect_to mate_purchase_path(@mate, @purchase)
+      redirect_to mate_path(@mate)
       flash[:notice] = "Payment has been updated!"
     else
       render :edit
@@ -125,5 +128,15 @@ class PaymentsController < ApplicationController
 
   def load_expenses
     @expenses = current_user.house.expenses
+  end
+
+  def assign_points
+    if @payment.expense_id != nil
+      @expense = Expense.find(@payment.expense_id)
+      Point.assign_points(@expense, @payment.mate)
+    elsif @payment.purchase_id != nil
+      @purchase = Purchase.find(@payment.purchase_id)
+      Point.assign_points(@purchase, @payment.mate)
+    end
   end
 end
