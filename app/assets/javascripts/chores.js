@@ -12,11 +12,13 @@ $(document).on('ready page:load', function() {
     $('.incomplete-chores-list > .chore').draggable({
       containment: '.chores-full-container',
       snap: '.card-list',
+      revert: 'invalid'
     });
 
     $('.complete-chores-list > .chore').draggable({
       containment: '.chores-full-container',
       snap: '.card-list',
+      revert: 'invalid'
     })
 
     $('.incomplete-chores-list').droppable({
@@ -31,8 +33,7 @@ $(document).on('ready page:load', function() {
   }
 
   function choreDropEvent(event, ui) {
-    var chore = ui.draggable;
-    var checkmark = chore.find('.check-mark');
+    var checkmark = ui.draggable.find('.check-mark');
     checkmark.click();
   }
 
