@@ -20,5 +20,7 @@
 
   <% end %>
 
-  <p><%= button_to "Click Here to Reset Your Password", password_resets_path, method: :get, class: "request-password-reset-form", remote: true %></p>
+  <br>
+  <hr>
+  <%= button_to "Click Here to Reset Your Password", password_resets_path, method: :get, class: "password-reset-form-button", form_class: "request-password-reset-form", remote: true %>
 </div>

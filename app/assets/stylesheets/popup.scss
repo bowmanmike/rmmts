@@ -59,7 +59,9 @@
     .purchase-payment-form-submit,
     .purchase-form-submit,
     .login-form-submit,
-    .leave-house-button {
+    .leave-house-button,
+    .password-reset-form-button,
+    .request-password-reset-button {
       @include button(pill, #1A936F);
       display: block;
       width: 100%;
