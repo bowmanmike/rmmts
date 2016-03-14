@@ -1,3 +1,5 @@
 <h1><%= @chore.name %> is due</h1>
 
 <p>And you better have done it, or else...</p>
+
+<p>If you've already completed this chore, don't forget to <%= link_to "check it off", house_url(@chore.house) %></p>

@@ -1,3 +1,5 @@
 <%= @chore.name %> is due
 
 And you better have done it, or else...
+
+If you've already completed this chore, don't forget to <%= link_to "check it off", house_url(@chore.house) %>
