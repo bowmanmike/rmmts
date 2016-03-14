@@ -1,0 +1,9 @@
+<div class="show-house">
+  <h3><%= link_to house.name, house_path(house) %></h3>
+  <div class="house-image">
+    <%= image_tag house.house_image %>
+  </div>
+  <br>
+  <p>Number of Roommates: <%= house.mates.count %></p>
+  <p>Created by: <%= house.creator.full_name %></p>
+</div>

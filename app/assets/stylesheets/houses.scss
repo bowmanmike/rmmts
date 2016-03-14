@@ -85,3 +85,37 @@
     width: 100%;
   }
 }
+
+.search-for-house {
+  @include outer-container;
+}
+
+.house-search,
+.houses-list {
+  @include span-columns(12);
+  margin-top: 2rem;
+}
+
+.house-search {
+
+  input[type="submit"] {
+    @include button(pill, #1A936F);
+    width: 100%;
+  }
+
+  @include media($medium-screen-up) {
+    @include span-columns(4);
+  }
+}
+
+.houses-list {
+
+  @include media($medium-screen-up) {
+    @include span-columns(8);
+    @include omega;
+  }
+}
+
+.house-image {
+  height: 15rem;
+}
