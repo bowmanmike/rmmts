@@ -166,8 +166,9 @@ class Chore < ActiveRecord::Base
   end
 
   def check_chore_points
+    @mate = Mate.find(self.mate_id)
     if self.complete_changed?
-      Point.assign_points(self)
+      Point.assign_points(self, @mate)
     end
   end
 
