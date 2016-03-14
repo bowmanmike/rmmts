@@ -58,16 +58,27 @@ class ChoresController < ApplicationController
       end
 
       if params[:chore][:complete]
-        @chore.complete = true
+        @chore.complete = params[:chore][:complete]
         @chore.save
 
-        @point = @mate.points.build
-        @point.points_attributes(@chore)
-        @point.save
+        @mate = Mate.find(@chore.mate_id)
 
-        format.html { redirect_to :back, notice: "You have completed this chore"}
-        format.js {}
-        return
+        if @chore.complete
+          @point = @mate.points.build
+          @point.point_attributes(@chore)
+          @point.save
+
+          format.html { redirect_to :back, notice: "You have completed this chore"}
+          format.js {}
+          return
+        else
+          @point = Point.where(category_id: @chore.id, category: "Chore").first
+          @point.destroy
+
+          format.html { redirect_to :back, notice: "This chore is no longer complete"}
+          format.js {}
+          return
+        end
       end
 
       if @chore.update_attributes(chore_params)
