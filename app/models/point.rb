@@ -8,13 +8,17 @@ class Point < ActiveRecord::Base
     self.category = item.class.name.demodulize
     self.category_id = item.id
 
-    case self.category
-    when "Chore"
-      self.amount = 3
-    when "Expense"
-      self.amount = 5
-    when "Purchase"
-      self.amount = 2
+    if self.due_date.tomorrow.midnight >= self.completed_date
+      case self.category
+      when "Chore"
+        self.amount = 3
+      when "Expense"
+        self.amount = 5
+      when "Purchase"
+        self.amount = 2
+      else
+        self.amount = 0
+      end
     else
       self.amount = 0
     end
