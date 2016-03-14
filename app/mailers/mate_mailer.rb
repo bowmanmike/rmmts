@@ -1,4 +1,5 @@
 class MateMailer < ApplicationMailer
+  layout 'mate_mailer'
 
   def welcome_email(mate)
     @mate = mate

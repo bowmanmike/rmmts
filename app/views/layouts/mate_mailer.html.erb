@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      body {
+        font-family: "Helvetica", "Arial", "sans-serif";
+      }
+
+      .footer {
+        margin-top: 4rem;
+        font-size: 2rem;
+      }
+
+      .footer > a {
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+
+    <%= yield %>
+
+    <div class="footer">
+      <%= link_to "chortal", root_url %>
+    </div>
+
+  </body>
+</html>
