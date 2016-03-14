@@ -28,7 +28,7 @@ class Mate < ActiveRecord::Base
   has_many :purchases
   has_many :expenses, through: :payments
 
-  has_many :points
+  has_many :points, dependent: :destroy
 
   accepts_nested_attributes_for :notifications
 

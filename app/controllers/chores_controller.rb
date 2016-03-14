@@ -57,6 +57,19 @@ class ChoresController < ApplicationController
         return
       end
 
+      if params[:chore][:complete]
+        @chore.complete = true
+        @chore.save
+
+        @point = @mate.points.build
+        @point.points_attributes(@chore)
+        @point.save
+
+        format.html { redirect_to :back, notice: "You have completed this chore"}
+        format.js {}
+        return
+      end
+
       if @chore.update_attributes(chore_params)
         format.html { redirect_to house_path(@house)
                       flash[:notice] = "Chore has been updated!" }
