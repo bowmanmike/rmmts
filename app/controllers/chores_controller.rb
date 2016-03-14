@@ -119,8 +119,10 @@ class ChoresController < ApplicationController
       @point.point_attributes(@chore)
       @point.save
     else
-      @point = Point.where(category_id: @chore.id, category: "Chore").first
-      @point.destroy
+      if Point.where(category_id: @chore.id, category: "Chore", mate_id: @mate.id, due_date: @chore.due_date)
+        @point = Point.where(category_id: @chore.id, category: "Chore", mate_id: @mate.id, due_date: @chore.due_date).first
+        @point.destroy
+      end
     end
   end
 
