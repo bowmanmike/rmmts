@@ -118,17 +118,9 @@ class ChoresController < ApplicationController
       @point = @mate.points.build
       @point.point_attributes(@chore)
       @point.save
-
-      format.html { redirect_to :back, notice: "You have completed this chore"}
-      format.js {}
-      return
     else
       @point = Point.where(category_id: @chore.id, category: "Chore").first
       @point.destroy
-
-      format.html { redirect_to :back, notice: "This chore is no longer complete"}
-      format.js {}
-      return
     end
   end
 

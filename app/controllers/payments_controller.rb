@@ -10,6 +10,8 @@ class PaymentsController < ApplicationController
   before_action :load_purchases
   before_action :load_expenses
 
+  after_action :check_points_status, only: [:create, :update]
+
   def new
     @payment = Payment.new
 
@@ -71,7 +73,7 @@ class PaymentsController < ApplicationController
     @payment.update_attributes(payment_params)
 
     if @payment.save
-      redirect_to mate_purchase_path(@mate, @purchase)
+      redirect_to mate_path(@mate)
       flash[:notice] = "Payment has been updated!"
     else
       render :edit
@@ -126,4 +128,24 @@ class PaymentsController < ApplicationController
   def load_expenses
     @expenses = current_user.house.expenses
   end
+
+  def check_points_status
+    @mate = current_user
+
+    if @payment.expense_id
+      if @expense.has_paid?(@mate)
+        @point = @mate.points.build
+        @point.point_attributes(@expense)
+        @point.save
+      end
+    elsif @payment.purchase_id
+      if @purchase.paid_by?(@mate)
+        @point = @mate.points.build
+        @point.point_attributes(@purchase)
+        @point.save
+      end
+    end
+
+  end
+
 end
