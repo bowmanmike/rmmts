@@ -12,14 +12,16 @@ $(document).on('ready page:load', function() {
     $('.incomplete-chores-list > .chore').draggable({
       containment: '.chores-full-container',
       snap: '.card-list',
-      revert: 'invalid'
+      revert: 'invalid',
+      helper: 'clone',
     });
 
     $('.complete-chores-list > .chore').draggable({
       containment: '.chores-full-container',
       snap: '.card-list',
-      revert: 'invalid'
-    })
+      revert: 'invalid',
+      helper: 'clone',
+    });
 
     $('.incomplete-chores-list').droppable({
       accept: '.complete-chores-list > .chore',
