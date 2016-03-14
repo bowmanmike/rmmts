@@ -24,7 +24,7 @@ $(document).on('ready page:load', function() {
   });
 
   $('.popup-form').on('submit', function() {
-    $(this).add('#overlay').add('.popup').removeClass('is-active');
+    hidePopUp();
   })
 })
 
