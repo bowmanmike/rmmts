@@ -86,10 +86,13 @@
   }
 }
 
+.search-for-house {
+  @include outer-container;
+}
+
 .house-search,
-#houses-list {
-  @include span-columns(8);
-  @include shift(2);
+.houses-list {
+  @include span-columns(12);
   margin-top: 2rem;
 }
 
@@ -98,5 +101,16 @@
   input[type="submit"] {
     @include button(pill, #1A936F);
     width: 100%;
+  }
+
+  @include media($medium-screen-up) {
+    @include span-columns(4);
+  }
+}
+
+.houses-list {
+  @include media($medium-screen-up) {
+    @include span-columns(8);
+    @include omega;
   }
 }
