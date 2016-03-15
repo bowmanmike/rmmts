@@ -2,10 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .messaging-global {
-  @include outer-container(100%);
+  @include outer-container(98%);
 
   @include media($medium-screen-up) {
-    // margin: 0 1rem;
   }
 }
 
@@ -35,8 +34,6 @@
 
   @include media($medium-screen-up) {
     @include span-columns(4);
-    @include shift(0.5);
-    @include omega;
     position: inherit;
     top: inherit;
     height: auto;
@@ -91,8 +88,8 @@
   overflow: scroll;
 
   @include media($medium-screen-up) {
-    @include span_columns(7);
-    @include shift(4.5);
+    @include span_columns(8);
+    @include omega;
     max-height: 26rem;
   }
 }
@@ -109,6 +106,7 @@
     @include span-columns(7);
     @include shift(4.5);
     position: static;
+    height: 7rem;
   }
 
   .action {
