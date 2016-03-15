@@ -259,7 +259,6 @@ DEPENDENCIES
   letter_opener
   mini_magick
   neat
-  nokogiri
   pg (~> 0.15)
   phony_rails
   pry-rails

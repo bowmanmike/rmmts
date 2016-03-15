@@ -1,0 +1,51 @@
+<div class="expense-detail detail-show">
+  <div class="detail-header">
+    <h1><%= expense.name %>: <%= number_to_currency(expense.amount) %></h1>
+    <h4><%= expense.description %></h4>
+  </div>
+  <div class="detail-summary">
+    <p>
+      Due <%= expense.due_date.strftime("%A, %B %e, %Y") %><br>
+      <!-- Might need to fix wording for expenses that aren't daily weekly or monthly -->
+      Paid every <%= pluralize(expense.frequency_integer, expense.frequency) %>
+    </p>
+  </div>
+
+  <div class="detail-payment-list">
+    <table class="detail-payments table-minimal">
+      <thead>
+        <tr>
+          <th>Mate</th>
+          <th>Owed</th>
+          <th>Paid</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% expense.house.mates.each do |mate| %>
+          <tr>
+            <td><%= mate.first_name %></td>
+            <td><%= number_to_currency(expense.mate_amount) %></td>
+            <td>
+              <%= number_to_currency(expense.current_cycle_total_mate_payments(mate)) %>
+            </td>
+            <td class="<%= expense.amount_owed_by(mate).negative? ? "negative" : "positive" %>" >
+              <%= number_to_currency(expense.amount_owed_by(mate)) %>
+            </td>
+          </tr>
+        <% end %>
+        <tr class="total-row">
+          <td>Total</td>
+          <td><%= number_to_currency(expense.amount) %></td>
+          <td><%= number_to_currency(expense.current_cycle_total_payments) %></td>
+          <td class="<%= expense.amount_owing.negative? ? "negative" : "positive" %>" >
+            <%= number_to_currency(expense.amount_owing) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-make-payment">
+    <%= link_to button_tag("Make a payment"), new_house_expense_payment_path(expense.house, expense) %>
+  </div>
+</div>

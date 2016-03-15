@@ -1,0 +1,49 @@
+<div class="chore-detail detail-show">
+  <div class="detail-header">
+    <h1><%= chore.name %></h1>
+    <p class="completion">
+      Chore <%= chore.complete ? "has been completed" : "is not complete" %>
+    </p>
+    <p class="detail-due-date">
+      Due on <%= chore.due_date.strftime("%a, %b %e, %Y") %>
+    </p>
+  </div>
+  <div class="detail-summary">
+    <p class="detail-description">
+      <%= chore.description %>
+    </p>
+    <p class="detail-recurrence">
+      <% if chore.recurring %>
+        <% if (chore.frequency_integer == 1) && (chore.frequency_unit == "weeks") %>
+          Repeats every <%= chore.frequency_weekday %>
+        <% elsif (chore.frequency_integer > 1) && (chore.frequency_unit == "weeks") %>
+          Repeats every <%= chore.frequency_integer %> weeks on <%= chore.frequency_weekday %>
+        <% else %>
+          Repeats every <%= pluralize(chore.frequency_integer, chore.frequency) %>
+        <% end %>
+      <% else %>
+        Only happens once
+      <% end %>
+    </p>
+  </div>
+  <div class="detail-assignment">
+    <% if !chore.complete? %>
+      <% if chore.mate == nil %>
+        <strong>Unclaimed </strong>
+        <%= form_for [@house, chore], remote: true do |f| %>
+          <%= f.hidden_field :assign_self, :value => current_user.id %>
+          <%= f.submit "claim", class: "small-button" %>
+        <% end %>
+      <% else %>
+        <span class="claimed-by"><strong>Claimed by <%= chore.mate.first_name %></strong></span>
+      <% end %>
+
+      <% if chore.mate == current_user %>
+        <%= form_for [@house, chore], remote: true do |f| %>
+          <%= f.hidden_field :assign_self, :value => nil %>
+          <%= f.submit "unclaim", class: "small-button" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

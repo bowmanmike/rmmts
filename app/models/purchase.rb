@@ -9,7 +9,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def amount_owed
-    owed = self.amount - self.amount_paid - self.amount_for_each
+    owed = (self.amount_paid + self.amount_for_each) - self.amount
   end
 
   def amount_for_each
@@ -29,7 +29,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def amount_owed_by(housemate)
-    housemate_owes = self.amount_for_each - self.amount_paid_by(housemate)
+    housemate_owes = self.amount_paid_by(housemate) - self.amount_for_each
   end
 
   def fully_paid?
