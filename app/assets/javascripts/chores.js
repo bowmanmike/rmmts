@@ -3,6 +3,11 @@
 $(document).on('ready page:load', function() {
 
   initializeDragAndDrop();
+  setAccordionLists();
+
+  $(window).resize(function() {
+    setAccordionLists();
+  });
 
   $(document).ajaxSuccess(function() {
     initializeDragAndDrop();
@@ -37,6 +42,21 @@ $(document).on('ready page:load', function() {
   function choreDropEvent(event, ui) {
     var checkmark = ui.draggable.find('.check-mark');
     checkmark.click();
+  }
+
+  function setAccordionLists() {
+    if (window.innerWidth < 600) {
+      $('.card-container').accordion({
+        active: false,
+        collapsible: true,
+        height: 'content',
+        icons: false,
+      });
+    } else {
+        if ($('.card-container').hasClass('.ui-accordion')) {
+          $('.card-container').accordion('destroy');
+        }
+    }
   }
 
   $(document).on('change', '#chore_recurring', function() {
