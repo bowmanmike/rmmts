@@ -1,1 +1,1 @@
-$('.popup-form').html("<%=j render @purchase %>")
+$('.popup-form').html("<%=j render partial: 'purchase_detail', object: @purchase, as: :purchase %>")

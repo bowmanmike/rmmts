@@ -53,7 +53,7 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'pry-rails'
 
 # Use Nokogiri to parse svg files
-gem 'nokogiri'
+# gem 'nokogiri'
 
 gem 'cloudinary'
 
