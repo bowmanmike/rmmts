@@ -85,7 +85,7 @@ class HousesController < ApplicationController
   end
 
   def load_announcements
-    @announcements = House.find(params[:id]).announcements.order(created_at: :desc)
+    @announcements = House.find(params[:id]).announcements.order(created_at: :DESC)
   end
 
   def load_house

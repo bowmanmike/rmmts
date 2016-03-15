@@ -16,7 +16,11 @@ class AnnouncementsController < ApplicationController
 
   def create
     @announcement = @house.announcements.build(announcement_params)
-    @announcement.mate = current_user
+    if announcement_params[:anonymous] = "1"
+      @announcement.mate_id = nil
+    else
+      @announcement.mate = current_user
+    end
 
     respond_to do |format|
       if @announcement.save
@@ -65,7 +69,7 @@ class AnnouncementsController < ApplicationController
 
   private
   def announcement_params
-    params.require(:announcement).permit(:title, :body)
+    params.require(:announcement).permit(:title, :body, :anonymous)
   end
 
   def load_house_announcements
