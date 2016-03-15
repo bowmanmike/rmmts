@@ -8,12 +8,59 @@
 
 .profile-card {
   margin-top: 1.5rem;
-}
-
-.mate-profile-avatar {
-  height: 15rem;
+  a {
+    color: #1D7AA1;
+    font-weight: bold;
+  }
 }
 
 .mate-summary {
   padding-top: 1rem;
+}
+
+.no-house-profile {
+  border-top: 1px solid #DDD;
+  padding-top: 1rem;
+  h2 > a {
+    color: #1D7AA1;
+  }
+}
+
+.mate-profile-picture {
+  float: right;
+  text-align: center;
+  position: relative;
+  @include media($small-screen-only) {
+    @include span-columns(12);
+  }
+  .mate-profile-placeholder {
+    height: 15rem;
+    border: 2px dashed #DDD;
+    position: relative;
+    max-width: 80%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,0);
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    p {
+      position: absolute;
+      top: 85%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+  form {
+    text-align: center;
+    .field {
+      display: inline-block;
+    }
+  }
 }
