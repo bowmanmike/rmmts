@@ -1,9 +1,3 @@
-<% if conversation.sender == current_user %>
-  <h3><%= conversation.receiver.full_name %></h3><br>
-<% else %>
-  <h3><%= conversation.sender.full_name %></h3><br>
-<% end %>
-
 <% if conversation.messages.any? %>
   <%= render @messages.order(created_at: :desc) %>
 <% else %>

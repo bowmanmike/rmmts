@@ -64,8 +64,7 @@
 }
 
 .messages {
-  max-height: 34rem;
-  min-height: 20rem;
+  height: 23.5rem;
   overflow: scroll;
 
   @include media($medium-screen-up) {
