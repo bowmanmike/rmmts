@@ -15,6 +15,13 @@
     </div>
 
     <div class="field">
+      <%= label_tag :remember do %>
+        Remember me
+        <%= check_box_tag :remember, params[:remember], true %>
+      <% end %>
+    </div>
+
+    <div class="action">
       <%= submit_tag 'Log in', class: "login-form-submit" %>
     </div>
 

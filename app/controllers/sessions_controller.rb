@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       params[:login] = Mate.find_by(username: params[:login]).email
     end
 
-    if @mate = login(params[:login], params[:password])
+    if @mate = login(params[:login], params[:password], params[:remember])
       redirect_to root_path, notice: "login successful"
     else
       render :new, notice: "login failed"
