@@ -9,9 +9,9 @@
   </p>
   <p class="announcement-posted">
     <% if announcement.mate_id.present? %>
-      Posted by <%= announcement.mate.first_name %> <%= announcement.mate.last_name %> at <%= announcement.created_at.strftime('%a, %b %d %Y %l:%M %p') %>
+      Posted by <%= announcement.mate.first_name %> <%= announcement.mate.last_name %> at <%= announcement.created_at.localtime.strftime('%a, %b %d %Y %l:%M %p') %>
     <% else %>
-      Posted anomymously.
+      Posted anomymously at <%= announcement.created_at.localtime.strftime('%a, %b %d %Y %l:%M %p') %>
     <% end %>
   </p>
   <%= link_to "Edit", edit_house_announcement_path(@house, announcement), remote: true, class: "edit-announcement-button" %>
