@@ -32,7 +32,9 @@
 
 <div id="announcements" class="full-container">
   <% if current_user.house == nil %>
-    <h2>Welcome to Chortal! To get started, create or join a house, or wait to be invited by your housemates.</h2>
+    <div class="no-house-profile">
+      <h2>Welcome to Chortal! To get started, create or join a house, or wait to be invited by your housemates.</h2>
+    </div>
   <% end %>
 
   <% if current_user.house %>
