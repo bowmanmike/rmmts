@@ -53,9 +53,9 @@ $(document).on('ready page:load', function() {
         icons: false,
       });
     } else {
-        if ($('.card-container').hasClass('.ui-accordion')) {
-          $('.card-container').accordion('destroy');
-        }
+      if ($('.card-container').hasClass('ui-accordion')) {
+        $('.card-container').accordion('destroy');
+      }
     }
   }
 
