@@ -14,6 +14,10 @@
   padding: 0.5rem;
   font-size: 1.4rem;
   margin-bottom: 0;
+
+  @include media($medium-screen-up) {
+    font-size: 2rem;
+  }
 }
 
 .all-conversations {
@@ -27,6 +31,8 @@
 
   @include media($medium-screen-up) {
     @include span-columns(4);
+    position: inherit;
+    top: inherit;
 
     display: inline-block;
   }
@@ -42,6 +48,15 @@
 
   @include span-columns(4);
   @include omega(2);
+
+  @include media($medium-screen-up) {
+    @include span-columns(4 of 4);
+
+    p {
+      font-size: 1.75rem;
+      line-height: 4rem;
+    }
+  }
 }
 
 .messages,
