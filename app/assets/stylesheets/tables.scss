@@ -65,6 +65,14 @@
           width: auto;
         }
       }
+
+      &.negative {
+        color: #c33533;
+      }
+
+      &.positive {
+        color: #3d9a54;
+      }
     }
 
     & > .total-row > td {

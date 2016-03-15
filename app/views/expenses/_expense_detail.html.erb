@@ -9,7 +9,6 @@
       <!-- Might need to fix wording for expenses that aren't daily weekly or monthly -->
       Paid every <%= pluralize(expense.frequency_integer, expense.frequency) %>
     </p>
-    <p>Amount owed: <%= number_to_currency(expense.amount_owing) %></p>
   </div>
 
   <div class="detail-payment-list">
@@ -30,7 +29,7 @@
             <td>
               <%= number_to_currency(expense.current_cycle_total_mate_payments(mate)) %>
             </td>
-            <td>
+            <td class="<%= expense.amount_owed_by(mate).negative? ? "negative" : "positive" %>" >
               <%= number_to_currency(expense.amount_owed_by(mate)) %>
             </td>
           </tr>
@@ -39,7 +38,9 @@
           <td>Total</td>
           <td><%= number_to_currency(expense.amount) %></td>
           <td><%= number_to_currency(expense.current_cycle_total_payments) %></td>
-          <td><%= number_to_currency(expense.amount_owing) %></td>
+          <td class="<%= expense.amount_owing.negative? ? "negative" : "positive" %>" >
+            <%= number_to_currency(expense.amount_owing) %>
+          </td>
         </tr>
       </tbody>
     </table>
