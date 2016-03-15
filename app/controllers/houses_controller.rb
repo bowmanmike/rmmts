@@ -4,6 +4,13 @@ class HousesController < ApplicationController
   before_action :load_house, only: [:show, :edit, :update, :destroy]
   before_filter :must_be_logged_in, except: [:index]
 
+  def housenames
+    @houses = House.all
+    respond_to do |format|
+      format.json
+    end
+  end
+
   def index
     if current_user && current_user.house_id?
       redirect_to house_path(current_user.house)

@@ -1,11 +1,32 @@
 <div class="full-container">
   <div class="profile-card">
-    <%= image_tag @mate.mate_avatar, class: "mate-profile-avatar" %>
+    <div class="mate-profile-picture">
+        <% if @mate.mate_avatar.present? %>
+          <%= image_tag @mate.mate_avatar %>
+        <% else %>
+        <div class="mate-profile-placeholder">
+          <%= image_tag "no-profile-pic.png" %>
+          <p>This could be you!</p>
+        </div>
+        <% end %>
+      <%= form_for @mate do |f| %>
+        <div class="field">
+          <%= f.file_field :mate_avatar %>
+        </div>
+        <div class="action">
+          <%= f.button "Upload" %>
+        </div>
+      <% end %>
+    </div>
     <div class="mate-summary">
       <h3><%= @mate.full_name %></h3>
       <p>
         Username: <%= @mate.username %><br>
-        Lives at <%= @mate.house.name %>
+        <% if @mate.house %>
+          Lives at <%= @mate.house.name %>
+        <% else %>
+          You haven't joined a house yet. Find one <%= link_to "here.", houses_path %>
+        <% end %>
       </p>
     </div>
 
@@ -26,7 +47,10 @@
 
 <div id="announcements" class="full-container">
   <% if current_user.house == nil %>
-    <h2>Welcome to Chortal! To get started, create or join a house, or wait to be invited by your housemates.</h2>
+    <div class="no-house-profile">
+      <h2>Welcome to Chortal! To get started, <%= link_to "create", new_house_path %>
+         or <%= link_to "join", houses_path %> a house, or wait to be invited by your housemates.</h2>
+    </div>
   <% end %>
 
   <% if current_user.house %>
@@ -46,73 +70,73 @@
         <%= render(@announcements) || "No announcements!" %>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
 
-<div id="mate-duties" class="full-container">
+  <div id="mate-duties" class="full-container">
 
-  <div id="mate-chores" class="chores-container card-container">
-    <div id="mate-chores-header" class="card-header">
-      <h3>Chores</h3>
-      <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
+    <div id="mate-chores" class="chores-container card-container">
+      <div id="mate-chores-header" class="card-header">
+        <h3>Chores</h3>
+        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
+      </div>
+      <div id="mate-chores-list" class="card-list">
+        <%= render @chores %>
+      </div>
     </div>
-    <div id="mate-chores-list" class="card-list">
-      <%= render @chores %>
+    <div id="mate-expenses" class="card-container">
+      <div id="mate-expenses-header" class="card-header">
+        <h3>Expenses</h3>
+        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link edit-expense-button", remote: true %>
+      </div>
+      <div id="mate-expenses-list" class="expenses-list card-list">
+        <%= render @expenses || "No current expenses." %>
+      </div>
     </div>
   </div>
-  <div id="mate-expenses" class="card-container">
-    <div id="mate-expenses-header" class="card-header">
-      <h3>Expenses</h3>
-      <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link edit-expense-button", remote: true %>
-    </div>
-    <div id="mate-expenses-list" class="expenses-list card-list">
-      <%= render @expenses || "No current expenses." %>
-    </div>
-  </div>
-</div>
 
-<div class="purchases-container full-container">
+  <div class="purchases-container full-container">
 
-  <div id="mate-owed-payments" class="purchases-container card-container">
-    <div id="mate-owed-payments-header" class="card-header">
-      <h3>
-        <% if @mate == current_user %>
-          You Owe:
+    <div id="mate-owed-payments" class="purchases-container card-container">
+      <div id="mate-owed-payments-header" class="card-header">
+        <h3>
+          <% if @mate == current_user %>
+            You Owe:
+          <% else %>
+            <%= @mate.first_name.capitalize %> Owes:
+          <% end %>
+          <%= number_to_currency(@mate.sum_owed_to_mates) %>
+        </h3>
+      </div>
+      <div id="mate-owed-payments-list" class="card-list">
+        <% if @housemate_purchases.any? %>
+          <%= render @housemate_purchases %>
         <% else %>
-          <%= @mate.first_name.capitalize %> Owes:
+          <p>No purchases yet.</p>
         <% end %>
-        <%= number_to_currency(@mate.sum_owed_to_mates) %>
-      </h3>
+      </div>
     </div>
-    <div id="mate-owed-payments-list" class="card-list">
-      <% if @housemate_purchases.any? %>
-        <%= render @housemate_purchases %>
-      <% else %>
-        <p>No purchases yet.</p>
-      <% end %>
-    </div>
-  </div>
 
-  <div id="mate-purchases" class="purchases-container card-container">
-    <div id="mate-purchases-header" class="card-header">
-      <h3>
+    <div id="mate-purchases" class="purchases-container card-container">
+      <div id="mate-purchases-header" class="card-header">
+        <h3>
+          <% if @mate == current_user %>
+            You Are Owed:
+          <% else %>
+            <%= @mate.first_name.capitalize %> Is Owed:
+          <% end %>
+          <%= number_to_currency(@mate.sum_owed_to_self) %>
+        </h3>
         <% if @mate == current_user %>
-          You Are Owed:
-        <% else %>
-          <%= @mate.first_name.capitalize %> Is Owed:
+          <%= link_to image_tag("add.svg", class: "medium-icon"), new_mate_purchase_path(@mate), class: "medium-icon-link new-purchase-button", remote: true %>
         <% end %>
-        <%= number_to_currency(@mate.sum_owed_to_self) %>
-      </h3>
-      <% if @mate == current_user %>
-        <%= link_to image_tag("add.svg", class: "medium-icon"), new_mate_purchase_path(@mate), class: "medium-icon-link new-purchase-button", remote: true %>
-      <% end %>
-    </div>
-    <div id="mate-purchases-list" class="card-list">
-      <% if @purchases.any? %>
-        <%= render @purchases %>
-      <% else %>
-        <p>No purchases yet.</p>
-      <% end %>
+      </div>
+      <div id="mate-purchases-list" class="card-list">
+        <% if @purchases.any? %>
+          <%= render @purchases %>
+        <% else %>
+          <p>No purchases yet.</p>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

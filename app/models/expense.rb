@@ -85,7 +85,7 @@ class Expense < ActiveRecord::Base
   end
 
   def amount_owing
-    self.amount - self.current_cycle_total_payments
+    self.current_cycle_total_payments - self.amount
   end
 
   def current_cycle_payments
@@ -126,6 +126,10 @@ class Expense < ActiveRecord::Base
     else
       mate_total.reduce(:+)
     end
+  end
+
+  def amount_owed_by(mate)
+    self.current_cycle_total_mate_payments(mate) - self.mate_amount
   end
 
   def mate_amount
