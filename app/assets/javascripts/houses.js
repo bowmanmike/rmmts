@@ -2,6 +2,18 @@
 // All this logic will automatically be available in application.js.
 $(document).on('ready page:load', function() {
 
+  $.getJSON('/housenames.json').done(function(houses) {
+    var houseList = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.whitespace,
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      local: houses,
+    });
+
+    $('#house-search-form .query').typeahead(null, {
+      source: houseList
+    });
+  });
+
   $(document).on('click', '#edit-house-button', function(e) {
     e.preventDefault();
 
