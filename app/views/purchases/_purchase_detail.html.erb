@@ -1,0 +1,61 @@
+<div class="expense-detail detail-show">
+  <div class="detail-header">
+    <h1><%= purchase.name %>: <%= number_to_currency(purchase.amount) %></h1>
+    <h4><%= purchase.description %></h4>
+  </div>
+  <div class="detail-summary">
+    <p>
+      <% if purchase.mate == current_user %>
+        You paid for this purchase.
+      <% else %>
+        Paid by: <%= purchase.mate.username %><br>
+        <% if purchase.paid_by?(current_user) %>
+          Thank you! You have fully paid back this expense.
+        <% else %>
+          Please pay by <%= purchase.due_date.strftime("%A, %B %e, %Y") %>
+        <% end %>
+      <% end %>
+    </p>
+
+  </div>
+
+  <div class="detail-payment-list">
+    <table class="detail-payments table-minimal">
+      <thead>
+        <tr>
+          <th>Mate</th>
+          <th>Owed</th>
+          <th>Paid</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% purchase.mate.house.mates.each do |mate| %>
+          <% unless mate == purchase.mate %>
+            <tr>
+              <td><%= mate.first_name %></td>
+              <td><%= number_to_currency(purchase.amount_for_each) %></td>
+              <td>
+                <%= number_to_currency(purchase.amount_paid_by(mate)) %>
+              </td>
+              <td class="<%= purchase.amount_owed_by(mate).negative? ? "negative" : "positive" %>" >
+                <%= number_to_currency(purchase.amount_owed_by(mate)) %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        <tr class="total-row">
+          <td>Total</td>
+          <td><%= number_to_currency(purchase.amount) %></td>
+          <td><%= number_to_currency(purchase.amount_paid) %></td>
+          <td class="<%= purchase.amount_owed.negative? ? "negative" : "positive" %>" >
+            <%= number_to_currency(purchase.amount_owed) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-make-payment">
+    <%= link_to button_tag("Make a payment"), new_mate_purchase_payment_path(purchase.mate, purchase) %>
+  </div>
+</div>

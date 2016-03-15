@@ -1,7 +1,7 @@
 <div class="expense-detail detail-show">
   <div class="detail-header">
     <h1><%= expense.name %>: <%= number_to_currency(expense.amount) %></h1>
-    <h2><%= expense.description %></h2>
+    <h4><%= expense.description %></h4>
   </div>
   <div class="detail-summary">
     <p>
@@ -46,6 +46,6 @@
     </table>
   </div>
   <div class="detail-make-payment">
-    <%= link_to button_tag("Make a payment"), new_house_expense_payment_path(@expense.house, @expense) %>
+    <%= link_to button_tag("Make a payment"), new_house_expense_payment_path(expense.house, expense) %>
   </div>
 </div>
