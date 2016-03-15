@@ -8,11 +8,11 @@
       <% if purchase.mate == current_user %>
         You paid for this purchase.
       <% else %>
-        Paid by: <%= purchase.mate.username %><br>
+        Paid for by <%= purchase.mate.first_name %><br>
         <% if purchase.paid_by?(current_user) %>
           Thank you! You have fully paid back this expense.
         <% else %>
-          Please pay by <%= purchase.due_date.strftime("%A, %B %e, %Y") %>
+          Please pay <%= purchase.mate.first_name %> by <%= purchase.due_date.strftime("%A, %B %e, %Y") %>
         <% end %>
       <% end %>
     </p>
@@ -57,5 +57,15 @@
   </div>
   <div class="detail-make-payment">
     <%= link_to button_tag("Make a payment"), new_mate_purchase_payment_path(purchase.mate, purchase) %>
+  </div>
+  <div class="detail-links">
+    <% if purchase.mate == current_user %>
+      <%= link_to image_tag("edit.svg", class: "detail-icon"), edit_mate_purchase_path(purchase.mate, purchase), remote: true, class: "detail-icon-link edit-purchase-button" %>
+      <%= link_to image_tag("delete.svg", class: "detail-icon"), mate_purchase_path(purchase.mate, purchase), method: :delete, data: {confirm: "Are you sure you want to delete this purchase?"}, class: "detail-icon-link", remote: true %>
+    <% end %>
+
+    <% if purchase.image.present? %>
+      <%= link_to image_tag("attachment.svg", class: "detail-icon"), image_url("#{purchase.image}"), class: "detail-icon-link" %>
+    <% end %>
   </div>
 </div>

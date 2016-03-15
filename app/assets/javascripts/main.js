@@ -3,21 +3,21 @@ $(document).on('ready page:load', function() {
   $(document).on('click', '#login-link', function(e) {
     e.preventDefault();
     showPopUp();
-  })
+  });
 
   $(document).on('click', '#signup-link', function(e) {
     e.preventDefault();
     showPopUp();
-  })
+  });
 
   $(document).on('click', '.edit-mate-link', function(e) {
     e.preventDefault();
     showPopUp();
-  })
+  });
 
   $('html').on('click', '.popup', function(e) {
     e.stopPropagation();
-  })
+  });
 
   $('html').on('click', function() {
     hidePopUp();
@@ -25,8 +25,8 @@ $(document).on('ready page:load', function() {
 
   $('.popup-form').on('submit', function() {
     hidePopUp();
-  })
-})
+  });
+});
 
 var showPopUp = function() {
   $('#overlay').addClass('is-active');
