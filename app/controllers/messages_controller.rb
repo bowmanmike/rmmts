@@ -50,6 +50,6 @@ class MessagesController < ApplicationController
   end
 
   def load_messages
-    @messages = @conversation.messages.order(created_at: :desc)
+    @messages = @conversation.messages.order(created_at: :asc)
   end
 end

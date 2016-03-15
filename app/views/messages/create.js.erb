@@ -1,1 +1,3 @@
 $('.messages').html("<%=j render @messages %>")
+var messageHeight = $('.messages').height();
+$('.messages').scrollTop(messageHeight);

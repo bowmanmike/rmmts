@@ -8,7 +8,7 @@ before_filter :require_login
 
   def show
     @conversation = Conversation.find(params[:id])
-    @messages = @conversation.messages.order(created_at: :desc)
+    @messages = @conversation.messages.order(created_at: :asc)
     @new_message = current_user.messages.build
 
     respond_to do |format|
