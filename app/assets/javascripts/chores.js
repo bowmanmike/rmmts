@@ -57,6 +57,7 @@ $(document).on('ready page:load', function() {
         $('.card-container').accordion('destroy');
       }
     }
+    if $('.card-container').hasClass('each-message').accordion('destroy');
   }
 
   $(document).on('change', '#chore_recurring', function() {
