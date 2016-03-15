@@ -6,13 +6,13 @@
       <% if conversation.sender == current_user %>
         <%= link_to conversation_path(conversation.id), remote: true do %>
           <div class="card-item each-conversation">
-            <p>Send a message to <%= conversation.receiver.full_name %></p>
+            <p><%= conversation.receiver.full_name %></p>
           </div>
         <% end %>
       <% else %>
         <%= link_to conversation_path(conversation.id), remote: true do %>
           <div class="card-item each-conversation">
-            <p>Send a message to <%= conversation.sender.full_name %></p>
+            <p><%= conversation.sender.full_name %></p>
           </div>
         <% end %>
       <% end %>

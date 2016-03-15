@@ -15,6 +15,14 @@
   }
 }
 
+.each-conversation {
+  margin: 0 0.1rem;
+  text-align: center;
+
+  @include span-columns(4);
+  @include omega(2);
+}
+
 .messages,
 .new-message {
   @include span-columns(12);
