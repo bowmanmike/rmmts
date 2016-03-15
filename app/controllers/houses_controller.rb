@@ -74,8 +74,15 @@ class HousesController < ApplicationController
   end
 
   def destroy
-    @house.destroy
-    redirect_to houses_path
+    if @house.destroy
+      current_user.house_id = nil
+      current_user.save
+      redirect_to houses_path
+      flash[:notice] = "House Successfully Deleted"
+    else
+      redirect_to house_path(@house)
+      flash[:alert] = "There was a problem. House could not be deleted."
+    end
   end
 
   private

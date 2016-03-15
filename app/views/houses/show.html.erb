@@ -20,7 +20,9 @@
 
       <div id="house-edit-delete-links">
         <%= link_to button_tag("Edit House"), edit_house_path(@house), remote: true, id: "edit-house-button" %>
-        <%= link_to button_tag("Delete House"), house_path(@house), method: :delete, data: { confirm: "Are you sure you want to delete this house?" } %>
+        <% if @house.mates.count == 1 %>
+          <%= link_to button_tag("Delete House"), house_path(@house), method: :delete, data: { confirm: "Are you sure you want to delete this house?" } %>
+        <% end %>
       </div>
     </div>
   </div>

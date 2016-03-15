@@ -8,6 +8,14 @@ class House < ActiveRecord::Base
 
   validates :name, presence: true
 
+  before_destroy :check_occupancy
+
   mount_uploader :house_image, HouseImageUploader
+
+  def check_occupancy
+    if self.mates.count > 1
+      return false
+    end
+  end
 
 end
