@@ -46,7 +46,7 @@ $(document).on('ready page:load', function() {
 
   function setAccordionLists() {
     if (window.innerWidth < 600) {
-      $('.card-container').accordion({
+      $('.house-container').find('.card-container').accordion({
         active: false,
         collapsible: true,
         height: 'content',
@@ -57,7 +57,6 @@ $(document).on('ready page:load', function() {
         $('.card-container').accordion('destroy');
       }
     }
-    if $('.card-container').hasClass('each-message').accordion('destroy');
   }
 
   $(document).on('change', '#chore_recurring', function() {

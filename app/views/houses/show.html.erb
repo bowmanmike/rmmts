@@ -53,70 +53,71 @@
 
 <% if current_user && current_user.house == @house %>
 
-  <div id="announcements" class="full-container">
-    <div class="full-card">
-      <div class="full-card-header">
-        <h3>Announcements</h3>
-        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_announcement_path(@house), class: "medium-icon-link new-announcement-button", remote: true %>
-      </div>
-      <% if @announcements.any? %>
-        <div class="announcement-counter">
-          <strong><%= @announcements.count %></strong> announcements
-          <%= button_tag "Show", id: "show-announcements-button" %>
-          <%= button_tag "Hide", id: "hide-announcements-button", class: "hidden-button" %>
+  <div class="house-container">
+    <div id="announcements" class="full-container">
+      <div class="full-card">
+        <div class="full-card-header">
+          <h3>Announcements</h3>
+          <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_announcement_path(@house), class: "medium-icon-link new-announcement-button", remote: true %>
         </div>
-      <% end %>
-      <div id="announcements-list" class="full-card-list">
-        <%= render(@announcements) || "No announcements!" %>
+        <% if @announcements.any? %>
+          <div class="announcement-counter">
+            <strong><%= @announcements.count %></strong> announcements
+            <%= button_tag "Show", id: "show-announcements-button" %>
+            <%= button_tag "Hide", id: "hide-announcements-button", class: "hidden-button" %>
+          </div>
+        <% end %>
+        <div id="announcements-list" class="full-card-list">
+          <%= render(@announcements) || "No announcements!" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="chores full-container">
+
+      <div class="incomplete-chores card-container">
+        <div class="incomplete-chores-header card-header">
+          <h3>Incomplete Chores</h3>
+          <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
+        </div>
+        <div class="incomplete-chores-list card-list">
+          <%= render(@chores.where(complete: !true)) || "All chores complete! Good Job!" %>
+        </div>
+      </div>
+
+      <div class="complete-chores chores-container card-container">
+        <div class="complete-chores-header card-header">
+          <h3>Completed Chores</h3>
+          <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
+        </div>
+        <div class="complete-chores-list card-list">
+          <%= render(@chores.where(complete: true)) || "No complete chores yet?! Better get on that." %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="full-container">
+
+      <div class="expenses card-container">
+        <div class="expenses-header card-header">
+          <h3>Expenses</h3>
+          <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link new-expense-button", remote: true %>
+        </div>
+        <div class="expenses-list card-list">
+          <%= render @expenses || "No household expenses yet!" %>
+        </div>
+      </div>
+
+      <div class="purchases card-container">
+        <div class="purchases-header card-header">
+          <h3>Purchases</h3>
+          <%= link_to  image_tag("add.svg", class: "medium-icon"), new_mate_purchase_path(current_user), remote: true, class: "medium-icon-link new-purchase-button" %>
+        </div>
+        <div class="purchases-list card-list">
+          <%= render @purchases || "No Purchases Right Meow" %>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="chores full-container">
-
-    <div class="incomplete-chores card-container">
-      <div class="incomplete-chores-header card-header">
-        <h3>Incomplete Chores</h3>
-        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
-      </div>
-      <div class="incomplete-chores-list card-list">
-        <%= render(@chores.where(complete: !true)) || "All chores complete! Good Job!" %>
-      </div>
-    </div>
-
-    <div class="complete-chores chores-container card-container">
-      <div class="complete-chores-header card-header">
-        <h3>Completed Chores</h3>
-        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
-      </div>
-      <div class="complete-chores-list card-list">
-        <%= render(@chores.where(complete: true)) || "No complete chores yet?! Better get on that." %>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="full-container">
-
-    <div class="expenses card-container">
-      <div class="expenses-header card-header">
-        <h3>Expenses</h3>
-        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link new-expense-button", remote: true %>
-      </div>
-      <div class="expenses-list card-list">
-        <%= render @expenses || "No household expenses yet!" %>
-      </div>
-    </div>
-
-    <div class="purchases card-container">
-      <div class="purchases-header card-header">
-        <h3>Purchases</h3>
-        <%= link_to  image_tag("add.svg", class: "medium-icon"), new_mate_purchase_path(current_user), remote: true, class: "medium-icon-link new-purchase-button" %>
-      </div>
-      <div class="purchases-list card-list">
-        <%= render @purchases || "No Purchases Right Meow" %>
-      </div>
-    </div>
-  </div>
-
 <% end %>
