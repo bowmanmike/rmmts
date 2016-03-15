@@ -17,6 +17,13 @@
       <%= f.text_area :body, placeholder: "Hey guys, we're having a party on friday! Invite your friends!" %>
     </div>
 
+    <div class="field">
+      <%= label_tag :anonymous do %>
+        Post Anomymously
+        <%= check_box_tag :anonymous %>
+      <% end %>
+    </div>
+
     <div class="action">
       <% if @announcement.id? %>
         <%= f.submit "Update This Announcement", class: "announcement-form-submit" %>
