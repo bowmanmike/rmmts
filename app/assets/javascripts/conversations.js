@@ -17,5 +17,9 @@ $(document).on('ready page:load', function() {
 
   $(document).on('click', '.messaging-header', function() {
     $('.all-conversations').toggleClass('slide-down');
+  });
+
+  $(document).on('click', '.each-conversation', function() {
+    $('.all-conversations').removeClass('slide-down');
   })
 })
