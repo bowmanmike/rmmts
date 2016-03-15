@@ -14,4 +14,8 @@ $(document).on('ready page:load', function() {
   $(document).on('submit', '#new_message', function() {
     $('#message_body').val('');
   });
+
+  $(document).on('click', '.messaging-header', function() {
+    $('.all-conversations').toggleClass('slide-down');
+  })
 })
