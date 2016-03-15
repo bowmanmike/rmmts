@@ -128,6 +128,10 @@ class Expense < ActiveRecord::Base
     end
   end
 
+  def amount_owed_by(mate)
+    self.mate_amount - self.current_cycle_total_mate_payments(mate)
+  end
+
   def mate_amount
     (self.amount / self.house.mates.size).round(2)
   end
