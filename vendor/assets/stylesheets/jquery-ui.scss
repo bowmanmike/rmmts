@@ -844,9 +844,10 @@ body .tag-groups-cloud-tabs .ui-tooltip {
 	font-size: 1em;
 }
 .ui-widget-content {
-	border: 1px solid #dddddd;
-	background: #ffffff;
+	// border: 1px solid #dddddd;
+	// background: #ffffff;
 	color: #333333;
+  padding-top: 1rem;
 }
 .ui-widget-content a {
 	color: #333333;
@@ -870,6 +871,7 @@ body .tag-groups-cloud-tabs .ui-tooltip {
 	background: #f6f6f6;
 	font-weight: normal;
 	color: #454545;
+  padding-top: 0.35rem;
 }
 .ui-state-default a,
 .ui-state-default a:link,
@@ -1188,25 +1190,25 @@ body .tag-groups-cloud-tabs .ui-tooltip {
 .ui-corner-top,
 .ui-corner-left,
 .ui-corner-tl {
-	// border-top-left-radius: 3px;
+	border-top-left-radius: 3px;
 }
 .ui-corner-all,
 .ui-corner-top,
 .ui-corner-right,
 .ui-corner-tr {
-	// border-top-right-radius: 3px;
+	border-top-right-radius: 3px;
 }
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-left,
 .ui-corner-bl {
-	// border-bottom-left-radius: 3px;
+	border-bottom-left-radius: 3px;
 }
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-right,
 .ui-corner-br {
-	// border-bottom-right-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
 /* Overlays */
