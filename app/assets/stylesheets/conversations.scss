@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .messaging-global {
   @include outer-container(100%);
+
+  @include media($medium-screen-up) {
+    // margin: 0 1rem;
+  }
 }
 
 .messaging-header {
@@ -31,8 +35,11 @@
 
   @include media($medium-screen-up) {
     @include span-columns(4);
+    @include shift(0.5);
+    @include omega;
     position: inherit;
     top: inherit;
+    height: auto;
 
     display: inline-block;
   }
@@ -52,6 +59,8 @@
   @include media($medium-screen-up) {
     @include span-columns(4 of 4);
 
+    margin-bottom: 1rem;
+
     p {
       font-size: 1.75rem;
       line-height: 4rem;
@@ -64,7 +73,6 @@
   @include span-columns(12);
 
   @include media($medium-screen-up) {
-    @include span-columns(8);
 
     display: inline-block;
   }
@@ -83,6 +91,8 @@
   overflow: scroll;
 
   @include media($medium-screen-up) {
+    @include span_columns(7);
+    @include shift(4.5);
     max-height: 26rem;
   }
 }
@@ -96,14 +106,9 @@
   padding: 0;
 
   @include media($medium-screen-up) {
-    @include span-columns(8);
-    @include shift(4);
-    position: relative;
-    bottom: auto;
-    left: auto;
-    height: 8rem;
-    top: -9rem;
-    margin-bottom: 0;
+    @include span-columns(7);
+    @include shift(4.5);
+    position: static;
   }
 
   .action {
