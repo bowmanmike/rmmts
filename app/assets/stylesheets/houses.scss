@@ -119,3 +119,18 @@
 .house-image {
   height: 15rem;
 }
+
+.tt-menu {
+  background-color: #fff;
+  width: 100%;
+  text-align: left;
+  border: 1px solid #DDD;
+  padding: 5px;
+}
+.tt-menu:hover {
+  cursor: pointer;
+}
+.tt-selectable:hover {
+  background-color: #253FFF;
+  color: #fff;
+}
