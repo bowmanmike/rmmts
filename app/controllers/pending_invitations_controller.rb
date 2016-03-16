@@ -1,8 +1,5 @@
 class PendingInvitationsController < ApplicationController
 
-  def index
-  end
-
   def create
     @mate = current_user
     @house = House.find(params[:house_id])
@@ -21,11 +18,4 @@ class PendingInvitationsController < ApplicationController
     end
 
   end
-
-  def update
-  end
-
-  def destroy
-  end
-
 end

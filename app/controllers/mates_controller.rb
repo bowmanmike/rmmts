@@ -2,6 +2,7 @@ class MatesController < ApplicationController
   before_action :load_mate, only: [:show, :edit, :update, :destroy]
   before_action :load_mate_notifications, only: [:show]
   before_action :load_house, except: [:usernames, :new, :create, :activate]
+  before_action :load_pending_invitations
 
   skip_before_filter :require_login, only: [:index, :new, :create, :activate]
 
@@ -101,6 +102,10 @@ class MatesController < ApplicationController
 
   def load_house
     @house = @mate.house
+  end
+
+  def load_pending_invitations
+    @pending_invitations = PendingInvitation.find_by(mate_id: @mate.id)
   end
 
 end

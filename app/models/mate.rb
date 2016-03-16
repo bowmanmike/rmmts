@@ -125,4 +125,10 @@ class Mate < ActiveRecord::Base
     end
   end
 
+  def delete_pending_invites
+    self.pending_invitations.each do |invite|
+      invite.destroy
+    end
+  end
+
 end
