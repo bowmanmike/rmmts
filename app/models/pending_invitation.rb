@@ -6,7 +6,7 @@ class PendingInvitation < ActiveRecord::Base
 
   def mate_has_no_other_requests
     mate = self.mate
-    return false if PendingInvitation.where(mate_id: mate.id) > 1
+    return false if PendingInvitation.where(mate_id: mate.id).present?
     true
   end
 end
