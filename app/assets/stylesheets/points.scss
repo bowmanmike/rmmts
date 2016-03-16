@@ -1,3 +1,45 @@
-// Place all the styles related to the Points controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.mate-point-summary {
+    float: right;
+    background-color: $color1;
+    width: 8rem;
+    margin: 0.5rem 0;
+    text-align: center;
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.point-total {
+    font-size: 3rem;
+
+    & > a {
+      color: #ffffff;
+    }
+}
+
+table.detail-points {
+  table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
+
+  .points-name-column {
+    width: 40%;
+    padding-right: 0.5rem;
+  }
+
+  .points-category-column {
+    width: 20%;
+    padding-right: 0.5rem;
+  }
+
+  .points-date-column {
+    width: 20%;
+    padding-right: 0.5rem;
+  }
+
+  .points-amount-column {
+    width: 20%;
+    text-align: right;
+    padding-right: 0.5rem;
+  }
+}

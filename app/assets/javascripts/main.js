@@ -15,6 +15,11 @@ $(document).on('ready page:load', function() {
     showPopUp();
   });
 
+  $(document).on('click', '.point-total > a', function(e) {
+    e.preventDefault();
+    showPopUp();
+  });
+
   $('#overlay').on('click', function() {
     hidePopUp();
   });

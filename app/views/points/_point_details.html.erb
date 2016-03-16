@@ -1,0 +1,30 @@
+<div class="mate-points">
+  <h1><%= @mate.first_name %>'s Points</h1>
+  <h3>Total: <%= @mate.points.sum(:amount) %></h3>
+
+  <div class="points-transactions">
+    <table class="detail-points table-minimal">
+      <thead>
+        <tr>
+          <th class="points-name-column">Earned for</th>
+          <th class="points-category-column">Category</th>
+          <th class="points-date-column">Date</th>
+          <th class="points-amount-column">Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @mate.points %>
+        <tr class="total-row">
+          <td class="points-name-column">
+            Total
+          </td>
+          <td class="points-category-column"></td>
+          <td class="points-date-column"></td>
+          <td class="points-amount-column" >
+            <%= @mate.points.sum(:amount) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

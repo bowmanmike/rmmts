@@ -1,22 +1,22 @@
 <div class="full-container">
   <div class="profile-card">
     <div class="mate-profile-picture">
-        <% if @mate.mate_avatar.present? %>
-          <%= image_tag @mate.mate_avatar %>
-        <% else %>
-        <div class="mate-profile-placeholder">
-          <%= image_tag "no-profile-pic.png" %>
-          <p>This could be you!</p>
-        </div>
-        <% end %>
-      <%= form_for @mate do |f| %>
-        <div class="field">
-          <%= f.file_field :mate_avatar %>
-        </div>
-        <div class="action">
-          <%= f.button "Upload" %>
-        </div>
+      <% if @mate.mate_avatar.present? %>
+        <%= image_tag @mate.mate_avatar %>
+      <% else %>
+      <div class="mate-profile-placeholder">
+        <%= image_tag "no-profile-pic.png" %>
+        <p>This could be you!</p>
+      </div>
       <% end %>
+    </div>
+    <div class="mate-point-summary">
+      <div class="point-total">
+        <%= link_to (@mate.points.sum(:amount) || 0), mate_points_path(@mate), remote: true %>
+      </div>
+      <div class="point-subtitle">
+        Points
+      </div>
     </div>
     <div class="mate-summary">
       <h3><%= @mate.full_name %></h3>
@@ -28,20 +28,10 @@
           You haven't joined a house yet. Find one <%= link_to "here.", houses_path %>
         <% end %>
       </p>
+      <% if @mate == current_user %>
+        <%= link_to button_tag("Edit profile"), edit_mate_path(@mate), class: "edit-mate-link", remote: true %>
+      <% end %>
     </div>
-
-    <div class="mate-point-summary">
-      <div class="point-total">
-        <%= link_to (@mate.points.sum(:amount) || 0), mate_points_path(@mate) %>
-      </div>
-      <div class="point-subtitle">
-        Points
-      </div>
-    </div>
-
-    <% if @mate == current_user %>
-      <%= link_to button_tag("Edit profile"), edit_mate_path(@mate), class: "edit-mate-link", remote: true %>
-    <% end %>
   </div>
 </div>
 

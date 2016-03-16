@@ -15,7 +15,10 @@
 }
 
 .mate-summary {
+  float: left;
+  margin-left: 2rem;
   padding-top: 1rem;
+
 }
 
 .no-house-profile {
@@ -27,12 +30,21 @@
 }
 
 .mate-profile-picture {
-  float: right;
+  float: left;
   text-align: center;
   position: relative;
+
   @include media($small-screen-only) {
     @include span-columns(12);
   }
+
+  & > img {
+    border-radius: 50%;
+    width: 12rem;
+    height: 12rem;
+    overflow: hidden;
+  }
+
   .mate-profile-placeholder {
     height: 15rem;
     border: 2px dashed #DDD;
