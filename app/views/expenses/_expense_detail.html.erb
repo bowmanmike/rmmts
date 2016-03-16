@@ -7,7 +7,12 @@
     <p>
       Due <%= expense.due_date.strftime("%A, %B %e, %Y") %><br>
       <!-- Might need to fix wording for expenses that aren't daily weekly or monthly -->
-      Paid every <%= pluralize(expense.frequency_integer, expense.frequency) %>
+      Paid every <%= pluralize(expense.frequency_integer, expense.frequency) %><br>
+      <% if expense.has_paid?(current_user) %>
+        Thank you! You have fully paid back this expense.
+      <% else %>
+        You owe <%= number_to_currency(expense.amount_owed_by(current_user) * -1) %>
+      <% end %>
     </p>
   </div>
 
@@ -54,7 +59,11 @@
     </table>
   </div>
   <div class="detail-make-payment">
-    <%= link_to button_tag("Make a payment"), new_house_expense_payment_path(expense.house, expense) %>
+    <% if expense.has_paid?(current_user) %>
+      No additional payments needed.
+    <% else %>
+      <%= link_to button_tag("Make a payment"), new_house_expense_payment_path(expense.house, expense) %>
+    <% end %>
   </div>
   <div class="detail-links">
     <%= link_to image_tag("edit.svg", class: "detail-icon detail-edit-icon"), edit_house_expense_path(expense.house, expense), class: "detail-icon-link detail-edit-expense-button", remote: true %>
