@@ -30,8 +30,8 @@
     <% if !chore.complete? %>
       <% if chore.mate == nil %>
         <strong>Unclaimed </strong>
-        <%= form_for [@house, chore], remote: true do |f| %>
-          <%= f.hidden_field :assign_self, :value => current_user.id %>
+        <%= form_for [@house, chore], class: "detail-claim-chore", remote: true do |f| %>
+          <%= f.hidden_field :assign_self, value: current_user.id %>
           <%= f.submit "claim", class: "small-button" %>
         <% end %>
       <% else %>

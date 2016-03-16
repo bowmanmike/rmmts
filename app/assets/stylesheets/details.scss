@@ -1,3 +1,18 @@
+.detail-assignment {
+  float: left;
+
+  & > form {
+    display: inline-block;
+
+    & > .small-button {
+      font-size: 0.7rem;
+      border-radius: 3px;
+      padding: .2rem 0;
+      margin-left: 0.3rem;
+    }
+  }
+}
+
 .detail-make-payment {
   float: left;
 }
