@@ -1,7 +1,7 @@
 <div class="show-house">
   <h3><%= link_to house.name, house_path(house) %></h3>
   <div class="send-join-request-button">
-    <%= button_to "Ask to join this house!", request_to_join_house_path(house), class: "request-to-join-house-button" %>
+    <%= button_to "Ask to join this house!", house_pending_invitations_path(house), method: :post, class: "request-to-join-house-button" %>
   </div>
   <div class="house-image">
     <%= image_tag house.house_image %>

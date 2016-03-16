@@ -11,10 +11,7 @@
             <%= f.button "Leave This House" %>
           <% end %>
         <% else %>
-          <%= form_for @house, url: request_to_join_house_path(@house), method: :post do |f| %>
-            <%= f.hidden_field :house_id, :value => @house.id %>
-            <%= f.button "Request to Join This House" %>
-          <% end %>
+          <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, remote: true %>
         <% end %>
       <% end %>
 

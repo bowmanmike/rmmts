@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :expenses, except: [:index] do
       resources :payments, except: [:index]
     end
+    resources :pending_invitations
   end
 
   post "/houses/:house_id/request_to_join" => 'houses#request_to_join', as: :request_to_join_house
@@ -19,7 +20,6 @@ Rails.application.routes.draw do
       resources :payments, except: [:index]
     end
     resources :notifications, only: [:update]
-    resources :pending_invitations
     member do
       get :activate
     end

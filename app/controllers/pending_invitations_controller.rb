@@ -4,6 +4,22 @@ class PendingInvitationsController < ApplicationController
   end
 
   def create
+    @mate = current_user
+    @house = House.find(params[:house_id])
+    @pending_invitation = @mate.pending_invitations.build
+    @pending_invitation.house_id = @house.id
+
+    if @pending_invitation.save
+      @house.mates.each do |mate|
+        MateMailer.request_to_join(@mate, @house, mate).deliver_later
+      end
+      flash[:notice] = "Your request has been sent!"
+      redirect_to root_path
+    else
+      flash[:alert] = "There was a problem. Please try again."
+      redirect_to houses_path
+    end
+
   end
 
   def update
@@ -11,5 +27,5 @@ class PendingInvitationsController < ApplicationController
 
   def destroy
   end
-  
+
 end
