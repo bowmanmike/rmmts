@@ -16,6 +16,7 @@ $(document).on('ready page:load page:change', function() {
             data: form.serialize(),
             success: function() {
               $('.popup-form').add('#overlay').add('.popup').removeClass('is-active');
+              location.reload();
             }
           });
         }

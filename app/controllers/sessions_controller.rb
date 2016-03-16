@@ -14,7 +14,11 @@ class SessionsController < ApplicationController
     end
 
     if @mate = login(params[:login], params[:password], params[:remember])
-      redirect_to root_path, notice: "login successful"
+      if @mate.house_id.present?
+        redirect_to house_path(@mate.house), notice: "Login Successful!"
+      else
+        redirect_to houses_path, notice: "login successful"
+      end
     else
       render :new, notice: "login failed"
     end
