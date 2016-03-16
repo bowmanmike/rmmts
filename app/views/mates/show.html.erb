@@ -46,14 +46,14 @@
 </div>
 
 <div id="announcements" class="full-container">
-  <% if current_user.house == nil %>
+  <% if current_user.house.blank? %>
     <div class="no-house-profile">
       <h2>Welcome to Chortal! To get started, <%= link_to "create", new_house_path %>
          or <%= link_to "join", houses_path %> a house, or wait to be invited by your housemates.</h2>
     </div>
   <% end %>
 
-  <% if current_user.house %>
+  <% if @mate.house.present? %>
     <div class="full-card">
       <div class="full-card-header">
         <h3>Announcements</h3>
@@ -65,12 +65,12 @@
           <%= button_tag "Show", id: "show-announcements-button" %>
           <%= button_tag "Hide", id: "hide-announcements-button", class: "hidden-button" %>
         </div>
-      <% end %>
-      <div id="announcements-list" class="full-card-list">
-        <%= render(@announcements) || "No announcements!" %>
+        <div id="announcements-list" class="full-card-list">
+          <%= render(@announcements) || "No announcements!" %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
   <div id="mate-duties" class="full-container">
 

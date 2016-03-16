@@ -1,0 +1,7 @@
+<div class="each-invitation">
+  <p><%= link_to pending_invitation.mate.full_name, mate_path(pending_invitation.mate) %> has requested to join this house!</p>
+  <p>Requested at <%= pending_invitation.created_at.localtime.strftime("%A, %d %b at %l:%M %p") %></p>
+  <div class="action">
+    <%= button_to "Add #{pending_invitation.mate.first_name} to your house!", pending_invitation.mate, method: :patch, params: {:"mate[house_id]" => "#{pending_invitation.house_id}"}, class: "add-to-house-button", remote: true %>
+  </div>
+</div>

@@ -19,7 +19,7 @@ class MatesController < ApplicationController
   end
 
   def show
-    if current_user.house
+    if @mate.house.present?
       @announcements = @house.announcements
       @expenses = @house.expenses.order(due_date: :asc)
       @purchases = @mate.purchases

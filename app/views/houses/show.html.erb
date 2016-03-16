@@ -42,6 +42,11 @@
       <% end %>
     </ul>
     <% if current_user.house == @house %>
+      <div class="pending-invitation-list">
+        <% if @house.pending_invitations.count > 0 %>
+          <%= render @pending_invitations %>
+        <% end %>
+      </div>
       <%= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
         <%= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
         <%= button_tag "Add +" %>
