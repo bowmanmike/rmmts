@@ -39,7 +39,9 @@ class HousesController < ApplicationController
     @mate = current_user
     @house = House.find(params[:house_id])
 
-    MateMailer.request_to_join(@mate, @house).deliver_later
+    @house.mates.each do |mate|
+      MateMailer.request_to_join(@mate, @house, mate).deliver_later
+    end
     flash[:notice] = "Your request has been sent!"
     redirect_to root_path
   end

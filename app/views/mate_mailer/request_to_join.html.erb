@@ -1,7 +1,7 @@
-<h1>Hey <%= mate.first_name %></h1>
+<h1>Hey <%= @mate.first_name %>!</h1>
 
 <p>Great news! You've received a request to join your house!</p>
 
 <p><%= @new_mate.full_name %> wants to join!</p>
 
-<p>Go to your <%= link_to "house page", house_url(mate.house) %> to add new roommates!</p>
+<p>Go to your <%= link_to "house page", house_url(@mate.house) %> to add new roommates!</p>
