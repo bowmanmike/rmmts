@@ -30,6 +30,8 @@ class Mate < ActiveRecord::Base
 
   has_many :points, dependent: :destroy
 
+  has_many :pending_invitations, dependent: :destroy
+
   accepts_nested_attributes_for :notifications
 
   mount_uploader :mate_avatar, MateAvatarUploader
