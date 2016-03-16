@@ -22,9 +22,10 @@ class PendingInvitationsController < ApplicationController
   def destroy
     @pending_invitation = PendingInvitation.find(params[:id])
     @mate = @pending_invitation.mate
+    @house = @pending_invitation.house
 
     if @pending_invitation.delete
-      MateMailer.invitation_rejected(@mate, @pending_invitation).deliver_later
+      MateMailer.invitation_rejected(@mate, @house).deliver_later
     end
   end
 end
