@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :payments, except: [:index]
     end
     resources :notifications, only: [:update]
+    resources :pending_invitations
     member do
       get :activate
     end
