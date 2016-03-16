@@ -9,7 +9,7 @@
         <%= number_to_currency(purchase.amount) %>
       </dd>
       <dd class="purchase-amount-remaining">
-        Still owed: <%= number_to_currency(purchase.amount_owed) %>
+        Still owed: <%= number_to_currency(purchase.amount_owed * -1) %>
       </dd>
       <dd class="purchase-pay">
         <% if purchase.mate != current_user %>

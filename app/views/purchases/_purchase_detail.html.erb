@@ -46,7 +46,7 @@
         <% end %>
         <tr class="total-row">
           <td>Total</td>
-          <td><%= number_to_currency(purchase.amount) %></td>
+          <td><%= number_to_currency(purchase.amount - purchase.amount_for_each) %></td>
           <td><%= number_to_currency(purchase.amount_paid) %></td>
           <td class="<%= purchase.amount_owed.negative? ? "negative" : "positive" %>" >
             <%= number_to_currency(purchase.amount_owed) %>
