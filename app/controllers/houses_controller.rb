@@ -66,6 +66,7 @@ class HousesController < ApplicationController
         MateMailer.join_house(@mate, @mate.house).deliver_later
         @mate.assign_notifications
         @mate.create_conversations
+        @mate.delete_pending_invites
         redirect_to :back, notice: "Mate added to house"
         return
       else

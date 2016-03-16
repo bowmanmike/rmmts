@@ -126,9 +126,7 @@ class Mate < ActiveRecord::Base
   end
 
   def delete_pending_invites
-    self.pending_invitations.each do |invite|
-      invite.destroy
-    end
+    PendingInvitation.where(mate_id: self.id).delete_all
   end
 
 end
