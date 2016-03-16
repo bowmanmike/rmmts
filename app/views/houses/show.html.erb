@@ -11,7 +11,7 @@
             <%= f.button "Leave This House" %>
           <% end %>
         <% else %>
-          <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, remote: true %>
+          <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "request-to-join-house-button", remote: true %>
         <% end %>
       <% end %>
 

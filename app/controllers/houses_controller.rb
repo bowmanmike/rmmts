@@ -3,6 +3,7 @@ class HousesController < ApplicationController
   before_action :load_chores, only: [:show]
   before_action :load_house, only: [:show, :edit, :update, :destroy]
   before_filter :must_be_logged_in, except: [:index]
+  before_action :load_pending_invitations
 
   def housenames
     @houses = House.all
@@ -108,6 +109,10 @@ class HousesController < ApplicationController
 
   def load_chores
     @chores = House.find(params[:id]).chores.order(due_date: :desc)
+  end
+
+  def load_pending_invitations
+    @pending_invitations = PendingInvitation.find_by(house_id: @house.id)
   end
 
 end

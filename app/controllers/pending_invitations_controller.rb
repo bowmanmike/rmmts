@@ -14,10 +14,10 @@ class PendingInvitationsController < ApplicationController
         MateMailer.request_to_join(@mate, @house, mate).deliver_later
       end
       flash[:notice] = "Your request has been sent!"
-      redirect_to root_path
+      redirect_to house_path(@house)
     else
       flash[:alert] = "There was a problem. Please try again."
-      redirect_to houses_path
+      redirect_to house_path(@house)
     end
 
   end
