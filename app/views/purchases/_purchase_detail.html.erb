@@ -60,8 +60,8 @@
   </div>
   <div class="detail-links">
     <% if purchase.mate == current_user %>
-      <%= link_to image_tag("edit.svg", class: "detail-icon"), edit_mate_purchase_path(purchase.mate, purchase), remote: true, class: "detail-icon-link edit-purchase-button" %>
-      <%= link_to image_tag("delete.svg", class: "detail-icon"), mate_purchase_path(purchase.mate, purchase), method: :delete, data: {confirm: "Are you sure you want to delete this purchase?"}, class: "detail-icon-link", remote: true %>
+      <%= link_to image_tag("edit.svg", class: "detail-icon detail-edit-icon"), edit_mate_purchase_path(purchase.mate, purchase), remote: true, class: "detail-icon-link edit-purchase-button" %>
+      <%= link_to image_tag("delete.svg", class: "detail-icon detail-delete-icon"), mate_purchase_path(purchase.mate, purchase), method: :delete, data: {confirm: "Are you sure you want to delete this purchase?"}, class: "detail-icon-link", remote: true %>
     <% end %>
 
     <% if purchase.image.present? %>

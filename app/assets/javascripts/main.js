@@ -15,11 +15,7 @@ $(document).on('ready page:load', function() {
     showPopUp();
   });
 
-  $('html').on('click', '.popup', function(e) {
-    e.stopPropagation();
-  });
-
-  $('html').on('click', function() {
+  $('#overlay').on('click', function() {
     hidePopUp();
   });
 
