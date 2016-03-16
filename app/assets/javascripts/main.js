@@ -15,11 +15,12 @@ $(document).on('ready page:load', function() {
     showPopUp();
   });
 
-  $('html').on('click', '.popup', function(e) {
-    e.stopPropagation();
+  $(document).on('click', '.point-total > a', function(e) {
+    e.preventDefault();
+    showPopUp();
   });
 
-  $('html').on('click', function() {
+  $('#overlay').on('click', function() {
     hidePopUp();
   });
 

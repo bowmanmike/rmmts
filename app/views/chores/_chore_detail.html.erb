@@ -30,8 +30,8 @@
     <% if !chore.complete? %>
       <% if chore.mate == nil %>
         <strong>Unclaimed </strong>
-        <%= form_for [@house, chore], remote: true do |f| %>
-          <%= f.hidden_field :assign_self, :value => current_user.id %>
+        <%= form_for [@house, chore], class: "detail-claim-chore", remote: true do |f| %>
+          <%= f.hidden_field :assign_self, value: current_user.id %>
           <%= f.submit "claim", class: "small-button" %>
         <% end %>
       <% else %>
@@ -45,5 +45,9 @@
         <% end %>
       <% end %>
     <% end %>
+  </div>
+  <div class="detail-links">
+    <%= link_to image_tag("edit.svg", class: "detail-icon detail-edit-icon"), edit_house_chore_path(chore.house, chore), class: "detail-icon-link detail-edit-chore-button", remote: true %>
+    <%= link_to image_tag("delete.svg", class: "detail-icon detail-delete-icon"), house_chore_path(chore.house, chore), method: :delete, data: { confirm: "Are you sure you want to delete this chore?" }, class: "detail-icon-link", remote: true %>
   </div>
 </div>
