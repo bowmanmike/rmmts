@@ -22,5 +22,7 @@ Chortal uses the [twilio-ruby](https://github.com/twilio/twilio-ruby) gem to imp
 ## Contact
 
 Mike Bowman – [@mbowman2](https://twitter.com/mbowman2) – [https://github.com/bowmanmike](https://github.com/bowmanmike)
+
 Patrick Cruikshank – [@patrickcruiks](https://twitter.com/patrickcruiks) – [https://github.com/pcruiksh/](https://github.com/pcruiksh/)
+
 Karen Ho – [@karenjho](https://twitter.com/karenjho) – [https://github.com/karenjho](https://github.com/karenjho)
