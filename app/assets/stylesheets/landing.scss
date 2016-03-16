@@ -98,4 +98,24 @@
   a:hover {
     font-weight: bold;
   }
+
+  @include outer-container(100%);
+}
+
+.info-column-header {
+  font-size: 1.5rem;
+}
+
+.close-info-div {
+  margin-bottom: 0.5rem;
+}
+
+.info-div-column {
+  @include span-columns(6);
+  @include omega(2);
+  height: 5rem;
+
+  @include media($medium-large-screen-up) {
+    @include span-columns(3);
+  }
 }
