@@ -40,6 +40,8 @@ class HousesController < ApplicationController
     @house = House.find(params[:house_id])
 
     MateMailer.request_to_join(@mate, @house).deliver_later
+    flash[:notice] = "Your request has been sent!"
+    redirect_to root_path
   end
 
   def new
@@ -102,7 +104,7 @@ class HousesController < ApplicationController
   private
 
   def house_params
-    params.require(:house).permit(:name, :house_image, :house_id)
+    params.require(:house).permit(:name, :house_image)
   end
 
   def load_announcements

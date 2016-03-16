@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     end
   end
 
+  post "/houses/:house_id/request_to_join" => 'houses#request_to_join', as: :request_to_join_house
+
   resources :mates do
     resources :purchases, except: [:index] do
       resources :payments, except: [:index]

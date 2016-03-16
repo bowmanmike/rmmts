@@ -57,11 +57,11 @@ class MateMailer < ApplicationMailer
   end
 
   def request_to_join(mate, house)
-    @mate = mate
+    @new_mate = mate
     @house = house
     @all_mates = @house.mates
     @all_mates.each do |mate|
-      mail(to: mate.email, subject: "#{@mate.full_name} wants to join your house!")
+      mail(to: mate.email, subject: "#{@new_mate.full_name} wants to join your house!")
     end
   end
 end
