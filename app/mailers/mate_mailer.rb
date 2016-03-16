@@ -62,4 +62,11 @@ class MateMailer < ApplicationMailer
     @mate = mate
     mail(to: @mate.email, subject: "#{@new_mate.full_name} wants to join your house!")
   end
+
+  def invitation_rejected(mate, pending_invitation)
+    @mate = mate
+    @pending_invitation = pending_invitation
+    @house = @pending_invitation.house
+    mail(to: @mate.email, subject: "Your request to join #{@house} was rejected.")
+  end
 end
