@@ -94,6 +94,22 @@
 .houses-list {
   @include span-columns(12);
   margin-top: 2rem;
+
+  h3 {
+    display: inline-block;
+    // margin-right: 2rem;
+  }
+
+  .send-join-request-button {
+    width: auto;
+    display: inline-block;
+    float: right;
+  }
+
+  .request-to-join-house-button {
+    @include button(pill, #1A936F);
+    display: inline-block;
+  }
 }
 
 .house-search {
@@ -113,6 +129,8 @@
   @include media($medium-screen-up) {
     @include span-columns(8);
     @include omega;
+
+    overflow: scroll;
   }
 }
 
