@@ -27,23 +27,11 @@
   <div id="roommates" class="header-card">
     <h3>Roommates</h3>
     <ul id="roommates-list">
-      <% @house.mates.each do |mate| %>
-        <li class="roommate">
-          <% if mate.mate_avatar.present? %>
-            <%= image_tag mate.mate_avatar.thumb %>
-          <% else %>
-            <%= image_tag "blankface.svg" %>
-          <% end %>
-          <%= link_to image_tag("message.svg"), conversations_path(sender_id: current_user.id, receiver_id: mate.id), method: 'post'%>
-          <p><%= link_to "#{mate.first_name} #{mate.last_name}", mate_path(mate) %></p>
-        </li>
-        <% end %>
+      <%= render 'mates/mate_list' %>
     </ul>
     <% if current_user.house == @house %>
-      <div class="pending-invitation-list">
-        <% if @house.pending_invitations.count > 0 %>
-          <%= render @pending_invitations %>
-        <% end %>
+      <div id="pending-invitation-list">
+        <%= render @pending_invitations %>
       </div>
       <%= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
         <%= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
