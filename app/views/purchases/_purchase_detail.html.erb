@@ -23,32 +23,42 @@
     <table class="detail-payments table-minimal">
       <thead>
         <tr>
-          <th>Mate</th>
-          <th>Owed</th>
-          <th>Paid</th>
-          <th>Balance</th>
+          <th class="detail-mate-column">Mate</th>
+          <th class="detail-money-column">Owed</th>
+          <th class="detail-money-column">Paid</th>
+          <th class="detail-money-column">Balance</th>
         </tr>
       </thead>
       <tbody>
         <% purchase.mate.house.mates.each do |mate| %>
           <% unless mate == purchase.mate %>
             <tr>
-              <td><%= mate.first_name %></td>
-              <td><%= number_to_currency(purchase.amount_for_each) %></td>
-              <td>
+              <td class="detail-mate-column">
+                <%= mate.first_name %>
+              </td>
+              <td class="detail-money-column">
+                <%= number_to_currency(purchase.amount_for_each) %>
+              </td>
+              <td class="detail-money-column">
                 <%= number_to_currency(purchase.amount_paid_by(mate)) %>
               </td>
-              <td class="<%= purchase.amount_owed_by(mate).negative? ? "negative" : "positive" %>" >
+              <td class="detail-money-column <%= purchase.amount_owed_by(mate).negative? ? "negative" : "positive" %>" >
                 <%= number_to_currency(purchase.amount_owed_by(mate)) %>
               </td>
             </tr>
           <% end %>
         <% end %>
         <tr class="total-row">
-          <td>Total</td>
-          <td><%= number_to_currency(purchase.amount - purchase.amount_for_each) %></td>
-          <td><%= number_to_currency(purchase.amount_paid) %></td>
-          <td class="<%= purchase.amount_owed.negative? ? "negative" : "positive" %>" >
+          <td class="detail-mate-column">
+            Total
+          </td>
+          <td class="detail-money-column">
+            <%= number_to_currency(purchase.amount - purchase.amount_for_each) %>
+          </td>
+          <td class="detail-money-column">
+            <%= number_to_currency(purchase.amount_paid) %>
+          </td>
+          <td class="detail-money-column <%= purchase.amount_owed.negative? ? "negative" : "positive" %>" >
             <%= number_to_currency(purchase.amount_owed) %>
           </td>
         </tr>
@@ -56,7 +66,11 @@
     </table>
   </div>
   <div class="detail-make-payment">
-    <%= link_to button_tag("Make a payment"), new_mate_purchase_payment_path(purchase.mate, purchase) %>
+    <% if purchase.paid_by?(current_user) %>
+      No additional payments needed.
+    <% else %>
+      <%= link_to button_tag("Make a payment"), new_mate_purchase_payment_path(purchase.mate, purchase) %>
+    <% end %>
   </div>
   <div class="detail-links">
     <% if purchase.mate == current_user %>
