@@ -56,4 +56,12 @@ class MateMailer < ApplicationMailer
     mail(to: @mate.email, subject: "Activation Successful!")
   end
 
+  def request_to_join(mate, house)
+    @mate = mate
+    @house = house
+    @all_mates = @house.mates
+    @all_mates.each do |mate|
+      mail(to: mate.email, subject: "#{@mate.full_name} wants to join your house!")
+    end
+  end
 end

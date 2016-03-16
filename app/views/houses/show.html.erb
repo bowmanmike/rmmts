@@ -11,9 +11,9 @@
             <%= f.button "Leave This House" %>
           <% end %>
         <% else %>
-          <%= form_for current_user do |f| %>
+          <%= form_for @house, action: "request_to_join" do |f| %>
             <%= f.hidden_field :house_id, :value => @house.id %>
-            <%= f.button "Join This House" %>
+            <%= f.button "Request to Join This House" %>
           <% end %>
         <% end %>
       <% end %>
@@ -44,7 +44,7 @@
         <% end %>
       <% end %>
     </ul>
-    <% if current_user == @house.creator %>
+    <% if current_user.house == @house %>
       <%= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
         <%= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
         <%= button_tag "Add +" %>

@@ -35,6 +35,13 @@ class HousesController < ApplicationController
     end
   end
 
+  def request_to_join
+    @mate = current_user
+    @house = House.find(params[:house_id])
+
+    MateMailer.request_to_join(@mate, @house).deliver_later
+  end
+
   def new
     @house = House.new
   end
@@ -95,7 +102,7 @@ class HousesController < ApplicationController
   private
 
   def house_params
-    params.require(:house).permit(:name, :house_image)
+    params.require(:house).permit(:name, :house_image, :house_id)
   end
 
   def load_announcements
