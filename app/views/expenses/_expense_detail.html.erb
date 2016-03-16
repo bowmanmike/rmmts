@@ -7,7 +7,12 @@
     <p>
       Due <%= expense.due_date.strftime("%A, %B %e, %Y") %><br>
       <!-- Might need to fix wording for expenses that aren't daily weekly or monthly -->
-      Paid every <%= pluralize(expense.frequency_integer, expense.frequency) %>
+      Paid every <%= pluralize(expense.frequency_integer, expense.frequency) %><br>
+      <% if expense.has_paid?(current_user) %>
+        Thank you! You have fully paid back this expense.
+      <% else %>
+        You owe <%= number_to_currency(expense.amount_owed_by(current_user) * -1) %>
+      <% end %>
     </p>
   </div>
 
@@ -15,30 +20,38 @@
     <table class="detail-payments table-minimal">
       <thead>
         <tr>
-          <th>Mate</th>
-          <th>Owed</th>
-          <th>Paid</th>
-          <th>Balance</th>
+          <th class="detail-mate-column">Mate</th>
+          <th class="detail-money-column">Owed</th>
+          <th class="detail-money-column">Paid</th>
+          <th class="detail-money-column">Balance</th>
         </tr>
       </thead>
       <tbody>
         <% expense.house.mates.each do |mate| %>
           <tr>
-            <td><%= mate.first_name %></td>
-            <td><%= number_to_currency(expense.mate_amount) %></td>
-            <td>
+            <td class="detail-mate-column">
+              <%= mate.first_name %>
+            </td>
+            <td class="detail-money-column">
+              <%= number_to_currency(expense.mate_amount) %>
+            </td>
+            <td class="detail-money-column">
               <%= number_to_currency(expense.current_cycle_total_mate_payments(mate)) %>
             </td>
-            <td class="<%= expense.amount_owed_by(mate).negative? ? "negative" : "positive" %>" >
+            <td class="detail-money-column <%= expense.amount_owed_by(mate).negative? ? "negative" : "positive" %>" >
               <%= number_to_currency(expense.amount_owed_by(mate)) %>
             </td>
           </tr>
         <% end %>
         <tr class="total-row">
-          <td>Total</td>
-          <td><%= number_to_currency(expense.amount) %></td>
-          <td><%= number_to_currency(expense.current_cycle_total_payments) %></td>
-          <td class="<%= expense.amount_owing.negative? ? "negative" : "positive" %>" >
+          <td class="detail-mate-column">Total</td>
+          <td class="detail-money-column">
+            <%= number_to_currency(expense.amount) %>
+          </td>
+          <td class="detail-money-column">
+            <%= number_to_currency(expense.current_cycle_total_payments) %>
+          </td>
+          <td class="detail-money-column <%= expense.amount_owing.negative? ? "negative" : "positive" %>" >
             <%= number_to_currency(expense.amount_owing) %>
           </td>
         </tr>
@@ -46,6 +59,14 @@
     </table>
   </div>
   <div class="detail-make-payment">
-    <%= link_to button_tag("Make a payment"), new_house_expense_payment_path(expense.house, expense) %>
+    <% if expense.has_paid?(current_user) %>
+      No additional payments needed.
+    <% else %>
+      <%= link_to button_tag("Make a payment"), new_house_expense_payment_path(expense.house, expense) %>
+    <% end %>
+  </div>
+  <div class="detail-links">
+    <%= link_to image_tag("edit.svg", class: "detail-icon detail-edit-icon"), edit_house_expense_path(expense.house, expense), class: "detail-icon-link detail-edit-expense-button", remote: true %>
+    <%= link_to image_tag("delete.svg", class: "detail-icon detail-delete-icon"), house_expense_path(expense.house, expense), method: :delete, data: {confirm: "Are you sure you want to delete this expense?"}, class: "detail-icon-link", remote: true %>
   </div>
 </div>

@@ -14,7 +14,7 @@
     </dl>
   </div>
   <div class="card-links">
-    <%= link_to image_tag("edit.svg", class: "item-icon"), edit_house_expense_path(expense.house, expense), class: "item-icon-link edit-expense-button", remote: true %><br>
-    <%= link_to image_tag("delete.svg", class: "item-icon"), house_expense_path(expense.house, expense), method: :delete, data: {confirm: "Are you sure you want to delete this expense?"}, class: "item-icon-link", remote: true %><br>
+    <%= link_to image_tag("edit.svg", class: "item-icon edit-icon"), edit_house_expense_path(expense.house, expense), class: "item-icon-link edit-expense-button", remote: true %><br>
+    <%= link_to image_tag("delete.svg", class: "item-icon delete-icon"), house_expense_path(expense.house, expense), method: :delete, data: {confirm: "Are you sure you want to delete this expense?"}, class: "item-icon-link", remote: true %><br>
   </div>
 </div>
