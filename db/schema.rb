@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315193436) do
+ActiveRecord::Schema.define(version: 20160316144744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,10 +127,14 @@ ActiveRecord::Schema.define(version: 20160315193436) do
     t.datetime "activation_token_expires_at"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.datetime "last_login_at"
+    t.datetime "last_logout_at"
+    t.datetime "last_activity_at"
   end
 
   add_index "mates", ["activation_token"], name: "index_mates_on_activation_token", using: :btree
   add_index "mates", ["email"], name: "index_mates_on_email", unique: true, using: :btree
+  add_index "mates", ["last_logout_at", "last_activity_at"], name: "index_mates_on_last_logout_at_and_last_activity_at", using: :btree
   add_index "mates", ["remember_me_token"], name: "index_mates_on_remember_me_token", using: :btree
 
   create_table "messages", force: :cascade do |t|
