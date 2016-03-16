@@ -16,6 +16,16 @@
   width: 0.8rem;
 }
 
+.edit-icon {
+  position: relative;
+  left: 0.1rem;
+}
+
+.delete-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
 .item-icon-link {
   opacity: 0;
   padding: 0;
@@ -48,16 +58,6 @@
   &:hover {
     opacity: 0.7;
   }
-}
-
-.edit-icon {
-  position: relative;
-  left: 0.1rem;
-}
-
-.delete-icon {
-  width: 1rem;
-  height: 1rem;
 }
 
 .check-mark-wrapper {
