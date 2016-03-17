@@ -11,6 +11,27 @@ $(document).on('ready page:load', function() {
 
   });
 
+  var timeoutID = undefined
+
+  if (document.getElementsByClassName('messages').length > 0) {
+    $(document).on('click', '.conversation-link', function(e) {
+      e.preventDefault();
+      var conversation = $(this);
+      clearTimeout(timeoutID);
+
+      function initializeAjaxPolling() {
+        $.getScript('/conversations/ ' + conversation.attr('data-id') + '/new_messages');
+        timeoutID = setTimeout(initializeAjaxPolling, 5000);
+      }
+
+      initializeAjaxPolling();
+
+      $('a').not('.conversation-link').click(function() {
+        clearTimeout(timeoutID);
+      });
+    });
+  }
+
   $(document).on('submit', '#new_message', function() {
     $('#message_body').val('');
   });
