@@ -1,0 +1,18 @@
+#flash {
+  position: fixed;
+  top: 60px;
+  text-align: center;
+  font-size: 1.25rem;
+  width: 100%;
+  z-index: 90;
+}
+
+.alert {
+  background-color: $flash-alert-background-color;
+  color: darken($flash-alert-background-color, 60%)
+}
+
+.notice {
+  background-color: $flash-notice-background-color;
+  color: darken($flash-notice-background-color, 60%)
+}

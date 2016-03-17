@@ -6,6 +6,7 @@ class PurchasesController < ApplicationController
   before_action :load_mate
   before_action :load_house_purchases
   before_action :load_purchase, only: [:show, :edit, :update, :destroy]
+  before_action :load_events, only: [:create, :update, :destroy]
 
   def new
     @purchase = Purchase.new
@@ -86,5 +87,10 @@ class PurchasesController < ApplicationController
 
   def load_house_purchases
     @purchases = @house.purchases
+  end
+
+  def load_events
+    @house = current_user.house
+    @events = @house.chores + @house.expenses + @house.mates.purchases
   end
 end

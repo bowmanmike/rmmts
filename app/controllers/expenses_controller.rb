@@ -5,6 +5,7 @@ class ExpensesController < ApplicationController
   before_action :load_house
   before_action :load_house_expenses
   before_action :load_expense, only: [:show, :edit, :update, :destroy]
+  before_action :load_events, only: [:create, :update, :delete]
 
   def new
     @expense = Expense.new
@@ -84,4 +85,14 @@ class ExpensesController < ApplicationController
   def expense_params
     params.require(:expense).permit(:name, :description, :amount, :paid, :due_date, :frequency_integer, :frequency_unit, :recurring, :frequency_weekday)
   end
+
+  def load_events
+    if @house
+      @events = @house.chores + @house.expenses + @house.purchases
+    else
+      @house = House.find(params[:house_id])
+      @events = @house.chores + @house.expenses + @house.purchases
+    end
+  end
+  
 end

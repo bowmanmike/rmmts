@@ -4,6 +4,7 @@ class ChoresController < ApplicationController
   before_action :load_house
   before_action :load_house_chores
   before_action :load_chore, only: [:show, :edit, :update, :destroy]
+  before_action :load_events, only: [:create, :update, :delete]
 
   after_action :check_notification_status, only: [:update]
 
@@ -108,6 +109,15 @@ class ChoresController < ApplicationController
       @chore.mate.remove_notifications_on_claim(@chore)
     elsif !@chore.check_claimed?
       @chore.house.mates.where.not(id: current_user.id).each { |mate| mate.assign_notifications }
+    end
+  end
+
+  def load_events
+    if @house
+      @events = @house.chores + @house.expenses + @house.purchases
+    else
+      @house = House.find(params[:house_id])
+      @events = @house.chores + @house.expenses + @house.purchases
     end
   end
 
