@@ -14,8 +14,7 @@ $(document).on('ready page:load', function() {
   var timeoutID = undefined
 
   if (document.getElementsByClassName('messages').length > 0) {
-    $(document).on('click', '.conversation-link', function(e) {
-      e.preventDefault();
+    $(document).on('click', '.conversation-link', function() {
       var conversation = $(this);
       clearTimeout(timeoutID);
 
