@@ -1,0 +1,9 @@
+<%= week_calendar attribute: :due_date, events: @events do |date, events| %>
+  <span class="calendar-date"><%= date.strftime('%b %e') %></span>
+
+  <% events.each do |event| %>
+    <div class="calendar-event">
+        <%= event.name %>
+    </div>
+  <% end %>
+<% end %>
