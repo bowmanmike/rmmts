@@ -33,6 +33,10 @@
     border-bottom-right-radius: $card-border-radius;
   }
 
+  .calendar-date {
+    font-style: italic;
+  }
+
   th {
     background-color: $light-gray;
   }
