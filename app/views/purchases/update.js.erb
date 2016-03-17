@@ -2,3 +2,4 @@ $('#purchases-buttons').html('<%= j(link_to button_tag("Add new purchase"), new_
 $('.purchases-list').html('<%= j(render @purchases) %>');
 $('#mate-purchases-list').html('<%= j(render(partial: "purchases/purchase", collection: @mate.purchases, as: :purchase) %>');
 $('#purchase-form').html('');
+$('#house-calendar').html("<%=j render 'houses/calendar', collection: @events %>")
