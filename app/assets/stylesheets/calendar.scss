@@ -6,6 +6,16 @@
   padding-left: 1rem;
 }
 
+.show-month-calendar {
+  text-align: right;
+  display: block;
+  position: relative;
+  bottom: -1.5rem;
+  margin-right: 1rem;
+  font-style: italic;
+  cursor: pointer;
+}
+
 .simple-calendar {
   padding: 1rem;
   border-radius: $card-border-radius;
@@ -18,6 +28,10 @@
 
   @include media($medium-screen-up) {
     @include span-columns(12);
+  }
+
+  .calendar-event {
+    margin: 0.3rem 0;
   }
 
   .day {

@@ -4,7 +4,7 @@ class HousesController < ApplicationController
   before_action :load_house, only: [:show, :edit, :update, :destroy]
   before_filter :must_be_logged_in, except: [:index]
   before_action :load_pending_invitations, only: [:show]
-  before_action :load_events, only: [:show]
+  before_action :load_events, only: [:show, :show_month_calendar]
 
   def housenames
     @houses = House.all
@@ -93,6 +93,9 @@ class HousesController < ApplicationController
       redirect_to house_path(@house)
       flash[:alert] = "There was a problem. House could not be deleted."
     end
+  end
+
+  def show_month_calendar
   end
 
   private
