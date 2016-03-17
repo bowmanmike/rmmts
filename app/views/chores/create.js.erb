@@ -9,4 +9,4 @@ $('#add-chore-button').html('<%= j(link_to button_tag("Add new chore"), new_hous
   $('#complete-chores-list').html('All chores complete! Good Job!');
 <% end %>
 
-$('#house-calendar').html("<%=j render 'calendar', collection: @events %>")
+$('#house-calendar').html("<%=j render 'houses/calendar', collection: @events %>")
