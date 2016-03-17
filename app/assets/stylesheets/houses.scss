@@ -14,7 +14,15 @@
 .header-card {
 
   .request-to-join-house-button {
-    @include button(pill, #1A936F);
+    background-color: #1A936F;
+    border-color: #114b5f;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 3px rgba(13, 58, 73, 0.4);
+    outline: none;
+  }
+
+  img {
+    // border-radius: 3%;
+    // border: 1px solid #333;
   }
 
   @include media($small-screen-only) {
@@ -29,7 +37,7 @@
 
 #roommates {
   padding: 1rem;
-  background-color: #ddd;
+  background-color: $card-background-color;
 }
 
 #pending-invitation-list {
