@@ -4,6 +4,7 @@
   padding-right: 1rem;
   padding-bottom: 1rem;
   padding-left: 1rem;
+  overflow: hidden;
 }
 
 .show-month-calendar {
@@ -59,8 +60,6 @@
     background-color: $light-gray;
 
     @include media($small-screen-only) {
-      // @include fill-parent();
-      // @include row(table);
     }
   }
 
