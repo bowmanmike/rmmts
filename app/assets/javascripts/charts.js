@@ -1,10 +1,5 @@
 $(document).on('ready page:load', function() {
 
-  var ctx = $('#test-chart').get(0).getContext("2d");
-  var testChart = new Chart(ctx).Pie(data, {
-      animateRotate: true
-  });
-
   var data = [
       {
           value: 300,
@@ -25,4 +20,9 @@ $(document).on('ready page:load', function() {
           label: "Yellow"
       }
   ]
+    // Get context with jQuery - using jQuery's .get() method.
+  var ctx = $("#test-chart").get(0).getContext("2d");
+  // This will get the first returned node in the jQuery collection.
+  var myNewChart = new Chart(ctx).Pie(data);
+
 });
