@@ -53,7 +53,8 @@ class ChoresController < ApplicationController
       if params[:chore][:assign_self]
         @chore.mate_id = params[:chore][:assign_self]
         @chore.save
-        flash[:notice] = "You've claimed this chore!"
+        flash[:notice] = "You've claimed this chore!" if @chore.mate_id?
+        flash[:notice] = "You've unclaimed this chore!" if !@chore.mate_id?
         format.html { redirect_to :back, notice: "You have claimed this chore" }
         format.js {}
         return
