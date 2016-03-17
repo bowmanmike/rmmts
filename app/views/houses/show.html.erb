@@ -43,6 +43,10 @@
 
 <% if current_user && current_user.house == @house %>
 
+  <div id="house-calendar">
+    <%= render 'calendar', collection: @events %>
+  </div>
+
   <div class="house-container">
     <div id="announcements" class="full-container">
       <div class="full-card">
@@ -111,7 +115,3 @@
     </div>
   </div>
 <% end %>
-
-<div id="house-calendar">
-  <%= render 'calendar', collection: @events %>
-</div>
