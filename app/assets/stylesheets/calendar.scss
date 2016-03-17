@@ -54,6 +54,10 @@
     border-bottom-color: $medium-gray;
     border-bottom-left-radius: $card-border-radius;
     border-bottom-right-radius: $card-border-radius;
+
+    .strikethrough {
+      text-decoration: line-through;
+    }
   }
 
   .calendar-date {

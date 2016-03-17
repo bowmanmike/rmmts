@@ -4,12 +4,14 @@
   <% events.each do |event| %>
     <div class="calendar-event">
       <% if event.is_a?(Chore) %>
-        <%= link_to event.name, house_chore_path(event.house, event), class: "show-chore-link", remote: true %>
-      <% end %>
-      <% if event.is_a?(Expense) %>
+        <% if event.complete? %>
+          <%= link_to event.name, house_chore_path(event.house, event), class: "show-chore-link strikethrough", remote: true %>
+        <% else %>
+          <%= link_to event.name, house_chore_path(event.house, event), class: "show-chore-link strikethrough", remote: true %>
+        <% end %>
+      <% elsif event.is_a?(Expense) %>
         <%= link_to event.name, house_expense_path(event.house, event), class: "show-expense-link", remote: true %>
-      <% end %>
-      <% if event.is_a?(Purchase) %>
+      <% elsif event.is_a?(Purchase) %>
         <%= link_to event.name, mate_purchase_path(event.mate, event), class: "show-purchase-link", remote: true %>
       <% end %>
     </div>
