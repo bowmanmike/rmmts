@@ -40,7 +40,6 @@ Rails.application.routes.draw do
   get '/usernames' => 'mates#usernames'
   get '/housenames' => 'houses#housenames'
   get "/conversations/:id/new_messages" => 'conversations#new_messages'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

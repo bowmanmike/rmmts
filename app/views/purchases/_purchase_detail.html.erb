@@ -69,7 +69,7 @@
     <% if purchase.paid_by?(current_user) %>
       No additional payments needed.
     <% else %>
-      <%= link_to button_tag("Make a payment"), new_mate_purchase_payment_path(purchase.mate, purchase) %>
+      <%= link_to button_tag("Make a payment"), new_mate_purchase_payment_path(purchase.mate, purchase), remote: true %>
     <% end %>
   </div>
   <div class="detail-links">
