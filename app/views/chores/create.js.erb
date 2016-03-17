@@ -8,3 +8,5 @@ $('#add-chore-button').html('<%= j(link_to button_tag("Add new chore"), new_hous
 <% if @chores.where(complete: true).empty? %>
   $('#complete-chores-list').html('All chores complete! Good Job!');
 <% end %>
+
+$('#house-calendar').html("<%=j render 'calendar', collection: @events %>")

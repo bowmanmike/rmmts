@@ -1,0 +1,101 @@
+#house-calendar {
+  @include outer-container;
+  padding-top: 0rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  overflow: hidden;
+}
+
+.show-month-calendar {
+  text-align: right;
+  display: block;
+  position: relative;
+  bottom: -1.5rem;
+  margin-right: 1rem;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.simple-calendar {
+  padding: 1rem;
+  border-radius: $card-border-radius;
+  background-color: $card-background-color;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: $medium-gray;
+  border-bottom-left-radius: $card-border-radius;
+  border-bottom-right-radius: $card-border-radius;
+
+  @include media($medium-screen-up) {
+    @include span-columns(12);
+  }
+
+  @include media($small-screen-only) {
+    overflow-x: scroll;
+    padding-right: 0;
+    border-right: 1rem solid rgba(0, 0, 0, 0);
+    padding-left: 0;
+    border-left: 1rem solid rgba(0, 0, 0, 0);
+  }
+
+  .calendar-event {
+    margin: 0.3rem 0;
+  }
+
+  .day {
+    height: $card-item-height;
+    border-radius: $card-border-radius;
+    background-color: $card-item-background-color;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: $medium-gray;
+    border-bottom-left-radius: $card-border-radius;
+    border-bottom-right-radius: $card-border-radius;
+
+    .strikethrough {
+      text-decoration: line-through;
+    }
+  }
+
+  .calendar-date {
+    font-style: italic;
+  }
+
+  th {
+    background-color: $light-gray;
+
+    @include media($small-screen-only) {
+    }
+  }
+
+  td,
+  th {
+    @include media($small-screen-only) {
+      width: 6rem;
+      min-height: 6rem;
+    }
+  }
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+}

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   post "/houses/:house_id/request_to_join" => 'houses#request_to_join', as: :request_to_join_house
 
+  get "/houses/:house_id/show_month_calendar" => 'houses#show_month_calendar', as: :show_month_calendar
+
   resources :mates do
     resources :purchases, except: [:index] do
       resources :payments, except: [:index]
