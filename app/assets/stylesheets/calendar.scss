@@ -33,6 +33,10 @@
 
   @include media($small-screen-only) {
     overflow-x: scroll;
+    padding-right: 0;
+    border-right: 1rem solid rgba(0, 0, 0, 0);
+    padding-left: 0;
+    border-left: 1rem solid rgba(0, 0, 0, 0);
   }
 
   .calendar-event {
