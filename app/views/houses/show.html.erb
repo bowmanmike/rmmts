@@ -113,11 +113,13 @@
 <% end %>
 
 <div id="house-calendar">
-  <%= week_calendar attribute: :due_date, events: @chores do |date, chores| %>
+  <%= week_calendar attribute: :due_date, events: @events do |date, events| %>
     <%= date %>
 
-    <% chores.each do |chore| %>
-      <%= chore.name %>
+    <% events.each do |event| %>
+      <div class="calendar-event">
+        <%= event.name %>
+      </div>
     <% end %>
   <% end %>
 </div>

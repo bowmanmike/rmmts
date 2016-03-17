@@ -4,6 +4,7 @@ class HousesController < ApplicationController
   before_action :load_house, only: [:show, :edit, :update, :destroy]
   before_filter :must_be_logged_in, except: [:index]
   before_action :load_pending_invitations, only: [:show]
+  before_action :load_events, only: [:show]
 
   def housenames
     @houses = House.all
@@ -114,6 +115,10 @@ class HousesController < ApplicationController
 
   def load_pending_invitations
     @pending_invitations = @house.pending_invitations
+  end
+
+  def load_events
+    @events = @house.chores + @house.expenses + @house.purchases
   end
 
 end
