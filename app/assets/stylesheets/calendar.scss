@@ -30,6 +30,10 @@
     @include span-columns(12);
   }
 
+  @include media($small-screen-only) {
+    overflow-x: scroll;
+  }
+
   .calendar-event {
     margin: 0.3rem 0;
   }
@@ -53,6 +57,19 @@
 
   th {
     background-color: $light-gray;
+
+    @include media($small-screen-only) {
+      // @include fill-parent();
+      // @include row(table);
+    }
+  }
+
+  td,
+  th {
+    @include media($small-screen-only) {
+      width: 6rem;
+      min-height: 6rem;
+    }
   }
 
   .wday-0 {}
