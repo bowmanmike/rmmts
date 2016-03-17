@@ -89,13 +89,48 @@
   bottom: 0;
   height: 0;
   width: 100%;
-  p {
-    padding-top: 2rem;
-  }
+
   a {
     color: white;
   }
   a:hover {
     font-weight: bold;
+  }
+
+  @include outer-container(100%);
+
+  @include media($small-screen-only) {
+    overflow: scroll;
+  }
+}
+
+.info-column-header {
+  font-size: 1.2rem;
+
+  @include media($medium-large-screen-up) {
+    font-size: 1.5rem;
+  }
+}
+
+.close-info-div {
+  margin-bottom: 0.5rem;
+}
+
+.info-div-column {
+  @include span-columns(12);
+  // @include omega(2);
+  height: 7rem;
+
+  @include media($medium-large-screen-up) {
+    @include span-columns(3);
+    height: auto;
+  }
+}
+
+.info-column-content {
+  padding-top: 0;
+
+  @include media($medium-screen-up) {
+    padding-top: 2rem;
   }
 }
