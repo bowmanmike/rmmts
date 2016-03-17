@@ -96,6 +96,7 @@ class HousesController < ApplicationController
   end
 
   def show_month_calendar
+    @house = House.find(params[:house_id])
   end
 
   private
@@ -121,7 +122,12 @@ class HousesController < ApplicationController
   end
 
   def load_events
-    @events = @house.chores + @house.expenses + @house.purchases
+    if @house
+      @events = @house.chores + @house.expenses + @house.purchases
+    else
+      @house = House.find(params[:house_id])
+      @events = @house.chores + @house.expenses + @house.purchases
+    end
   end
 
 end
