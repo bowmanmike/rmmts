@@ -1,5 +1,5 @@
 #house-calendar {
-  @include outer-container;
+  @include outer-container(100%);
   padding-top: 0rem;
   padding-right: 1rem;
   padding-bottom: 1rem;

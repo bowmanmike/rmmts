@@ -8,10 +8,6 @@
   padding-right: 1rem;
   padding-bottom: 1rem;
   padding-left: 1rem;
-
-  @include media($large-screen-up) {
-    @include outer-container(900px);
-  }
 }
 
 .full-card {
