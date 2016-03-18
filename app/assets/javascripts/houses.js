@@ -14,6 +14,7 @@ $(document).on('ready page:load', function() {
     });
   });
 
+  // Don't delete!
   // $(document).ajaxSuccess(function() {
   //   $('.calendar-event').tooltip({
   //     content: function() {
