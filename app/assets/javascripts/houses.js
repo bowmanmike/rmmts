@@ -118,7 +118,7 @@ $(document).on('ready page:load', function() {
     showPopUp();
   })
 
-  $(document).on('click', '#house-calendar a', function(e) {
+  $(document).on('click', '.simple-calendar a', function(e) {
     e.preventDefault();
     var self = $(this);
 
@@ -128,6 +128,8 @@ $(document).on('ready page:load', function() {
       dataType: 'script'
     })
   })
+
+  // $(document).on('click', '')
 });
 
 $(document).on('page:partial-load', function() {
