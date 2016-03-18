@@ -8,15 +8,25 @@ $(document).on('ready page:load', function() {
 
       var chartColor = function(num) {
         if (num == 0)
-            return "#F38630";
+            return "#76FF03";
         if (num == 1)
-            return "#E0E4CC";
+            return "#00E676";
         if (num == 2)
-            return "#69D2E7";
+            return "#1DE9B6";
         if (num == 3)
-            return "#003399";
+            return "#00E5FF";
         if (num == 4)
-            return "#969696";
+            return "#00B0FF";
+        if (num == 5)
+            return "#2979FF";
+        if (num == 6)
+            return "#651FFF";
+        if (num == 7)
+            return "#D500F9";
+        if (num == 8)
+            return "#F50057";
+        if (num == 9)
+            return "#FF1744";
       };
 
       var cvs = $('.test-chart');
