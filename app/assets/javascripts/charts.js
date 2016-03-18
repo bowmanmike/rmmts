@@ -1,6 +1,7 @@
 $(document).on('ready page:load', function() {
 
   var getPieData = function() {
+
     $.getJSON( $(location).attr('href') + ".json" ).done(function(data){
       var pieData = [];
 
@@ -18,9 +19,7 @@ $(document).on('ready page:load', function() {
       };
 
       var drawPieChart = function() {
-        // Get context with jQuery - using jQuery's .get() method.
         var ctx = $("#test-chart").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
         var myNewChart = new Chart(ctx).Pie(pieData);
       }
 
@@ -38,22 +37,5 @@ $(document).on('ready page:load', function() {
   };
 
   getPieData();
-
-  // var pieData = [];
-  // for (i = 0; i < getPieData.length; i++) {
-  //   pieData.push({
-  //       value: getPieData[i].value,
-  //       label: getPieData[i].label,
-  //       color: chartColor(i)
-  //   });
-  // };
-
-  // drawPieChart();
-
-
-  // var urlJSON =
-  // var dataJSON = $.getJSON(urlJSON);
-  // var responseJSON = dataJSON.responseText;
-  // var objectJSON = $.parseJSON(responseJSON);
 
 });
