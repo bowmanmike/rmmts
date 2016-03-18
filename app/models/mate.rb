@@ -129,4 +129,8 @@ class Mate < ActiveRecord::Base
     PendingInvitation.where(mate_id: self.id).delete_all
   end
 
+  def total_points
+    self.points.sum(:amount)
+  end
+
 end
