@@ -1,3 +1,8 @@
+.house-stats-header {
+  padding-top: 2rem;
+  padding-bottom: 0;
+}
+
 .points-container {
   @include span-columns(12);
 
@@ -14,6 +19,7 @@
 
 .points-table {
   margin-top: 2rem;
+  margin-bottom: 2rem;
   padding: 0 1.5rem;
 
   .points-mate {
@@ -27,6 +33,7 @@
 }
 
 .spending-container {
+  text-align: center;
   @include span-columns(12);
 
   @include media($medium-screen-up) {
@@ -35,10 +42,16 @@
 }
 
 .bar-chart-name {
+  text-align: center;
   margin-bottom: 0;
+}
+
+.points-chart-name {
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .expense-chart,
 .purchase-chart {
-  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

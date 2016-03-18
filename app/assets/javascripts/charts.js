@@ -45,10 +45,10 @@ $(document).on('ready page:load', function() {
       purchaseDataset.push({
         data: spending[1].data,
         label: spending[1].label,
-        fillColor: chartColor(1),
-        strokeColor: chartColor(1),
-        highlightFill: secondaryChartColor(1),
-        highlightStroke: secondaryChartColor(1)
+        fillColor: chartColor(2),
+        strokeColor: chartColor(2),
+        highlightFill: secondaryChartColor(2),
+        highlightStroke: secondaryChartColor(2)
       });
 
 
@@ -93,30 +93,26 @@ $(document).on('ready page:load', function() {
     // From Google's Material Design colour palette
     // http://www.google.com/design/spec/style/color.html#color-color-palette
     if (num == 0)
-        return "#00B0FF";
-    if (num == 1)
-        return "#00E5FF";
-    if (num == 2)
         return "#1DE9B6";
-    if (num == 3)
+    if (num == 1)
         return "#00E676";
-    if (num == 4)
+    if (num == 2)
         return "#76FF03";
-    if (num == 5)
+    if (num == 3)
         return "#C6FF00";
-    if (num == 6)
+    if (num == 4)
         return "#FFEA00";
-    if (num == 7)
+    if (num == 5)
         return "#FFC400";
-    if (num == 8)
+    if (num == 6)
         return "#FF9100";
-    if (num == 9)
+    if (num == 7)
         return "#FF3D00";
-    if (num == 10)
+    if (num == 8)
         return "#FF1744";
-    if (num == 11)
+    if (num == 9)
         return "#F50057";
-    if (num == 12)
+    if (num == 10)
         return "#D500F9";
   };
 
@@ -124,30 +120,26 @@ $(document).on('ready page:load', function() {
     // From Google's Material Design colour palette
     // http://www.google.com/design/spec/style/color.html#color-color-palette
     if (num == 0)
-        return "#0091EA";
-    if (num == 1)
-        return "#00B8D4";
-    if (num == 2)
         return "#00BFA5";
-    if (num == 3)
+    if (num == 1)
         return "#00C853";
-    if (num == 4)
+    if (num == 2)
         return "#64DD17";
-    if (num == 5)
+    if (num == 3)
         return "#AEEA00";
-    if (num == 6)
+    if (num == 4)
         return "#FFD600";
-    if (num == 7)
+    if (num == 5)
         return "#FFAB00";
-    if (num == 8)
+    if (num == 6)
         return "#FF6D00";
-    if (num == 9)
+    if (num == 7)
         return "#DD2C00";
-    if (num == 10)
+    if (num == 8)
         return "#D50000";
-    if (num == 11)
+    if (num == 9)
         return "#C51162";
-    if (num == 12)
+    if (num == 10)
         return "#AA00FF";
   };
 
