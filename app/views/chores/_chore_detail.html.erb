@@ -32,7 +32,7 @@
         <strong>Unclaimed </strong>
         <%= form_for [@house, chore], class: "detail-claim-chore", remote: true do |f| %>
           <%= f.hidden_field :assign_self, value: current_user.id %>
-          <%= f.submit "claim", class: "small-button" %>
+          <%= f.button "claim", class: "small-button" %>
         <% end %>
       <% else %>
         <span class="claimed-by"><strong>Claimed by <%= chore.mate.first_name %></strong></span>
@@ -41,7 +41,7 @@
       <% if chore.mate == current_user %>
         <%= form_for [@house, chore], remote: true do |f| %>
           <%= f.hidden_field :assign_self, :value => nil %>
-          <%= f.submit "unclaim", class: "small-button" %>
+          <%= f.button "unclaim", class: "small-button" %>
         <% end %>
       <% end %>
     <% end %>
