@@ -31,11 +31,11 @@ class MessagesController < ApplicationController
 
   def destroy
     @message = Message.find(params[:id])
-    @message.body = "This messge has been deleted."
+    @message.body = "Deleted message."
     respond_to do |format|
       if @message.save
         format.html { redirect_to conversation_path(@message.conversation.id)
-                      flash[:notice] = "This message has been deleted." }
+                      flash[:notice] = "Your message has been deleted." }
         format.js {}
       else
         format.html { render :new }

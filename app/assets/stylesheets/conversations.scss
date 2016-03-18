@@ -100,7 +100,7 @@
 }
 
 #message_body {
-    background-color: #ffffff;
+    background-color: $black-05;
     border-radius: 0;
     margin-bottom: 0 !important;
 }
@@ -134,17 +134,18 @@
 
 .receiver-message {
   float: left;
-  background-color: $lightest-gray;
-  color: $dark-gray;
+  background-color: $black-05;
+  color: $black;
 }
 
 .message-info {
+  text-align: right;
   font-size: 0.7rem;
-  color: $dark-gray;
+  color: $medium-gray;
 }
 
 .delete-message-link {
-  color: $medium-gray;
+  color: $dark-gray;
 }
 
 .each-message {
