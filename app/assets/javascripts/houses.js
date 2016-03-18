@@ -128,8 +128,6 @@ $(document).on('ready page:load', function() {
       dataType: 'script'
     })
   })
-
-  // $(document).on('click', '')
 });
 
 $(document).on('page:partial-load', function() {
