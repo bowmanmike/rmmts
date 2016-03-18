@@ -2,7 +2,7 @@ $(document).on('ready page:load', function() {
 
   var showPointsChart = function() {
 
-    $.getJSON($(location).attr('href') + '.json').done(function(stats){
+    $.getJSON($(location).attr('href') + '.json').done(function(stats) {
       var pointsData = [];
       var points = stats.points;
       for (i = 0; i < points.length; i++) {
@@ -13,33 +13,44 @@ $(document).on('ready page:load', function() {
         });
       };
 
-      var spendingData = [];
-      var spending = stats.spending
-      for (i = 0; i < spending.length; i++) {
-        spendingData.push({
-            data: spending[i].data,
-            label: spending[i].label,
-            fillColor: chartColor(i);
-            highlightFill: secondaryChartColor(i);
-        });
-      };
-
       var pointsCtx = $('.points-pie').get(0).getContext("2d");
       new Chart(pointsCtx).Pie(pointsData, {
         segmentShowStroke: false,
         percentageInnerCutout: 70
       });
+    });
+  };
+
+  var showSpendingChart = function() {
+
+    $.getJSON($(location).attr('href') + '.json').done(function(stats) {
+      var spendingData = {};
+      var spending = stats.spending;
+      var labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      var datasets = [];
+      for (i = 0; i < spending.length; i++) {
+        datasets.push({
+            data: spending[i].data,
+            label: spending[i].label,
+            fillColor: chartColor(i),
+            highlightFill: secondaryChartColor(i)
+        });
+      };
+
+      spendingData.push(labels: labels);
+      spendingData.push(datasets: datasets);
 
       var spendingCtx = $('.spending-bar').get(0).getContext("2d");
       new Chart(spendingCtx).Bar(spendingData, {
-        segmentShowStroke: false
+        barShowStroke: false,
+        scaleShowGridLines: false,
       });
-
     });
   };
 
   if ($(location).attr('href').search('stats') >= 0) {
     showPointsChart();
+    showSpendingChart();
   };
 
   var chartColor = function(num) {
