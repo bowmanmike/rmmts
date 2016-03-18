@@ -25,3 +25,20 @@
     text-align: center;
   }
 }
+
+.spending-container {
+  @include span-columns(12);
+
+  @include media($medium-screen-up) {
+    @include span-columns(6);
+  }
+}
+
+.bar-chart-name {
+  margin-bottom: 0;
+}
+
+.expense-chart,
+.purchase-chart {
+  margin-top: 1rem;
+}

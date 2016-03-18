@@ -26,28 +26,60 @@ $(document).on('ready page:load', function() {
   var showSpendingChart = function() {
 
     $.getJSON($(location).attr('href') + '.json').done(function(stats) {
-      var spendingData = {};
+      var expenseData = {};
+      var purchaseData = {};
       var spending = stats.spending;
-      var spendingLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      var spendingDatasets = [];
-      for (i = 0; i < spending.length; i++) {
-        spendingDatasets.push({
-            data: spending[i].data,
-            label: spending[i].label,
-            fillColor: chartColor(i),
-            strokeColor: chartColor(i),
-            highlightFill: secondaryChartColor(i),
-            highlightStroke: secondaryChartColor(i)
-        });
-      };
+      var spendingLabels = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
+      var expenseDataset = [];
+      var purchaseDataset = []
 
-      spendingData.labels = spendingLabels;
-      spendingData.datasets = spendingDatasets;
+      expenseDataset.push({
+        data: spending[0].data,
+        label: spending[0].label,
+        fillColor: chartColor(0),
+        strokeColor: chartColor(0),
+        highlightFill: secondaryChartColor(0),
+        highlightStroke: secondaryChartColor(0)
+      });
 
-      var spendingCtx = $('.spending-bar').get(0).getContext("2d");
-      new Chart(spendingCtx).Bar(spendingData, {
+      purchaseDataset.push({
+        data: spending[1].data,
+        label: spending[1].label,
+        fillColor: chartColor(1),
+        strokeColor: chartColor(1),
+        highlightFill: secondaryChartColor(1),
+        highlightStroke: secondaryChartColor(1)
+      });
+
+
+      expenseData.labels = spendingLabels;
+      expenseData.datasets = expenseDataset;
+
+      purchaseData.labels = spendingLabels;
+      purchaseData.datasets = purchaseDataset;
+
+      var expenseCtx = $('.expense-bar').get(0).getContext("2d");
+      new Chart(expenseCtx).Bar(expenseData, {
         barShowStroke: false,
         scaleShowGridLines: false,
+        scaleShowHorizontalLines: false,
+        scaleShowVerticalLines: false,
+        scaleLineColor: 'transparent',
+        scaleShowLabels: false,
+        barValueSpacing: 2,
+        barDatasetSpacing: 0,
+      });
+
+      var purchaseCtx = $('.purchase-bar').get(0).getContext("2d");
+      new Chart(purchaseCtx).Bar(purchaseData, {
+        barShowStroke: false,
+        scaleShowGridLines: false,
+        scaleShowHorizontalLines: false,
+        scaleShowVerticalLines: false,
+        scaleLineColor: 'transparent',
+        scaleShowLabels: false,
+        barValueSpacing: 2,
+        barDatasetSpacing: 0,
       });
     });
   };
