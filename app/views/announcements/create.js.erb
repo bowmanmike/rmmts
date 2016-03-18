@@ -3,6 +3,6 @@ $('#announcements-list').html('<%= j(render @announcements.order(created_at: :DE
 $('#announcement-counter').html('<p><strong><%= @announcements.count %></strong> announcements</p>');
 
 <% flash.each do |type, message| %>
-  $('#flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
-  $('#flash').addClass('<%= type %>')
+  $('.flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
+  $('.flash').addClass('<%= type %>')
 <% end %>

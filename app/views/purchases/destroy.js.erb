@@ -6,6 +6,6 @@ $('#purchases-buttons').html('<%= j(link_to button_tag("Add new purchase"), new_
 $('#mate-purchases-list').html('<%= j(render(partial: "purchases/purchase", collection: @mate.purchases, as: :purchase)) %>');
 
 <% flash.each do |type, message| %>
-  $('#flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
-  $('#flash').addClass('<%= type %>')
+  $('.flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
+  $('.flash').addClass('<%= type %>')
 <% end %>

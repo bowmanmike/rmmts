@@ -4,6 +4,6 @@ $('#mate-purchases-list').html('<%= j(render(partial: "purchases/purchase", coll
 $('#house-calendar').html("<%=j render 'houses/calendar', collection: @events %>")
 
 <% flash.each do |type, message| %>
-  $('#flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
-  $('#flash').addClass('<%= type %>')
+  $('.flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
+  $('.flash').addClass('<%= type %>')
 <% end %>

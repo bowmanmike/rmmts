@@ -12,6 +12,6 @@ $('#add-chore-button').html('<%= j(link_to button_tag("Add new chore"), new_hous
 $('#house-calendar').html("<%=j render 'houses/calendar', collection: @events %>")
 
 <% flash.each do |type, message| %>
-  $('#flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
-  $('#flash').addClass('<%= type %>')
+  $('.flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
+  $('.flash').addClass('<%= type %>')
 <% end %>
