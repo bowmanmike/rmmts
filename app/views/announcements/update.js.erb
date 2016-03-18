@@ -1,2 +1,7 @@
 $('#new-announcement').html('<%= j(link_to button_tag("Add New Announcement"), house_path(@house), remote: true) %>');
 $('#announcements-list').html('<%= j(render @announcements) %>');
+
+<% flash.each do |type, message| %>
+  $('#flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
+  $('#flash').addClass('<%= type %>')
+<% end %>

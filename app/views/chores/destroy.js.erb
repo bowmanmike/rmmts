@@ -8,3 +8,8 @@ $('#add-chore-button').html('<%= j(link_to button_tag("Add new chore"), new_hous
 <% if @chores.where(complete: true).empty? %>
   $('#complete-chores-list').html('All chores complete! Good Job!');
 <% end %>
+
+<% flash.each do |type, message| %>
+  $('#flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
+  $('#flash').addClass('<%= type %>')
+<% end %>

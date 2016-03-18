@@ -3,3 +3,8 @@ $('#expenses-buttons').html('<%= j(link_to button_tag("Add new expense"), new_ho
 <% if @expenses.empty? %>
   $('.expenses-list').html('No household expenses yet!');
 <% end %>
+
+<% flash.each do |type, message| %>
+  $('#flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
+  $('#flash').addClass('<%= type %>')
+<% end %>

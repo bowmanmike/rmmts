@@ -1,3 +1,8 @@
 $('.expenses-list').html('<%= j(render @expenses) %>');
 $('#expenses-buttons').html('<%= j(link_to button_tag("Add new expense"), new_house_expense_path(@house), remote: true) %>');
 $('#house-calendar').html("<%=j render 'houses/calendar', collection: @events %>")
+
+<% flash.each do |type, message| %>
+  $('#flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
+  $('#flash').addClass('<%= type %>')
+<% end %>
