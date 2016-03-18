@@ -1,4 +1,11 @@
-.points-container {
+.house-stats-header {
+  padding-top: 2rem;
+  padding-bottom: 0;
+}
+
+.points-container,
+.spending-container {
+  text-align: center;
   @include span-columns(12);
 
   @include media($medium-screen-up) {
@@ -14,14 +21,36 @@
 
 .points-table {
   margin-top: 2rem;
+  margin-bottom: 2rem;
   padding: 0 1.5rem;
 
   .points-mate {
     width: 70%;
+    text-align: left;
   }
 
   .points-amount {
     width: 30%;
     text-align: center;
   }
+}
+
+.bar-chart-name,
+.points-chart-name {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.chart-subtitle {
+  font-size: 0.8rem;
+  color: #999;
+
+  &.points-subtitle {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.expense-chart,
+.purchase-chart {
+  margin-bottom: 1rem;
 }

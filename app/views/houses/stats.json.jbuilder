@@ -7,31 +7,53 @@ json.points do
   end
 end
 
-json.spending do
-  json.array! @house.expenses.select("date_trunc('month', due_date) as month, sum(amount) as total_amount").group('month').each do |month|
-    json.value month.total_amount
-    json.label month.month.strftime("%B")
+## Create data for expenses dataset
+expenses_by_month = {}
+# Group household expenses by month, and add the expenses totals to a hash called expenses_by_month
+@house.expenses.select("date_trunc('month', due_date) as month, sum(amount) as total_amount").group('month').each do |expense|
+  expenses_by_month[expense.month.strftime("%B")] = expense.total_amount
+end
+# For each month in the year, add the household expense total if it exists for that month
+# If it does not, add in 0 for that month
+expense_data = []
+Date::MONTHNAMES.each do |monthname|
+  if expenses_by_month[monthname] != nil
+    expense_data << expenses_by_month[monthname]
+  else
+    expense_data << 0
   end
 end
+# Remove the nil month value from the front of the data array
+expense_data.shift
 
-# var data = {
-#     labels: ["January", "February", "March", "April", "May", "June", "July"],
-#     datasets: [
-#         {
-#             label: "My First dataset",
-#             fillColor: "rgba(220,220,220,0.5)",
-#             strokeColor: "rgba(220,220,220,0.8)",
-#             highlightFill: "rgba(220,220,220,0.75)",
-#             highlightStroke: "rgba(220,220,220,1)",
-#             data: [65, 59, 80, 81, 56, 55, 40]
-#         },
-#         {
-#             label: "My Second dataset",
-#             fillColor: "rgba(151,187,205,0.5)",
-#             strokeColor: "rgba(151,187,205,0.8)",
-#             highlightFill: "rgba(151,187,205,0.75)",
-#             highlightStroke: "rgba(151,187,205,1)",
-#             data: [28, 48, 40, 19, 86, 27, 90]
-#         }
-#     ]
-# };
+## Create data for purchases dataset
+purchases_by_month = {}
+# Group household expenses by month, and add the expenses totals to a hash called expenses_by_month
+@house.purchases.select("date_trunc('month', due_date) as month, sum(amount) as total_amount").group('month').each do |purchase|
+  purchases_by_month[purchase.month.strftime("%B")] = purchase.total_amount
+end
+# For each month in the year, add the household expense total if it exists for that month
+# If it does not, add in 0 for that month
+purchase_data = []
+Date::MONTHNAMES.each do |monthname|
+  if purchases_by_month[monthname] != nil
+    purchase_data << purchases_by_month[monthname]
+  else
+    purchase_data << 0
+  end
+end
+# Remove the nil month value from the front of the data array
+purchase_data.shift
+
+expense_dataset = {}
+expense_dataset[:label] = "Expenses"
+expense_dataset[:data] = expense_data
+purchase_dataset = {}
+purchase_dataset[:label] = "Purchases"
+purchase_dataset[:data] = purchase_data
+spending = []
+spending << expense_dataset
+spending << purchase_dataset
+spending
+
+json.spending spending

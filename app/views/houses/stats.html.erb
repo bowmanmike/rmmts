@@ -1,6 +1,6 @@
-<div id="house-header" class="full-container">
+<div class="house-stats-header full-container">
   <div class="header-card full-container">
-    <h1 id="house-name"><%= @house.name %></h1>
+    <h1 id="house-name"><%= @house.name %> Stats</h1>
     <%= image_tag @house.house_image %>
   </div>
 </div>
@@ -8,6 +8,8 @@
 <div class="full-container">
   <div class="points-container">
     <div class="chart-container">
+      <h4 class="points-chart-name">Points</h4>
+      <p class="points-subtitle chart-subtitle">Over all time</p>
       <canvas class="points-pie" width="200" height="200"></canvas>
     </div>
 
@@ -35,8 +37,15 @@
     </div>
   </div>
   <div class="spending-container">
-    <div class="chart-container">
-      <canvas class="expense-bar" width="200" height="200"></canvas>
+    <div class="expense-chart chart-container">
+      <h4 class="bar-chart-name">Expenses</h4>
+      <p class="chart-subtitle">Current Year</p>
+      <canvas class="expense-bar" width="300" height="200"></canvas>
+    </div>
+    <div class="purchase-chart chart-container">
+      <h4 class="bar-chart-name">Purchases</h4>
+      <p class="chart-subtitle">Current Year</p>
+      <canvas class="purchase-bar" width="300" height="200"></canvas>
     </div>
   </div>
 </div>
