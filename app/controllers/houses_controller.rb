@@ -34,7 +34,6 @@ class HousesController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.json
     end
   end
 
@@ -99,13 +98,6 @@ class HousesController < ApplicationController
   def show_month_calendar
     @house = House.find(params[:house_id])
   end
-
-  # def points
-  #   @house = House.find(params[:house_id])
-  #   respond_to do |format|
-  #     format.json
-  #   end
-  # end
 
   def stats
     @house = House.find(params[:house_id])

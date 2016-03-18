@@ -1,13 +1,12 @@
 <div id="house-header" class="full-container">
-  <div class="header-card">
+  <div class="header-card full-container">
     <h1 id="house-name"><%= @house.name %></h1>
     <%= image_tag @house.house_image %>
   </div>
+</div>
 
-  <div class="house-container">
-    <div class="full-container">
-      <canvas id="test-chart"></canvas>
-    </div>
+<div class="full-container">
+  <div class="chart-container">
+    <canvas class="test-chart" width="200" height="200"></canvas>
   </div>
-  
 </div>

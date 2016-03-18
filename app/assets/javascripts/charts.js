@@ -1,6 +1,6 @@
 $(document).on('ready page:load', function() {
 
-  var getPieData = function() {
+  var showPointsChart = function() {
 
     $.getJSON($(location).attr('href') + '.json').done(function(stats){
       var pointsData = [];
@@ -19,10 +19,10 @@ $(document).on('ready page:load', function() {
             return "#969696";
       };
 
-      var drawPointsChart = function() {
-        var ctx = $("#test-chart").get(0).getContext("2d");
-        var myNewChart = new Chart(ctx).Pie(pointsData);
-      }
+      var cvs = $('.test-chart');
+      var newWidth = cvs.parent().width();
+      var newCvs = cvs.width(newWidth).height(200);
+      var ctx = newCvs.get(0).getContext("2d");
 
       for (i = 0; i < points.length; i++) {
         pointsData.push({
@@ -32,11 +32,16 @@ $(document).on('ready page:load', function() {
         });
       };
 
-      drawPointsChart();
+      new Chart(ctx).Pie(pointsData, {
+        segmentShowStroke: false,
+        percentageInnerCutout: 70
+      });
 
     });
   };
 
-  getPieData();
+  if ($(location).attr('href').search('stats') >= 0) {
+    showPointsChart();
+  };
 
 });

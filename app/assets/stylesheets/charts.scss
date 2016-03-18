@@ -1,4 +1,9 @@
-#test-chart {
-  width: 70rem;
-  height: 70rem;
+.chart-container {
+  @include span-columns(6);
+}
+
+.test-chart {
+  padding: 0;
+  margin: auto;
+  display: block;
 }
