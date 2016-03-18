@@ -2,9 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#house-header{
-  @include outer-container;
-  padding: 1rem;
+#house-header {
+  padding-top: 2rem;
 }
 
 #house-name {
@@ -14,7 +13,15 @@
 .header-card {
 
   .request-to-join-house-button {
-    @include button(pill, #1A936F);
+    background-color: #1A936F;
+    border-color: #114b5f;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 3px rgba(13, 58, 73, 0.4);
+    outline: none;
+  }
+
+  img {
+    // border-radius: 3%;
+    // border: 1px solid #333;
   }
 
   @include media($small-screen-only) {
@@ -25,11 +32,6 @@
     @include span-columns(6);
     @include omega(2n);
   }
-}
-
-#roommates {
-  padding: 1rem;
-  background-color: #ddd;
 }
 
 #pending-invitation-list {
@@ -43,10 +45,6 @@
   }
 }
 
-#announcements {
-  @include outer-container;
-  padding: 1rem;
-}
 #announcements-list {
   height: 0;
 }

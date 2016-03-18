@@ -1,0 +1,27 @@
+.points-container {
+  @include span-columns(12);
+
+  @include media($medium-screen-up) {
+    @include span-columns(6);
+  }
+}
+
+.points-pie {
+  padding: 0;
+  margin: auto;
+  display: block;
+}
+
+.points-table {
+  margin-top: 2rem;
+  padding: 0 1.5rem;
+
+  .points-mate {
+    width: 70%;
+  }
+
+  .points-amount {
+    width: 30%;
+    text-align: center;
+  }
+}

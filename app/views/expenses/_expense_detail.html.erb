@@ -38,7 +38,7 @@
             <td class="detail-money-column">
               <%= number_to_currency(expense.current_cycle_total_mate_payments(mate)) %>
             </td>
-            <td class="detail-money-column <%= expense.amount_owed_by(mate).negative? ? "negative" : "positive" %>" >
+            <td class="detail-money-column <%= (expense.amount_owed_by(mate) < 0) ? "negative" : "positive" %>" >
               <%= number_to_currency(expense.amount_owed_by(mate)) %>
             </td>
           </tr>
@@ -51,7 +51,7 @@
           <td class="detail-money-column">
             <%= number_to_currency(expense.current_cycle_total_payments) %>
           </td>
-          <td class="detail-money-column <%= expense.amount_owing.negative? ? "negative" : "positive" %>" >
+          <td class="detail-money-column <%= (expense.amount_owing < 0) ? "negative" : "positive" %>" >
             <%= number_to_currency(expense.amount_owing) %>
           </td>
         </tr>

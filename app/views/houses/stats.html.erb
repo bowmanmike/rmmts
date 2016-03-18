@@ -1,0 +1,42 @@
+<div id="house-header" class="full-container">
+  <div class="header-card full-container">
+    <h1 id="house-name"><%= @house.name %></h1>
+    <%= image_tag @house.house_image %>
+  </div>
+</div>
+
+<div class="full-container">
+  <div class="points-container">
+    <div class="chart-container">
+      <canvas class="points-pie" width="200" height="200"></canvas>
+    </div>
+
+    <div class="points-ranking">
+      <table class="points-table table-minimal">
+        <thead>
+          <tr>
+            <th class="points-mate">Mate</th>
+            <th class="points-amount">Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @house.mates.each do |mate| %>
+            <tr>
+              <td class="points-mate">
+                <%= mate.first_name %>
+              </td>
+              <td class="points-amount">
+                <%= mate.total_points %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="spending-container">
+    <div class="chart-container">
+      <canvas class="expense-bar" width="200" height="200"></canvas>
+    </div>
+  </div>
+</div>

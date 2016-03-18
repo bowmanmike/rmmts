@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :payments, except: [:index]
     end
     resources :pending_invitations
+    get '/stats' => 'houses#stats'
   end
 
   post "/houses/:house_id/request_to_join" => 'houses#request_to_join', as: :request_to_join_house

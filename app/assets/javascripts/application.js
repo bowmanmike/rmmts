@@ -17,4 +17,5 @@
 //= require houses
 //= require typeahead.bundle.js
 //= require jquery-ui
+//= require Chart
 //= require_tree .

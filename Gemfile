@@ -54,9 +54,6 @@ gem 'pry-rails'
 
 gem 'simple_calendar'
 
-# Use Nokogiri to parse svg files
-# gem 'nokogiri'
-
 gem 'cloudinary'
 
 group :test do

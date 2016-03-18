@@ -32,6 +32,7 @@ header.navigation {
     @include outer-container;
     position: relative;
     z-index: 9999;
+    padding-right: 1rem;
   }
 
   .logo {
@@ -59,7 +60,7 @@ header.navigation {
     float: right;
     line-height: $navigation-height;
     margin: 0;
-    padding-right: 1em;
+    padding-right: 0.7rem;
     text-decoration: none;
     text-transform: uppercase;
 

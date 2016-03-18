@@ -28,7 +28,6 @@
   height: 100%;
   width: 100%;
   background-color: RGBa(19, 40, 88, 0.6);
-  // background-color: RGBa(125, 264, 167, 0.4);
 }
 #landing-page-title {
   color: white;
@@ -73,7 +72,11 @@
 }
 #more-info-button {
   button {
-    @include button(#263C6D);
+    // @include button(#263C6D);
+    background-color: #263C6D;
+    border-color: #114b5f;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 3px rgba(13, 58, 73, 0.4);
+    outline: none;
     font-size: 1rem;
   }
   font-size: 1.3rem;

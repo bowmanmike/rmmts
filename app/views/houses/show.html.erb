@@ -1,4 +1,4 @@
-<div id="house-header">
+<div id="house-header" class="full-container">
   <div class="header-card">
     <h1 id="house-name"><%= @house.name %></h1>
     <%= image_tag @house.house_image %>
@@ -20,6 +20,10 @@
         <% if @house.mates.count == 1 %>
           <%= link_to button_tag("Delete House"), house_path(@house), method: :delete, data: { confirm: "Are you sure you want to delete this house?" } %>
         <% end %>
+      </div>
+
+      <div class="link-to-stats">
+        <%= link_to button_tag("See house stats"), house_stats_path(@house) %>
       </div>
     </div>
   </div>
@@ -43,12 +47,13 @@
 
 <% if current_user && current_user.house == @house %>
 
-  <div id="house-calendar">
+  <div id="house-calendar" class="full-container">
     <%= link_to "Show Monthly Calendar", show_month_calendar_path(@house), class: "show-month-calendar", remote: true %>
     <%= render 'calendar', collection: @events %>
   </div>
 
   <div class="house-container">
+
     <div id="announcements" class="full-container">
       <div class="full-card">
         <div class="full-card-header">

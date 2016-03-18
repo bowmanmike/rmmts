@@ -7,7 +7,10 @@
 }
 
 .profile-card {
+  @include outer-container;
+
   margin-top: 1.5rem;
+
   a {
     color: #1D7AA1;
     font-weight: bold;
@@ -30,6 +33,7 @@
 }
 
 .mate-profile-picture {
+
   float: left;
   text-align: center;
   position: relative;
@@ -45,8 +49,9 @@
     overflow: hidden;
   }
 
-  .mate-profile-placeholder {
-    height: 15rem;
+  & > img.mate-profile-placeholder {
+    width: 12rem;
+    height: 12rem;
     border: 2px dashed #DDD;
     position: relative;
     max-width: 80%;
