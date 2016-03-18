@@ -11,7 +11,6 @@
 }
 
 .header-card {
-
   .request-to-join-house-button {
     background-color: #1A936F;
     border-color: #114b5f;
@@ -19,9 +18,34 @@
     outline: none;
   }
 
-  img {
-    // border-radius: 3%;
+  h1 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bolder;
+  }
+
+  #house-image {
+    display: inline-block;
+    width: 50%;
+    overflow: hidden;
+    padding-bottom: 1rem;
+    @include media($small-screen-only) {
+      @include span-columns(6);
+    }
     // border: 1px solid #333;
+  }
+
+  #house-buttons {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    #house-edit-delete-links {
+      padding: 0.5rem 0 0.5rem 0;
+    }
+    padding-bottom: 1rem;
+    @include media($small-screen-only) {
+      // @include span-columns(6);
+      float: right;
+    }
   }
 
   @include media($small-screen-only) {
@@ -75,15 +99,6 @@
 }
 .top-bar {
   z-index: 1;
-}
-#house-buttons {
-  form {
-    // display: inline-block;
-    padding: 1rem 0 1rem 0;
-  }
-}
-#house-edit-delete-links {
-  padding-bottom: 1rem;
 }
 
 #house-form {

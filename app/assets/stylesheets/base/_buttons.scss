@@ -20,7 +20,7 @@
 
   &:hover,
   &:focus {
-    background-color: shade($button-background-color, 20%);
+    // background-color: shade($button-background-color, 20%);
     color: #fff;
   }
 
@@ -29,7 +29,7 @@
     opacity: 0.5;
 
     &:hover {
-      background-color: $button-background-color;
+      // background-color: $button-background-color;
     }
   }
 }
