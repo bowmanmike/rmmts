@@ -26,7 +26,7 @@
                 <%= mate.first_name %>
               </td>
               <td class="points-amount">
-                <%= mate.points.sum(:amount) %>
+                <%= mate.points_amount %>
               </td>
             </tr>
           <% end %>
@@ -34,5 +34,9 @@
       </table>
     </div>
   </div>
-
+  <div class="spending-container">
+    <div class="chart-container">
+      <canvas class="expense-bar" width="200" height="200"></canvas>
+    </div>
+  </div>
 </div>

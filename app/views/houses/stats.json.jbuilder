@@ -6,3 +6,10 @@ json.points do
     json.label mate.first_name
   end
 end
+
+json.spending do
+  json.array! @house.expenses.select("date_trunc('month', due_date) as month, sum(amount) as total_amount").group('month').each do |month|
+    json.value month.total_amount
+    json.label month.month.strftime("%B")
+  end
+end
