@@ -47,8 +47,8 @@
 
 <% if current_user && current_user.house == @house %>
 
+  <%= link_to "Show Monthly Calendar", show_month_calendar_path(@house), class: "show-month-calendar", remote: true %>
   <div id="house-calendar" class="full-container">
-    <%= link_to "Show Monthly Calendar", show_month_calendar_path(@house), class: "show-month-calendar", remote: true %>
     <%= render 'calendar', collection: @events %>
   </div>
 

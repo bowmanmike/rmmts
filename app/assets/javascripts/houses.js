@@ -104,7 +104,7 @@ $(document).on('ready page:load', function() {
     showPopUp();
   })
 
-  $(document).on('click', '.simple-calendar a', function(e) {
+  $(document).on('click', '#house-calendar a', function(e) {
     e.preventDefault();
     var self = $(this);
 
