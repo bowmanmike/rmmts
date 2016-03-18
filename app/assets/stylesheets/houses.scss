@@ -31,6 +31,11 @@
     @include media($small-screen-only) {
       @include span-columns(6);
     }
+    img {
+      height: 10rem;
+      width: 10rem;
+      border-radius: 50%;
+    }
     // border: 1px solid #333;
   }
 
@@ -45,6 +50,9 @@
     @include media($small-screen-only) {
       // @include span-columns(6);
       float: right;
+    }
+    form {
+      padding-top: 1.5rem;
     }
   }
 
