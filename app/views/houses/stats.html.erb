@@ -6,29 +6,33 @@
 </div>
 
 <div class="full-container">
-  <div class="chart-container">
-    <canvas class="points-pie" width="200" height="200"></canvas>
-  </div>
-  <div class="points-ranking">
-    <table class="points-table table-minimal">
-      <thead>
-        <tr>
-          <th class="points-mate">Mate</th>
-          <th class="points-amount">Points</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @house.mates.each do |mate| %>
+  <div class="points-container">
+    <div class="chart-container">
+      <canvas class="points-pie" width="200" height="200"></canvas>
+    </div>
+
+    <div class="points-ranking">
+      <table class="points-table table-minimal">
+        <thead>
           <tr>
-            <td class="points-mate">
-              <%= mate.first_name %>
-            </td>
-            <td class="points-mate">
-              <%= mate.points.sum(:amount) %>
-            </td>
+            <th class="points-mate">Mate</th>
+            <th class="points-amount">Points</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @house.mates.each do |mate| %>
+            <tr>
+              <td class="points-mate">
+                <%= mate.first_name %>
+              </td>
+              <td class="points-amount">
+                <%= mate.points.sum(:amount) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
+
 </div>

@@ -1,4 +1,4 @@
-.chart-container {
+.points-container {
   @include span-columns(12);
 
   @include media($medium-screen-up) {
@@ -12,10 +12,16 @@
   display: block;
 }
 
-.points-ranking {
-  @include span-columns(12);
+.points-table {
+  margin-top: 2rem;
+  padding: 0 1.5rem;
 
-  @include media($medium-screen-up) {
-    @include span-columns(6);
+  .points-mate {
+    width: 70%;
+  }
+
+  .points-amount {
+    width: 30%;
+    text-align: center;
   }
 }
