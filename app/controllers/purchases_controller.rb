@@ -39,10 +39,9 @@ class PurchasesController < ApplicationController
   end
 
   def update
-    @purchase.update_attributes(purchase_params)
 
     respond_to do |format|
-      if @purchase.save
+      if @purchase.update_attributes(purchase_params)
         flash[:notice] = "Purchase has been updated!"
         format.html { redirect_to house_path(@house) }
         format.js {}
@@ -85,7 +84,7 @@ class PurchasesController < ApplicationController
   end
 
   def load_house
-    @house = current_user.house
+    @house = House.find(params[:id])
   end
 
   def load_house_purchases

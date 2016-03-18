@@ -73,7 +73,7 @@ class MatesController < ApplicationController
         redirect_to root_path
       end
     else
-      flash[:alert] "Something went wrong. Please try again."
+      flash[:alert] = "Something went wrong. Please try again."
       render :edit
     end
   end
