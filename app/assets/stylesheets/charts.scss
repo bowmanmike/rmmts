@@ -3,7 +3,9 @@
   padding-bottom: 0;
 }
 
-.points-container {
+.points-container,
+.spending-container {
+  text-align: center;
   @include span-columns(12);
 
   @include media($medium-screen-up) {
@@ -24,6 +26,7 @@
 
   .points-mate {
     width: 70%;
+    text-align: left;
   }
 
   .points-amount {
@@ -32,23 +35,19 @@
   }
 }
 
-.spending-container {
-  text-align: center;
-  @include span-columns(12);
-
-  @include media($medium-screen-up) {
-    @include span-columns(6);
-  }
-}
-
-.bar-chart-name {
-  text-align: center;
-  margin-bottom: 0;
-}
-
+.bar-chart-name,
 .points-chart-name {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.chart-subtitle {
+  font-size: 0.8rem;
+  color: #999;
+
+  &.points-subtitle {
+    margin-bottom: 1.5rem;
+  }
 }
 
 .expense-chart,
