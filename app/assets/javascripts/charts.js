@@ -2,8 +2,9 @@ $(document).on('ready page:load', function() {
 
   var getPieData = function() {
 
-    $.getJSON($(location).attr('href') + '.json').done(function(points){
-      var pieData = [];
+    $.getJSON($(location).attr('href') + '.json').done(function(stats){
+      var pointsData = [];
+      var points = stats.points;
 
       var chartColor = function(num) {
         if (num == 0)
@@ -18,20 +19,20 @@ $(document).on('ready page:load', function() {
             return "#969696";
       };
 
-      var drawPieChart = function() {
+      var drawPointsChart = function() {
         var ctx = $("#test-chart").get(0).getContext("2d");
-        var myNewChart = new Chart(ctx).Pie(pieData);
+        var myNewChart = new Chart(ctx).Pie(pointsData);
       }
 
       for (i = 0; i < points.length; i++) {
-        pieData.push({
+        pointsData.push({
             value: points[i].value,
             label: points[i].label,
             color: chartColor(i)
         });
       };
 
-      drawPieChart();
+      drawPointsChart();
 
     });
   };
