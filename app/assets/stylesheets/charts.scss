@@ -1,9 +1,21 @@
 .chart-container {
-  @include span-columns(6);
+  @include span-columns(12);
+
+  @include media($medium-screen-up) {
+    @include span-columns(6);
+  }
 }
 
-.test-chart {
+.points-pie {
   padding: 0;
   margin: auto;
   display: block;
+}
+
+.points-ranking {
+  @include span-columns(12);
+
+  @include media($medium-screen-up) {
+    @include span-columns(6);
+  }
 }
