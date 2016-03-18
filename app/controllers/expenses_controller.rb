@@ -18,10 +18,11 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to house_path(@house)
-                      flash[:notice] = "Expense has been added!" }
+        flash[:notice] = "Expense successfully created!"
+        format.html { redirect_to house_path(@house) }
         format.js {}
       else
+        flash[:alert] = "Something went wrong. Please try again."
         format.html { render :new }
         format.js {}
       end
@@ -43,10 +44,11 @@ class ExpensesController < ApplicationController
   def update
     respond_to do |format|
       if @expense.update_attributes(expense_params)
-        format.html { redirect_to house_path(@house)
-                      flash[:notice] = "Expense has been updated!" }
+        flash[:notice] = "Expense successfully updated!"
+        format.html { redirect_to house_path(@house) }
         format.js {}
       else
+        flash[:alert] = "Something went wrong. Please try again."
         format.html { render :edit }
         format.js {}
       end
@@ -58,10 +60,11 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.destroy
-        format.html { redirect_to house_path(@house)
-                      flash[:notice] = "Expense has been deleted!" }
+        flash[:notice] = "Expense successfully deleted!"
+        format.html { redirect_to house_path(@house) }
         format.js {}
       else
+        flash[:alert] = "Something went wrong. Please try again."
         format.html { render :back }
         format.js {}
       end
@@ -94,5 +97,5 @@ class ExpensesController < ApplicationController
       @events = @house.chores + @house.expenses + @house.purchases
     end
   end
-  
+
 end

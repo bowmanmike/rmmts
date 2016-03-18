@@ -39,7 +39,7 @@ class MatesController < ApplicationController
       auto_login(@mate)
       MateMailer.welcome_email(@mate).deliver_later
       redirect_to root_path
-      flash[:notice] = 'account created'
+      flash[:notice] = "Account Created! Welcome to Chortal!"
     else
       flash[:alert] = "There was a problem creating your account. Please try again."
       redirect_to root_path
@@ -60,23 +60,27 @@ class MatesController < ApplicationController
         @mate.assign_notifications
         @mate.create_conversations
         @mate.delete_pending_invites
-        redirect_to house_path(@mate.house), notice: 'account updated'
+        flash[:notice] = "You've joined a new house!"
+        redirect_to house_path(@mate.house)
       elsif mate_params[:notify_sms] || mate_params[:notify_email]
+        flash[:notice] = "Notification settings changed!"
         @mate.update_all_notifications
         redirect_to house_path(@mate.house)
       elsif mate_params[:house_id].blank?
+        flash[:notice] = "You have left your house!"
         @mate.chores = []
         @mate.remove_notifications
         redirect_to root_path
       end
     else
+      flash[:alert] "Something went wrong. Please try again."
       render :edit
     end
   end
 
   def destroy
     @mate.destroy
-    redirect_to root_path, notice: 'account deleted'
+    redirect_to root_path, notice: 'Account successfully deleted!'
   end
 
   def activate

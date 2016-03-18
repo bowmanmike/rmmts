@@ -24,9 +24,11 @@ class AnnouncementsController < ApplicationController
 
     respond_to do |format|
       if @announcement.save
-        format.html { redirect_to house_path(@house), notice: "Announcement added to house" }
+        flash[:notice] = "Announcement added!"
+        format.html { redirect_to house_path(@house) }
         format.js {}
       else
+        flash[:alert] = "Something went wrong. Please try again."
         format.html { render :new }
         format.js {}
       end

@@ -48,7 +48,7 @@ class HousesController < ApplicationController
     if @house.save
       redirect_to house_path(@house.id), notice: "House created!"
     else
-      render :new
+      render :new, alert: "Something went wrong. Please try again."
     end
   end
 
@@ -71,7 +71,7 @@ class HousesController < ApplicationController
         redirect_to :back, notice: "Mate added to house"
         return
       else
-        redirect_to :back, notice: "Couldn't find a mate by that username"
+        redirect_to :back, alert: "Couldn't find a mate by that username"
         return
       end
     end
@@ -79,7 +79,7 @@ class HousesController < ApplicationController
     if @house.update_attributes(house_params)
       redirect_to house_path(@house.id), notice: "House Updated!"
     else
-      render :edit
+      render :edit, alert: "Something went wrong. Please try again."
     end
   end
 

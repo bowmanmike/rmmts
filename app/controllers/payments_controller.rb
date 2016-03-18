@@ -58,6 +58,7 @@ class PaymentsController < ApplicationController
         end
         format.js
       else
+        flash[:alert] = "Something went wrong. Please try again."
         format.html { render :new }
         format.js
       end
@@ -77,6 +78,7 @@ class PaymentsController < ApplicationController
       redirect_to mate_path(@mate)
       flash[:notice] = "Payment has been updated!"
     else
+      flash[:alert] = "Something went wrong. Please try again."
       render :edit
     end
   end

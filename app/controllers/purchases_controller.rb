@@ -17,10 +17,11 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to house_path(@house)
-                      flash[:notice] = "Purchase has been added!" }
+        flash[:notice] = "Purchase successfully created."
+        format.html { redirect_to house_path(@house) }
         format.js {}
       else
+        flash[:alert] = "Something went wrong. Please try again."
         format.html { render :new }
         format.js {}
       end
@@ -42,10 +43,11 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to house_path(@house)
-                      flash[:notice] = "Purchase has been updated!" }
+        flash[:notice] = "Purchase has been updated!"
+        format.html { redirect_to house_path(@house) }
         format.js {}
       else
+        flash[:alert] = "Something went wrong. Please try again."
         format.html { render :edit }
         format.js {}
       end
@@ -57,10 +59,11 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @purchase.destroy
-        format.html { redirect_to house_path(@house)
-                      flash[:notice] = "Purchase has been deleted!" }
+        flash[:notice] = "Purchase has been deleted!"
+        format.html { redirect_to house_path(@house) }
         format.js {}
       else
+        flash[:alert] = "Something went wrong. Please try again."
         format.html { render :back }
         format.js {}
       end
@@ -91,6 +94,6 @@ class PurchasesController < ApplicationController
 
   def load_events
     @house = current_user.house
-    @events = @house.chores + @house.expenses + @house.mates.purchases
+    @events = @house.chores + @house.expenses + @house.purchases
   end
 end

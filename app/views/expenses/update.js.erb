@@ -4,3 +4,8 @@ $('#expense-form').html('');
 $('#mate-expenses-list').html('<%= j(render(partial: "expenses/expense", collection: @house.expenses, as: :expense) || "No current expenses.") %>');
 
 $('#house-calendar').html("<%=j render 'houses/calendar', collection: @events %>")
+
+<% flash.each do |type, message| %>
+  $('#flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
+  $('#flash').addClass('<%= type %>')
+<% end %>

@@ -12,7 +12,7 @@ class NotificationsController < ApplicationController
       flash[:notice] = "Notification preferences updated"
       redirect_to house_path(@chore.house)
     else
-      flash[:alert] = "There was a problem saving your notification preferences. Please try again."
+      flash[:alert] = "Something went wrong. Please try again."
       redirect_to house_path(@chore.house)
     end
   end

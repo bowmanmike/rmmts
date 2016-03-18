@@ -17,10 +17,10 @@ class SessionsController < ApplicationController
       if @mate.house_id.present?
         redirect_to house_path(@mate.house), notice: "Login Successful!"
       else
-        redirect_to houses_path, notice: "login successful"
+        redirect_to houses_path, notice: "Login successful"
       end
     else
-      render :new, notice: "login failed"
+      render :new, alert: "Login failed"
     end
   end
 

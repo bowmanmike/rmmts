@@ -41,7 +41,7 @@ class PasswordResetsController < ApplicationController
     if @mate.change_password!(params[:mate][:password])
       redirect_to root_path, notice: "Password changed"
     else
-      render :edit
+      render :edit, alert: "Something went wrong. Please try again."
     end
   end
 end
