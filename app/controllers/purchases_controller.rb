@@ -3,8 +3,8 @@ class PurchasesController < ApplicationController
   before_filter :require_login
 
   before_action :load_mate
-  before_action :load_house
-  before_action :load_house_purchases
+  before_action :load_house, except: [:create, :update, :destroy]
+  before_action :load_house_purchases, except: [:create, :update, :destroy]
   before_action :load_purchase, only: [:show, :edit, :update, :destroy]
   before_action :load_events, only: [:create, :update, :destroy]
 
@@ -14,6 +14,8 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = @mate.purchases.build(purchase_params)
+    @house = @purchase.house
+    @purchases = @house.purchases
 
     respond_to do |format|
       if @purchase.save
@@ -39,6 +41,8 @@ class PurchasesController < ApplicationController
   end
 
   def update
+    @house = @purchase.house
+    @purchases = @house.purchases
 
     respond_to do |format|
       if @purchase.update_attributes(purchase_params)
@@ -54,7 +58,9 @@ class PurchasesController < ApplicationController
   end
 
   def destroy
+    @house = @purchase.house
     @purchase.destroy
+    @purchases = @house.purchases
 
     respond_to do |format|
       if @purchase.destroy

@@ -1,6 +1,7 @@
 class Purchase < ActiveRecord::Base
   belongs_to :mate
   has_many :payments, dependent: :destroy
+  has_one :house, through: :mate
 
   mount_uploader :image, BillUploader
 
