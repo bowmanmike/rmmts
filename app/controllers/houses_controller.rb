@@ -100,6 +100,21 @@ class HousesController < ApplicationController
     @house = House.find(params[:house_id])
   end
 
+  # def points
+  #   @house = House.find(params[:house_id])
+  #   respond_to do |format|
+  #     format.json
+  #   end
+  # end
+
+  def stats
+    @house = House.find(params[:house_id])
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   private
 
   def house_params

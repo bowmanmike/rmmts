@@ -2,7 +2,7 @@ $(document).on('ready page:load', function() {
 
   var getPieData = function() {
 
-    $.getJSON( '/mates/points.json' ).done(function(points){
+    $.getJSON($(location).attr('href') + '.json').done(function(points){
       var pieData = [];
 
       var chartColor = function(num) {
