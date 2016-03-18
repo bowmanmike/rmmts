@@ -61,10 +61,11 @@ class ChoresController < ApplicationController
       end
 
       if @chore.update_attributes(chore_params)
-        format.html { redirect_to house_path(@house)
-                      flash[:notice] = "Chore has been updated!" }
+        flash[:notice] = "Chore has been updated!"
+        format.html { redirect_to house_path(@house) }
         format.js {}
       else
+        flash[:alert] = "Something went wrong! Please try again."
         format.html { render :edit }
         format.js {}
       end
@@ -74,10 +75,11 @@ class ChoresController < ApplicationController
   def destroy
     respond_to do |format|
       if @chore.notifications.destroy_all && @chore.destroy
-        format.html { redirect_to house_path(@house)
-                      flash[:notice] = "Chore has been deleted!" }
+        flash[:notice] = "Chore has been deleted!"
+        format.html { redirect_to house_path(@house) }
         format.js{}
       else
+        flash[:alert] = "Something went wrong! Please try again!"
         format.html { render :back }
         format.js {}
       end
