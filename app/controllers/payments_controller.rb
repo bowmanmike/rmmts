@@ -17,10 +17,10 @@ class PaymentsController < ApplicationController
 
     respond_to do |format|
       if params[:expense_id]
-        format.html { render 'expense_payments' }
+        format.html { render 'expense_payment_form' }
         format.js {}
       elsif params[:purchase_id]
-        format.html { render 'purchase_payments' }
+        format.html { render 'purchase_payment_form' }
         format.js {}
       end
     end

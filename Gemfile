@@ -52,6 +52,8 @@ gem 'phony_rails'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'pry-rails'
 
+gem 'simple_calendar'
+
 gem 'cloudinary'
 
 group :test do

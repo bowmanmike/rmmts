@@ -11,10 +11,7 @@
             <%= f.button "Leave This House" %>
           <% end %>
         <% else %>
-          <%= form_for @house, url: request_to_join_house_path(@house), method: :post do |f| %>
-            <%= f.hidden_field :house_id, :value => @house.id %>
-            <%= f.button "Request to Join This House" %>
-          <% end %>
+          <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "request-to-join-house-button", remote: true %>
         <% end %>
       <% end %>
 
@@ -30,21 +27,12 @@
   <div id="roommates" class="header-card">
     <h3>Roommates</h3>
     <ul id="roommates-list">
-      <% @house.mates.each do |mate| %>
-      <% unless mate == current_user %>
-          <li class="roommate">
-            <% if mate.mate_avatar.present? %>
-              <%= image_tag mate.mate_avatar.thumb %>
-            <% else %>
-              <%= image_tag "blankface.svg" %>
-            <% end %>
-            <%= link_to image_tag("message.svg"), conversations_path(sender_id: current_user.id, receiver_id: mate.id), method: 'post'%>
-            <p><%= link_to "#{mate.first_name} #{mate.last_name}", mate_path(mate) %></p>
-          </li>
-        <% end %>
-      <% end %>
+      <%= render 'mates/mate_list' %>
     </ul>
     <% if current_user.house == @house %>
+      <div id="pending-invitation-list">
+        <%= render @pending_invitations %>
+      </div>
       <%= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
         <%= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
         <%= button_tag "Add +" %>
@@ -54,6 +42,11 @@
 </div>
 
 <% if current_user && current_user.house == @house %>
+
+  <div id="house-calendar">
+    <%= link_to "Show Monthly Calendar", show_month_calendar_path(@house), class: "show-month-calendar", remote: true %>
+    <%= render 'calendar', collection: @events %>
+  </div>
 
   <div class="house-container">
 

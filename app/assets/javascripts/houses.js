@@ -97,6 +97,23 @@ $(document).on('ready page:load', function() {
 
     showPopUp();
   });
+
+  $(document).on('click', '.show-month-calendar',function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  })
+
+  $(document).on('click', '.simple-calendar a', function(e) {
+    e.preventDefault();
+    var self = $(this);
+
+    $.ajax({
+      type: 'get',
+      url: self.attr('href'),
+      dataType: 'script'
+    })
+  })
 });
 
 $(document).on('page:partial-load', function() {

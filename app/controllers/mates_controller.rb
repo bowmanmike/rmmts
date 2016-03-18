@@ -2,6 +2,7 @@ class MatesController < ApplicationController
   before_action :load_mate, only: [:show, :edit, :update, :destroy]
   before_action :load_mate_notifications, only: [:show]
   before_action :load_house, except: [:usernames, :new, :create, :activate]
+  before_action :load_pending_invitations, only: [:show]
 
   skip_before_filter :require_login, only: [:index, :new, :create, :activate]
 
@@ -18,7 +19,7 @@ class MatesController < ApplicationController
   end
 
   def show
-    if current_user.house
+    if @mate.house.present?
       @announcements = @house.announcements
       @expenses = @house.expenses.order(due_date: :asc)
       @purchases = @mate.purchases
@@ -58,6 +59,7 @@ class MatesController < ApplicationController
         MateMailer.join_house(@mate, @mate.house).deliver_later
         @mate.assign_notifications
         @mate.create_conversations
+        @mate.delete_pending_invites
         redirect_to house_path(@mate.house), notice: 'account updated'
       elsif mate_params[:notify_sms] || mate_params[:notify_email]
         @mate.update_all_notifications
@@ -101,6 +103,10 @@ class MatesController < ApplicationController
 
   def load_house
     @house = @mate.house
+  end
+
+  def load_pending_invitations
+    @pending_invitations = @mate.pending_invitations
   end
 
 end

@@ -3,6 +3,8 @@ class HousesController < ApplicationController
   before_action :load_chores, only: [:show]
   before_action :load_house, only: [:show, :edit, :update, :destroy]
   before_filter :must_be_logged_in, except: [:index]
+  before_action :load_pending_invitations, only: [:show]
+  before_action :load_events, only: [:show, :show_month_calendar]
 
   def housenames
     @houses = House.all
@@ -36,17 +38,6 @@ class HousesController < ApplicationController
     end
   end
 
-  def request_to_join
-    @mate = current_user
-    @house = House.find(params[:house_id])
-
-    @house.mates.each do |mate|
-      MateMailer.request_to_join(@mate, @house, mate).deliver_later
-    end
-    flash[:notice] = "Your request has been sent!"
-    redirect_to root_path
-  end
-
   def new
     @house = House.new
   end
@@ -77,6 +68,7 @@ class HousesController < ApplicationController
         MateMailer.join_house(@mate, @mate.house).deliver_later
         @mate.assign_notifications
         @mate.create_conversations
+        @mate.delete_pending_invites
         redirect_to :back, notice: "Mate added to house"
         return
       else
@@ -104,6 +96,10 @@ class HousesController < ApplicationController
     end
   end
 
+  def show_month_calendar
+    @house = House.find(params[:house_id])
+  end
+
   private
 
   def house_params
@@ -120,6 +116,19 @@ class HousesController < ApplicationController
 
   def load_chores
     @chores = House.find(params[:id]).chores.order(due_date: :desc)
+  end
+
+  def load_pending_invitations
+    @pending_invitations = @house.pending_invitations
+  end
+
+  def load_events
+    if @house
+      @events = @house.chores + @house.expenses + @house.purchases
+    else
+      @house = House.find(params[:house_id])
+      @events = @house.chores + @house.expenses + @house.purchases
+    end
   end
 
 end

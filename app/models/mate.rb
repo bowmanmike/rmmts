@@ -30,6 +30,8 @@ class Mate < ActiveRecord::Base
 
   has_many :points, dependent: :destroy
 
+  has_many :pending_invitations, dependent: :destroy
+
   accepts_nested_attributes_for :notifications
 
   mount_uploader :mate_avatar, MateAvatarUploader
@@ -121,6 +123,10 @@ class Mate < ActiveRecord::Base
       notification.sms = self.notify_sms
       notification.save
     end
+  end
+
+  def delete_pending_invites
+    PendingInvitation.where(mate_id: self.id).delete_all
   end
 
 end

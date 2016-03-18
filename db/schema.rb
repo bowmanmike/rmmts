@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315193436) do
+ActiveRecord::Schema.define(version: 20160316171756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,17 @@ ActiveRecord::Schema.define(version: 20160315193436) do
   add_index "payments", ["mate_id"], name: "index_payments_on_mate_id", using: :btree
   add_index "payments", ["purchase_id"], name: "index_payments_on_purchase_id", using: :btree
 
+  create_table "pending_invitations", force: :cascade do |t|
+    t.integer  "mate_id"
+    t.integer  "house_id"
+    t.boolean  "accepted",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "pending_invitations", ["house_id"], name: "index_pending_invitations_on_house_id", using: :btree
+  add_index "pending_invitations", ["mate_id"], name: "index_pending_invitations_on_mate_id", using: :btree
+
   create_table "points", force: :cascade do |t|
     t.string   "name"
     t.integer  "amount"
@@ -208,5 +219,7 @@ ActiveRecord::Schema.define(version: 20160315193436) do
   add_foreign_key "notifications", "mates"
   add_foreign_key "payments", "mates"
   add_foreign_key "payments", "purchases"
+  add_foreign_key "pending_invitations", "houses"
+  add_foreign_key "pending_invitations", "mates"
   add_foreign_key "points", "mates"
 end

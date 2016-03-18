@@ -1,6 +1,16 @@
 class ConversationsController < ApplicationController
 before_filter :require_login
 
+  def new_messages
+    @conversation = Conversation.find(params[:id])
+    @messages = @conversation.messages.order(created_at: :asc)
+
+    respond_to do |format|
+      format.html { render @conversation }
+      format.js {}
+    end
+  end
+
   def index
     @conversations = Conversation.where(sender: current_user) + Conversation.where(receiver: current_user)
     @conversations = @conversations.uniq
