@@ -6,9 +6,7 @@ $(document).on('ready page:load page:change', function() {
         var form = $('.is-active').find('form');
         if ( e.which == 13 && !e.shiftKey) {
           e.preventDefault();
-          // alert("i was pressed");
-          // var form = document.getElementsByClassName('popup-form is-active')[0].children[0].getElementsByTagName('form')[0];
-          // form.submit();
+
           $.ajax({
             url: form.attr('action'),
             method: form.attr('method'),
@@ -16,7 +14,9 @@ $(document).on('ready page:load page:change', function() {
             data: form.serialize(),
             success: function() {
               $('.popup-form').add('#overlay').add('.popup').removeClass('is-active');
-              location.reload();
+              if (form.attr('action').search('sessions') >= 0) {
+                location.reload();
+              }
             }
           });
         }
