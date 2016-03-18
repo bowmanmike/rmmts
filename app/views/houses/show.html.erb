@@ -14,7 +14,7 @@
             <%= f.button "Leave This House", class: "hvr-grow-shadow" %>
           <% end %>
         <% else %>
-          <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "request-to-join-house-button", remote: true, class: "hvr-grow-shadow" %>
+          <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "request-to-join-house-button hvr-grow-shadow", remote: true%>
         <% end %>
       <% end %>
 
