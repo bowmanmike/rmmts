@@ -2,7 +2,7 @@ $(document).on('ready page:load', function() {
 
   var getPieData = function() {
 
-    $.getJSON( $(location).attr('href') + ".json" ).done(function(data){
+    $.getJSON( '/mates/points.json' ).done(function(points){
       var pieData = [];
 
       var chartColor = function(num) {
@@ -23,10 +23,10 @@ $(document).on('ready page:load', function() {
         var myNewChart = new Chart(ctx).Pie(pieData);
       }
 
-      for (i = 0; i < data.length; i++) {
+      for (i = 0; i < points.length; i++) {
         pieData.push({
-            value: data[i].value,
-            label: data[i].label,
+            value: points[i].value,
+            label: points[i].label,
             color: chartColor(i)
         });
       };
