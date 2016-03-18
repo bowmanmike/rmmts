@@ -67,38 +67,17 @@
 
 .messages,
 .new-message {
-  @include span-columns(12);
+  @include outer-container;
+  width: 100%;
 
   @include media($medium-screen-up) {
-
     display: inline-block;
   }
 }
 
-.message-instructions {
-  display:none;
-
-  @include media($medium-screen-up) {
-    display: block;
-  }
-}
-
-.messages {
-  height: 23.5rem;
-  overflow: scroll;
-
-  @include media($medium-screen-up) {
-    @include span_columns(8);
-    @include omega;
-    max-height: 26rem;
-  }
-}
-
 .new-message {
-  height: 5rem;
-  width: 100%;
   position: fixed;
-  bottom: 5rem;
+  bottom: 0;
   left: 0;
   padding: 0;
 
@@ -120,6 +99,45 @@
   }
 }
 
+#message_body {
+    background-color: #ffffff;
+    border-radius: 0;
+    margin-bottom: 0 !important;
+}
+
+.message-instructions {
+  display:none;
+
+  @include media($medium-screen-up) {
+    display: block;
+  }
+}
+
+.messages {
+  height: 23.5rem;
+  overflow: scroll;
+  padding: 0.5rem;
+  color: $medium-gray;
+
+  @include media($medium-screen-up) {
+    @include span-columns(8);
+    @include omega;
+    max-height: 26rem;
+  }
+}
+
+.sender-message {
+  float: right;
+  background-color: #2979FF;
+  color: $white;
+}
+
+.receiver-message {
+  float: left;
+  background-color: $lightest-gray;
+  color: $dark-gray;
+}
+
 .delete-message-link {
   font-size: 0.7rem;
   color: $dark-gray;
@@ -131,19 +149,14 @@
 }
 
 .each-message {
+  width: 70%;
   margin-bottom: 0.5rem;
-
-  &:nth-of-type(even) {
-    background-color: $light-gray;
-  }
-
-  &:nth-of-type(odd) {
-    background-color: $lightest-gray;
-  }
+  padding: 0.5rem;
 }
 
-.new-message-submit {
-  @include button(pill, #1A936F);
+input.new-message-submit {
+  background-color: #2979FF;
   display: block;
+  border-radius: 0;
   width: 100%;
 }

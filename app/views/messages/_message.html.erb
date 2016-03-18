@@ -1,4 +1,4 @@
-<div class="each-message">
+<div class="each-message <%= (message.mate == current_user) ? "sender-message" : "receiver-message" %>">
   <p class="message-body"><%= message.body %></p>
   <p class="message-sender-info"> - <%= message.mate.first_name %> on <%= message.created_at.localtime.strftime('%A, %d %b at %l:%M %p') %></p>
   <% if message.mate_id == current_user.id %>
