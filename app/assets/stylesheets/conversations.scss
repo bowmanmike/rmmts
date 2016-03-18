@@ -138,18 +138,18 @@
   color: $dark-gray;
 }
 
-.delete-message-link {
+.message-info {
   font-size: 0.7rem;
   color: $dark-gray;
-  font-style: italic;
 }
 
-.message-sender-info {
-  margin-bottom: 0;
+.delete-message-link {
+  color: $medium-gray;
 }
 
 .each-message {
   width: 70%;
+  border-radius: 3px;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
 }
