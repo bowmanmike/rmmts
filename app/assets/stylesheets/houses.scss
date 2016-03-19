@@ -40,7 +40,37 @@
   }
 
   .house-stats {
-    
+    @include span-columns(12);
+    display: block;
+    text-align: center;
+
+    .house-stat {
+      margin: 0 0.5rem;
+      display: inline-block;
+      text-align: center;
+
+      h1 {
+        padding: 0;
+        margin: 0;
+        font-family: $base-font-family;
+        font-weight: 400;
+        font-size: 1.6rem;
+        color: $black-54;
+
+        .percent-symbol {
+          vertical-align: top;
+          font-size: 1rem;
+        }
+      }
+
+      p {
+        padding: 0;
+        margin: 0;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: $black-38;
+      }
+    }
   }
 
   .house-buttons {

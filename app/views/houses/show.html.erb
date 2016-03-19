@@ -10,7 +10,19 @@
     </div>
 
     <div class="house-stats">
-      <%= link_to button_tag("See house stats", class: "house-button hvr-underline-from-left"), house_stats_path(@house) %>
+      <div class="house-stat house-mates">
+        <h1><%= @house.mates.size %></h1>
+        <p>mates</p>
+      </div>
+      <div class="house-stat house-points">
+        <h1><%= @house.points.sum(:amount) %></h1>
+        <p>points</p>
+      </div>
+      <div class="house-stat house-points">
+        <h1><%= rand(30..100) %><span class="percent-symbol">%</span></h1>
+        <p>happy</p>
+      </div>
+      <%#= link_to button_tag("See house stats", class: "house-button hvr-underline-from-left"), house_stats_path(@house) %>
     </div>
 
     <div class="house-buttons">
