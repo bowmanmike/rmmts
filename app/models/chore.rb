@@ -185,7 +185,6 @@ class Chore < ActiveRecord::Base
       last_date = future_dates[-1]
     end
     future_dates
-
   end
 
   def create_dummy_chores
@@ -196,5 +195,4 @@ class Chore < ActiveRecord::Base
     end
     dummy_chores
   end
-
 end
