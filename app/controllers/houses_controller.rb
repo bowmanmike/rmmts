@@ -132,6 +132,9 @@ class HousesController < ApplicationController
   def load_events
     if @house
       @events = @house.chores + @house.expenses + @house.purchases
+      # @house.chores.each do |chore|
+      #   @events << chore.create_dummy_chores
+      # end
     else
       @house = House.find(params[:house_id])
       @events = @house.chores + @house.expenses + @house.purchases
