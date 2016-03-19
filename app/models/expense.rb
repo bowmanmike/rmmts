@@ -151,4 +151,12 @@ class Expense < ActiveRecord::Base
     end
   end
 
+  def create_dummy_expenses
+    date_ary = self.calculate_future_due_dates
+    dummy_expenses = []
+    date_ary.each do |date|
+      dummy_expenses << Expense.new(id: self.id, house_id: self.house_id, name: self.name, due_date: date)
+    end
+    dummy_expenses
+  end
 end

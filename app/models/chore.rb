@@ -190,7 +190,7 @@ class Chore < ActiveRecord::Base
 
   def create_dummy_chores
     date_ary = self.calculate_future_due_dates
-    dummy_chores= []
+    dummy_chores = []
     date_ary.each do |date|
       dummy_chores << Chore.new(id: self.id, house_id: self.house_id, name: self.name, due_date: date)
     end
