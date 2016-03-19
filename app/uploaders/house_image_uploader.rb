@@ -34,7 +34,7 @@ class HouseImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  process :resize_to_fit => [200, 200]
+  process :resize_to_fit => [500, 500]
 
   version :thumb do
     process :resize_to_fit => [50, 50]

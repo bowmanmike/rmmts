@@ -1,9 +1,11 @@
-<div id="house-header" class="full-container">
+<div class="house-header house-header full-container">
 
   <div class="header-card">
-    <h1 id="house-name"><%= @house.name %></h1>
-    <div id="house-image">
+    <div class="house-image">
       <%= image_tag @house.house_image %>
+    </div>
+    <div class="house-name">
+      <h1><%= @house.name %></h1>
     </div>
 
     <div id="house-buttons">
