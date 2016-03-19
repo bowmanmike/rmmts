@@ -111,7 +111,7 @@ $(document).on('ready page:load', function() {
     $.ajax({
       type: 'get',
       url: self.attr('href'),
-      dataType: 'script'
+      dataType: 'script',
     })
   })
 });
