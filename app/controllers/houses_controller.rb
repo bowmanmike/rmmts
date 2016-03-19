@@ -1,11 +1,10 @@
 class HousesController < ApplicationController
   before_action :load_announcements, only: [:show]
-  before_action :load_chores, only: [:show]
+  before_action :load_chores, only: [:show, :show_month_calendar]
   before_action :load_house, only: [:show, :edit, :update, :destroy]
   before_filter :must_be_logged_in, except: [:index]
   before_action :load_pending_invitations, only: [:show]
   before_action :load_events, only: [:show, :show_month_calendar]
-  before_action :create_dummy_events, only: [:show, :show_month_calendar]
 
   def housenames
     @houses = House.all
@@ -136,15 +135,6 @@ class HousesController < ApplicationController
     else
       @house = House.find(params[:house_id])
       @events = @house.chores + @house.expenses + @house.purchases
-    end
-  end
-
-  def create_dummy_events
-    @chores.each do |chore|
-      date_ary = chore.calculate_future_due_dates
-      date_ary.each do |date|
-        Chore.new(name: chore, due_date: date)
-      end
     end
   end
 
