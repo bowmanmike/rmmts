@@ -1,4 +1,4 @@
-<div class="house-header house-header full-container">
+<div class="house-header full-container">
 
   <div class="header-card">
     <div class="house-image">
@@ -19,7 +19,7 @@
         <p>points</p>
       </div>
       <div class="house-stat house-points">
-        <h1><%= rand(30..100) %><span class="percent-symbol">%</span></h1>
+        <h1><%= rand(30..98) %><span class="percent-symbol">%</span></h1>
         <p>happy</p>
       </div>
       <%#= link_to button_tag("See house stats", class: "house-button hvr-underline-from-left"), house_stats_path(@house) %>
@@ -51,20 +51,20 @@
     </div>
   </div>
 
-  <div id="roommates" class="header-card">
-    <h3>Roommates</h3>
-    <ul id="roommates-list">
+  <div class="roommates">
+    <div class="roommates-card">
+      <h3>Mates</h3>
       <%= render 'mates/mate_list' %>
-    </ul>
-    <% if current_user.house == @house %>
-      <div id="pending-invitation-list">
-        <%= render @pending_invitations %>
-      </div>
-      <%= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
-        <%= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
-        <%= button_tag "Add +", class: 'hvr-glow' %>
+      <% if current_user.house == @house %>
+        <div id="pending-invitation-list">
+          <%= render @pending_invitations %>
+        </div>
+        <%#= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
+          <%#= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
+          <%#= button_tag "Add +", class: 'hvr-glow' %>
+        <%# end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
 

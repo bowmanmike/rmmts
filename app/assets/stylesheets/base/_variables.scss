@@ -54,17 +54,17 @@ $white-12: rgba(255, 255, 255, 0.12);
 $white-50: rgba(255, 255, 255, 0.50);
 $white-70: rgba(255, 255, 255, 0.70);
 
-$indigo-800: #283593; //rgba(0, 188, 212, 100)
-$indigo-500: #3F51B5; //rgba(77, 208, 225, 100)
-$indigo-100: #C5CAE9; //rgba(178, 235, 242, 100)
-$deep-orange-a400: #ff3d00; //rgba(255, 61, 0, 100)
-$deep-orange-a200: #ff6e40; //rgba(255, 110, 64, 100)
+$blue-900: #0D47A1; //rgba(0, 188, 212, 100)
+$blue-200: #90CAF9; //rgba(77, 208, 225, 100)
+$blue-50: #E3F2FD; //rgba(178, 235, 242, 100)
+$amber-a400: #FFC400; //rgba(255, 61, 0, 100)
+$amber-a200: #FFE57F; //rgba(255, 110, 64, 100)
 
-$color1: $indigo-800;
-$color2: $indigo-500;
-$color3: $indigo-100;
-$color4: $deep-orange-a400;
-$color5: $deep-orange-a200;
+$color1: $blue-900;
+$color2: $blue-900;
+$color3: $blue-50;
+$color4: $amber-a400;
+$color5: $amber-a200;
 
 // Font Colors
 $base-font-color: $black-87;
