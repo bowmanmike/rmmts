@@ -143,6 +143,11 @@ class HousesController < ApplicationController
           @events << dummy
         end
       end
+      @house.expenses.where(recurring: true).each do |expense|
+        expense.create_dummy_expenses.each do |dummy|
+          @events << dummy
+        end
+      end
     else
       @house = House.find(params[:house_id])
       @events = @house.chores + @house.expenses + @house.purchases
@@ -151,7 +156,13 @@ class HousesController < ApplicationController
           @events << dummy
         end
       end
+      @house.expenses.where(recurring: true).each do |expense|
+        expense.create_dummy_expenses.each do |dummy|
+          @events << dummy
+        end
+      end
     end
+    @events
   end
 
 end
