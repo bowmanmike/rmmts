@@ -14,6 +14,11 @@ $(document).on('ready page:load', function() {
     });
   });
 
+  $('#getting-started-tabs').tabs({
+    collapsible: true,
+    heightStyle: 'content',
+  });
+
   $(document).on('click', '.show-chore-link', function(e) {
     e.preventDefault();
 

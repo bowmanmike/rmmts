@@ -81,3 +81,27 @@
     }
   }
 }
+
+#getting-started-tabs {
+  ul {
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+  text-align: center;
+  li {
+    display: inline-block;
+    padding: 0.5rem;
+    background: #263C6D;
+    a {
+      color: #fff;
+    }
+  }
+  .ui-tabs-active {
+    font-weight: bolder;
+    text-decoration: underline;
+  }
+  .tab-content {
+    text-align: left;
+  }
+}
