@@ -43,11 +43,28 @@ $off-white: rgba(255, 255, 255, 0.92);
 $white: rgba(255, 255, 255, 1);
 $black: rgba(0, 0, 0, 1);
 
-$color1: #114b5f; //rgba(17, 75, 95, 100)
-$color2: rgba(51, 51, 51, 1); //rgba(26, 147, 111, 100)
-$color3: #88d498; //rgba(136, 212, 152, 100)
-$color4: #c6dabf; //rgba(198, 218, 191, 100)
-$color5: #f3e9d2; //rgba(243, 233, 210, 100)
+$black: rgba(0, 0, 0, 1.00);
+$black-12: rgba(0, 0, 0, 0.12);
+$black-38: rgba(0, 0, 0, 0.38);
+$black-54: rgba(0, 0, 0, 0.54);
+$black-87: rgba(0, 0, 0, 0.87);
+
+$white: rgba(255, 255, 255, 1.00);
+$white-12: rgba(255, 255, 255, 0.12);
+$white-50: rgba(255, 255, 255, 0.50);
+$white-70: rgba(255, 255, 255, 0.70);
+
+$cyan-500: #00bcd4; //rgba(0, 188, 212, 100)
+$cyan-300: #4dd0e1; //rgba(77, 208, 225, 100)
+$cyan-100: #b2ebf2; //rgba(178, 235, 242, 100)
+$deep-orange-a400: #ff3d00; //rgba(255, 61, 0, 100)
+$deep-orange-a200: #ff6e40; //rgba(255, 110, 64, 100)
+
+$color1: $cyan-500;
+$color2: $cyan-300;
+$color3: $cyan-100;
+$color4: $deep-orange-a400;
+$color5: $deep-orange-a200;
 
 // Font Colors
 $base-font-color: $dark-gray;
@@ -68,12 +85,38 @@ $popup-border-color: $color2;
 
 $button-background-color: $color3;
 
-$card-background-color: RGBa(221, 221, 221, 0.65);
+$card-background-color: rgba(221, 221, 221, 0.65);
 $card-item-background-color: $white;
 $card-item-background-color-hover: $off-white;
 
 $flash-alert-background-color: #fbe3e4;
 $flash-notice-background-color: #e5edf8;
+
+// Chart Colors
+$chart-color0: #2979FF;
+$chart-color1: #00B0FF;
+$chart-color2: #00E5FF;
+$chart-color3: #1DE9B6;
+$chart-color4: #00E676;
+$chart-color5: #76FF03;
+$chart-color6: #C6FF00;
+$chart-color7: #FFEA00;
+$chart-color8: #FFC400;
+$chart-color9: #FF9100;
+$chart-color10: #FF3D00;
+
+// Secondary Chart Colors
+$secondary-chart-color0: #448AFF;
+$secondary-chart-color1: #40C4FF;
+$secondary-chart-color2: #18FFFF;
+$secondary-chart-color3: #64FFDA;
+$secondary-chart-color4: #69F0AE;
+$secondary-chart-color5: #B2FF59;
+$secondary-chart-color6: #EEFF41;
+$secondary-chart-color7: #FFFF00;
+$secondary-chart-color8: #FFD740;
+$secondary-chart-color9: #FFAB40;
+$secondary-chart-color10: #FF6E40;
 
 // Forms
 $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);

@@ -93,54 +93,54 @@ $(document).on('ready page:load', function() {
     // From Google's Material Design colour palette
     // http://www.google.com/design/spec/style/color.html#color-color-palette
     if (num == 0)
-        return "#1DE9B6";
+        return "#2979FF";
     if (num == 1)
-        return "#00E676";
+        return "#00B0FF";
     if (num == 2)
-        return "#76FF03";
+        return "#00E5FF";
     if (num == 3)
-        return "#C6FF00";
+        return "#1DE9B6";
     if (num == 4)
-        return "#FFEA00";
+        return "#00E676";
     if (num == 5)
-        return "#FFC400";
+        return "#76FF03";
     if (num == 6)
-        return "#FF9100";
+        return "#C6FF00";
     if (num == 7)
-        return "#FF3D00";
+        return "#FFEA00";
     if (num == 8)
-        return "#FF1744";
+        return "#FFC400";
     if (num == 9)
-        return "#F50057";
+        return "#FF9100";
     if (num == 10)
-        return "#D500F9";
+        return "#FF3D00";
   };
 
   var secondaryChartColor = function(num) {
     // From Google's Material Design colour palette
     // http://www.google.com/design/spec/style/color.html#color-color-palette
     if (num == 0)
-        return "#00BFA5";
+        return "#448AFF";
     if (num == 1)
-        return "#00C853";
+        return "#40C4FF";
     if (num == 2)
-        return "#64DD17";
+        return "#18FFFF";
     if (num == 3)
-        return "#AEEA00";
+        return "#64FFDA";
     if (num == 4)
-        return "#FFD600";
+        return "#69F0AE";
     if (num == 5)
-        return "#FFAB00";
+        return "#B2FF59";
     if (num == 6)
-        return "#FF6D00";
+        return "#EEFF41";
     if (num == 7)
-        return "#DD2C00";
+        return "#FFFF00";
     if (num == 8)
-        return "#D50000";
+        return "#FFD740";
     if (num == 9)
-        return "#C51162";
+        return "#FFAB40";
     if (num == 10)
-        return "#AA00FF";
+        return "#FF6E40";
   };
 
 });
