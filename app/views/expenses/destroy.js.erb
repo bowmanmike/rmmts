@@ -5,6 +5,6 @@ $('#expenses-buttons').html('<%= j(link_to button_tag("Add new expense"), new_ho
 <% end %>
 
 <% flash.each do |type, message| %>
-  $('.flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
+  $('.flash').html("<%= message.html_safe %>")
   $('.flash').addClass('<%= type %>')
 <% end %>
