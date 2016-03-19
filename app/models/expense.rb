@@ -150,5 +150,27 @@ class Expense < ActiveRecord::Base
       payment.update_column(:target_due_date, self.due_date)
     end
   end
+  
+  def calculate_future_due_dates
+    options = { self.frequency_unit.to_sym => self.frequency_integer}
 
+    future_dates = [self.due_date.advance(options)]
+    last_date = future_dates[-1]
+
+    10.times do |event|
+      future_dates << last_date.advance(options)
+      last_date = future_dates[-1]
+    end
+    future_dates
+
+  end
+
+  def create_dummy_expenses
+    date_ary = self.calculate_future_due_dates
+    dummy_expenses = []
+    date_ary.each do |date|
+      dummy_expenses << Expense.new(id: self.id, house_id: self.house_id, name: self.name, due_date: date)
+    end
+    dummy_expenses
+  end
 end

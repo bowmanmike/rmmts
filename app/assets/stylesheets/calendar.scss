@@ -92,7 +92,9 @@
   .wday-5 {}
   .wday-6 {}
 
-  .today {}
+  .today {
+    background-color: $calendar-today-highlight-color;
+  }
   .past {}
   .future {}
 
