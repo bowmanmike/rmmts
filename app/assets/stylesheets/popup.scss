@@ -62,11 +62,11 @@
     .leave-house-button,
     .password-reset-form-button,
     .request-password-reset-button {
-      // @include button(pill, #1A936F);
-      background-color: #1A936F;
+      background-color: #263C6D;
       border-color: #114b5f;
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 3px rgba(13, 58, 73, 0.4);
       outline: none;
+      border-radius: 0;
       display: block;
       width: 100%;
     }
