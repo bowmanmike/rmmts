@@ -58,8 +58,15 @@
   padding: 0.5rem;
   color: $medium-gray;
 
-  @include media($medium-screen-up) {
+  @include media($medium-screen-only) {
     @include span-columns(8);
+    position: static;
+    display: inline-block;
+    max-height: 26rem;
+  }
+
+  @include media($large-screen-up) {
+    width: 584px;
     position: static;
     display: inline-block;
     max-height: 26rem;
@@ -67,16 +74,29 @@
 }
 
 .new-message {
+  @include outer-container(98%);
+}
+
+.new_message {
   @include outer-container;
-  width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
   padding: 0;
 
-  @include media($medium-screen-up) {
+  @include media($medium-screen-only) {
     @include span-columns(8);
     @include shift(4);
+    position: static;
+    display: inline-block;
+    height: 7rem;
+    bottom: 3.5rem;
+  }
+
+  @include media($large-screen-up) {
+    @include span-columns(8);
+    @include shift(4);
+    max-width: 584px;
     position: static;
     display: inline-block;
     height: 7rem;
