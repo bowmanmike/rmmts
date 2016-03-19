@@ -2,17 +2,17 @@
   <span class="calendar-date"><%= date.strftime('%b %e') %></span>
 
   <% events.each do |event| %>
-    <div class="calendar-event" title="">
+    <div class="calendar-event">
       <% if event.is_a?(Chore) %>
         <% if event.complete? %>
-          <%= link_to event.name, house_chore_path(event.house, event), class: "show-chore-link strikethrough", remote: true %>
+          <%= link_to event.name, house_chore_path(event.house, event), class: "show-chore-link strikethrough tooltip", remote: true %>
         <% else %>
-          <%= link_to event.name, house_chore_path(event.house, event), class: "show-chore-link", remote: true %>
+          <%= link_to event.name, house_chore_path(event.house, event), class: "show-chore-link tooltip", remote: true %>
         <% end %>
       <% elsif event.is_a?(Expense) %>
-        <%= link_to event.name, house_expense_path(event.house, event), class: "show-expense-link", remote: true %>
+        <%= link_to event.name, house_expense_path(event.house, event), class: "show-expense-link tooltip", remote: true %>
       <% elsif event.is_a?(Purchase) %>
-        <%= link_to event.name, mate_purchase_path(event.mate, event), class: "show-purchase-link", remote: true %>
+        <%= link_to event.name, mate_purchase_path(event.mate, event), class: "show-purchase-link tooltip", remote: true %>
       <% end %>
     </div>
   <% end %>

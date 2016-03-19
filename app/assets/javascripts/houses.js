@@ -14,21 +14,6 @@ $(document).on('ready page:load', function() {
     });
   });
 
-  // Don't delete!
-  // $(document).ajaxSuccess(function() {
-  //   $('.calendar-event').tooltip({
-  //     content: function() {
-  //       if ($('.calendar-event').children().hasClass('.show-chore-link')) {
-  //         return "This is a chore";
-  //       } else if ($('.calendar-event').children().hasClass('.show-purchase-link')) {
-  //         return "This is a purchase";
-  //       } else {
-  //         return "This is an expense";
-  //       }
-  //     }
-  //   });
-  // });
-
   $(document).on('click', '#edit-house-button', function(e) {
     e.preventDefault();
 
