@@ -177,7 +177,7 @@ class Chore < ActiveRecord::Base
   def calculate_future_due_dates
     options = { self.frequency_unit.to_sym => self.frequency_integer}
 
-    future_dates = [self.due_date]
+    future_dates = [self.due_date.advance(options)]
     last_date = future_dates[-1]
 
     10.times do |event|
@@ -192,7 +192,7 @@ class Chore < ActiveRecord::Base
     date_ary = self.calculate_future_due_dates
     dummy_chores= []
     date_ary.each do |date|
-      dummy_chores << Chore.new(name: self.name, due_date: date)
+      dummy_chores << Chore.new(id: self.id, house_id: self.house_id, name: self.name, due_date: date)
     end
     dummy_chores
   end
