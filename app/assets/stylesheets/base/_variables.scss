@@ -75,6 +75,8 @@ $card-item-background-color-hover: $off-white;
 $flash-alert-background-color: #fbe3e4;
 $flash-notice-background-color: #e5edf8;
 
+$calendar-today-highlight-color: #FFFFE0;
+
 // Forms
 $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
 $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
