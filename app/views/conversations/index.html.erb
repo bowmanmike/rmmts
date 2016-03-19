@@ -2,24 +2,26 @@
   <h3 class="conversation-index-header">Conversations</h3>
   </div>
 <div class="messaging-global">
-  <div class="card-container all-conversations slide-down">
-    <% @conversations.each do |conversation| %>
-      <% if conversation.sender == current_user %>
-        <%= link_to conversation_path(conversation.id), remote: true, class: "conversation-link", data: { id: conversation.id } do %>
-          <div class="card-item each-conversation hvr-float-shadow">
-            <p><%= conversation.receiver.full_name %></p>
-          </div>
-        <% end %>
-      <% else %>
-        <%= link_to conversation_path(conversation.id), remote: true, class: "conversation-link", data: { id: conversation.id } do %>
-          <div class="card-item each-conversation hvr-float-shadow">
-            <p><%= conversation.sender.full_name %></p>
-          </div>
+  <div class="all-conversations slide-down">
+    <div class="conversation">
+      <% @conversations.each do |conversation| %>
+        <% if conversation.sender == current_user %>
+          <%= link_to conversation_path(conversation.id), remote: true, class: "conversation-link", data: { id: conversation.id } do %>
+            <div class="each-conversation conversation-item hvr-float-shadow">
+              <p><%= conversation.receiver.first_name %></p>
+            </div>
+          <% end %>
+        <% else %>
+          <%= link_to conversation_path(conversation.id), remote: true, class: "conversation-link", data: { id: conversation.id } do %>
+            <div class="each-conversation conversation-item hvr-float-shadow">
+              <p><%= conversation.sender.first_name %></p>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 
-  <div class="card-container messages"></div>
+  <div class="messages"></div>
 </div>
-<div class="card-container new-message"></div>
+<div class="new-message"></div>

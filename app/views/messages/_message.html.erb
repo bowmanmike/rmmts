@@ -1,7 +1,9 @@
-<div class="each-message">
+<div class="each-message <%= (message.mate == current_user) ? "sender-message" : "receiver-message" %>">
   <p class="message-body"><%= message.body %></p>
-  <p class="message-sender-info"> - <%= message.mate.first_name %> on <%= message.created_at.localtime.strftime('%A, %d %b at %l:%M %p') %></p>
-  <% if message.mate_id == current_user.id %>
-    <%= link_to "Delete this message", conversation_message_path(message.conversation, message), remote: true, method: :delete, data: { confirm: "Are you sure you want to delete this message?"}, class: "delete-message-link" %>
-  <% end %>
+  <p class="message-info">
+    <span class: "message-date"><%= message.created_at.localtime.strftime('%d %b at %l:%M %p') %></span> 
+    <% if message.mate_id == current_user.id %>
+      <%= link_to "delete", conversation_message_path(message.conversation, message), remote: true, method: :delete, data: { confirm: "Are you sure you want to delete this message?"}, class: "delete-message-link" %>
+    <% end %>
+  </p>
 </div>
