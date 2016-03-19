@@ -54,43 +54,45 @@ $white-12: rgba(255, 255, 255, 0.12);
 $white-50: rgba(255, 255, 255, 0.50);
 $white-70: rgba(255, 255, 255, 0.70);
 
-$cyan-500: #00bcd4; //rgba(0, 188, 212, 100)
-$cyan-300: #4dd0e1; //rgba(77, 208, 225, 100)
-$cyan-100: #b2ebf2; //rgba(178, 235, 242, 100)
+$indigo-800: #283593; //rgba(0, 188, 212, 100)
+$indigo-500: #3F51B5; //rgba(77, 208, 225, 100)
+$indigo-100: #C5CAE9; //rgba(178, 235, 242, 100)
 $deep-orange-a400: #ff3d00; //rgba(255, 61, 0, 100)
 $deep-orange-a200: #ff6e40; //rgba(255, 110, 64, 100)
 
-$color1: $cyan-500;
-$color2: $cyan-300;
-$color3: $cyan-100;
+$color1: $indigo-800;
+$color2: $indigo-500;
+$color3: $indigo-100;
 $color4: $deep-orange-a400;
 $color5: $deep-orange-a200;
 
 // Font Colors
-$base-font-color: $dark-gray;
-$action-color: $color1;
+$base-font-color: $black-87;
+$action-color: $color2;
 
 // Border
-$base-border-color: $light-gray;
+$base-border-color: $black-38;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: $off-white;
+$base-background-color: $white;
 $secondary-background-color: tint($base-border-color, 75%);
 
 $nav-bar-background-color: $color2;
-$nav-bar-text-color: $color4;
+$nav-bar-text-color: $white-70;
 
 $popup-border-color: $color2;
 
-$button-background-color: $color3;
-
-$card-background-color: rgba(221, 221, 221, 0.65);
-$card-item-background-color: $white;
-$card-item-background-color-hover: $off-white;
+$button-background-color: $color1;
+$button-border-color: $color2;
 
 $flash-alert-background-color: #fbe3e4;
 $flash-notice-background-color: #e5edf8;
+
+// Card Colors
+$card-background-color: rgba(221, 221, 221, 0.65);
+$card-item-background-color: $white;
+$card-item-background-color-hover: $off-white;
 
 // Chart Colors
 $chart-color0: #2979FF;

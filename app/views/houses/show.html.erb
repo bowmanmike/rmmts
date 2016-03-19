@@ -11,22 +11,22 @@
         <% if current_user.house == @house %>
           <%= form_for current_user do |f| %>
             <%= f.hidden_field :house_id, :value => nil %>
-            <%= f.button "Leave This House", class: "hvr-grow-shadow" %>
+            <%= f.button "Leave house", class: "house-button hvr-underline-from-left" %>
           <% end %>
         <% else %>
-          <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "request-to-join-house-button hvr-grow-shadow", remote: true%>
+          <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "house-button request-to-join-house-button hvr-underline-from-left", remote: true%>
         <% end %>
       <% end %>
 
       <div id="house-edit-delete-links">
-        <%= link_to button_tag("Edit House"), edit_house_path(@house), remote: true, id: "edit-house-button", class: "hvr-grow" %>
+        <%= link_to button_tag("Edit house", class: "house-button hvr-underline-from-left"), edit_house_path(@house), remote: true, id: "edit-house-button" %>
         <% if @house.mates.count == 1 %>
-          <%= link_to button_tag("Delete House"), house_path(@house), method: :delete, data: { confirm: "Are you sure you want to delete this house?" }, class: "hvr-grow-shadow" %>
+          <%= link_to button_tag("Delete house", class: "house-button hvr-underline-from-left"), house_path(@house), method: :delete, data: { confirm: "Are you sure you want to delete this house?" } %>
         <% end %>
       </div>
 
       <div class="link-to-stats">
-        <%= link_to button_tag("See house stats"), house_stats_path(@house), class: "hvr-grow" %>
+        <%= link_to button_tag("See house stats", class: "house-button hvr-underline-from-left"), house_stats_path(@house) %>
       </div>
     </div>
   </div>

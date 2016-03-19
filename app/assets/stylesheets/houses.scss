@@ -35,15 +35,25 @@
     vertical-align: top;
     display: inline-block;
     text-align: center;
-    #house-edit-delete-links {
-      padding: 0.5rem 0 0.5rem 0;
-    }
+
     padding-bottom: 1rem;
     @include media($small-screen-only) {
       float: right;
     }
+
+    #house-edit-delete-links {
+      padding: 0.5rem 0 0.5rem 0;
+    }
+
     form {
       padding-top: 1.5rem;
+    }
+
+    .house-button {
+      width: 9rem;
+      background-color: $black-12;
+      text-align: center;
+      color: $black-54;
     }
   }
 
