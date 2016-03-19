@@ -26,13 +26,13 @@ class ChoresController < ApplicationController
 
     respond_to do |format|
       if @chore.save
+        flash[:notice] = "Chore has been added!"
          @chore.create_notifications
-        format.html { redirect_to house_path(@house)
-                      flash[:notice] = "Chore has been added!" }
+        format.html { redirect_to house_path(@house) }
         format.js {}
       else
-        format.html { render :new
-                      flash[:alert] = "There was a problem creating your chore. Please try again."}
+        flash[:alert] = "There was a problem creating your chore. Please try again."
+        format.html { render :new }
         format.js {}
       end
     end
