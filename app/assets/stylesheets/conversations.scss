@@ -1,8 +1,5 @@
 .messaging-global {
   @include outer-container(98%);
-
-  @include media($medium-screen-up) {
-  }
 }
 
 .messaging-header {
