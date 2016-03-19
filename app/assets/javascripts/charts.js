@@ -6,7 +6,7 @@ $(document).on('ready page:load', function() {
       var pointsData = [];
       var points = stats.points;
 
-      for (i = 0; i < points.length; i++) {
+      for (var i = 0; i < points.length; i++) {
         pointsData.push({
             value: points[i].value,
             label: points[i].label,

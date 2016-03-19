@@ -2,3 +2,6 @@ $('.messages').html("<%=j render @conversation %>");
 $('.new-message').html("<%=j render 'messages/new_message' %>");
 var messageHeight = $('.messages')[0].scrollHeight;
 $('.messages').scrollTop(messageHeight);
+
+$('.conversation-link').removeClass('selected-conversation');
+$('.conversation-link[data-id=<%= @conversation.id %>]').addClass('selected-conversation');
