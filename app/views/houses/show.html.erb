@@ -4,32 +4,38 @@
     <div class="house-image">
       <%= image_tag @house.house_image %>
     </div>
+
     <div class="house-name">
       <h1><%= @house.name %></h1>
     </div>
 
-    <div id="house-buttons">
+    <div class="house-stats">
+      <%= link_to button_tag("See house stats", class: "house-button hvr-underline-from-left"), house_stats_path(@house) %>
+    </div>
+
+    <div class="house-buttons">
       <% if current_user %>
         <% if current_user.house == @house %>
-          <%= form_for current_user do |f| %>
+          <%= form_for current_user, class: "house-button-container" do |f| %>
             <%= f.hidden_field :house_id, :value => nil %>
             <%= f.button "Leave house", class: "house-button hvr-underline-from-left" %>
           <% end %>
         <% else %>
-          <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "house-button request-to-join-house-button hvr-underline-from-left", remote: true%>
+          <div class="house-button-container">
+            <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "house-button request-to-join-house-button hvr-underline-from-left", remote: true%>
+          </div>
         <% end %>
       <% end %>
 
-      <div id="house-edit-delete-links">
+      <div class="house-button-container">
         <%= link_to button_tag("Edit house", class: "house-button hvr-underline-from-left"), edit_house_path(@house), remote: true, id: "edit-house-button" %>
-        <% if @house.mates.count == 1 %>
-          <%= link_to button_tag("Delete house", class: "house-button hvr-underline-from-left"), house_path(@house), method: :delete, data: { confirm: "Are you sure you want to delete this house?" } %>
-        <% end %>
       </div>
 
-      <div class="link-to-stats">
-        <%= link_to button_tag("See house stats", class: "house-button hvr-underline-from-left"), house_stats_path(@house) %>
-      </div>
+      <% if @house.mates.count == 1 %>
+        <div class="house-button-container">
+          <%= link_to button_tag("Delete house", class: "house-button hvr-underline-from-left"), house_path(@house), method: :delete, data: { confirm: "Are you sure you want to delete this house?" } %>
+        </div>
+      <% end %>
     </div>
   </div>
 
