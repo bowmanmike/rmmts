@@ -121,7 +121,9 @@
 }
 
 .message-instructions {
-  display:none;
+  display: none;
+  font-size: 0.8rem;
+
 
   @include media($medium-screen-up) {
     display: block;
