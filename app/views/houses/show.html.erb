@@ -52,11 +52,9 @@
 
   <div class="house-container">
 
-    <div class="calendar-wrapper">
-      <%= link_to "Show Monthly Calendar", show_month_calendar_path(@house), class: "show-month-calendar", remote: true %>
-      <div id="house-calendar">
-        <%= render 'calendar', collection: @events %>
-      </div>
+    <%= link_to "Show Monthly Calendar", show_month_calendar_path(@house), class: "show-month-calendar", remote: true %>
+    <div id="house-calendar" class="full-container">
+      <%= render 'calendar', collection: @events %>
     </div>
 
     <div id="announcements" class="full-container">

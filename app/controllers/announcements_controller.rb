@@ -75,7 +75,7 @@ class AnnouncementsController < ApplicationController
   end
 
   def load_house_announcements
-    @announcements = Announcement.where(house_id: params[:house_id])
+    @announcements = Announcement.where(house_id: params[:house_id]).order(created_at: :DESC)
   end
 
   def load_house
