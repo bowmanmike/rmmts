@@ -5,9 +5,9 @@
 // $muli: 'Muli', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 // $montserrat: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $raleway: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$varela-round: 'Varela Round', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $varela-round: 'Varela Round', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $base-font-family: $helvetica;
-$heading-font-family: $varela-round;
+$heading-font-family: $raleway;
 $site-logo-font-family: $raleway;
 
 // Font Sizes
@@ -44,6 +44,7 @@ $white: rgba(255, 255, 255, 1);
 $black: rgba(0, 0, 0, 1);
 
 $black: rgba(0, 0, 0, 1.00);
+$black-04: rgba(0, 0, 0, 0.04);
 $black-12: rgba(0, 0, 0, 0.12);
 $black-38: rgba(0, 0, 0, 0.38);
 $black-54: rgba(0, 0, 0, 0.54);

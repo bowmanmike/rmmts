@@ -262,7 +262,29 @@
 }
 
 .house-container {
-  background-color: $black-12;
+  background-color: $black-04;
+
+  .announcements {
+    @include span-columns(10);
+    @include shift(1);
+    padding-top: 2rem;
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: $black-54;
+    }
+
+    .announcements-button {
+      width: 14rem;
+      background-color: transparent;
+      border: 1px solid $black-12;
+      padding: 0.8rem;
+      box-shadow: none;
+      color: $black-38;
+      font-size: 0.8rem;
+    }
+  }
 }
 #announcements-list {
   height: 0;
