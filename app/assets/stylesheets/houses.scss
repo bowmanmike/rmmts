@@ -267,7 +267,7 @@
   .announcements-container {
     @include span-columns(12);
     background-color: $black-04;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
 
     .announcements {
       @include span-columns(10);
@@ -300,6 +300,35 @@
 
       #announcements-list {
         height: 0;
+      }
+    }
+  }
+
+  .calendar-wrapper {
+    @include span-columns(10);
+    @include shift(1);
+    padding-top: 2rem;
+
+    .calendar-header {
+
+      h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: $black-54;
+      }
+    }
+
+    .calendar-by-month {
+
+      .show-month-calendar {
+        border-radius: 0;
+        width: 14rem;
+        background-color: transparent;
+        border: 1px solid $black-12;
+        padding: 0.8rem;
+        box-shadow: none;
+        color: $black-38;
+        font-size: 0.8rem;
       }
     }
   }
