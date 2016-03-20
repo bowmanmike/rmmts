@@ -45,9 +45,11 @@ class HousesController < ApplicationController
   def create
     @house = House.new(house_params)
     @house.creator_id = current_user.id
+    current_user.house = @house
+    current_user.save
 
     if @house.save
-      redirect_to house_path(@house.id), notice: "House created!"
+      redirect_to house_path(current_user.house), notice: "House created!"
     else
       render :new, alert: "Something went wrong. Please try again."
     end
