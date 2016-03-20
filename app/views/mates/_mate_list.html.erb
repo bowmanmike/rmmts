@@ -8,7 +8,7 @@
     <%= link_to image_tag("message.svg"), conversations_path(sender_id: current_user.id, receiver_id: mate.id), method: 'post'%>
     <p><%= link_to "#{mate.first_name} #{mate.last_name}", mate_path(mate) %></p>
     <% if current_user.house == @house %>
-      <%= button_to "Remove from house", mate_path(mate), method: :patch, params: { :"mate[house_id]" => nil }, class: "remove-mate-button", remote: true %>
+      <%= button_to "Remove from house", mate_path(mate), method: :patch, params: { :"mate[house_id]" => nil }, data: { confirm: "Are you sure you want to remove #{mate.first_name} from your house?"}, class: "remove-mate-button", remote: true %>
     <% end %>
   </li>
 <% end %>
