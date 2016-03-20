@@ -4,6 +4,11 @@
 
 .house-header {
   @include span-columns(12);
+  background-color: $white;
+
+  @include media($medium-screen-up) {
+    height: 506px;
+  }
 
   .house-image {
     width: 100%;
@@ -48,15 +53,20 @@
 
       @include media($large-screen-up) {
         display: block;
-        bottom: -50px;
+        bottom: -100px;
       }
     }
   }
 
   .house-name {
+    @include span-columns(12);
+
+    @include media($medium-screen-up) {
+      @include shift(1);
+      @include span-columns(4);
+    }
 
     h1 {
-      @include span-columns(12);
       margin-top: 1rem;
       text-align: center;
       font-family: $raleway;
@@ -65,8 +75,6 @@
       color: $black-87;
 
       @include media($medium-screen-up) {
-        @include shift(1);
-        @include span-columns(4);
         margin-top: 2rem;
         text-align: left;
         font-size: 2rem;
@@ -76,33 +84,35 @@
 
   .house-info {
     @include span-columns(12);
-    background-color: $white;
-    padding: 0 1rem 1rem 1rem;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 
     @include media($medium-screen-up) {
-      @include span-columns(7);
+      @include span-columns(5);
+      @include shift(1);
+      max-width: 500px;
       position: relative;
-      top: -80px;
+      top: -83px;
+      border: 1px solid $black-12;
     }
 
     .house-stats {
       display: block;
       text-align: center;
+      padding: 1rem;
 
       @include media($medium-screen-up) {
-        width: 49%;
-        display: inline-block;
-        margin-right: 0;
-        margin-top: 1rem;
+        background-color: $black-38;
       }
 
       .house-stat {
-        margin: 0 0.5rem;
+        margin: 0 1rem;
         display: inline-block;
 
         @include media($medium-screen-only) {
-          margin: 0 0.2rem;
+          margin: 0 0.7rem;
+        }
+
+        @include media($large-screen-up) {
+          margin: 0 1.4rem;
         }
 
         h1 {
@@ -113,13 +123,13 @@
           font-size: 1.6rem;
           color: $black-54;
 
-          @include media($medium-screen-only) {
-            font-size: 1.4rem;
-          }
-
           .percent-symbol {
             vertical-align: top;
             font-size: 1rem;
+          }
+
+          @include media($medium-screen-up) {
+            color: $white-70;
           }
         }
 
@@ -128,25 +138,22 @@
           margin: 0;
           font-size: 0.9rem;
           font-weight: 500;
-          color: $black-38;
+          color: $black-54;
 
-          @include media($medium-screen-only) {
-            font-size: 0.8rem;
+          @include media($medium-screen-up) {
+            color: $white-70;
           }
         }
       }
     }
 
     .house-buttons {
-      margin-top: 0.8rem;
+      margin-bottom: 1.5rem;
       display: block;
       text-align: center;
-      padding-bottom: 1rem;
 
       @include media($medium-screen-up) {
-        width: 49%;
-        display: inline-block;
-        margin-right: 0;
+        margin: 1.5rem 2rem;
       }
 
       form,
@@ -158,7 +165,9 @@
           display: block;
         }
 
+        input,
         .house-button {
+          border-radius: 0;
           width: 6.5rem;
           padding: 0.5rem 0.3rem;
           background-color: $black-12;
@@ -211,51 +220,91 @@
           }
 
           a {
-            color: $black-87;
+            color: $black-54;
             font-weight: 500;
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+      #pending-invitations-list {
+        display: block;
+
+        .each-invitation {
+          text-align: left;
+          padding: 1rem 1rem 0 1rem;
+
+          p {
+            float: left;
+
+            .request-date {
+              font-size: 0.8rem;
+              color: gray;
+            }
+          }
+
+          form {
+            display: inline-block;
+            float: right;
+
+            input.add-to-house-button,
+            input.reject-request-button {
+                border-radius: 0;
+                background-color: $black-12;
+                color: $black-54;
+                font-size: 0.7rem;
+                margin: 0 0.2rem;
+            }
           }
         }
       }
     }
   }
+}
 
-  #roommates {
-    text-align: center;
-    padding: 1rem;
-    border-radius: $card-border-radius;
-    background-color: $card-background-color;
-    border-bottom-style: solid;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: $medium-gray;
-    border-bottom-left-radius: $card-border-radius;
-    border-bottom-right-radius: $card-border-radius;
+.house-container {
+
+  .announcements-container {
+    @include span-columns(12);
+    background-color: $black-04;
+    padding-bottom: 1rem;
+
+    .announcements {
+      @include span-columns(10);
+      @include shift(1);
+      padding-top: 2rem;
+
+      .announcements-header {
+
+        h3 {
+          font-size: 1rem;
+          font-weight: 700;
+          color: $black-54;
+        }
+
+        .new-announcement-button {
+          margin-left: 0.5rem;
+          float: none;
+        }
+      }
+
+      .announcements-button {
+        width: 14rem;
+        background-color: transparent;
+        border: 1px solid $black-12;
+        padding: 0.8rem;
+        box-shadow: none;
+        color: $black-38;
+        font-size: 0.8rem;
+      }
+
+      #announcements-list {
+        height: 0;
+      }
+    }
   }
 }
 
-#pending-invitations-list {
-
-  form {
-    display: inline-block;
-  }
-
-  input{
-    width: 50%;
-    float: left;
-    text-align: center;
-    margin-bottom: 0.7rem;
-    width: 100%;
-    background-color: #263C6D;
-    border-color: #114b5f;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 3px rgba(13, 58, 73, 0.4);
-    outline: none;
-    border-radius: 0;
-  }
-}
-
-#announcements-list {
-  height: 0;
-}
 .full-card-list {
   overflow: hidden;
 }
@@ -322,24 +371,6 @@
 
     overflow: scroll;
   }
-}
-
-input.request-to-join-house-button {
-  background-color: #263C6D;
-  border-color: #114b5f;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 3px rgba(13, 58, 73, 0.4);
-  outline: none;
-  border-radius: 0;
-  display: inline-block;
-}
-
-input.remove-mate-button {
-  background-color: #263C6D;
-  border-color: #114b5f;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 3px rgba(13, 58, 73, 0.4);
-  outline: none;
-  border-radius: 0;
-  margin-bottom: 0.5rem;
 }
 
 .tt-menu {

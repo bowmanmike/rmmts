@@ -1,19 +1,31 @@
 <div class="announcement">
-  <p>
-    <span class="announcement-title">
-      <%= announcement.title %>
-    </span> -
+  <div class="announcement-mate">
+    <% if announcement.mate.mate_avatar.present? %>
+      <%= link_to image_tag(announcement.mate.mate_avatar.thumb, class: "announcement-mate-avatar"), announcement.mate_path(mate) %>
+    <% else %>
+      <%= link_to image_tag("noprofilephoto.svg", class: "no-photo announcement-mate-avatar"), mate_path(announcement.mate) %>
+    <% end %>
+    <p>
+      <%= announcement.mate.first_name %>
+    </p>
+  </div>
+  <div class="announcement-content">
+    <div class="announcement-title">
+      <h1><%= announcement.title %></h1>
+      <p class="announcement-posted">
+        <% if announcement.mate_id.present? %>
+          <%= announcement.created_at.localtime.strftime('%a, %b %d %Y %l:%M %p') %>
+        <% else %>
+          Posted anomymously at <%= announcement.created_at.localtime.strftime('%a, %b %d %Y %l:%M %p') %>
+        <% end %>
+      </p>
+      <p class="announcement-links">
+        <%= link_to "Edit", edit_house_announcement_path(@house, announcement), remote: true, class: "edit-announcement-button" %>
+        <%= link_to "Delete", house_announcement_path(@house, announcement), method: :delete, data: { confirm: "Are you sure you want to delete this announcement?" }, remote: true %>
+      </p>
+    </div>
     <div class="announcement-body">
       <%= announcement.body %>
     </div>
-  </p>
-  <p class="announcement-posted">
-    <% if announcement.mate_id.present? %>
-      Posted by <%= announcement.mate.first_name %> <%= announcement.mate.last_name %> at <%= announcement.created_at.localtime.strftime('%a, %b %d %Y %l:%M %p') %>
-    <% else %>
-      Posted anomymously at <%= announcement.created_at.localtime.strftime('%a, %b %d %Y %l:%M %p') %>
-    <% end %>
-  </p>
-  <%= link_to "Edit", edit_house_announcement_path(@house, announcement), remote: true, class: "edit-announcement-button" %>
-  <%= link_to "Delete", house_announcement_path(@house, announcement), method: :delete, data: { confirm: "Are you sure you want to delete this announcement?" }, remote: true %>
+  </div>
 </div>

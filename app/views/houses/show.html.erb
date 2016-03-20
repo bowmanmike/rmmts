@@ -10,7 +10,7 @@
   </div>
 
   <div class="house-info">
-    <div class="house-stats">
+    <%= link_to house_stats_path(@house), class: "house-stats link-to-stats" do %>
       <div class="house-stat house-mates">
         <h1><%= @house.mates.size %></h1>
         <p>mates</p>
@@ -24,7 +24,7 @@
         <p>happy</p>
       </div>
       <%#= link_to button_tag("See house stats", class: "house-button hvr-underline-from-left"), house_stats_path(@house) %>
-    </div>
+    <% end %>
 
     <div class="house-buttons">
       <% if current_user %>
@@ -35,13 +35,19 @@
           <% end %>
         <% else %>
           <div class="house-button-container">
-            <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "house-button request-to-join-house-button hvr-underline-from-left", remote: true%>
+            <% if @house.pending_invitations.where(mate_id: current_user.id).exists? %>
+              <%= button_to "Request sent!", house_pending_invitations_path(@house), method: :post, class: "house-button request-to-join-house-button hvr-underline-from-left", disabled: true, remote: true %>
+            <% else %>
+              <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "house-button request-to-join-house-button hvr-underline-from-left", remote: true%>
+            <% end %>
           </div>
         <% end %>
       <% end %>
 
       <div class="house-button-container">
-        <%= link_to button_tag("Edit house", class: "house-button hvr-underline-from-left"), edit_house_path(@house), remote: true, id: "edit-house-button" %>
+        <% if current_user.house != nil %>
+          <%= link_to button_tag("Edit house", class: "house-button hvr-underline-from-left"), edit_house_path(@house), remote: true, id: "edit-house-button" %>
+        <% end %>
       </div>
 
       <% if @house.mates.count == 1 %>
@@ -55,16 +61,18 @@
       <div class="roommates-card">
         <h3>Mates</h3>
         <%= render 'mates/mate_list' %>
-        <% if current_user.house == @house %>
-          <div id="pending-invitation-list">
+      </div>
+      <% if current_user.house == @house %>
+        <% unless @house.pending_invitations == nil %>
+          <div id="pending-invitations-list">
             <%= render @pending_invitations %>
           </div>
-          <%#= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
-            <%#= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
-            <%#= button_tag "Add +", class: 'hvr-glow' %>
-          <%# end %>
         <% end %>
-      </div>
+        <%#= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
+          <%#= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
+          <%#= button_tag "Add +", class: 'hvr-glow' %>
+        <%# end %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -73,29 +81,28 @@
 
   <div class="house-container">
 
-    <div class="calendar-wrapper">
-      <%= link_to "Show Monthly Calendar", show_month_calendar_path(@house), class: "show-month-calendar", remote: true %>
-      <div id="house-calendar">
-        <%= render 'calendar', collection: @events %>
-      </div>
-    </div>
-
-    <div id="announcements" class="full-container">
-      <div class="full-card">
-        <div class="full-card-header">
+    <div class="announcements-container">
+      <div class="announcements">
+        <div class="announcements-header full-card-header">
           <h3>Announcements</h3>
           <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_announcement_path(@house), class: "medium-icon-link new-announcement-button", remote: true %>
         </div>
         <% if @announcements.any? %>
           <div class="announcement-counter">
-            <strong><%= @announcements.count %></strong> announcements
-            <%= button_tag "Show", id: "show-announcements-button" %>
-            <%= button_tag "Hide", id: "hide-announcements-button", class: "hidden-button" %>
+            <%= button_tag "Show #{pluralize(@announcements.count, "annnouncement")}", id: "show-announcements-button", class: "announcements-button" %>
+            <%= button_tag "Hide #{pluralize(@announcements.count, "annnouncement")}", id: "hide-announcements-button", class: "hidden-button announcements-button" %>
           </div>
         <% end %>
         <div id="announcements-list" class="full-card-list">
           <%= render(@announcements) || "No announcements!" %>
         </div>
+      </div>
+    </div>
+
+    <div class="calendar-wrapper">
+      <%= link_to "Show Monthly Calendar", show_month_calendar_path(@house), class: "show-month-calendar", remote: true %>
+      <div id="house-calendar">
+        <%= render 'calendar', collection: @events %>
       </div>
     </div>
 
