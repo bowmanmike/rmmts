@@ -1,8 +1,14 @@
+var previousWeekLink = $('.simple-calendar > a').first().clone();
+var nextWeekLink = $('.simple-calendar > a').last().clone();
 $('.expenses-list').html('<%= j(render @expenses) %>');
 $('#expenses-buttons').html('<%= j(link_to button_tag("Add new expense"), new_house_expense_path(@house), remote: true) %>');
 <% if @expenses.empty? %>
   $('.expenses-list').html('No household expenses yet!');
 <% end %>
+
+$('#house-calendar').html("<%=j render 'houses/calendar', collection: @events %>")
+$('.simple-calendar > a').first().replaceWith(previousWeekLink);
+$('.simple-calendar > a').last().replaceWith(nextWeekLink);
 
 <% flash.each do |type, message| %>
   $('.flash').html("<%= message.html_safe %>")

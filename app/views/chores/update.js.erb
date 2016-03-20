@@ -1,3 +1,5 @@
+var previousWeekLink = $('.simple-calendar > a').first().clone();
+var nextWeekLink = $('.simple-calendar > a').last().clone();
 $('#mate-chores-list').html('<%= j(render(@chores.order(complete: :asc, due_date: :asc))) %>');
 $('.complete-chores-list').html('<%= j(render(@chores.where(complete: true).order(due_date: :asc))) %>');
 $('.incomplete-chores-list').html('<%= j(render(@chores.where(complete: !true).order(due_date: :asc))) %>');
@@ -10,6 +12,8 @@ $('#add-chore-button').html('<%= j(link_to button_tag("Add new chore"), new_hous
 <% end %>
 
 $('#house-calendar').html("<%=j render 'houses/calendar', collection: @events %>")
+$('.simple-calendar > a').first().replaceWith(previousWeekLink);
+$('.simple-calendar > a').last().replaceWith(nextWeekLink);
 
 <% flash.each do |type, message| %>
   $('.flash').html("<%= message.html_safe %>")
