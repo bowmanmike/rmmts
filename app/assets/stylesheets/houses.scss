@@ -78,12 +78,12 @@
     @include span-columns(12);
     background-color: $white;
     padding: 0 1rem 1rem 1rem;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 
     @include media($medium-screen-up) {
       @include span-columns(6);
       position: relative;
       top: -80px;
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     }
 
     .house-stats {
@@ -94,7 +94,7 @@
         width: 49%;
         display: inline-block;
         margin-right: 0;
-        margin-top: 1rem;
+        margin-top: 2rem;
       }
 
       .house-stat {
@@ -138,7 +138,7 @@
     }
 
     .house-buttons {
-      margin-top: 0.8rem;
+      margin-top: 0.5rem;
       display: block;
       text-align: center;
       padding-bottom: 1rem;
@@ -147,6 +147,7 @@
         width: 49%;
         display: inline-block;
         margin-right: 0;
+        height: 5rem;
       }
 
       form,
@@ -215,6 +216,38 @@
           a {
             color: $black-87;
             font-weight: 500;
+          }
+        }
+      }
+
+      #pending-invitations-list {
+        display: block;
+
+        .each-invitation {
+          text-align: left;
+          padding: 1rem 1rem 0 1rem;
+
+          p {
+            float: left;
+
+            .request-date {
+              font-size: 0.8rem;
+              color: gray;
+            }
+          }
+
+          form {
+            display: inline-block;
+            float: right;
+
+            input.add-to-house-button,
+            input.reject-request-button {
+                border-radius: 0;
+                background-color: $black-12;
+                color: $black-54;
+                font-size: 0.7rem;
+                margin: 0 0.2rem;
+            }
           }
         }
       }
