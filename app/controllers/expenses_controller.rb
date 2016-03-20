@@ -5,7 +5,7 @@ class ExpensesController < ApplicationController
   before_action :load_house
   before_action :load_house_expenses
   before_action :load_expense, only: [:show, :edit, :update, :destroy]
-  before_action :load_events, only: [:create, :update, :delete]
+  before_action :load_events, only: [:create, :update, :destroy]
 
   def new
     @expense = Expense.new

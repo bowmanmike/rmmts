@@ -4,7 +4,7 @@ class ChoresController < ApplicationController
   before_action :load_house
   before_action :load_house_chores
   before_action :load_chore, only: [:show, :edit, :update, :destroy]
-  before_action :load_events, only: [:create, :update, :delete]
+  before_action :load_events, only: [:create, :update, :destroy]
 
   after_action :check_notification_status, only: [:update]
 
