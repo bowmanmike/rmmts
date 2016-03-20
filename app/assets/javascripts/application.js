@@ -19,4 +19,5 @@
 //= require jquery-ui
 //= require jquery.tooltipster
 //= require Chart
+//= require jquery.dotdotdot.js
 //= require_tree .
