@@ -1,7 +1,6 @@
 $(document).on('ready page:load', function() {
 
   $(document).ajaxSuccess(function() {
-    // tooltip for all links with class tooltip
     $('.tooltip').tooltipster({
       theme: 'tooltipster-punk',
       animation: 'grow',
@@ -28,19 +27,6 @@ $(document).on('ready page:load', function() {
       minWidth: '200',
       position: 'bottom',
       content: 'loading...',
-      // function to fire before tooltip opens - load the points-pie div into the tooltip?
-      // functionBefore: function(origin, continueTooltip) {
-      //   continueTooltip();
-      //   $.ajax({
-      //     url: origin.attr('href'),
-      //     success: function(data) {
-      //       var canvas = $($.parseHTML(data)).find('canvas.points-pie').clone();
-      //       return origin.tooltipster('content', canvas);
-      //     }
-      //   });
-      // },
-      // function to fire when tooltip and content is added to the dom, run the showPointsChart
-      // function to populate the tooltip with the pie chart from the stats page.
       functionReady: function(origin, tooltip) {
         // retrieve and format the JSON data needed for the chart
         $.ajax({
