@@ -1,6 +1,7 @@
 $(document).on('ready page:load', function() {
 
-  $(document).ajaxSuccess(function() {
+  if ( document.getElementsByClassName('tooltip').length > 0 ) {
+    // set tooltips for calendar chores, purchases and expenses
     $('.tooltip').tooltipster({
       theme: 'tooltipster-punk',
       animation: 'grow',
@@ -10,7 +11,6 @@ $(document).on('ready page:load', function() {
       functionInit: function(origin, content) {
         $.ajax({
           url: origin.attr('href'),
-          dataType: 'html',
           success: function(data) {
             return origin.tooltipster('content', data);
           }
@@ -18,7 +18,7 @@ $(document).on('ready page:load', function() {
       }
     });
 
-    // tooltip for the stats page link
+    // set tooltip for the stats page link showing pie chart
     $('.link-to-stats > a').tooltipster({
       theme: 'tooltipster-punk',
       animation: 'grow',
@@ -28,32 +28,32 @@ $(document).on('ready page:load', function() {
       position: 'bottom',
       content: 'loading...',
       functionReady: function(origin, tooltip) {
-        // retrieve and format the JSON data needed for the chart
         $.ajax({
           url: origin.attr('href'),
           success: function(data) {
             var canvas = $($.parseHTML(data)).find('.points-pie').clone();
-            return origin.tooltipster('content', canvas);
-          }
-        });
+            // insert the canvas element into the tooltip div so it can be populated with the chart
+            origin.tooltipster('content', canvas);
+            // retrieve and format the JSON data needed for the chart, generate the pie chart inside the canvas
+            $.getJSON(origin.attr('href') + '.json').done(function(stats){
+              var pointsData = [];
+              var points = stats.points;
 
-        $.getJSON(origin.attr('href') + '.json').done(function(stats){
-          var pointsData = [];
-          var points = stats.points;
+              for (var i = 0; i < points.length; i++) {
+                pointsData.push({
+                    value: points[i].value,
+                    label: points[i].label,
+                    color: chartColor(i)
+                });
+              };
 
-          for (var i = 0; i < points.length; i++) {
-            pointsData.push({
-                value: points[i].value,
-                label: points[i].label,
-                color: chartColor(i)
+              var ctx = $('.points-pie').get(0).getContext("2d");
+              new Chart(ctx).Pie(pointsData, {
+                segmentShowStroke: false,
+                percentageInnerCutout: 70
+              });
             });
-          };
-
-          var ctx = $('.points-pie').get(0).getContext("2d");
-          new Chart(ctx).Pie(pointsData, {
-            segmentShowStroke: false,
-            percentageInnerCutout: 70
-          });
+          }
         });
         // Chart colour definition
         var chartColor = function(num) {
@@ -84,7 +84,6 @@ $(document).on('ready page:load', function() {
         };
       }
     });
+  }
 
-
-  });
 });
