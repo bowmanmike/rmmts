@@ -43,37 +43,82 @@ $off-white: rgba(255, 255, 255, 0.92);
 $white: rgba(255, 255, 255, 1);
 $black: rgba(0, 0, 0, 1);
 
-$color1: #114b5f; //rgba(17, 75, 95, 100)
-$color2: rgba(51, 51, 51, 1); //rgba(26, 147, 111, 100)
-$color3: #88d498; //rgba(136, 212, 152, 100)
-$color4: #c6dabf; //rgba(198, 218, 191, 100)
-$color5: #f3e9d2; //rgba(243, 233, 210, 100)
+$black: rgba(0, 0, 0, 1.00);
+$black-12: rgba(0, 0, 0, 0.12);
+$black-38: rgba(0, 0, 0, 0.38);
+$black-54: rgba(0, 0, 0, 0.54);
+$black-87: rgba(0, 0, 0, 0.87);
+
+$white: rgba(255, 255, 255, 1.00);
+$white-12: rgba(255, 255, 255, 0.12);
+$white-50: rgba(255, 255, 255, 0.50);
+$white-70: rgba(255, 255, 255, 0.70);
+
+$blue-900: #0D47A1; //rgba(0, 188, 212, 100)
+$blue-200: #90CAF9; //rgba(77, 208, 225, 100)
+$blue-50: #E3F2FD; //rgba(178, 235, 242, 100)
+$amber-a400: #FFC400; //rgba(255, 61, 0, 100)
+$amber-a200: #FFE57F; //rgba(255, 110, 64, 100)
+
+$color1: $blue-900;
+$color2: $blue-900;
+$color3: $blue-50;
+$color4: $amber-a400;
+$color5: $amber-a200;
 
 // Font Colors
-$base-font-color: $dark-gray;
-$action-color: $color1;
+$base-font-color: $black-87;
+$action-color: $color2;
 
 // Border
-$base-border-color: $light-gray;
+$base-border-color: $black-38;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: $off-white;
+$base-background-color: $white;
 $secondary-background-color: tint($base-border-color, 75%);
 
 $nav-bar-background-color: $color2;
-$nav-bar-text-color: $color4;
+$nav-bar-text-color: $white-70;
 
 $popup-border-color: $color2;
 
-$button-background-color: $color3;
-
-$card-background-color: RGBa(221, 221, 221, 0.65);
-$card-item-background-color: $white;
-$card-item-background-color-hover: $off-white;
+$button-background-color: $color1;
+$button-border-color: $color2;
 
 $flash-alert-background-color: #fbe3e4;
 $flash-notice-background-color: #e5edf8;
+
+// Card Colors
+$card-background-color: rgba(221, 221, 221, 0.65);
+$card-item-background-color: $white;
+$card-item-background-color-hover: $off-white;
+
+// Chart Colors
+$chart-color0: #2979FF;
+$chart-color1: #00B0FF;
+$chart-color2: #00E5FF;
+$chart-color3: #1DE9B6;
+$chart-color4: #00E676;
+$chart-color5: #76FF03;
+$chart-color6: #C6FF00;
+$chart-color7: #FFEA00;
+$chart-color8: #FFC400;
+$chart-color9: #FF9100;
+$chart-color10: #FF3D00;
+
+// Secondary Chart Colors
+$secondary-chart-color0: #448AFF;
+$secondary-chart-color1: #40C4FF;
+$secondary-chart-color2: #18FFFF;
+$secondary-chart-color3: #64FFDA;
+$secondary-chart-color4: #69F0AE;
+$secondary-chart-color5: #B2FF59;
+$secondary-chart-color6: #EEFF41;
+$secondary-chart-color7: #FFFF00;
+$secondary-chart-color8: #FFD740;
+$secondary-chart-color9: #FFAB40;
+$secondary-chart-color10: #FF6E40;
 
 $calendar-today-highlight-color: #FFFFE0;
 

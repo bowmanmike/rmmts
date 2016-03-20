@@ -4,6 +4,7 @@ class House < ActiveRecord::Base
   has_many :expenses
   has_many :mates
   has_many :purchases, through: :mates
+  has_many :points, through: :mates
   has_many :announcements, dependent: :destroy
   has_many :pending_invitations, dependent: :destroy
 

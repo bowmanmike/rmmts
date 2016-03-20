@@ -2,58 +2,234 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#house-header {
-  padding-top: 2rem;
-}
+.house-header {
+  @include span-columns(12);
 
-#house-name {
-  font-size: 2rem;
-}
-
-.header-card {
-  h1 {
-    font-family: 'Raleway', sans-serif;
-    font-weight: bolder;
-  }
-
-  #house-image {
-    display: inline-block;
-    width: 50%;
+  .house-image {
+    width: 100%;
+    display: block;
+    position: relative;
+    top: -0.2rem;
     overflow: hidden;
-    padding-bottom: 1rem;
-    @include media($small-screen-only) {
-      @include span-columns(6);
-    }
-    img {
-      height: 10rem;
-      width: 10rem;
-      border-radius: 50%;
-    }
-  }
-
-  #house-buttons {
-    vertical-align: top;
-    display: inline-block;
     text-align: center;
-    #house-edit-delete-links {
-      padding: 0.5rem 0 0.5rem 0;
+
+    @include media($medium-screen-up) {
+      width: 100%;
+      max-width: 100%;
+      height: 400px;
+      text-align: left;
     }
-    padding-bottom: 1rem;
-    @include media($small-screen-only) {
-      float: right;
+
+    .house-image-square {
+      margin-top: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+      width: 75%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 50%;
+      display: block;
+
+      @include media($medium-screen-up) {
+        display: none;
+      }
     }
-    form {
-      padding-top: 1.5rem;
+
+    .house-image-full {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      display: none;
+
+      @include media($medium-screen-up) {
+        display: block;
+      }
+
+      @include media($large-screen-up) {
+        display: block;
+        bottom: -50px;
+      }
     }
   }
 
-  @include media($small-screen-only) {
-    @include span-columns(12);
-    @include omega(2n);
+  .house-name {
+
+    h1 {
+      @include span-columns(12);
+      margin-top: 1rem;
+      text-align: center;
+      font-family: $raleway;
+      font-weight: 300;
+      font-size: 1.4rem;
+      color: $black-87;
+
+      @include media($medium-screen-up) {
+        @include shift(1);
+        @include span-columns(4);
+        margin-top: 2rem;
+        text-align: left;
+        font-size: 2rem;
+      }
+    }
   }
-  @include media($medium-screen-up) {
-    @include span-columns(6);
-    @include omega(2n);
+
+  .house-info {
+    @include span-columns(12);
+    background-color: $white;
+    padding: 0 1rem 1rem 1rem;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+    @include media($medium-screen-up) {
+      @include span-columns(7);
+      position: relative;
+      top: -80px;
+    }
+
+    .house-stats {
+      display: block;
+      text-align: center;
+
+      @include media($medium-screen-up) {
+        width: 49%;
+        display: inline-block;
+        margin-right: 0;
+        margin-top: 1rem;
+      }
+
+      .house-stat {
+        margin: 0 0.5rem;
+        display: inline-block;
+
+        @include media($medium-screen-only) {
+          margin: 0 0.2rem;
+        }
+
+        h1 {
+          padding: 0;
+          margin: 0;
+          font-family: $base-font-family;
+          font-weight: 400;
+          font-size: 1.6rem;
+          color: $black-54;
+
+          @include media($medium-screen-only) {
+            font-size: 1.4rem;
+          }
+
+          .percent-symbol {
+            vertical-align: top;
+            font-size: 1rem;
+          }
+        }
+
+        p {
+          padding: 0;
+          margin: 0;
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: $black-38;
+
+          @include media($medium-screen-only) {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+
+    .house-buttons {
+      margin-top: 0.8rem;
+      display: block;
+      text-align: center;
+      padding-bottom: 1rem;
+
+      @include media($medium-screen-up) {
+        width: 49%;
+        display: inline-block;
+        margin-right: 0;
+      }
+
+      form,
+      .house-button-container {
+        display: inline-block;
+        margin-bottom: 0.3rem;
+
+        @include media($medium-screen-up) {
+          display: block;
+        }
+
+        .house-button {
+          width: 6.5rem;
+          padding: 0.5rem 0.3rem;
+          background-color: $black-12;
+          text-align: center;
+          color: $black-54;
+
+          @include media($medium-screen-up) {
+            width: 100%
+          }
+        }
+      }
+    }
+
+    .roommates {
+
+      @include media($large-screen-up) {
+        margin-right: 0;
+      }
+
+      .roommates-card {
+        padding: 0.8rem;
+        background-color: $color3;
+        border-radius: 3px;
+        text-align: center;
+        color: $black-87;
+
+        h3 {
+          font-family: $base-font-family;
+          font-size: 1.1rem;
+          font-weight: 400;
+          color: $black-54;
+        }
+
+        .roommate {
+          position: relative;
+          display: inline-block;
+          padding: 0 1rem 0 1rem;
+
+          .mate-avatar {
+            border-radius: 50%;
+            height: 2rem;
+            width: 2rem;
+            overflow: hidden;
+
+            &.no-photo {
+              background-color: $white;
+              border: 1px solid $black-54;
+              opacity: 0.5;
+            }
+          }
+
+          a {
+            color: $black-87;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+
+  #roommates {
+    text-align: center;
+    padding: 1rem;
+    border-radius: $card-border-radius;
+    background-color: $card-background-color;
+    border-bottom-style: solid;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: $medium-gray;
+    border-bottom-left-radius: $card-border-radius;
+    border-bottom-right-radius: $card-border-radius;
   }
 }
 
@@ -93,20 +269,6 @@
     @include span-columns(6);
     @include omega(2n);
   }
-}
-
-.house-card {
-  @include media($small-screen-only) {
-    @include span-columns(12);
-    @include omega(2n);
-  }
-  @include media($medium-screen-up) {
-    @include span-columns(6);
-    @include omega(2n);
-  }
-}
-.top-bar {
-  z-index: 1;
 }
 
 #house-form {
@@ -162,10 +324,6 @@
   }
 }
 
-.house-image {
-  height: 15rem;
-}
-
 input.request-to-join-house-button {
   background-color: #263C6D;
   border-color: #114b5f;
@@ -182,9 +340,11 @@ input.request-to-join-house-button {
   border: 1px solid #DDD;
   padding: 5px;
 }
+
 .tt-menu:hover {
   cursor: pointer;
 }
+
 .tt-selectable:hover {
   background-color: #253FFF;
   color: #fff;
