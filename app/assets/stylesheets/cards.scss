@@ -92,15 +92,10 @@
 .card-item,
 .sub-card-item {
   height: $card-item-height;
-  border-radius: $card-border-radius;
   background-color: $card-item-background-color;
+  border: 1px solid $black-12;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: $medium-gray;
-  border-bottom-left-radius: $card-border-radius;
-  border-bottom-right-radius: $card-border-radius;
 
   &.expense-item,
   &.purchase-item {
@@ -137,6 +132,7 @@
   overflow-x: hidden;
   width: calc(100% - 5rem);
   white-space: nowrap;
+  height: 4.2rem;
 
   & > dl {
     margin: 0;

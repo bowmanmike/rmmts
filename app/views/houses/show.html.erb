@@ -113,28 +113,31 @@
       </div>
     </div>
 
-    <div class="chores full-container">
+    <div class="chores">
+      <div class="chores-header">
+        <h3>Chores</h3>
+        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
+      </div>
+      <div class="chores-content">
+        <div class="incomplete-chores chores-container">
+          <div class="incomplete-chores-header card-header">
+            <h3>Incomplete Chores</h3>
 
-      <div class="incomplete-chores card-container">
-        <div class="incomplete-chores-header card-header">
-          <h3>Incomplete Chores</h3>
-          <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
+          </div>
+          <div class="incomplete-chores-list card-list">
+            <%= render(@chores.where(complete: !true)) || "All chores complete! Good Job!" %>
+          </div>
         </div>
-        <div class="incomplete-chores-list card-list">
-          <%= render(@chores.where(complete: !true)) || "All chores complete! Good Job!" %>
+
+        <div class="complete-chores chores-container">
+          <div class="complete-chores-header card-header">
+            <h3>Completed Chores</h3>
+          </div>
+          <div class="complete-chores-list card-list">
+            <%= render(@chores.where(complete: true)) || "No complete chores yet?! Better get on that." %>
+          </div>
         </div>
       </div>
-
-      <div class="complete-chores chores-container card-container">
-        <div class="complete-chores-header card-header">
-          <h3>Completed Chores</h3>
-          <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
-        </div>
-        <div class="complete-chores-list card-list">
-          <%= render(@chores.where(complete: true)) || "No complete chores yet?! Better get on that." %>
-        </div>
-      </div>
-
     </div>
 
     <div class="full-container">
