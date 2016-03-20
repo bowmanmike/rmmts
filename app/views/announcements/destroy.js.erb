@@ -1,9 +1,8 @@
-$('#announcements-list').html('<%= j(render @announcements) %>');
-$('#new-announcement').html('<%= j(link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true, id: "new-announcement-button") %>');
+$('#announcements-list').html('<%= j(render @announcements.order(created_at: :DESC)) %>');
 <% if @announcements.empty? %>
   $('#announcements-list').html('No announcements!');
 <% end %>
-$('#announcement-counter').html('<p><strong><%= @announcements.count %></strong> announcements</p>');
+$('.announcement-counter').html('<strong><%= @announcements.count %></strong> announcements <%= button_tag "Show", id: "show-announcements-button" %> <%= button_tag "Hide", id: "hide-announcements-button", class: "hidden-button" %>');
 
 <% flash.each do |type, message| %>
   $('.flash').html("<%= message.html_safe %>")
