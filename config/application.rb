@@ -26,5 +26,6 @@ module Rmmts
 
     config.active_job.queue_adapter = :delayed_job
     config.beginning_of_week = :sunday
+    config.time_zone = 'Eastern Time (US & Canada)'
   end
 end

@@ -6,6 +6,6 @@ $('#new-announcement').html('<%= j(link_to button_tag("Add New Announcement"), n
 $('#announcement-counter').html('<p><strong><%= @announcements.count %></strong> announcements</p>');
 
 <% flash.each do |type, message| %>
-  $('.flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
+  $('.flash').html("<%= message.html_safe %>")
   $('.flash').addClass('<%= type %>')
 <% end %>

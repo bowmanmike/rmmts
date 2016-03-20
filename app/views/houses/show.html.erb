@@ -37,7 +37,7 @@
       <%= render 'mates/mate_list' %>
     </ul>
     <% if current_user.house == @house %>
-      <div id="pending-invitation-list">
+      <div id="pending-invitations-list">
         <%= render @pending_invitations %>
       </div>
       <%= form_tag house_path(@house), method: :patch, id: 'username-search' do %>

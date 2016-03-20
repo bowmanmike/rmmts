@@ -10,11 +10,11 @@ class PendingInvitationsController < ApplicationController
       @house.mates.each do |mate|
         MateMailer.request_to_join(@mate, @house, mate).deliver_later
       end
+      redirect_to house_path(@house)
       flash[:notice] = "Your request has been sent!"
-      redirect_to house_path(@house)
     else
-      flash[:alert] = "There was a problem. Please try again."
       redirect_to house_path(@house)
+      flash[:alert] = "There was a problem. Please try again."
     end
 
   end
@@ -24,7 +24,8 @@ class PendingInvitationsController < ApplicationController
     @mate = @pending_invitation.mate
     @house = @pending_invitation.house
 
-    if @pending_invitation.delete
+    if @pending_invitation.destroy
+      flash[:notice] = "Invitation rejected."
       MateMailer.invitation_rejected(@mate, @house).deliver_later
     end
   end
