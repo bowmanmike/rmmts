@@ -233,7 +233,7 @@
   }
 }
 
-#pending-invitation-list {
+#pending-invitations-list {
 
   form {
     display: inline-block;
@@ -331,6 +331,15 @@ input.request-to-join-house-button {
   outline: none;
   border-radius: 0;
   display: inline-block;
+}
+
+input.remove-mate-button {
+  background-color: #263C6D;
+  border-color: #114b5f;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 3px rgba(13, 58, 73, 0.4);
+  outline: none;
+  border-radius: 0;
+  margin-bottom: 0.5rem;
 }
 
 .tt-menu {

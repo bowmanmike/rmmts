@@ -1,8 +1,11 @@
 $('#roommates-list').html("<%=j render 'mates/mate_list' %>");
-$('#pending-invitation-list').html("<%=j render @pending_invitations %>");
-// Fix render call
+<% if @house.pending_invitations.present? %>
+  $('#pending-invitations-list').html("<%=j render @pending_invitations %>");
+<% else %>
+  $('#pending-invitations-list').hide();
+<% end %>
 
 <% flash.each do |type, message| %>
-  $('.flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")
+  $('.flash').html("<%= message.html_safe %>")
   $('.flash').addClass('<%= type %>')
 <% end %>

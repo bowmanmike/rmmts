@@ -34,6 +34,7 @@ class HousesController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+      format.json
     end
   end
 
@@ -44,9 +45,11 @@ class HousesController < ApplicationController
   def create
     @house = House.new(house_params)
     @house.creator_id = current_user.id
+    current_user.house = @house
+    current_user.save
 
     if @house.save
-      redirect_to house_path(@house.id), notice: "House created!"
+      redirect_to house_path(current_user.house), notice: "House created!"
     else
       render :new, alert: "Something went wrong. Please try again."
     end
@@ -97,12 +100,6 @@ class HousesController < ApplicationController
 
   def show_month_calendar
     @house = House.find(params[:house_id])
-    # @events = @house.chores + @house.expenses + @house.purchases
-    # @house.chores.where(recurring: true).each do |chore|
-    #   chore.create_dummy_chores.each do |dummy|
-    #     @events << dummy
-    #   end
-    # end
   end
 
   def stats

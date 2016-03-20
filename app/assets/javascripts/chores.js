@@ -59,7 +59,7 @@ $(document).on('ready page:load', function() {
     }
   }
 
-  $(document).on('change', '#chore_recurring', function() {
+  $(document).on('click', '#chore_recurring', function() {
     $('.recurrence').toggle()
   });
 

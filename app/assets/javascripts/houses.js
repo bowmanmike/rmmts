@@ -104,14 +104,14 @@ $(document).on('ready page:load', function() {
     showPopUp();
   })
 
-  $(document).on('click', '.simple-calendar a', function(e) {
+  $(document).on('click', '.simple-calendar > a', function(e) {
     e.preventDefault();
     var self = $(this);
 
     $.ajax({
       type: 'get',
       url: self.attr('href'),
-      dataType: 'script'
+      dataType: 'script',
     })
   })
 });
