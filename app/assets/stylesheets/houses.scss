@@ -4,25 +4,53 @@
 
 .house-header {
   @include span-columns(12);
-  padding-top: 2rem;
 
-  .house-image {
+  .house-intro {
     @include span-columns(12);
     display: block;
-    overflow: hidden;
     padding-bottom: 1rem;
     text-align: center;
 
-    img {
-      width: 75%;
-      max-width: 500px;
-      height: auto;
-      border-radius: 50%;
-    }
-
-    @include media($medium-screen-up) {
-      @include span-columns(6);
+    .house-image {
+      width: 100%;
       display: block;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+
+      @include media($medium-screen-up) {
+        width: 100%;
+        max-width: 100%;
+        height: 500px;
+        text-align: left;
+      }
+
+      .house-image-square {
+        margin-top: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: 75%;
+        max-width: 500px;
+        height: auto;
+        border-radius: 50%;
+        display: block;
+
+        @include media($medium-screen-up) {
+          display: none;
+        }
+      }
+
+      .house-image-full {
+        position: absolute;
+        bottom: -220px;
+        left: 0;
+        width: 100%;
+        display: none;
+
+        @include media($medium-screen-up) {
+          display: block;
+        }
+      }
     }
 
     .house-name {

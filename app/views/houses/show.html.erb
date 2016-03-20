@@ -1,7 +1,10 @@
-<div class="house-header full-container">
+<div class="house-header">
 
-  <div class="house-image">
-    <%= image_tag @house.house_image %><br>
+  <div class="house-intro">
+    <div class="house-image">
+      <%= image_tag @house.house_image.square, class: "house-image-square" %>
+      <%= image_tag @house.house_image, class: "house-image-full" %>
+    </div>
     <h1 class="house-name"><%= @house.name %></h1>
   </div>
 
