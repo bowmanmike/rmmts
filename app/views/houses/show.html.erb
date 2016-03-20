@@ -1,67 +1,70 @@
 <div class="house-header">
 
-  <div class="house-intro">
-    <div class="house-image">
-      <%= image_tag @house.house_image.square, class: "house-image-square" %>
-      <%= image_tag @house.house_image, class: "house-image-full" %>
-    </div>
-    <h1 class="house-name"><%= @house.name %></h1>
+  <div class="house-image">
+    <%= image_tag @house.house_image.square, class: "house-image-square" %>
+    <%= image_tag @house.house_image, class: "house-image-full" %>
   </div>
 
-  <div class="house-stats">
-    <div class="house-stat house-mates">
-      <h1><%= @house.mates.size %></h1>
-      <p>mates</p>
-    </div>
-    <div class="house-stat house-points">
-      <h1><%= @house.points.sum(:amount) %></h1>
-      <p>points</p>
-    </div>
-    <div class="house-stat house-points">
-      <h1><%= rand(30..98) %><span class="percent-symbol">%</span></h1>
-      <p>happy</p>
-    </div>
-    <%#= link_to button_tag("See house stats", class: "house-button hvr-underline-from-left"), house_stats_path(@house) %>
+  <div class="house-name">
+    <h1><%= @house.name %></h1>
   </div>
 
-  <div class="house-buttons">
-    <% if current_user %>
-      <% if current_user.house == @house %>
-        <%= form_for current_user, class: "house-button-container" do |f| %>
-          <%= f.hidden_field :house_id, :value => nil %>
-          <%= f.button "Leave house", class: "house-button hvr-underline-from-left" %>
-        <% end %>
-      <% else %>
-        <div class="house-button-container">
-          <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "house-button request-to-join-house-button hvr-underline-from-left", remote: true%>
-        </div>
-      <% end %>
-    <% end %>
-
-    <div class="house-button-container">
-      <%= link_to button_tag("Edit house", class: "house-button hvr-underline-from-left"), edit_house_path(@house), remote: true, id: "edit-house-button" %>
-    </div>
-
-    <% if @house.mates.count == 1 %>
-      <div class="house-button-container">
-        <%= link_to button_tag("Delete house", class: "house-button hvr-underline-from-left"), house_path(@house), method: :delete, data: { confirm: "Are you sure you want to delete this house?" } %>
+  <div class="house-info">
+    <div class="house-stats">
+      <div class="house-stat house-mates">
+        <h1><%= @house.mates.size %></h1>
+        <p>mates</p>
       </div>
-    <% end %>
-  </div>
+      <div class="house-stat house-points">
+        <h1><%= @house.points.sum(:amount) %></h1>
+        <p>points</p>
+      </div>
+      <div class="house-stat house-points">
+        <h1><%= rand(30..98) %><span class="percent-symbol">%</span></h1>
+        <p>happy</p>
+      </div>
+      <%#= link_to button_tag("See house stats", class: "house-button hvr-underline-from-left"), house_stats_path(@house) %>
+    </div>
 
-  <div class="roommates">
-    <div class="roommates-card">
-      <h3>Mates</h3>
-      <%= render 'mates/mate_list' %>
-      <% if current_user.house == @house %>
-        <div id="pending-invitation-list">
-          <%= render @pending_invitations %>
-        </div>
-        <%#= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
-          <%#= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
-          <%#= button_tag "Add +", class: 'hvr-glow' %>
-        <%# end %>
+    <div class="house-buttons">
+      <% if current_user %>
+        <% if current_user.house == @house %>
+          <%= form_for current_user, class: "house-button-container" do |f| %>
+            <%= f.hidden_field :house_id, :value => nil %>
+            <%= f.button "Leave house", class: "house-button hvr-underline-from-left" %>
+          <% end %>
+        <% else %>
+          <div class="house-button-container">
+            <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "house-button request-to-join-house-button hvr-underline-from-left", remote: true%>
+          </div>
+        <% end %>
       <% end %>
+
+      <div class="house-button-container">
+        <%= link_to button_tag("Edit house", class: "house-button hvr-underline-from-left"), edit_house_path(@house), remote: true, id: "edit-house-button" %>
+      </div>
+
+      <% if @house.mates.count == 1 %>
+        <div class="house-button-container">
+          <%= link_to button_tag("Delete house", class: "house-button hvr-underline-from-left"), house_path(@house), method: :delete, data: { confirm: "Are you sure you want to delete this house?" } %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="roommates">
+      <div class="roommates-card">
+        <h3>Mates</h3>
+        <%= render 'mates/mate_list' %>
+        <% if current_user.house == @house %>
+          <div id="pending-invitation-list">
+            <%= render @pending_invitations %>
+          </div>
+          <%#= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
+            <%#= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
+            <%#= button_tag "Add +", class: 'hvr-glow' %>
+          <%# end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
