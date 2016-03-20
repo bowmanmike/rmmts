@@ -43,6 +43,9 @@
 
   td,
   th {
+    border-left: 0;
+    border-right: 0;
+
     @include media($small-screen-only) {
       width: 6rem;
       min-height: 6rem;
