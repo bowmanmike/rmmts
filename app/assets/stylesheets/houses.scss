@@ -371,6 +371,14 @@
           border: 1px solid $black-12;
           padding: 1rem;
         }
+
+        .card-header {
+
+          h3 {
+            font-size: 1rem;
+            color: $black-54;
+          }
+        }
       }
     }
   }

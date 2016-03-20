@@ -33,14 +33,8 @@
   @include span-columns(12);
 
   padding: 1rem;
-  border-radius: $card-border-radius;
-  background-color: $card-background-color;
   margin-bottom: 1rem;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: $medium-gray;
-  border-bottom-left-radius: $card-border-radius;
-  border-bottom-right-radius: $card-border-radius;
+  border: 1px solid $black-38;
 
   @include media($medium-screen-up) {
     @include span-columns(6);
@@ -104,9 +98,10 @@
 }
 
 .card-item:hover {
-  background-color: $card-item-background-color-hover;
+  background-color: $color3;
+  color: $black-87;
 
-  & > .card-links > .item-icon-link {
+  .item-icon-link {
     opacity: 0.3;
 
     &:hover {
@@ -114,15 +109,7 @@
     }
   }
 
-  & > .expense-summary > dl > .expense-pay > .new-expense-payment-button button {
-    opacity: 1;
-  }
-
-  & > .purchase-summary > dl > .purchase-pay > .new-purchase-payment-button button {
-    opacity: 1;
-  }
-
-  & > .purchase-summary > dl > .purchase-by > .purchase-pay > .new-purchase-payment-button button {
+  button {
     opacity: 1;
   }
 }
@@ -134,7 +121,7 @@
   white-space: nowrap;
   height: 4.2rem;
 
-  & > dl {
+  dl {
     margin: 0;
     padding-top: 0.4rem;
   }
