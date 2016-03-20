@@ -1,5 +1,7 @@
 $('#roommates-list').html("<%=j render 'mates/mate_list' %>");
 $('#pending-invitations-list').html("<%=j render @pending_invitations %>");
+$('.request-to-join-house-button').val("Request sent!");
+$('.request-to-join-house-button').prop('disabled', true);
 
 <% flash.each do |type, message| %>
   $('.flash').html("<%= type.to_s.humanize.capitalize %>: <%= message.html_safe %>")

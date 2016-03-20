@@ -35,7 +35,11 @@
           <% end %>
         <% else %>
           <div class="house-button-container">
-            <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "house-button request-to-join-house-button hvr-underline-from-left", remote: true%>
+            <% if @house.pending_invitations.where(mate_id: current_user.id).exists? %>
+              <%= button_to "Request sent!", house_pending_invitations_path(@house), method: :post, class: "house-button request-to-join-house-button hvr-underline-from-left", disabled: true, remote: true %>
+            <% else %>
+              <%= button_to "Ask to join this house!", house_pending_invitations_path(@house), method: :post, class: "house-button request-to-join-house-button hvr-underline-from-left", remote: true%>
+            <% end %>
           </div>
         <% end %>
       <% end %>
@@ -56,7 +60,7 @@
         <h3>Mates</h3>
         <%= render 'mates/mate_list' %>
         <% if current_user.house == @house %>
-          <div id="pending-invitation-list">
+          <div id="pending-invitations-list">
             <%= render @pending_invitations %>
           </div>
           <%#= form_tag house_path(@house), method: :patch, id: 'username-search' do %>
