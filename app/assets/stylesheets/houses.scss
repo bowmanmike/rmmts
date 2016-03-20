@@ -117,6 +117,11 @@
   .roommates {
     @include span-columns(12);
 
+    @include media($large-screen-up) {
+      @include span-columns(6);
+      margin-right: 0;
+    }
+
     .roommates-card {
       padding: 0.8rem;
       background-color: $color3;
