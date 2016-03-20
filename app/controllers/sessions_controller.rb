@@ -15,12 +15,15 @@ class SessionsController < ApplicationController
 
     if @mate = login(params[:login], params[:password], params[:remember])
       if @mate.house_id.present?
-        redirect_to house_path(@mate.house), notice: "Login Successful!"
+        redirect_to house_path(@mate.house)
+        flash[:notice] = "Login Successful!"
       else
-        redirect_to houses_path, notice: "Login successful"
+        redirect_to houses_path
+        flash[:notice] = "Login Successful!"
       end
     else
-      render :new, alert: "Login failed"
+      render :new
+      flash[:alert] = "Login Failed."
     end
   end
 

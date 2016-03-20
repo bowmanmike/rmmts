@@ -100,12 +100,6 @@ class HousesController < ApplicationController
 
   def show_month_calendar
     @house = House.find(params[:house_id])
-    # @events = @house.chores + @house.expenses + @house.purchases
-    # @house.chores.where(recurring: true).each do |chore|
-    #   chore.create_dummy_chores.each do |dummy|
-    #     @events << dummy
-    #   end
-    # end
   end
 
   def stats

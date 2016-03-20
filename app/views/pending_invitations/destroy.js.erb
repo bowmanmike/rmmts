@@ -1,6 +1,6 @@
 $('#roommates-list').html("<%=j render 'mates/mate_list' %>");
 <% if @house.pending_invitations.present? %>
-  $('#pending-invitation-list').html("<%=j render @pending_invitations %>");
+  $('#pending-invitations-list').html("<%=j render @pending_invitations %>");
 <% else %>
   $('#pending-invitations-list').hide();
 <% end %>
