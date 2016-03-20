@@ -19,6 +19,10 @@
     width: 60px;
     text-align: center;
 
+    @include media($small-screen-only) {
+      width: 35px;
+    }
+
     .announcement-mate-avatar {
       margin-left: auto;
       margin-right: auto;
@@ -26,6 +30,11 @@
       height: 50px;
       border-radius: 50%;
       display: block;
+
+      @include media($small-screen-only) {
+        width: 32px;
+        height: 32px;
+      }
 
       &.no-photo {
         background-color: $white;
@@ -38,6 +47,10 @@
       margin-top: 0.2rem;
       font-size: 0.8rem;
       color: $black-54;
+
+      @include media($small-screen-only) {
+        font-size: 0.6rem;
+      }
     }
   }
 
@@ -47,6 +60,7 @@
     margin-top: 0.3rem;
     margin-left: 1rem;
     margin-bottom: 0.5rem;
+    max-width: 80%;
 
     .announcement-title {
       margin-right: 1rem;
@@ -74,7 +88,7 @@
       }
 
       .announcement-links {
-        margin-top: 0.3rem;
+        margin-top: 0;
         margin-bottom: 0;
         display: inline-block;
 
