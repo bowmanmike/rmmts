@@ -9,8 +9,8 @@
     <h1><%= @house.name %></h1>
   </div>
 
-  <div class="house-info">
-    <%= link_to house_stats_path(@house), class: "house-stats link-to-stats" do %>
+  <div class="house-info link-to-stats">
+    <%= link_to house_stats_path(@house), class: "house-stats" do %>
       <div class="house-stat house-mates">
         <h1><%= @house.mates.size %></h1>
         <p>mates</p>
@@ -104,7 +104,7 @@
         <h3>Calendar</h3>
       </div>
       <div class="calendar-by-month">
-        <%= button_to "Show monthly calendar", show_month_calendar_path(@house), class: "show-month-calendar", remote: true %>
+        <%= link_to button_tag("Show monthly calendar", class: "show-month-calendar"), show_month_calendar_path(@house), remote: true %>
       </div>
       <div class="calendar-content">
         <div id="house-calendar">
