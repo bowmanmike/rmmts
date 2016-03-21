@@ -43,8 +43,10 @@ class ExpensesController < ApplicationController
   end
 
   def update
+    @events.delete(@expense)
     respond_to do |format|
       if @expense.update_attributes(expense_params)
+        @events << @expense
         flash[:notice] = "Expense successfully updated!"
         format.html { redirect_to house_path(@house) }
         format.js {}
