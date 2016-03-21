@@ -23,6 +23,30 @@ $(document).on('ready page:load', function() {
     });
   };
 
+  var showPointsChartPopup = function() {
+
+    $.getJSON($(location).attr('href') + '/stats.json').done(function(stats){
+      var pointsData = [];
+      var points = stats.points;
+
+      for (var i = 0; i < points.length; i++) {
+        pointsData.push({
+            value: points[i].value,
+            label: points[i].label,
+            color: chartColor(i)
+        });
+      };
+
+      var ctx = $('.points-pie').get(0).getContext("2d");
+      new Chart(ctx).Pie(pointsData, {
+        segmentShowStroke: false,
+        percentageInnerCutout: 70
+      });
+
+    });
+
+  };
+
   var showSpendingChart = function() {
 
     $.getJSON($(location).attr('href') + '.json').done(function(stats) {
@@ -84,10 +108,81 @@ $(document).on('ready page:load', function() {
     });
   };
 
+  var showSpendingChartPopup = function() {
+
+    $.getJSON($(location).attr('href') + '/stats.json').done(function(stats) {
+      var expenseData = {};
+      var purchaseData = {};
+      var spending = stats.spending;
+      var spendingLabels = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
+      var expenseDataset = [];
+      var purchaseDataset = []
+
+      expenseDataset.push({
+        data: spending[0].data,
+        label: spending[0].label,
+        fillColor: chartColor(0),
+        strokeColor: chartColor(0),
+        highlightFill: secondaryChartColor(0),
+        highlightStroke: secondaryChartColor(0)
+      });
+
+      purchaseDataset.push({
+        data: spending[1].data,
+        label: spending[1].label,
+        fillColor: chartColor(2),
+        strokeColor: chartColor(2),
+        highlightFill: secondaryChartColor(2),
+        highlightStroke: secondaryChartColor(2)
+      });
+
+
+      expenseData.labels = spendingLabels;
+      expenseData.datasets = expenseDataset;
+
+      purchaseData.labels = spendingLabels;
+      purchaseData.datasets = purchaseDataset;
+
+      var expenseCtx = $('.expense-bar').get(0).getContext("2d");
+      new Chart(expenseCtx).Bar(expenseData, {
+        barShowStroke: false,
+        scaleShowGridLines: false,
+        scaleShowHorizontalLines: false,
+        scaleShowVerticalLines: false,
+        scaleLineColor: 'transparent',
+        scaleShowLabels: false,
+        barValueSpacing: 2,
+        barDatasetSpacing: 0,
+      });
+
+      var purchaseCtx = $('.purchase-bar').get(0).getContext("2d");
+      new Chart(purchaseCtx).Bar(purchaseData, {
+        barShowStroke: false,
+        scaleShowGridLines: false,
+        scaleShowHorizontalLines: false,
+        scaleShowVerticalLines: false,
+        scaleLineColor: 'transparent',
+        scaleShowLabels: false,
+        barValueSpacing: 2,
+        barDatasetSpacing: 0,
+      });
+    });
+  };
+
+
   if ($(location).attr('href').search('stats') >= 0) {
     showPointsChart();
     showSpendingChart();
-  };
+  }
+
+  $(document).ajaxSuccess( function( event, xhr, settings ) {
+    if (settings.url == $(location).attr('href') + '/stats') {
+      if ($('.popup-form').has('.house-stats-header')) {
+        showPointsChartPopup();
+        showSpendingChartPopup();
+      }
+    }
+  });
 
   var chartColor = function(num) {
     // From Google's Material Design colour palette

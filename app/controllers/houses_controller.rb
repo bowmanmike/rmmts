@@ -105,8 +105,18 @@ class HousesController < ApplicationController
   def stats
     @house = House.find(params[:house_id])
     respond_to do |format|
-      format.html
-      format.json
+      format.html {}
+      format.js {}
+      format.json {}
+    end
+  end
+
+  def update_mates
+    @house = House.find(params[:house_id])
+    @pending_invitations = @house.pending_invitations
+    respond_to do |format|
+      format.html {}
+      format.js {}
     end
   end
 

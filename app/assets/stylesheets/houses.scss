@@ -188,7 +188,7 @@
       }
 
       .roommates-card {
-        padding: 0.8rem;
+        padding: 0.8rem 0.8rem 29px 0.8rem;
         background-color: $color3;
         border-radius: 3px;
         text-align: center;
@@ -263,6 +263,7 @@
 }
 
 .house-container {
+  @include span-columns(12);
 
   .announcements-container {
     @include span-columns(12);
@@ -273,7 +274,12 @@
       @include shift(1);
       padding-top: 2rem;
 
+      @include media($medium-screen-up) {
+        padding-top: 4.75rem;
+      }
+
       .announcements-header {
+        margin-bottom: 0.675rem;
 
         h3 {
           font-size: 1rem;
@@ -288,20 +294,13 @@
       }
 
       .announcement-counter {
-        margin-bottom: 2.5rem;
-
-        .announcements-button {
-          width: 14rem;
-          background-color: transparent;
-          border: 1px solid $black-12;
-          padding: 0.8rem;
-          box-shadow: none;
-          color: $black-38;
-          font-size: 0.8rem;
+        @include media($medium-screen-up) {
+          margin-bottom: 2.5rem;
         }
       }
-      
+
       #announcements-list {
+        padding-top: 1.5rem;
         height: 0;
       }
     }
@@ -325,25 +324,10 @@
           color: $black-54;
         }
       }
-
-      .calendar-by-month {
-
-        .show-month-calendar {
-          border-radius: 0;
-          width: 14rem;
-          background-color: transparent;
-          border: 1px solid $black-12;
-          padding: 0.8rem;
-          box-shadow: none;
-          color: $black-38;
-          font-size: 0.8rem;
-        }
-      }
     }
   }
 
   .chores {
-    @include outer-container;
     @include span-columns(12);
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -393,7 +377,6 @@
   }
 
   .expenses-purchases {
-    @include outer-container;
     @include span-columns(12);
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -426,16 +409,6 @@
           .new-purchase-button {
             margin-left: 0.5rem;
             float: none;
-          }
-        }
-
-        .expense-item,
-        .purchase-item {
-          height: 8rem;
-
-          .expense-summary,
-          .purchase-summary {
-            height: auto;
           }
         }
       }
