@@ -74,3 +74,18 @@
     color: $black-54;
   }
 }
+
+.close-button {
+  width: 3rem;
+  background-color: transparent;
+  border: 1px solid $black-12;
+  padding: 0.2rem;
+  box-shadow: none;
+  color: $black-12;
+  font-size: 0.8rem;
+
+  &:hover {
+    background-color: $black-12;
+    color: $black-54;
+  }
+}
