@@ -80,8 +80,8 @@
       transform: translate(-50%,-50%);
 
       button {
-        background-color: $color1;
-        border-color: $color1;
+        background-color: $black-54;
+        border-color: $black-54;
         color: $white;
       }
     }
@@ -90,57 +90,62 @@
 
 #info-div {
   @include span-columns(12);
+  @include omega;
   position: fixed;
-  bottom: 0;
+  bottom: -8%;
   height: 0;
   width: 100%;
   padding: 0 2rem 2rem 2rem;
-  background-color: $color1;
+  background-color: $black-87;
   color: $white;
 
-  @include media($small-screen-only) {
-    overflow: scroll;
+  @include media($large-screen-up) {
+    overflow: auto;
   }
 
   .close-info-div {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 
     .close-button {
       margin-top: 1rem;
-      border: none;
+      border-color: $white-70;
       color: $white;
 
       &:hover {
         background-color: $white-70;
-        color: $color1;
+        color: $black-87;
       }
     }
   }
 
-  .info-div-column {
-    @include span-columns(12);
-    height: 9rem;
+  .info-text {
+    overflow: scroll;
+    height: 70%;
 
-    @include media($medium-screen-only) {
-      @include span-columns(6);
-      height: auto;
-    }
+    .info-div-column {
+      @include span-columns(12);
+      height: 9rem;
+      padding: 0 6rem;
 
-    @include media($large-screen-up) {
-      @include span-columns(3);
-      height: auto;
-    }
+      color: $white-70;
+      font-size: 0.8rem;
 
-    .info-column-header {
-      font-size: 1.2rem;
-
-      @include media($medium-large-screen-up) {
-        font-size: 1.5rem;
+      @include media($medium-screen-up) {
+        @include span-columns(3);
+        height: auto;
+        padding: 0;
       }
-    }
 
-    .info-column-content {
-      padding-top: 0;
+      .info-column-header {
+        font-family: $raleway;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .info-column-content {
+        padding-top: 0;
+      }
     }
   }
 }
