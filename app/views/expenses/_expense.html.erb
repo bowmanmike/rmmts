@@ -1,17 +1,20 @@
 <div class="expense-item card-item">
   <div class="expense-summary card-summary">
-    <dl>
-      <dd class="expense-name">
-        <%= link_to expense.name, house_expense_path(@house, expense), remote: true, class: "show-expense-link" %> <span class="expense-date">on <%= expense.due_date.strftime("%a, %b %e") %></span>
-      </dd>
-      <dd class="expense-amount">
-        <%= number_to_currency(expense.amount) %>
-      </dd>
-      <dd class="expense-amount-remaining">
-        Remaining: <%= number_to_currency(expense.amount - expense.payments.sum(:amount)) %>
-      </dd>
-      <dd class="expense-pay"><%= link_to button_tag("Pay"), new_house_expense_payment_path(expense.house, expense), class: "new-expense-payment-button", remote: true %></dd>
-    </dl>
+    <p class="expense-name">
+      <%= link_to expense.name, house_expense_path(@house, expense), remote: true, class: "show-expense-link" %>
+    </p>
+    <p class="expense-amount">
+      <%= number_to_currency(expense.amount) %>
+    </p>
+    <p class="expense-date">
+      Due <%= expense.due_date.strftime("%a, %b %e") %>
+    </p>
+    <p class="expense-amount-remaining">
+      Remaining: <%= number_to_currency(expense.amount - expense.payments.sum(:amount)) %>
+    </p>
+    <p class="expense-pay">
+      <%= link_to button_tag("Pay", class: "small-button"), new_house_expense_payment_path(expense.house, expense), class: "new-expense-payment-button", remote: true %>
+    </p>
   </div>
   <div class="card-links">
     <%= link_to image_tag("edit.svg", class: "item-icon edit-icon"), edit_house_expense_path(expense.house, expense), class: "item-icon-link edit-expense-button", remote: true %><br>

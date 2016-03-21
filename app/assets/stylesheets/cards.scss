@@ -34,12 +34,12 @@
 
   padding: 1rem;
   margin-bottom: 1rem;
-  border: 1px solid $black-38;
+  border: 1px solid $black-12;
 
   @include media($medium-screen-up) {
     @include span-columns(6);
 
-    height: 28rem;
+    height: 30rem;
   }
 
 }
@@ -57,29 +57,33 @@
   margin-bottom: 0.5rem;
 }
 
-.full-card-header > h3,
-.card-header > h3 {
-    float: left;
-    margin-bottom: 0;
-}
-
-.full-card-header > a,
-.card-header > a {
-    float: right;
-}
-
 .full-card-header,
 .card-header {
-    display: block;
-    height: 2rem;
+  display: block;
+  cursor: pointer;
+
+  @include media($medium-screen-up) {
+    cursor: default;
+  }
+
+    h3 {
+      float: left;
+      margin-bottom: 0;
+    }
+
+    a {
+        float: right;
+    }
 }
+
 
 .card-list {
   width: 100%;
   overflow: auto;
+  margin-top: 1rem;
 
   @include media($medium-screen-up) {
-    height: 24rem;
+    height: 25rem;
   }
 }
 
@@ -116,9 +120,9 @@
 
 .card-summary {
   float: left;
-  overflow-x: hidden;
+  overflow: hidden;
   width: calc(100% - 5rem);
-  white-space: nowrap;
+  // white-space: nowrap;
   height: 4.2rem;
 
   dl {

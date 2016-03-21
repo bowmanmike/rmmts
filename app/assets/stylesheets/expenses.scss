@@ -3,47 +3,42 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .expense-summary {
-  padding: 0;
+  padding: 0.5rem 0 0 1.2rem;
   margin-top: 0;
   margin-bottom: 0.5rem;
-}
 
-.expense-name {
-  font-size: 1.1rem;
-}
+  p {
+    margin: 0;
+  }
 
-.expense-date {
-  font-size: 0.8rem;
-  color: $medium-gray;
-}
+  .expense-name {
+    font-size: 1.1rem;
+  }
 
-.expense-amount {
-  font-size: 1.8rem;
-  font-weight: 600;
-}
-
-.expense-amount-remaining {
-  display: inline-block;
-  font-size: 0.8rem;
-  color: $medium-gray;
-}
-
-.expense-item {
-  padding-left: 1.5rem;
-}
-
-.expense-pay {
-  display: inline-block;
-  margin-left: 0.3rem;
-}
-
-.new-expense-payment-button {
-
-  & > button {
-    padding: 0.4rem;
-    border-radius: 0;
-    font-family: $base-font-family;
+  .expense-date {
     font-size: 0.8rem;
-    opacity: 0;
+    color: $black-38;
+  }
+
+  .expense-amount {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: $black-87;
+  }
+
+  .expense-amount-remaining {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $black-38;
+  }
+
+  .expense-item {
+    padding-left: 1.5rem;
+  }
+
+  .expense-pay {
+    display: inline-block;
+    margin-left: 0.3rem;
   }
 }

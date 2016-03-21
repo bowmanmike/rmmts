@@ -266,7 +266,6 @@
 
   .announcements-container {
     @include span-columns(12);
-    background-color: $black-04;
     padding-bottom: 2rem;
 
     .announcements {
@@ -288,15 +287,21 @@
         }
       }
 
-      .announcements-button {
-        width: 14rem;
-        background-color: transparent;
-        border: 1px solid $black-12;
-        padding: 0.8rem;
-        box-shadow: none;
-        color: $black-38;
-        font-size: 0.8rem;
+      .announcement-counter {
+        margin-bottom: 2.5rem;
+
+        .announcements-button {
+          width: 14rem;
+          background-color: transparent;
+          border: 1px solid $black-12;
+          padding: 0.8rem;
+          box-shadow: none;
+          color: $black-38;
+          font-size: 0.8rem;
+        }
       }
+
+
 
       #announcements-list {
         height: 0;
@@ -304,32 +309,37 @@
     }
   }
 
-  .calendar-wrapper {
-    @include span-columns(10);
-    @include shift(1);
-    padding-top: 2rem;
-    padding-bottom: 1rem;
+  .calendar {
+    @include span-columns(12);
+    background-color: $black-04;
 
-    .calendar-header {
+    .calendar-wrapper {
+      @include span-columns(10);
+      @include shift(1);
+      padding-top: 2rem;
+      padding-bottom: 1rem;
 
-      h3 {
-        font-size: 1rem;
-        font-weight: 700;
-        color: $black-54;
+      .calendar-header {
+
+        h3 {
+          font-size: 1rem;
+          font-weight: 700;
+          color: $black-54;
+        }
       }
-    }
 
-    .calendar-by-month {
+      .calendar-by-month {
 
-      .show-month-calendar {
-        border-radius: 0;
-        width: 14rem;
-        background-color: transparent;
-        border: 1px solid $black-12;
-        padding: 0.8rem;
-        box-shadow: none;
-        color: $black-38;
-        font-size: 0.8rem;
+        .show-month-calendar {
+          border-radius: 0;
+          width: 14rem;
+          background-color: transparent;
+          border: 1px solid $black-12;
+          padding: 0.8rem;
+          box-shadow: none;
+          color: $black-38;
+          font-size: 0.8rem;
+        }
       }
     }
   }
@@ -339,7 +349,6 @@
     @include span-columns(12);
     padding-top: 2rem;
     padding-bottom: 2rem;
-    background-color: $black-04;
 
     .chores-header {
       @include span-columns(10);
@@ -366,7 +375,7 @@
       .chores-container {
         @include span-columns(12);
 
-        @include media($medium-screen-up) {
+        @include media($large-screen-up) {
           @include span-columns(6);
           border: 1px solid $black-12;
           padding: 1rem;
@@ -377,6 +386,51 @@
           h3 {
             font-size: 1rem;
             color: $black-54;
+          }
+        }
+      }
+    }
+
+  }
+
+  .expenses-purchases {
+    @include outer-container;
+    @include span-columns(12);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: $black-04;
+
+    .expenses-purchases-container {
+      @include span-columns(10);
+      @include shift(1);
+      margin-top: 1rem;
+
+      .expenses,
+      .purchases {
+        @include span-columns(6);
+
+        .card-header {
+
+          h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: $black-54;
+          }
+
+          .new-expense-button,
+          .new-purchase-button {
+            margin-left: 0.5rem;
+            float: none;
+          }
+        }
+
+        .expense-item,
+        .purchase-item {
+          height: 8rem;
+
+          .expense-summary,
+          .purchase-summary {
+            height: auto;
           }
         }
       }

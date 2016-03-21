@@ -56,20 +56,20 @@ $white-50: rgba(255, 255, 255, 0.50);
 $white-70: rgba(255, 255, 255, 0.70);
 
 $blue-900: #0D47A1; //rgba(0, 188, 212, 100)
-$blue-200: #90CAF9; //rgba(77, 208, 225, 100)
+$blue-500: #90CAF9; //rgba(77, 208, 225, 100)
 $blue-50: #E3F2FD; //rgba(178, 235, 242, 100)
 $amber-a400: #FFC400; //rgba(255, 61, 0, 100)
 $amber-a200: #FFE57F; //rgba(255, 110, 64, 100)
 
 $color1: $blue-900;
-$color2: $blue-900;
+$color2: $blue-500;
 $color3: $blue-50;
 $color4: $amber-a400;
 $color5: $amber-a200;
 
 // Font Colors
 $base-font-color: $black-87;
-$action-color: $color2;
+$action-color: $color1;
 
 // Border
 $base-border-color: $black-38;
