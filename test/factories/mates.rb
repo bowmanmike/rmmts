@@ -6,6 +6,6 @@ FactoryGirl.define do
     password "password"
     password_confirmation "password"
     sequence(:email) { |n| "username#{n}@example.com" }
-    activation_state "active"
+
   end
 end

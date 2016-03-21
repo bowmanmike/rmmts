@@ -69,4 +69,5 @@ class ChoreTest < ActiveSupport::TestCase
     assert chore.mate_id?
   end
 
+
 end
