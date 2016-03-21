@@ -107,7 +107,7 @@
 
   .card-summary {
     float: left;
-    overflow: hidden;
+    overflow-x: hidden;
     width: calc(100% - 5rem);
     min-width: 220px;
     white-space: nowrap;
