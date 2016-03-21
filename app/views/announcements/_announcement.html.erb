@@ -1,12 +1,16 @@
 <div class="announcement">
   <div class="announcement-mate">
-    <% if announcement.mate.mate_avatar.present? %>
-      <%= link_to image_tag(announcement.mate.mate_avatar.thumb, class: "announcement-mate-avatar"), mate_path(announcement.mate) %>
-    <% else %>
-      <%= link_to image_tag("noprofilephoto.svg", class: "no-photo announcement-mate-avatar"), mate_path(announcement.mate) %>
+    <% if announcement.mate.present? %>
+      <% if announcement.mate.mate_avatar.present? %>
+        <%= link_to image_tag(announcement.mate.mate_avatar.thumb, class: "announcement-mate-avatar"), mate_path(announcement.mate) %>
+      <% else %>
+        <%= link_to image_tag("noprofilephoto.svg", class: "no-photo announcement-mate-avatar"), mate_path(announcement.mate) %>
+      <% end %>
     <% end %>
     <p>
-      <%= announcement.mate.first_name %>
+      <% if announcement.mate.present? %>
+        <%= announcement.mate.first_name %>
+      <% end %>
     </p>
   </div>
   <div class="announcement-content">
