@@ -1,0 +1,32 @@
+<div class="update-mates">
+  <div class="change-mates-header">
+    <h1><%= @house.name %> Mates</h1>
+  </div>
+  <div class="add-mates">
+    <h3>Add Mates</h3>
+    <%= form_tag house_path(@house), method: :patch, id: 'username-search', class: "add-mates-form" do %>
+      <%= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
+      <%= button_tag "Add +", class: 'hvr-glow' %>
+    <% end %>
+    <%= render @pending_invitations %>
+  </div>
+  <div class="remove-mates">
+    <h3>Remove Mates</h3>
+    <% @house.mates.each do |mate| %>
+      <div class="remove-mate">
+        <div class="remove-mate-avatar">
+          <% if mate.mate_avatar.present? %>
+            <%= link_to image_tag(mate.mate_avatar.thumb), mate_path(mate), class: "update-mate-avatar" %>
+          <% else %>
+            <%= link_to image_tag("noprofilephoto.svg", class: "no-photo"), mate_path(mate), class: "update-mate-avatar" %>
+          <% end %>
+        </div>
+        <p class="remove-mate-name"><%= mate.full_name %></p>
+        <%= form_for [mate], remote: true do |f| %>
+          <%= f.hidden_field :house, :value => nil %>
+          <%= f.submit "Remove", class: "large-button" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
