@@ -1,17 +1,36 @@
 .house-stats-header {
   padding-top: 2rem;
   padding-bottom: 0;
+  margin-bottom: 1rem;
+
+  .back-to-house-button {
+    width: 14rem;
+    background-color: transparent;
+    border: 1px solid $black-12;
+    padding: 0.8rem;
+    box-shadow: none;
+    color: $black-38;
+    font-size: 0.8rem;
+  }
 }
 
 .points-container,
 .spending-container {
-  text-align: center;
   @include span-columns(12);
+  text-align: center;
 
-  @include media($medium-screen-up) {
+  @include media($large-screen-up) {
     @include span-columns(6);
   }
+
+  .points-table {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
+
+
 
 .points-pie {
   padding: 0;
@@ -52,5 +71,5 @@
 
 .expense-chart,
 .purchase-chart {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }

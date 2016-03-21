@@ -1,7 +1,9 @@
 <div class="house-stats-header full-container">
   <div class="header-card full-container">
     <h1 id="house-name"><%= @house.name %> Stats</h1>
-    <%= image_tag @house.house_image %>
+  </div>
+  <div class="back-to-house full-container">
+    <%= link_to button_tag("Back to house", class: "back-to-house-button"), house_path(@house) %>
   </div>
 </div>
 
