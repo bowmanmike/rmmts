@@ -8,7 +8,7 @@ $(document).on('ready page:load page:change', function() {
         if ( e.which == 13 && !e.shiftKey) {
           e.preventDefault();
           var form = $('.is-active').find('form');
-          form.find(':submit').click();
+          form.find(':submit').get(0).click();
         }
       }
     });
