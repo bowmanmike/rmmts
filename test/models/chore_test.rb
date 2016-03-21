@@ -2,7 +2,15 @@ require 'test_helper'
 
 class ChoreTest < ActiveSupport::TestCase
   setup do
+    @mate = create(:mate)
+    @point = create(:point)
+  end
 
+  test 'check_status_ignores_non_recurring_chore' do
+    chore = build(:chore, recurring: false)
+    due_date = chore.due_date
+    chore.check_status
+    assert chore.due_date == due_date
   end
 
   test 'check_status_resets_completion' do
@@ -40,8 +48,14 @@ class ChoreTest < ActiveSupport::TestCase
   end
 
   test 'due_date_cannot_be_in_the_past' do
-    past_chore = create(:past_due_date_chore)
-    assert_raise ActiveRecord::RecordInvalid
+    past_chore = build(:past_due_date_chore)
+    assert past_chore.save == false
+  end
+
+  test 'create_notifications' do
+    chore = create(:chore)
+    chore.create_notifications
+    assert chore.notifications.size > 0
   end
 
 end

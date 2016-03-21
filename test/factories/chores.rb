@@ -5,7 +5,8 @@ FactoryGirl.define do
     frequency_unit "days"
     frequency_integer 1
     complete true
-    # mate
+    recurring true
+    mate
     house
 
     factory :weekly_chore, class: Chore do
