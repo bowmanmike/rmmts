@@ -2,26 +2,111 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.profile-card {
+  margin-top: 1.5rem;
+
+  .mate-profile-picture {
+    @include span-columns(12);
+    text-align: center;
+    position: relative;
+
+    @include media($medium-screen-only) {
+      @include span-columns(6);
+    }
+
+    @include media($large-screen-up) {
+      @include span-columns(4);
+    }
+
+    .mate-avatar {
+      border-radius: 50%;
+      height: 200px;
+      width: 200px;
+      overflow: hidden;
+
+      &.no-photo {
+        background-color: $white;
+        border: 1px solid $black-54;
+        opacity: 0.5;
+      }
+    }
+
+    .edit-mate-link {
+
+      button {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  .mate-summary {
+    @include span-columns(12);
+    padding-top: 1rem;
+    text-align: center;
+
+    @include media($medium-screen-only) {
+      @include span-columns(6);
+      padding-top: 3rem;
+      text-align: left;
+    }
+
+    @include media($large-screen-up) {
+      @include span-columns(4);
+      padding-top: 3rem;
+      text-align: left;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-weight: 600;
+      color: $black-54;
+    }
+  }
+
+  .mate-point-container {
+    @include span-columns(12);
+
+    @include media($large-screen-up) {
+      @include span-columns(4);
+      margin-right: 0;
+      padding-right: 2rem;
+    }
+
+    .mate-point-summary {
+      background-color: $color3;
+      margin: 0.5rem 0;
+      text-align: center;
+      padding: 1rem 0.5rem;
+      color: $black-54;
+
+      .point-total {
+        font-size: 4rem;
+        font-weight: 600;
+        line-height: 1;
+
+        a {
+          color: $black-54;
+        }
+      }
+
+      .point-subtitle {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
 #mate-duties {
   padding: 1rem;
 }
 
-.profile-card {
-  @include outer-container;
 
-  margin-top: 1.5rem;
 
-  a {
-    color: #1D7AA1;
-    font-weight: bold;
-  }
-}
 
-.mate-summary {
-  float: left;
-  margin-left: 2rem;
-  padding-top: 1rem;
-}
 
 .no-house-profile {
   border-top: 1px solid #DDD;
@@ -31,55 +116,7 @@
   }
 }
 
-.mate-profile-picture {
 
-  float: left;
-  text-align: center;
-  position: relative;
-
-  @include media($small-screen-only) {
-    @include span-columns(12);
-  }
-
-  & > img {
-    border-radius: 50%;
-    width: 12rem;
-    height: 12rem;
-    overflow: hidden;
-  }
-
-  & > img.mate-profile-placeholder {
-    width: 12rem;
-    height: 12rem;
-    border: 2px dashed #DDD;
-    position: relative;
-    max-width: 80%;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,0);
-    img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-    }
-    p {
-      position: absolute;
-      top: 85%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-    }
-  }
-  form {
-    text-align: center;
-    .field {
-      display: inline-block;
-    }
-  }
-}
 
 #getting-started-tabs {
   ul {

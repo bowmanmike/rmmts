@@ -1,67 +1,36 @@
-<div class="full-container">
-  <div class="profile-card">
-    <div class="mate-profile-picture">
-      <% if @mate.mate_avatar.present? %>
-        <%= image_tag @mate.mate_avatar %>
+<div class="profile-card">
+  <div class="mate-profile-picture">
+    <% if @mate.mate_avatar.present? %>
+      <%= image_tag @mate.mate_avatar, class: "mate-avatar" %>
+    <% else %>
+      <%= image_tag "noprofilephoto.svg", class: "no-photo mate-avatar" %>
+    <% end %>
+    <% if @mate == current_user %>
+      <%= link_to button_tag("Edit profile", class: "large-button"), edit_mate_path(@mate), class: "edit-mate-link", remote: true %>
+    <% end %>
+  </div>
+  <div class="mate-summary">
+    <h1><%= @mate.full_name %></h1>
+    <p>
+      Username: <%= @mate.username %><br>
+      <% if @mate.house %>
+        Lives at <%= @mate.house.name %>
       <% else %>
-      <div class="mate-profile-placeholder">
-        <%= image_tag "no-profile-pic.png" %>
-        <p>This could be you!</p>
-      </div>
+        You haven't joined a house yet. Find one <%= link_to "here.", houses_path %>
       <% end %>
-    </div>
-    <div class="mate-point-summary hvr-reveal">
+    </p>
+  </div>
+  <div class="mate-point-container">
+    <div class="mate-point-summary">
       <div class="point-total">
         <%= link_to (@mate.points.sum(:amount) || 0), mate_points_path(@mate), remote: true %>
       </div>
       <div class="point-subtitle">
-        Points
+        <p>Points</p>
       </div>
-    </div>
-    <div class="mate-summary">
-      <h3><%= @mate.full_name %></h3>
-      <p>
-        Username: <%= @mate.username %><br>
-        <% if @mate.house %>
-          Lives at <%= @mate.house.name %>
-        <% else %>
-          You haven't joined a house yet. Find one <%= link_to "here.", houses_path %>
-        <% end %>
-      </p>
-      <% if @mate == current_user %>
-        <%= link_to button_tag("Edit profile"), edit_mate_path(@mate), class: "edit-mate-link hvr-grow-shadow", remote: true %>
-      <% end %>
     </div>
   </div>
 </div>
-
-<div id="announcements" class="full-container">
-
-  <% if current_user.house.blank? %>
-    <div class="no-house-profile">
-      <h2>Welcome to Chortal! To get started, <%= link_to "create", new_house_path %>
-        or <%= link_to "join", houses_path %> a house, or wait to be invited by your housemates.</h2>
-    </div>
-  <% end %>
-
-  <% if @mate.house.present? %>
-    <div class="full-card">
-      <div class="full-card-header">
-        <h3>Announcements</h3>
-        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_announcement_path(@house), class: "medium-icon-link new-announcement-button", remote: true %>
-      </div>
-      <% if @announcements.any? %>
-        <div class="announcement-counter">
-          <strong><%= @announcements.count %></strong> announcements
-          <%= button_tag "Show", id: "show-announcements-button" %>
-          <%= button_tag "Hide", id: "hide-announcements-button", class: "hidden-button" %>
-        </div>
-        <div id="announcements-list" class="full-card-list">
-          <%= render(@announcements) || "No announcements!" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
 
   <div id="mate-duties" class="full-container">
 
@@ -130,4 +99,3 @@
       </div>
     </div>
   </div>
-<% end %>

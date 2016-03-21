@@ -1,21 +1,4 @@
-.mate-point-summary {
-    float: right;
-    background-color: $color1;
-    width: 8rem;
-    margin: 0.5rem 0;
-    text-align: center;
-    padding: 0.5rem 0.5rem 1rem 0.5rem;
-    border-radius: 5px;
-    color: #ffffff;
-}
 
-.point-total {
-    font-size: 3rem;
-
-    & > a {
-      color: #ffffff;
-    }
-}
 
 table.detail-points {
   table-layout: fixed;
