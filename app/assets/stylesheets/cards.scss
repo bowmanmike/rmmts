@@ -98,6 +98,26 @@
   &.expense-item,
   &.purchase-item {
     height: $expense-card-item-height;
+
+    .expense-summary,
+    .purchase-summary {
+      height: 7rem;
+    }
+  }
+
+  .card-summary {
+    float: left;
+    overflow: hidden;
+    width: calc(100% - 5rem);
+    min-width: 220px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 4.2rem;
+
+    dl {
+      margin: 0;
+      padding-top: 0.4rem;
+    }
   }
 }
 
@@ -115,19 +135,6 @@
 
   button {
     opacity: 1;
-  }
-}
-
-.card-summary {
-  float: left;
-  overflow: hidden;
-  width: calc(100% - 5rem);
-  // white-space: nowrap;
-  height: 4.2rem;
-
-  dl {
-    margin: 0;
-    padding-top: 0.4rem;
   }
 }
 
