@@ -56,6 +56,30 @@ class ChoreTest < ActiveSupport::TestCase
     assert chore.notifications.size > 0
   end
 
-  test ''
+  test 'reassign_mate_claimable' do
+    chore = create(:chore)
+    mates = [1, 2, 3, 4]
+    chore.mate_id = mates.sample
+    chore.reassignment_style = "claimable"
+    chore.reassign_mate
+    assert chore.mate_id == nil
+  end
+
+  test 'reassign_mate_random' do
+    chore = create(:chore)
+    chore.mate_id = chore.house.mates.sample.id
+    chore.reassignment_style = "random"
+    chore.reassign_mate
+    assert chore.house.mates.include?(chore.mate)
+  end
+
+  test 'reassign_mate_rotating' do
+    chore = create(:chore)
+    initial_id = chore.house.mates.sample.id
+    chore.mate_id = initial_id
+    chore.reassignment_style = "rotating"
+    chore.reassign_mate
+    assert chore.house.mates.include?(chore.mate) && chore.mate_id != initial_id
+  end
 
 end
