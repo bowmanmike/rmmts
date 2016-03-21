@@ -1,40 +1,33 @@
 FactoryGirl.define do
-  factory :daily_chore, class: "Chore"  do
-    name "Daily Chore"
-    due_date "2016-03-27"
+  factory :chore do
+    sequence (:name) { |n| "Chore#{n}"}
+    due_date { Time.now.next_week.tomorrow }
     frequency_unit "days"
     frequency_integer 1
     complete true
     recurring true
-  end
+    mate nil
+    house
 
-  factory :weekly_chore, class: "Chore" do
-    name "Weekly Chore"
-    due_date "2016-03-27"
-    frequency_unit "weeks"
-    frequency_integer 1
-  end
+    factory :weekly_chore, class: Chore do
+      frequency_unit "weeks"
+    end
 
-  factory :monthly_chore, class: "Chore" do
-    name "Monthly Chore"
-    due_date "2016-03-27"
-    frequency_unit "months"
-    frequency_integer 1
-  end
+    factory :monthly_chore, class: Chore do
+      frequency_unit "months"
+    end
 
-  factory :odd_time_chore, class: "Chore" do
-    name "Non-Standard Time Chore"
-    due_date "2016-03-27"
-    frequency_unit "days"
-    frequency_integer "20"
-  end
+    factory :yearly_chore, class: Chore do
+      frequency_unit "years"
+    end
 
-  factory :one_time_chore, class: "Chore" do
-    name "One-Time Chore"
-    due_date "2016-03-27"
-    frequency_unit "days"
-    frequency_integer 1
-    recurring false
-    complete true
+    factory :past_due_date_chore, class: Chore do
+      due_date { Time.now.yesterday }
+    end
+
+    factory :claimed_chore, class: Chore do
+      mate
+    end
+
   end
 end

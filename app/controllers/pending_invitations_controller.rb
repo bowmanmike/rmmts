@@ -7,14 +7,20 @@ class PendingInvitationsController < ApplicationController
     @pending_invitation.house_id = @house.id
 
     if @pending_invitation.save
+      @pending_invitations = @house.pending_invitations
       @house.mates.each do |mate|
-        MateMailer.request_to_join(@mate, @house, mate).deliver_later
+        MateMailer.request_to_join(mate, @house, mate).deliver_later
       end
-      redirect_to house_path(@house)
-      flash[:notice] = "Your request has been sent!"
+
+      respond_to do |format|
+        format.html { redirect_to house_path(@house), flash[:notice] = "Your request has been sent!" }
+        format.js { flash[:notice] = "Your request has been sent!" }
+      end
     else
-      redirect_to house_path(@house)
-      flash[:alert] = "There was a problem. Please try again."
+      respond_to do |format|
+        format.html { redirect_to :back, flash[:alert] = "There was a problem. Please try again." }
+        format.js { flash[:alert] = "There was a problem. Please try again." }
+      end
     end
 
   end

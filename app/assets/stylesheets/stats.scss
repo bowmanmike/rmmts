@@ -1,0 +1,97 @@
+.house-stats-header {
+  padding-top: 2rem;
+  padding-bottom: 0;
+  margin-bottom: 1rem;
+
+  &.popup-stats {
+    padding-top: 0;
+  }
+
+  .back-to-house-button {
+    width: 14rem;
+    background-color: transparent;
+    border: 1px solid $black-12;
+    padding: 0.8rem;
+    box-shadow: none;
+    color: $black-38;
+    font-size: 0.8rem;
+  }
+}
+
+.points-container,
+.spending-container {
+  @include span-columns(12);
+  text-align: center;
+
+  @include media($large-screen-up) {
+    @include span-columns(6);
+  }
+
+  .points-pie {
+    padding: 0;
+    margin: auto;
+    display: block;
+
+    @include media($small-screen-only) {
+      width: 400px;
+      max-width: 60% !important;
+      height: auto !important;
+    }
+  }
+
+  .points-table {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.points-container.pop-stats {
+  @include media($large-screen-up) {
+    @include span-columns(5);
+  }
+}
+
+.spending-container.popup-stats {
+  @include media($large-screen-up) {
+    padding-right: 1rem;
+  }
+}
+
+
+
+.points-table {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 0 1.5rem;
+
+  .points-mate {
+    width: 70%;
+    text-align: left;
+  }
+
+  .points-amount {
+    width: 30%;
+    text-align: center;
+  }
+}
+
+.bar-chart-name,
+.points-chart-name {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.chart-subtitle {
+  font-size: 0.8rem;
+  color: #999;
+
+  &.points-subtitle {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.expense-chart,
+.purchase-chart {
+  margin-bottom: 2rem;
+}

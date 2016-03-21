@@ -5,7 +5,7 @@ $(document).on('ready page:load', function() {
 
     $('#info-div').addClass('animated slideInUp')
                   .css({
-                    height: '30%',
+                    height: '48%',
                   });
   });
 

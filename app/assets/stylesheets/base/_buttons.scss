@@ -35,11 +35,19 @@
 }
 
 .small-button {
-  // @include button(pill, #1A936F);
   font-size: 0.7rem;
-  width: 3rem;
-  padding: 0.3rem 0.3rem;
+  color: $black-54;
+  width: 4rem;
+  padding: 0.1rem;
   border-radius: 0;
+  border: 1px solid $black-12;
+  background-color: $white;
+  box-shadow: none;
+
+  &:hover {
+    background-color: $color4;
+    color: $black-54;
+  }
 }
 
 .popup-form {
@@ -50,4 +58,34 @@
 
 .leave-house-button {
   font-size: 1rem;
+}
+
+.large-button {
+  width: 14rem;
+  background-color: transparent;
+  border: 1px solid $black-12;
+  padding: 0.8rem;
+  box-shadow: none;
+  color: $black-38;
+  font-size: 0.8rem;
+
+  &:hover {
+    background-color: $black-12;
+    color: $black-54;
+  }
+}
+
+.close-button {
+  width: 3rem;
+  background-color: transparent;
+  border: 1px solid $black-12;
+  padding: 0.2rem;
+  box-shadow: none;
+  color: $black-12;
+  font-size: 0.8rem;
+
+  &:hover {
+    background-color: $black-12;
+    color: $black-54;
+  }
 }

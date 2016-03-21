@@ -19,3 +19,5 @@ $('.simple-calendar > a').last().replaceWith(nextWeekLink);
   $('.flash').html("<%= message.html_safe %>")
   $('.flash').addClass('<%= type %>')
 <% end %>
+
+$('.point-total').html('<%=j link_to (current_user.points.sum(:amount) || 0), mate_points_path(current_user), remote: true %>');

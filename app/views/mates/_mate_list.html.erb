@@ -1,11 +1,15 @@
-<% @house.mates.where.not(id: current_user.id).each do |mate| %>
-  <li class="roommate">
-    <% if mate.mate_avatar.present? %>
-      <%= image_tag mate.mate_avatar.thumb %>
-    <% else %>
-      <%= image_tag "blankface.svg" %>
-    <% end %>
-    <%= link_to image_tag("message.svg"), conversations_path(sender_id: current_user.id, receiver_id: mate.id), method: 'post'%>
-    <p><%= link_to "#{mate.first_name} #{mate.last_name}", mate_path(mate) %></p>
-  </li>
-<% end %>
+<ul id="roommates-list">
+  <% @house.mates.where.not(id: current_user.id).each do |mate| %>
+    <li class="roommate">
+      <% if mate.mate_avatar.present? %>
+        <%= link_to image_tag(mate.mate_avatar.thumb, class: "mate-avatar"), mate_path(mate) %>
+      <% else %>
+        <%= link_to image_tag("noprofilephoto.svg", class: "no-photo mate-avatar"), mate_path(mate) %>
+      <% end %>
+      <%#= link_to image_tag("message.svg", class: "message-icon"), conversations_path(sender_id: current_user.id, receiver_id: mate.id), method: 'post'%>
+      <p>
+        <%= link_to "#{mate.first_name}", mate_path(mate) %>
+      </p>
+    </li>
+  <% end %>
+</ul>

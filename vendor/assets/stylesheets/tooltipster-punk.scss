@@ -2,10 +2,13 @@
 	border-radius: 5px;
 	border-bottom: 3px solid #FF6427;
 	background: #333;
-	color: #fff;
+	color: #000;
 }
 .tooltipster-punk .tooltipster-content {
 	font-size: 14px;
-	line-height: 16px;
+	line-height: 20px;
 	padding: 8px 10px;
+  dd {
+    // padding: 5px 0 0 0;
+  }
 }

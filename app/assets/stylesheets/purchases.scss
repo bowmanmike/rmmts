@@ -1,53 +1,41 @@
-// Place all the styles related to the Purchases controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-// Place all the styles related to the Expenses controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .purchase-summary {
-  padding: 0;
+  padding: 0.5rem 0 0 1.2rem;
   margin-top: 0;
   margin-bottom: 0.5rem;
-}
 
-.purchase-name {
-  font-size: 1.1rem;
-}
+  p {
+    margin: 0;
+  }
 
-.purchase-date,
-.purchase-by {
-  font-size: 0.8rem;
-  color: $medium-gray;
-}
+  .purchase-name {
+    font-size: 1.1rem;
+  }
 
-.purchase-amount {
-  font-size: 1.8rem;
-  font-weight: 600;
-}
-
-.purchase-amount-remaining {
-  display: inline-block;
-  font-size: 0.8rem;
-  color: $medium-gray;
-}
-
-.purchase-item {
-  padding-left: 1.5rem;
-}
-
-.purchase-pay {
-  display: inline-block;
-  margin-left: 0.3rem;
-}
-
-.new-purchase-payment-button {
-
-  & > button {
-    padding: 0.4rem;
-    border-radius: 0;
-    font-family: $base-font-family;
+  .purchase-date,
+  .purchase-by {
     font-size: 0.8rem;
-    opacity: 0;
+    color: $black-38;
+  }
+
+  .purchase-amount {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: $black-87;
+  }
+
+  .purchase-amount-remaining {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $black-38;
+  }
+
+  .purchase-item {
+    padding-left: 1.5rem;
+  }
+
+  .purchase-pay {
+    display: inline-block;
+    margin-left: 0.3rem;
   }
 }

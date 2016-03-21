@@ -33,19 +33,13 @@
   @include span-columns(12);
 
   padding: 1rem;
-  border-radius: $card-border-radius;
-  background-color: $card-background-color;
   margin-bottom: 1rem;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: $medium-gray;
-  border-bottom-left-radius: $card-border-radius;
-  border-bottom-right-radius: $card-border-radius;
+  border: 1px solid $black-12;
 
   @include media($medium-screen-up) {
     @include span-columns(6);
 
-    height: 28rem;
+    height: 30rem;
   }
 
 }
@@ -63,55 +57,75 @@
   margin-bottom: 0.5rem;
 }
 
-.full-card-header > h3,
-.card-header > h3 {
-    float: left;
-    margin-bottom: 0;
-}
-
-.full-card-header > a,
-.card-header > a {
-    float: right;
-}
-
 .full-card-header,
 .card-header {
-    display: block;
-    height: 2rem;
+  display: block;
+  cursor: pointer;
+
+  @include media($medium-screen-up) {
+    cursor: default;
+  }
+
+    h3 {
+      float: left;
+      margin-bottom: 0;
+    }
+
+    a {
+        float: right;
+    }
 }
+
 
 .card-list {
   width: 100%;
   overflow: auto;
+  margin-top: 1rem;
 
   @include media($medium-screen-up) {
-    height: 24rem;
+    height: 25rem;
   }
 }
 
 .card-item,
 .sub-card-item {
   height: $card-item-height;
-  border-radius: $card-border-radius;
   background-color: $card-item-background-color;
+  border: 1px solid $black-12;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: $medium-gray;
-  border-bottom-left-radius: $card-border-radius;
-  border-bottom-right-radius: $card-border-radius;
 
   &.expense-item,
   &.purchase-item {
     height: $expense-card-item-height;
+
+    .expense-summary,
+    .purchase-summary {
+      height: 7rem;
+    }
+  }
+
+  .card-summary {
+    float: left;
+    overflow-x: hidden;
+    width: calc(100% - 5rem);
+    min-width: 220px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 4.2rem;
+
+    dl {
+      margin: 0;
+      padding-top: 0.4rem;
+    }
   }
 }
 
 .card-item:hover {
-  background-color: $card-item-background-color-hover;
+  background-color: $color3;
+  color: $black-87;
 
-  & > .card-links > .item-icon-link {
+  .item-icon-link {
     opacity: 0.3;
 
     &:hover {
@@ -119,28 +133,8 @@
     }
   }
 
-  & > .expense-summary > dl > .expense-pay > .new-expense-payment-button button {
+  button {
     opacity: 1;
-  }
-
-  & > .purchase-summary > dl > .purchase-pay > .new-purchase-payment-button button {
-    opacity: 1;
-  }
-
-  & > .purchase-summary > dl > .purchase-by > .purchase-pay > .new-purchase-payment-button button {
-    opacity: 1;
-  }
-}
-
-.card-summary {
-  float: left;
-  overflow-x: hidden;
-  width: calc(100% - 5rem);
-  white-space: nowrap;
-
-  & > dl {
-    margin: 0;
-    padding-top: 0.4rem;
   }
 }
 
@@ -161,41 +155,4 @@
 
 .hide-card {
   display: none;
-}
-
-#roommates {
-  text-align: center;
-  padding: 1rem;
-  border-radius: $card-border-radius;
-  background-color: $card-background-color;
-  border-bottom-style: solid;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: $medium-gray;
-  border-bottom-left-radius: $card-border-radius;
-  border-bottom-right-radius: $card-border-radius;
-}
-
-.roommate {
-  position: relative;
-  display: inline-block;
-  padding: 0 1rem 0 1rem;
-  img {
-    border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
-    overflow: hidden;
-  }
-  // p {
-  //   position: absolute;
-  //   top: 25%;
-  //   left: 3rem;
-  // }
-  // a {
-  //   height: 2rem;
-  //   width: auto;
-  // }
-}
-#roommates {
-  background-color: $card-background-color;
 }

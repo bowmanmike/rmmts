@@ -1,6 +1,5 @@
-$('#new-announcement').html('<%= j(link_to button_tag("Add New Announcement"), new_house_announcement_path(@house), remote: true, id: "new-announcement-button") %>');
-$('#announcements-list').html('<%= j(render @announcements.order(created_at: :DESC)) %>');
-$('#announcement-counter').html('<p><strong><%= @announcements.count %></strong> announcements</p>');
+$('.announcement-counter').html('<%=j button_tag "Show #{pluralize(@announcements.count, "annnouncement")}", id: "show-announcements-button", class: "announcements-button" %> <%=j button_tag "Hide #{pluralize(@announcements.count, "annnouncement")}", id: "hide-announcements-button", class: "hidden-button announcements-button" %>');
+$('#announcements-list').html('<%= j(render @announcements) %>');
 
 <% flash.each do |type, message| %>
   $('.flash').html("<%= message.html_safe %>")

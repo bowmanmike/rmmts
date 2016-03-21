@@ -5,9 +5,9 @@
   opacity: 0;
   padding: 0.5rem 1rem 1.5rem 1rem;
   margin: auto;
-  border-radius: 5px;
+  border-radius: 0;
   border: none;
-  max-height: 85%;
+  max-height: 90%;
   overflow: scroll;
 
   .popup-layout {
@@ -21,14 +21,15 @@
   }
 
   @include media($medium-screen-up) {
-    @include span-columns(6);
-    @include shift(3);
+    @include span-columns(8);
+    @include shift(2);
   }
 
   @include media($small-screen-only) {
-    @include span-columns(12);
+    @include span-columns(11);
+    @include shift(0.5);
     &.is-active {
-      max-height: 30rem;
+      max-height: 80%;
     }
 
     @include media($medium-screen-only) {

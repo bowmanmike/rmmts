@@ -1,0 +1,108 @@
+.update-mates {
+
+  .add-mates {
+    margin-bottom: 2rem;
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: $black-54;
+    }
+
+    .twitter-typeahead {
+      @include span-columns(10);
+      display: inline-block;
+
+      @include media($medium-screen-only) {
+        @include span-columns(8);
+      }
+
+      @include media($large-screen-up) {
+        @include span-columns(6);
+      }
+    }
+
+    button {
+      &:hover {
+        background-color: $color4;
+      }
+    }
+  }
+
+  .remove-mates {
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: $black-54;
+    }
+
+    .remove-mate {
+      @include span-columns(12);
+      padding: 0.5rem 0.5rem;
+
+      @include media($medium-screen-only) {
+        @include span-columns(11);
+      }
+
+      @include media($large-screen-up) {
+        @include span-columns(8);
+      }
+
+      .remove-mate-avatar {
+        float: left;
+        margin-top: 0.6rem;
+
+        .update-mate-avatar {
+          width: 60px;
+          text-align: center;
+
+          img {
+            margin-left: auto;
+            margin-right: auto;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+
+            &.no-photo {
+              background-color: $black-12;
+              border: 1px solid $black-54;
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+
+      .remove-mate-name {
+        float: left;
+        margin-top: 1.3rem;
+        margin-left: 1rem;
+        margin-bottom: 0;
+      }
+
+      form {
+        float: right;
+        margin-top: 1rem;
+        margin-right: 3rem;
+
+        input {
+          display: inline-block;
+          width: 5rem;
+          background-color: transparent;
+          border: 1px solid $black-12;
+          border-radius: 0;
+          padding: 0.4rem;
+          box-shadow: none;
+          color: $black-38;
+          font-size: 0.8rem;
+
+          &:hover {
+            background-color: $black-12;
+            color: $black-54;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,47 +1,19 @@
-#house-calendar {
-  @include outer-container(100%);
-  padding-top: 0rem;
-  padding-right: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-  overflow: hidden;
-}
 
-.show-month-calendar {
-  text-align: right;
-  display: inline-block;
-  position: relative;
-  bottom: -1.5rem;
-  left: 52%;
-  margin-right: 1rem;
-  font-style: italic;
-  cursor: pointer;
-
-  @include media($medium-screen-up) {
-    left: 82%;
-  }
-}
 
 .simple-calendar {
-  padding: 1rem;
-  border-radius: $card-border-radius;
-  background-color: $card-background-color;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: $medium-gray;
-  border-bottom-left-radius: $card-border-radius;
-  border-bottom-right-radius: $card-border-radius;
+  padding: 1rem 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: $black-54;
 
-  @include media($medium-screen-up) {
-    @include span-columns(12);
+  a {
+    font-weight: 400;
   }
 
   @include media($small-screen-only) {
     overflow-x: scroll;
     padding-right: 0;
-    border-right: 1rem solid rgba(0, 0, 0, 0);
     padding-left: 0;
-    border-left: 1rem solid rgba(0, 0, 0, 0);
   }
 
   .calendar-event {
@@ -50,15 +22,8 @@
 
   .day {
     height: $card-item-height;
-    border-radius: $card-border-radius;
-    background-color: $card-item-background-color;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: $medium-gray;
-    border-bottom-left-radius: $card-border-radius;
-    border-bottom-right-radius: $card-border-radius;
 
     .strikethrough {
       text-decoration: line-through;
@@ -66,11 +31,12 @@
   }
 
   .calendar-date {
-    font-style: italic;
   }
 
   th {
-    background-color: $light-gray;
+    background-color: $black-54;
+    color: $white;
+    border-bottom: 0;
 
     @include media($small-screen-only) {
     }
@@ -78,6 +44,9 @@
 
   td,
   th {
+    border-left: 0;
+    border-right: 0;
+
     @include media($small-screen-only) {
       width: 6rem;
       min-height: 6rem;
@@ -93,7 +62,7 @@
   .wday-6 {}
 
   .today {
-    background-color: $calendar-today-highlight-color;
+    background-color: $color3;
   }
   .past {}
   .future {}

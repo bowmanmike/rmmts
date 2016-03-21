@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :notification do
-    mate nil
-    chore nil
-    email false
-    sms false
+    mate
+    chore
+    email true
+    sms true
   end
 end

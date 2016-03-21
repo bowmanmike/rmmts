@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
     resources :pending_invitations
     get '/stats' => 'houses#stats'
+    get '/update_mates' => 'houses#update_mates'
   end
 
   post "/houses/:house_id/request_to_join" => 'houses#request_to_join', as: :request_to_join_house

@@ -3,10 +3,17 @@
   $('#mate-expenses-list').html("<%=j render partial: '/expenses/expense', collection: @expenses %>");
 <% elsif params[:purchase_id] %>
   $('.purchases-list').html("<%=j render partial: '/purchases/purchase', collection: @purchases %>");
-  $('#mate-purchases-list').html("<%=j render partial: '/purchases/purchase', collection: @purchases %>");
+  $('#mate-owed-payments-list').html("<%=j render partial: '/purchases/purchase', collection: @purchases.where.not(id: current_user.id) %>")
+  <% if @mate_purchases.empty? %>
+    $('#mate-purchases-list').html('No purchases yet.');
+  <% else %>
+    $('#mate-purchases-list').html("<%=j render partial: '/purchases/purchase', collection: @mate_purchases %>");
+  <% end %>
 <% end %>
 
 <% flash.each do |type, message| %>
   $('.flash').html("<%= message.html_safe %>")
   $('.flash').addClass('<%= type %>')
 <% end %>
+
+$('.point-total').html('<%=j link_to (current_user.points.sum(:amount) || 0), mate_points_path(current_user), remote: true %>');

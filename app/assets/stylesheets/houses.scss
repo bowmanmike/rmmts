@@ -2,84 +2,420 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#house-header {
-  padding-top: 2rem;
-}
+.house-header {
+  @include span-columns(12);
+  background-color: $white;
 
-#house-name {
-  font-size: 2rem;
-}
-
-.header-card {
-  h1 {
-    font-family: 'Raleway', sans-serif;
-    font-weight: bolder;
-  }
-
-  #house-image {
-    display: inline-block;
-    width: 50%;
-    overflow: hidden;
-    padding-bottom: 1rem;
-    @include media($small-screen-only) {
-      @include span-columns(6);
-    }
-    img {
-      height: 10rem;
-      width: 10rem;
-      border-radius: 50%;
-    }
-  }
-
-  #house-buttons {
-    vertical-align: top;
-    display: inline-block;
-    text-align: center;
-    #house-edit-delete-links {
-      padding: 0.5rem 0 0.5rem 0;
-    }
-    padding-bottom: 1rem;
-    @include media($small-screen-only) {
-      float: right;
-    }
-    form {
-      padding-top: 1.5rem;
-    }
-  }
-
-  @include media($small-screen-only) {
-    @include span-columns(12);
-    @include omega(2n);
-  }
   @include media($medium-screen-up) {
-    @include span-columns(6);
-    @include omega(2n);
-  }
-}
-
-#pending-invitations-list {
-
-  form {
-    display: inline-block;
+    height: 506px;
   }
 
-  input{
-    width: 50%;
-    float: left;
-    text-align: center;
-    margin-bottom: 0.7rem;
+  .house-image {
     width: 100%;
-    background-color: #263C6D;
-    border-color: #114b5f;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 3px rgba(13, 58, 73, 0.4);
-    outline: none;
-    border-radius: 0;
+    display: block;
+    position: relative;
+    top: -0.2rem;
+    overflow: hidden;
+    text-align: center;
+
+    @include media($medium-screen-up) {
+      width: 100%;
+      max-width: 100%;
+      height: 400px;
+      text-align: left;
+    }
+
+    .house-image-square {
+      margin-top: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+      width: 75%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 50%;
+      display: block;
+
+      @include media($medium-screen-up) {
+        display: none;
+      }
+    }
+
+    .house-image-full {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      display: none;
+
+      @include media($medium-screen-up) {
+        display: block;
+      }
+
+      @include media($large-screen-up) {
+        display: block;
+        bottom: -100px;
+      }
+    }
+  }
+
+  .house-name {
+    @include span-columns(12);
+
+    @include media($medium-screen-up) {
+      @include shift(1);
+      @include span-columns(4);
+    }
+
+    h1 {
+      margin-top: 1rem;
+      text-align: center;
+      font-family: $raleway;
+      font-weight: 300;
+      font-size: 1.4rem;
+      color: $black-87;
+
+      @include media($medium-screen-up) {
+        margin-top: 2rem;
+        text-align: left;
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .house-info {
+    @include span-columns(12);
+
+    @include media($medium-screen-up) {
+      @include span-columns(5);
+      @include shift(1);
+      max-width: 500px;
+      position: relative;
+      top: -83px;
+      border: 1px solid $black-12;
+    }
+
+    .house-stats {
+      display: block;
+      text-align: center;
+      padding: 1rem;
+
+      @include media($medium-screen-up) {
+        background-color: $black-38;
+      }
+
+      .house-stat {
+        margin: 0 1rem;
+        display: inline-block;
+
+        @include media($medium-screen-only) {
+          margin: 0 0.7rem;
+        }
+
+        @include media($large-screen-up) {
+          margin: 0 1.4rem;
+        }
+
+        h1 {
+          padding: 0;
+          margin: 0;
+          font-family: $base-font-family;
+          font-weight: 400;
+          font-size: 1.6rem;
+          color: $black-54;
+
+          .percent-symbol {
+            vertical-align: top;
+            font-size: 1rem;
+          }
+
+          @include media($medium-screen-up) {
+            color: $white-70;
+          }
+        }
+
+        p {
+          padding: 0;
+          margin: 0;
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: $black-54;
+
+          @include media($medium-screen-up) {
+            color: $white-70;
+          }
+        }
+      }
+    }
+
+    .house-buttons {
+      margin-bottom: 1.5rem;
+      display: block;
+      text-align: center;
+
+      @include media($medium-screen-up) {
+        margin: 1.5rem 2rem;
+      }
+
+      form,
+      .house-button-container {
+        display: inline-block;
+        margin-bottom: 0.3rem;
+
+        @include media($medium-screen-up) {
+          display: block;
+        }
+
+        input,
+        .house-button {
+          border-radius: 0;
+          width: 6.5rem;
+          padding: 0.5rem 0.3rem;
+          background-color: $black-12;
+          text-align: center;
+          color: $black-54;
+
+          @include media($medium-screen-up) {
+            width: 100%
+          }
+        }
+      }
+    }
+
+    .roommates {
+
+      @include media($large-screen-up) {
+        margin-right: 0;
+      }
+
+      .roommates-card {
+        padding: 0.8rem 0.8rem 29px 0.8rem;
+        background-color: $color3;
+        border-radius: 3px;
+        text-align: center;
+        color: $black-87;
+
+        h3 {
+          font-family: $base-font-family;
+          font-size: 1.1rem;
+          font-weight: 400;
+          color: $black-54;
+        }
+
+        .roommate {
+          position: relative;
+          display: inline-block;
+          padding: 0 1rem 0 1rem;
+
+          .mate-avatar {
+            border-radius: 50%;
+            height: 2rem;
+            width: 2rem;
+            overflow: hidden;
+
+            &.no-photo {
+              background-color: $white;
+              border: 1px solid $black-54;
+              opacity: 0.5;
+            }
+          }
+
+          a {
+            color: $black-54;
+            font-weight: 500;
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+      #pending-invitations-list {
+        display: block;
+
+        .each-invitation {
+          text-align: left;
+          padding: 1rem 1rem 0 1rem;
+
+          p {
+            float: left;
+
+            .request-date {
+              font-size: 0.8rem;
+              color: gray;
+            }
+          }
+
+          form {
+            display: inline-block;
+            float: right;
+
+            input.add-to-house-button,
+            input.reject-request-button {
+                border-radius: 0;
+                background-color: $black-12;
+                color: $black-54;
+                font-size: 0.7rem;
+                margin: 0 0.2rem;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
-#announcements-list {
-  height: 0;
+.house-container {
+  @include span-columns(12);
+
+  .announcements-container {
+    @include span-columns(12);
+    padding-bottom: 2rem;
+
+    .announcements {
+      @include span-columns(10);
+      @include shift(1);
+      padding-top: 2rem;
+
+      @include media($medium-screen-up) {
+        padding-top: 4.75rem;
+      }
+
+      .announcements-header {
+        margin-bottom: 0.675rem;
+
+        h3 {
+          font-size: 1rem;
+          font-weight: 700;
+          color: $black-54;
+        }
+
+        .new-announcement-button {
+          margin-left: 0.5rem;
+          float: none;
+        }
+      }
+
+      .announcement-counter {
+        @include media($medium-screen-up) {
+          margin-bottom: 2.5rem;
+        }
+      }
+
+      #announcements-list {
+        padding-top: 1.5rem;
+        height: 0;
+      }
+    }
+  }
+
+  .calendar {
+    @include span-columns(12);
+    background-color: $black-04;
+
+    .calendar-wrapper {
+      @include span-columns(10);
+      @include shift(1);
+      padding-top: 2rem;
+      padding-bottom: 1rem;
+
+      .calendar-header {
+
+        h3 {
+          font-size: 1rem;
+          font-weight: 700;
+          color: $black-54;
+        }
+      }
+    }
+  }
+
+  .chores {
+    @include span-columns(12);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    .chores-header {
+      @include span-columns(10);
+      @include shift(1);
+
+      h3 {
+        display: inline-block;
+        font-size: 1rem;
+        font-weight: 700;
+        color: $black-54;
+      }
+
+      .new-chore-button {
+        margin-left: 0.5rem;
+        float: none;
+      }
+    }
+
+    .chores-content {
+      @include span-columns(10);
+      @include shift(1);
+      margin-top: 1rem;
+
+      .chores-container {
+        @include span-columns(12);
+
+        @include media($large-screen-up) {
+          @include span-columns(6);
+          border: 1px solid $black-12;
+          padding: 1rem;
+        }
+
+        .card-header {
+
+          h3 {
+            font-size: 1rem;
+            color: $black-54;
+            margin-bottom: 1rem;
+          }
+        }
+      }
+    }
+
+  }
+
+  .expenses-purchases {
+    @include span-columns(12);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: $black-04;
+
+    .expenses-purchases-container {
+      @include span-columns(10);
+      @include shift(1);
+      margin-top: 1rem;
+
+      .expenses,
+      .purchases {
+        @include span-columns(12);
+
+        @include media($large-screen-up) {
+          @include span-columns(6);
+          border: 1px solid $black-12;
+          padding: 1rem;
+        }
+
+        .card-header {
+
+          h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: $black-54;
+          }
+
+          .new-expense-button,
+          .new-purchase-button {
+            margin-left: 0.5rem;
+            float: none;
+          }
+        }
+      }
+    }
+  }
 }
+
 .full-card-list {
   overflow: hidden;
 }
@@ -93,20 +429,6 @@
     @include span-columns(6);
     @include omega(2n);
   }
-}
-
-.house-card {
-  @include media($small-screen-only) {
-    @include span-columns(12);
-    @include omega(2n);
-  }
-  @include media($medium-screen-up) {
-    @include span-columns(6);
-    @include omega(2n);
-  }
-}
-.top-bar {
-  z-index: 1;
 }
 
 #house-form {
@@ -162,19 +484,6 @@
   }
 }
 
-.house-image {
-  height: 15rem;
-}
-
-input.request-to-join-house-button {
-  background-color: #263C6D;
-  border-color: #114b5f;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 3px rgba(13, 58, 73, 0.4);
-  outline: none;
-  border-radius: 0;
-  display: inline-block;
-}
-
 .tt-menu {
   background-color: #fff;
   width: 100%;
@@ -182,9 +491,11 @@ input.request-to-join-house-button {
   border: 1px solid #DDD;
   padding: 5px;
 }
+
 .tt-menu:hover {
   cursor: pointer;
 }
+
 .tt-selectable:hover {
   background-color: #253FFF;
   color: #fff;
