@@ -76,6 +76,7 @@ class ChoresController < ApplicationController
   end
 
   def destroy
+    @events.delete(@chore)
     respond_to do |format|
       if @chore.notifications.destroy_all && @chore.destroy
         flash[:notice] = "Chore has been deleted!"

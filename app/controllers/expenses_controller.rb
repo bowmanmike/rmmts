@@ -59,6 +59,7 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
+    @events.delete(@expense)
     @expense.destroy
 
     respond_to do |format|
