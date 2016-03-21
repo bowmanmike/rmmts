@@ -263,6 +263,7 @@
 }
 
 .house-container {
+  @include span-columns(12);
 
   .announcements-container {
     @include span-columns(12);
@@ -300,7 +301,7 @@
           font-size: 0.8rem;
         }
       }
-      
+
       #announcements-list {
         height: 0;
       }
@@ -343,7 +344,6 @@
   }
 
   .chores {
-    @include outer-container;
     @include span-columns(12);
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -393,7 +393,6 @@
   }
 
   .expenses-purchases {
-    @include outer-container;
     @include span-columns(12);
     padding-top: 2rem;
     padding-bottom: 2rem;
