@@ -7,21 +7,28 @@
 
   .mate-profile-picture {
     @include span-columns(12);
+
     text-align: center;
     position: relative;
 
     @include media($medium-screen-only) {
-      @include span-columns(6);
+      @include span-columns(5);
+      @include shift(1);
     }
 
     @include media($large-screen-up) {
       @include span-columns(4);
+      @include shift(1);
+      margin-left: 2rem;
     }
 
     .mate-avatar {
+      display: block;
       border-radius: 50%;
       height: 200px;
       width: 200px;
+      margin-left: auto;
+      margin-right: auto;
       overflow: hidden;
 
       &.no-photo {
@@ -32,9 +39,60 @@
     }
 
     .edit-mate-link {
+      display: block;
 
       button {
         margin-top: 1rem;
+      }
+    }
+
+    .mate-notifications {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border: 1px solid $black-12;
+
+      @include media($small-screen-only) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px solid $black-12;
+      }
+
+      h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: $black-54;
+      }
+
+      p {
+        color: $black-54;
+        font-size: 0.75rem;
+      }
+
+      .label-switch {
+        margin-right: 1.5rem;
+        font-size: 0.7rem;
+        color: $black-54;
+      }
+
+      .large-button {
+        width: 5rem;
+        display: inline-block;
+        position: relative;
+        top: -0.8rem;
+        background-color: transparent;
+        border: 1px solid $black-12;
+        border-radius: 0;
+        padding: 0.4rem;
+        box-shadow: none;
+        color: $black-38;
+        font-size: 0.8rem;
+
+        &:hover {
+          background-color: $black-12;
+          color: $black-54;
+        }
       }
     }
   }
@@ -45,7 +103,7 @@
     text-align: center;
 
     @include media($medium-screen-only) {
-      @include span-columns(6);
+      @include span-columns(5);
       padding-top: 3rem;
       text-align: left;
     }
@@ -60,18 +118,14 @@
       font-size: 2.2rem;
       margin-bottom: 0.5rem;
     }
-
-    p {
-      font-weight: 600;
-      color: $black-54;
-    }
   }
 
   .mate-point-container {
     @include span-columns(12);
 
     @include media($large-screen-up) {
-      @include span-columns(4);
+      @include span-columns(3);
+      margin-top: 1rem;
       margin-right: 0;
       padding-right: 2rem;
     }

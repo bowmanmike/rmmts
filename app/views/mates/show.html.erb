@@ -8,6 +8,28 @@
     <% if @mate == current_user %>
       <%= link_to button_tag("Edit profile", class: "large-button"), edit_mate_path(@mate), class: "edit-mate-link", remote: true %>
     <% end %>
+    <div class="mate-notifications">
+      <% if @mate == current_user %>
+        <h3>Notification Preferences</h3>
+        <p>Updating these settings will update your notification settings for all chores, expenses, and purchases.</p>
+        <%= form_for @mate, class: "mate-notifications", remote: true do |f| %>
+
+            <%= f.label :notify_email, for: "email_mate_#{@mate.id}", class: "label-switch" do %>
+              <%= f.check_box :notify_sms, id: "email_mate_#{@mate.id}" %>
+              <div class="checkbox"></div>
+              Email
+            <% end %>
+
+            <%= f.label :notify_sms, for: "sms_mate_#{@mate.id}", class: "label-switch" do %>
+              <%= f.check_box :notify_sms, id: "sms_mate_#{@mate.id}" %>
+              <div class="checkbox"></div>
+              SMS
+            <% end %>
+
+            <%= f.submit "Update", class: "mate-form-submit large-button" %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
   <div class="mate-summary">
     <h1><%= @mate.full_name %></h1>
@@ -31,6 +53,9 @@
     </div>
   </div>
 </div>
+
+
+
 
   <div id="mate-duties" class="full-container">
 
