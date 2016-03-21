@@ -1,11 +1,12 @@
 FactoryGirl.define do
   factory :chore do
-    name "Chore Factory"
+    sequence (:name) { |n| "Chore#{n}"}
     due_date { Time.now.next_week.tomorrow }
     frequency_unit "days"
     frequency_integer 1
     complete true
-    # mate
+    recurring true
+    mate nil
     house
 
     factory :weekly_chore, class: Chore do
@@ -22,6 +23,10 @@ FactoryGirl.define do
 
     factory :past_due_date_chore, class: Chore do
       due_date { Time.now.yesterday }
+    end
+
+    factory :claimed_chore, class: Chore do
+      mate
     end
 
   end

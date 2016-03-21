@@ -1,10 +1,11 @@
 FactoryGirl.define do
   factory :point do
-    name "Points"
+    sequence(:name) { |n| "Points#{n}" }
     amount 1
-    completed_date { Time.now.next_week }
+    completed_date { Time.now.next_week.tomorrow }
     due_date { Time.now.next_week.tomorrow }
-    category "MyString"
+    category "Chore"
     mate
+
   end
 end
