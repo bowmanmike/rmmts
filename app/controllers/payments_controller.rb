@@ -30,6 +30,7 @@ class PaymentsController < ApplicationController
     if params[:mate_id] && params[:purchase_id]
       @payment = @purchase.payments.build(payment_params)
       @payment.mate = current_user
+      @mate_purchases = current_user.purchases
     end
 
     if params[:house_id] && params[:expense_id]
@@ -73,7 +74,7 @@ class PaymentsController < ApplicationController
 
   def update
     @payment.update_attributes(payment_params)
-
+    @housemate_purchases = @mate.housemate_purchases
     if @payment.save
       redirect_to mate_path(@mate)
       flash[:notice] = "Payment has been updated!"
