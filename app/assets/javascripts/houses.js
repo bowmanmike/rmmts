@@ -110,7 +110,7 @@ $(document).on('ready page:load', function() {
     showPopUp();
   });
 
-  $(document).on('click', '.show-month-calendar',function(e) {
+  $(document).on('click', '.show-month-calendar-button',function(e) {
     e.preventDefault();
 
     showPopUp();
