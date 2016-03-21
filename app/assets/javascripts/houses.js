@@ -104,6 +104,12 @@ $(document).on('ready page:load', function() {
     showPopUp();
   });
 
+  $(document).on('click', '.update-house-mates-button',function(e) {
+    e.preventDefault();
+
+    showPopUp();
+  });
+
   $(document).on('click', '.show-month-calendar',function(e) {
     e.preventDefault();
 

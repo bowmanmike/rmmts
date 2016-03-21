@@ -111,6 +111,15 @@ class HousesController < ApplicationController
     end
   end
 
+  def update_mates
+    @house = House.find(params[:house_id])
+    @pending_invitations = @house.pending_invitations
+    respond_to do |format|
+      format.html {}
+      format.js {}
+    end
+  end
+
   private
 
   def house_params
