@@ -6,9 +6,9 @@ FactoryGirl.define do
     frequency_integer 1
     complete true
     recurring true
-    mate
+    mate nil
     house
-    
+
     factory :weekly_chore, class: Chore do
       frequency_unit "weeks"
     end
@@ -23,6 +23,10 @@ FactoryGirl.define do
 
     factory :past_due_date_chore, class: Chore do
       due_date { Time.now.yesterday }
+    end
+
+    factory :claimed_chore, class: Chore do
+      mate
     end
 
   end

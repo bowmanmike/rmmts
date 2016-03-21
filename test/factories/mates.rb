@@ -7,5 +7,6 @@ FactoryGirl.define do
     password_confirmation "password"
     sequence(:email) { |n| "username#{n}@example.com" }
 
+    house
   end
 end
