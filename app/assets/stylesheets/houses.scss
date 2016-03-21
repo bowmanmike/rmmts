@@ -386,6 +386,7 @@
           h3 {
             font-size: 1rem;
             color: $black-54;
+            margin-bottom: 1rem;
           }
         }
       }
@@ -407,7 +408,13 @@
 
       .expenses,
       .purchases {
-        @include span-columns(6);
+        @include span-columns(12);
+        
+        @include media($large-screen-up) {
+          @include span-columns(6);
+          border: 1px solid $black-12;
+          padding: 1rem;
+        }
 
         .card-header {
 
