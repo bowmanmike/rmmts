@@ -291,16 +291,6 @@
 
       .announcement-counter {
         margin-bottom: 2.5rem;
-
-        .announcements-button {
-          width: 14rem;
-          background-color: transparent;
-          border: 1px solid $black-12;
-          padding: 0.8rem;
-          box-shadow: none;
-          color: $black-38;
-          font-size: 0.8rem;
-        }
       }
 
       #announcements-list {
@@ -325,20 +315,6 @@
           font-size: 1rem;
           font-weight: 700;
           color: $black-54;
-        }
-      }
-
-      .calendar-by-month {
-
-        .show-month-calendar {
-          border-radius: 0;
-          width: 14rem;
-          background-color: transparent;
-          border: 1px solid $black-12;
-          padding: 0.8rem;
-          box-shadow: none;
-          color: $black-38;
-          font-size: 0.8rem;
         }
       }
     }

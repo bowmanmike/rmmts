@@ -60,6 +60,7 @@
       <div class="roommates-card">
         <h3>Mates</h3>
         <%= render 'mates/mate_list' %>
+        <%= link_to button_tag("Add mates", class: "add-house-mates-button large-button") %>
       </div>
       <% if current_user.house == @house %>
         <% unless @house.pending_invitations == nil %>
@@ -88,8 +89,8 @@
         </div>
         <% if @announcements.any? %>
           <div class="announcement-counter">
-            <%= button_tag "Show #{pluralize(@announcements.count, "annnouncement")}", id: "show-announcements-button", class: "announcements-button" %>
-            <%= button_tag "Hide #{pluralize(@announcements.count, "annnouncement")}", id: "hide-announcements-button", class: "hidden-button announcements-button" %>
+            <%= button_tag "Show #{pluralize(@announcements.count, "annnouncement")}", id: "show-announcements-button", class: "large-button" %>
+            <%= button_tag "Hide #{pluralize(@announcements.count, "annnouncement")}", id: "hide-announcements-button", class: "hidden-button large-button" %>
           </div>
         <% end %>
         <div id="announcements-list" class="full-card-list">
@@ -104,7 +105,7 @@
           <h3>Calendar</h3>
         </div>
         <div class="calendar-by-month">
-          <%= link_to button_tag("Show monthly calendar", class: "show-month-calendar"), show_month_calendar_path(@house), remote: true %>
+          <%= link_to button_tag("Show monthly calendar", class: "large-button"), show_month_calendar_path(@house), remote: true %>
         </div>
         <div class="calendar-content">
           <div id="house-calendar">
