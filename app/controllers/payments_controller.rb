@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
   before_action :load_purchases
   before_action :load_expenses
 
-  after_action :assign_points, only: [:create]
+  # after_action :assign_points, only: [:create]
 
   def new
     @payment = Payment.new
@@ -45,7 +45,7 @@ class PaymentsController < ApplicationController
 
     respond_to do |format|
       if @payment.save
-
+        assign_points
         format.html do
           if params[:mate_id] && params[:purchase_id]
             redirect_to mate_purchase_path(@mate, @purchase)
