@@ -25,5 +25,9 @@ FactoryGirl.define do
       due_date { Time.now.yesterday }
     end
 
+    factory :claimed_chore, class: Chore do
+      mate
+    end
+
   end
 end
