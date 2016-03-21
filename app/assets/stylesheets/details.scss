@@ -61,10 +61,10 @@ table.detail-payments {
 .detail-assignment {
   float: left;
 
-  & > form {
+  form {
     display: inline-block;
 
-    & > .small-button {
+    .small-button {
       font-size: 0.7rem;
       border-radius: 3px;
       padding: .2rem 0;
