@@ -34,7 +34,8 @@
   }
 
   th {
-    background-color: $light-gray;
+    background-color: $black-54;
+    color: $white;
     border-bottom: 0;
 
     @include media($small-screen-only) {

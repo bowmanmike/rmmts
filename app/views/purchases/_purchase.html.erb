@@ -1,22 +1,22 @@
 <div class="purchase-item card-item">
   <div class="purchase-summary card-summary">
-    <dl>
-      <dd class="purchase-name">
-        <%= link_to "#{purchase.name}", mate_purchase_path(purchase.mate, purchase), remote: true, class: "show-purchase-link" %>
-        <span class="purchase-by">by <%= purchase.mate.first_name %></span>
-      </dd>
-      <dd class="purchase-amount">
-        <%= number_to_currency(purchase.amount) %>
-      </dd>
-      <dd class="purchase-amount-remaining">
-        Still owed: <%= number_to_currency(purchase.amount_owed * -1) %>
-      </dd>
-      <dd class="purchase-pay">
-        <% if purchase.mate != current_user %>
-          <%= link_to button_tag("Pay"), new_mate_purchase_payment_path(purchase.mate, purchase), class: "new-purchase-payment-button", remote: true %>
-        <% end %>
-      </dd>
-    </dl>
+    <p class="purchase-name">
+      <%= link_to "#{purchase.name}", mate_purchase_path(purchase.mate, purchase), remote: true, class: "show-purchase-link" %>
+    </p>
+    <p class="purchase-amount">
+      <%= number_to_currency(purchase.amount) %>
+    </p>
+    <p class="purchase-by">
+      By <%= purchase.mate.first_name %>
+    </p>
+    <p class="purchase-amount-remaining">
+      Still owed: <%= number_to_currency(purchase.amount_owed * -1) %>
+    </p>
+    <p class="purchase-pay">
+      <% if purchase.mate != current_user %>
+        <%= link_to button_tag("Pay", class: "small-button"), new_mate_purchase_payment_path(purchase.mate, purchase), class: "new-purchase-payment-button", remote: true %>
+      <% end %>
+    </p>
   </div>
   <div class="card-links">
     <% if purchase.mate == current_user %>
