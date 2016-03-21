@@ -13,7 +13,7 @@ $(document).on('ready page:load page:change', function() {
             dataType: 'script',
             data: form.serialize(),
             success: function() {
-              $('.popup-form').add('#overlay').add('.popup').removeClass('is-active');
+              hidePopUp();
               if (form.attr('action').search('sessions') >= 0) {
                 location.reload();
               }

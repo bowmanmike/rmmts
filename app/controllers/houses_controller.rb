@@ -105,8 +105,9 @@ class HousesController < ApplicationController
   def stats
     @house = House.find(params[:house_id])
     respond_to do |format|
-      format.html
-      format.json
+      format.html {}
+      format.js {}
+      format.json {}
     end
   end
 

@@ -3,6 +3,10 @@
   padding-bottom: 0;
   margin-bottom: 1rem;
 
+  &.popup-stats {
+    padding-top: 0;
+  }
+
   .back-to-house-button {
     width: 14rem;
     background-color: transparent;
@@ -23,6 +27,18 @@
     @include span-columns(6);
   }
 
+  .points-pie {
+    padding: 0;
+    margin: auto;
+    display: block;
+
+    @include media($small-screen-only) {
+      width: 400px;
+      max-width: 60% !important;
+      height: auto !important;
+    }
+  }
+
   .points-table {
     max-width: 400px;
     margin-left: auto;
@@ -30,13 +46,19 @@
   }
 }
 
-
-
-.points-pie {
-  padding: 0;
-  margin: auto;
-  display: block;
+.points-container.pop-stats {
+  @include media($large-screen-up) {
+    @include span-columns(5);
+  }
 }
+
+.spending-container.popup-stats {
+  @include media($large-screen-up) {
+    padding-right: 1rem;
+  }
+}
+
+
 
 .points-table {
   margin-top: 2rem;
