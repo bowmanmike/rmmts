@@ -9,11 +9,9 @@
       color: $black-54;
     }
 
-    .query {
+    .twitter-typeahead {
       @include span-columns(10);
       display: inline-block;
-      border-radius: 0;
-      border: 1px solid $black-12;
 
       @include media($medium-screen-only) {
         @include span-columns(8);
