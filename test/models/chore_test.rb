@@ -56,4 +56,6 @@ class ChoreTest < ActiveSupport::TestCase
     assert chore.notifications.size > 0
   end
 
+  test ''
+
 end

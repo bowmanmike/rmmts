@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :chore do
-    name "Chore Factory"
+    sequence (:name) { |n| "Chore#{n}"}
     due_date { Time.now.next_week.tomorrow }
     frequency_unit "days"
     frequency_integer 1

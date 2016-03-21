@@ -8,5 +8,9 @@ FactoryGirl.define do
     sequence(:email) { |n| "username#{n}@example.com" }
 
     house
+
+    # after(:create) do |mate|
+    #   create_list :point, 3, mate: mate, category: "Chore"
+    # end
   end
 end
