@@ -2,41 +2,49 @@ require 'test_helper'
 
 class ChoreTest < ActiveSupport::TestCase
   setup do
-    @daily = FactoryGirl.create(:daily_chore)
-    @weekly = FactoryGirl.create(:weekly_chore)
-    @monthly = FactoryGirl.create(:monthly_chore)
-    @odd_time = FactoryGirl.create(:odd_time_chore)
-    @one_time = FactoryGirl.create(:one_time_chore)
+    # @chore = create(:chore, complete: true)
+    @daily_chore = create(:chore)
+    @weekly_chore = create(:weekly_chore)
+    @monthly_chore = create(:monthly_chore)
+    @yearly_chore = create(:yearly_chore)
+    # @past_chore = create(:past_due_date_chore)
   end
 
-  test "daily_chore_update_due_date" do
-    @daily.update_due_date
-    assert @daily.due_date == "2016-03-28"
+  test 'check_status_resets_completion' do
+    chore = create(:chore).check_status
+    assert chore.complete? == false
   end
 
-  test "weekly_chore_update_due_date" do
-    @weekly.update_due_date
-    assert @weekly.due_date == "2016-04-03"
+  test 'check_status_update_due_date_daily' do
+    skip
+    due_date = @daily_chore.due_date
+    @daily_chore.update_due_date
+    assert (due_date + 1.days) == @daily_chore.due_date
   end
 
-  test "monthly_chore_update_due_date" do
-    @monthly.update_due_date
-    assert @monthly.due_date == "2016-04-27"
+  test 'check_status_update_due_date_weekly' do
+    skip
+    due_date = @weekly_chore.due_date
+    @weekly_chore.update_due_date
+    assert (due_date + 1.weeks) == @weekly_chore.due_date
   end
 
-  test "odd_time_update_due_date" do
-    @odd_time.update_due_date
-    assert @odd_time.due_date == "2016-04-16"
+  test 'check_status_update_due_date_monthly' do
+    skip
+    due_date = @monthly_chore.due_date
+    @monthly_chore.update_due_date
+    assert (due_date + 1.months) == @monthly_chore.due_date
   end
 
-  test "check_status_on_one_time_chore" do
-    @one_time.check_status
-    assert @one_time.complete? && @one_time.due_date == "2016-03-27"
+  test 'check_status_update_due_date_yearly' do
+    skip
+    due_date = @yearly_chore.due_date
+    @yearly_chore.update_due_date
+    assert (due_date + 1.years) == @yearly_chore.due_date
   end
 
-  test "check_status_on_recurring_chore" do
-    @daily.check_status
-    assert !@daily.complete? && @daily.due_date == "2016-03-28"
-  end
+  # test 'due_date_cannot_be_in_the_past' do
+  #   assert_false @past_chore
+  # end
 
 end
