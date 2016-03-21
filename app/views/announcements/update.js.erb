@@ -4,7 +4,3 @@ $('#announcements-list').html('<%= j(render @announcements) %>');
   $('.flash').html("<%= message.html_safe %>")
   $('.flash').addClass('<%= type %>')
 <% end %>
-// # <%= link_to "Show Monthly Calendar", show_month_calendar_path(@house), class: "show-month-calendar", remote: true %>
-// # <div id="house-calendar">
-// #   <%= render 'calendar', collection: @events %>
-// # </div>

@@ -3,8 +3,12 @@
   $('#mate-expenses-list').html("<%=j render partial: '/expenses/expense', collection: @expenses %>");
 <% elsif params[:purchase_id] %>
   $('.purchases-list').html("<%=j render partial: '/purchases/purchase', collection: @purchases %>");
-  $('#mate-purchases-list').html("<%=j render partial: '/purchases/purchase', collection: @mate_purchases %>");
   $('#mate-owed-payments-list').html("<%=j render partial: '/purchases/purchase', collection: @purchases.where.not(id: current_user.id) %>")
+  <% if @mate_purchases.empty? %>
+    $('#mate-purchases-list').html('No purchases yet.');
+  <% else %>
+    $('#mate-purchases-list').html("<%=j render partial: '/purchases/purchase', collection: @mate_purchases %>");
+  <% end %>
 <% end %>
 
 <% flash.each do |type, message| %>

@@ -86,12 +86,12 @@
           <h3>Announcements</h3>
           <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_announcement_path(@house), class: "medium-icon-link new-announcement-button", remote: true %>
         </div>
-        <% if @announcements.any? %>
           <div class="announcement-counter">
-            <%= button_tag "Show #{pluralize(@announcements.count, "annnouncement")}", id: "show-announcements-button", class: "announcements-button" %>
-            <%= button_tag "Hide #{pluralize(@announcements.count, "annnouncement")}", id: "hide-announcements-button", class: "hidden-button announcements-button" %>
+            <% if @announcements.any? %>
+              <%= button_tag "Show #{pluralize(@announcements.count, "annnouncement")}", id: "show-announcements-button", class: "announcements-button" %>
+              <%= button_tag "Hide #{pluralize(@announcements.count, "annnouncement")}", id: "hide-announcements-button", class: "hidden-button announcements-button" %>
+            <% end %>
           </div>
-        <% end %>
         <div id="announcements-list" class="full-card-list">
           <%= render(@announcements) || "No announcements!" %>
         </div>
