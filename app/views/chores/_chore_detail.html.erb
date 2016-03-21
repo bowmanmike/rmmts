@@ -1,11 +1,13 @@
 <div class="chore-detail detail-show">
   <div class="detail-header">
-    <h1><%= chore.name %></h1>
-    <p class="completion">
-      Chore <%= chore.complete ? "has been completed" : "is not complete" %>
-    </p>
-    <p class="detail-due-date">
+    <h1 class="detail-name">
+      <%= chore.name %>
+    </h1>
+    <h3 class="detail-due-date">
       Due on <%= chore.due_date.strftime("%a, %b %e, %Y") %>
+    </h3>
+    <p class="completion <%= chore.complete ? "completed" : "incomplete" %>">
+      Chore <%= chore.complete ? "has been completed" : "is not complete" %>
     </p>
   </div>
   <div class="detail-summary">
@@ -14,7 +16,7 @@
     </p>
     <p class="detail-recurrence">
       <% if chore.recurring %>
-        <% if (chore.frequency_integer == 1) && (chore.frequency_unit == "weeks") %>
+        <% if (chore.frequency_integer == 1) && (chore.frequency_unit == "weeks") && (chore.frequency_weekday != "") %>
           Repeats every <%= chore.frequency_weekday %>
         <% elsif (chore.frequency_integer > 1) && (chore.frequency_unit == "weeks") %>
           Repeats every <%= chore.frequency_integer %> weeks on <%= chore.frequency_weekday %>

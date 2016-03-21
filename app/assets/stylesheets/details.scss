@@ -1,3 +1,46 @@
+.chore-detail {
+
+  .detail-header {
+    @include span-columns(12);
+
+    .detail-name {
+
+    }
+
+    .detail-due-date {
+      font-family: $base-font-family;
+      font-size: 1rem;
+      font-weight: 600;
+      color: $black-54;
+    }
+
+    .completion {
+      @include span-columns(9);
+      padding: 0.5rem;
+
+      @include media($medium-screen-only) {
+        @include span-columns(7);
+      }
+
+      @include media($large-screen-up) {
+        @include span-columns(5);
+      }
+
+      &.completed {
+        background-color: #4CAF50;
+        color: $white;
+      }
+
+      &.incomplete {
+        background-color: #E53935;
+        color: $white;
+      }
+    }
+
+  }
+}
+
+
 table.detail-payments {
   table-layout: fixed;
   width: 100%;
