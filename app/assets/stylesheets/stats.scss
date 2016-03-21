@@ -27,6 +27,18 @@
     @include span-columns(6);
   }
 
+  .points-pie {
+    padding: 0;
+    margin: auto;
+    display: block;
+
+    @include media($small-screen-only) {
+      width: 400px;
+      max-width: 60% !important;
+      height: auto !important;
+    }
+  }
+
   .points-table {
     max-width: 400px;
     margin-left: auto;
@@ -46,11 +58,7 @@
   }
 }
 
-.points-pie {
-  padding: 0;
-  margin: auto;
-  display: block;
-}
+
 
 .points-table {
   margin-top: 2rem;
