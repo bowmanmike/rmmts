@@ -2,38 +2,41 @@
   <div id="landing-page-content">
     <div id="title-background-shading">
       <div id="landing-page-title">
-        <h1>welcome to chortal</h1>
+        <h3>Welcome to</h3>
+        <h1 class="landing-page-logo">chortal</h1>
       </div>
     </div>
 
       <div id="link-background-shading">
         <div id="landing-page-links">
-          <h3>live harmoniously with roommates</h3>
-          <strong><%= link_to "Login", new_session_path, id: "login-link", remote: true %></strong> |
-          <strong><%= link_to "Sign up", new_mate_path, id: "signup-link", remote: true %></strong>
+          <h3>Live harmoniously with roommates</h3>
+          <%= link_to button_tag("Login", class: "large-button"), new_session_path, id: "login-link", remote: true %>
+          <%= link_to button_tag("Sign up", class: "large-button"), new_mate_path, id: "signup-link", remote: true %>
         </div>
-        <div id="more-info-button"><%= link_to button_tag("more info"), houses_path, class: 'hvr-float' %></div>
+        <div id="more-info-button"><%= link_to button_tag("more info"), houses_path %></div>
       </div>
 
       <div id="info-div">
         <div class="close-info-div">
-          <%= link_to "close [x]", id: 'close-info-div', class: 'hvr-grow' %>
+          <%= link_to button_tag("close", class: "close-button"), id: 'close-info-div', class: 'hvr-grow' %>
         </div>
-        <div class="info-div-column">
-          <span class="info-column-header">Share Responsibility</span>
-          <p class="info-column-content">Create your chores, set their frequency, and watch them automatically assign themselves to housemates.</p>
-        </div>
-        <div class="info-div-column">
-          <span class="info-column-header">Track Finances</span>
-          <p class="info-column-content">Keep track of household purchases and expenses, including an exact breakdown of who owes who how much.</p>
-        </div>
-        <div class="info-div-column">
-          <span class="info-column-header">Communicate</span>
-          <p class="info-column-content">Post announcements for your housemates to see, or send a particular roommate a private message.</p>
-        </div>
-        <div class="info-div-column">
-          <span class="info-column-header">Be Reminded</span>
-          <p class="info-column-content">Set Email or SMS reminders for chores, purchases and expenses.</p>
+        <div class="info-text">
+          <div class="info-div-column">
+            <p class="info-column-header">Share Tasks</p>
+            <p class="info-column-content">Create your chores, set their frequency, and watch them automatically assign themselves to housemates.</p>
+          </div>
+          <div class="info-div-column">
+            <p class="info-column-header">Track Finances</p>
+            <p class="info-column-content">Keep track of household purchases and expenses, including an exact breakdown of who owes who how much.</p>
+          </div>
+          <div class="info-div-column">
+            <p class="info-column-header">Communicate</p>
+            <p class="info-column-content">Post announcements for your housemates to see, or send a particular roommate a private message.</p>
+          </div>
+          <div class="info-div-column">
+            <p class="info-column-header">Be Reminded</p>
+            <p class="info-column-content">Set email or SMS reminders for chores, purchases and expenses. Customise notifications by item.</p>
+          </div>
         </div>
       </div>
 
