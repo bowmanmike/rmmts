@@ -60,7 +60,9 @@
       <div class="roommates-card">
         <h3>Mates</h3>
         <%= render 'mates/mate_list' %>
-        <%= link_to button_tag("Add or remove mates", class: "large-button"), house_update_mates_path(@house), class: "update-house-mates-button large button", remote: true %>
+        <% if current_user.house == @house %>
+          <%= link_to button_tag("Add or remove mates", class: "large-button"), house_update_mates_path(@house), class: "update-house-mates-button large button", remote: true %>
+        <% end %>
       </div>
       <% if current_user.house == @house %>
         <% unless @house.pending_invitations == nil %>
