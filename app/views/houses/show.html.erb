@@ -10,7 +10,7 @@
   </div>
 
   <div class="house-info link-to-stats">
-    <%= link_to house_stats_path(@house), class: "house-stats" do %>
+    <%= link_to house_stats_path(@house), class: "house-stats", remote: true do %>
       <div class="house-stat house-mates">
         <h1><%= @house.mates.size %></h1>
         <p>mates</p>

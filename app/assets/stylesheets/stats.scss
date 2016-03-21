@@ -3,6 +3,10 @@
   padding-bottom: 0;
   margin-bottom: 1rem;
 
+  &.popup-stats {
+    padding-top: 0;
+  }
+
   .back-to-house-button {
     width: 14rem;
     background-color: transparent;
@@ -30,7 +34,17 @@
   }
 }
 
+.points-container.pop-stats {
+  @include media($large-screen-up) {
+    @include span-columns(5);
+  }
+}
 
+.spending-container.popup-stats {
+  @include media($large-screen-up) {
+    padding-right: 1rem;
+  }
+}
 
 .points-pie {
   padding: 0;

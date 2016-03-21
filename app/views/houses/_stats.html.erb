@@ -1,0 +1,48 @@
+<div class="house-stats-header popup-stats full-container">
+  <div class="header-card">
+    <h1 id="house-name"><%= @house.name %> Stats</h1>
+  </div>
+</div>
+
+<div class="points-container popup-stats">
+  <div class="chart-container">
+    <h4 class="points-chart-name">Points</h4>
+    <p class="points-subtitle chart-subtitle">Over all time</p>
+    <canvas class="points-pie" width="200" height="200"></canvas>
+  </div>
+
+  <div class="points-ranking">
+    <table class="points-table table-minimal">
+      <thead>
+        <tr>
+          <th class="points-mate">Mate</th>
+          <th class="points-amount">Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @house.mates.each do |mate| %>
+          <tr>
+            <td class="points-mate">
+              <%= mate.first_name %>
+            </td>
+            <td class="points-amount">
+              <%= mate.total_points %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="spending-container popup-stats">
+  <div class="expense-chart chart-container">
+    <h4 class="bar-chart-name">Expenses</h4>
+    <p class="chart-subtitle">Current Year</p>
+    <canvas class="expense-bar" width="300" height="200"></canvas>
+  </div>
+  <div class="purchase-chart chart-container">
+    <h4 class="bar-chart-name">Purchases</h4>
+    <p class="chart-subtitle">Current Year</p>
+    <canvas class="purchase-bar" width="300" height="200"></canvas>
+  </div>
+</div>

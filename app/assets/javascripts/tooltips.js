@@ -42,7 +42,7 @@ $(document).on('ready page:load', function() {
               // insert the canvas element into the tooltip div so it can be populated with the chart
               origin.tooltipster('content', canvas);
               // retrieve and format the JSON data needed for the chart, generate the pie chart inside the canvas
-              $.getJSON(origin.attr('href') + '.json').done(function(stats){
+              $.getJSON(origin.attr('href') + '.json').done(function(stats) {
                 var pointsData = [];
                 var points = stats.points;
 
