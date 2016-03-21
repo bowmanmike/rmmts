@@ -23,6 +23,12 @@
         @include span-columns(6);
       }
     }
+
+    button {
+      &:hover {
+        background-color: $color4;
+      }
+    }
   }
 
   .remove-mates {

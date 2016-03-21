@@ -6,7 +6,7 @@
     <h3>Add Mates</h3>
     <%= form_tag house_path(@house), method: :patch, id: 'username-search', class: "add-mates-form" do %>
       <%= text_field_tag :username_search, nil, placeholder: "Search for a username", class: "query" %>
-      <%= button_tag "Add +", class: 'hvr-glow' %>
+      <%= button_tag "Add +" %>
     <% end %>
     <%= render @pending_invitations %>
   </div>
@@ -23,7 +23,7 @@
         </div>
         <p class="remove-mate-name"><%= mate.full_name %></p>
         <%= form_for [mate], remote: true do |f| %>
-          <%= f.hidden_field :house, :value => nil %>
+          <%= f.hidden_field :house_id, :value => nil %>
           <%= f.submit "Remove", class: "large-button" %>
         <% end %>
       </div>
