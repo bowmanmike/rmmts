@@ -2,15 +2,16 @@
   <div id="landing-page-content">
     <div id="title-background-shading">
       <div id="landing-page-title">
-        <h1>welcome to chortal</h1>
+        <h3>Welcome to</h3>
+        <h1 class="landing-page-logo">chortal</h1>
       </div>
     </div>
 
       <div id="link-background-shading">
         <div id="landing-page-links">
           <h3>live harmoniously with roommates</h3>
-          <strong><%= link_to "Login", new_session_path, id: "login-link", remote: true %></strong> |
-          <strong><%= link_to "Sign up", new_mate_path, id: "signup-link", remote: true %></strong>
+          <%= link_to button_tag("Login", class: "large-button"), new_session_path, id: "login-link", remote: true %>
+          <%= link_to button_tag("Sign up", class: "large-button"), new_mate_path, id: "signup-link", remote: true %>
         </div>
         <div id="more-info-button"><%= link_to button_tag("more info"), houses_path, class: 'hvr-float' %></div>
       </div>

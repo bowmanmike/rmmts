@@ -7,69 +7,83 @@
   background-image: url('http://res.cloudinary.com/chortal/image/upload/v1457894881/gower_houses_flmcg5.jpg');
   background-repeat: no-repeat;
   background-position: 50% 50%;
+
   @include media($small-screen-only) {
     background-size: 250%;
   }
   @include media($medium-screen-up) {
     background-size: 200%
   }
-  @include media($medium-large-screen-up) {
-    background-size: 200%;
+
+  #title-background-shading {
+    height: 100%;
+    width: 100%;
+    background-color: RGBa(19, 40, 88, 0.4);
+
+    #landing-page-title {
+      color: white;
+      position: absolute;
+      top: 80%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+
+      h3 {
+        font-family: $helvetica;
+        color: $white;
+        margin: 0;
+      }
+
+      .landing-page-logo {
+        letter-spacing: 0.2rem;
+        font-weight: 800;
+        font-size: 2.8rem;
+
+        @include media($medium-screen-up) {
+          font-size: 3.4rem;
+        }
+        @include media($large-screen-up) {
+          font-size: 4rem;
+        }
+      }
+    }
   }
-  @include media($large-screen-up) {
-    background-size: 200%;
-  }
-  @include media($x-large-screen-up) {
-    background-size: 200%;
+
+  #link-background-shading {
+    height: 100%;
+    width: 100%;
+    background-color: $black-54;
+
+    #landing-page-links {
+      @include span-columns(12);
+      padding-top: 2rem;
+
+      button {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-color: $white-70;
+        color: $white-70;
+        margin-bottom: 0.5rem;
+
+        &:hover {
+          background-color: $white-70;
+          color: $black-54;
+        }
+      }
+      a {
+        color: $light-gray;
+        font-size: 2rem;
+      }
+      a:hover {
+        color: #FF6427;
+      }
+    }
   }
 }
 
-#title-background-shading {
-  height: 100%;
-  width: 100%;
-  background-color: RGBa(19, 40, 88, 0.6);
-}
-#landing-page-title {
-  color: white;
-  position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
-#landing-page-title > h1 {
-  font-family: 'Raleway', sans-serif;
-  letter-spacing: 0.2rem;
-  @include media($small-screen-only) {
-    font-size: 2.8rem;
-  }
-  @include media($medium-screen-up) {
-    font-size: 3.4rem;
-  }
-  @include media($large-screen-up) {
-    font-size: 4rem;
-  }
-}
-#landing-page-links {
-  font-family: 'Lobster', cursive;
-  color: $light-gray;
-  display: inline-block;
-  position: absolute;
-  top: 105%;
-  font-size: 1.5rem;
-  @include span-columns(12);
-  a {
-    color: $light-gray;
-    font-size: 2rem;
-  }
-  a:hover {
-    color: #FF6427;
-  }
-}
-#link-background-shading {
-  height: 100%;
-  width: 100%;
-  background-color: #333333;
-}
+
+
+
 #more-info-button {
   button {
     // @include button(#263C6D);
