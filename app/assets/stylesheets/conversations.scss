@@ -53,8 +53,7 @@
 .messages {
   @include outer-container;
   width: 100%;
-  min-height: 23rem;
-  height: 80%;
+  height: 30rem;
   overflow: scroll;
   padding: 0.5rem;
   color: $medium-gray;
@@ -75,15 +74,16 @@
 
 .new_message {
   @include span-columns(12);
+  background-color: $white;
   position: fixed;
   bottom: 0;
   left: 0;
-  padding: 0;
+  padding: 0.5rem 0 0 0;
 
   @include media($medium-screen-only) {
     @include span-columns(8);
     @include shift(4);
-    position: static;
+    position: fixed;
     display: inline-block;
     height: 7rem;
     bottom: 3.5rem;
@@ -93,7 +93,7 @@
     @include span-columns(8);
     @include shift(4);
     max-width: 584px;
-    position: static;
+    position: fixed;
     display: inline-block;
     height: 7rem;
     bottom: 3.5rem;
