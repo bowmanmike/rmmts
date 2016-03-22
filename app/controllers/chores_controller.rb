@@ -26,6 +26,7 @@ class ChoresController < ApplicationController
 
     respond_to do |format|
       if @chore.save
+        @events << @chore
         flash[:notice] = "Chore has been added!"
          @chore.create_notifications
         format.html { redirect_to house_path(@house) }
@@ -49,6 +50,7 @@ class ChoresController < ApplicationController
   end
 
   def update
+    @events.delete(@chore)
     respond_to do |format|
       if params[:chore][:assign_self]
         @chore.mate_id = params[:chore][:assign_self]
@@ -61,6 +63,7 @@ class ChoresController < ApplicationController
       end
 
       if @chore.update_attributes(chore_params)
+        @events << @chore
         flash[:notice] = "Chore has been updated!"
         format.html { redirect_to house_path(@house) }
         format.js {}
@@ -73,6 +76,7 @@ class ChoresController < ApplicationController
   end
 
   def destroy
+    @events.delete(@chore)
     respond_to do |format|
       if @chore.notifications.destroy_all && @chore.destroy
         flash[:notice] = "Chore has been deleted!"

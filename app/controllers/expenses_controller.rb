@@ -18,6 +18,7 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.save
+        @events << @expense
         flash[:notice] = "Expense successfully created!"
         format.html { redirect_to house_path(@house) }
         format.js {}
@@ -42,8 +43,10 @@ class ExpensesController < ApplicationController
   end
 
   def update
+    @events.delete(@expense)
     respond_to do |format|
       if @expense.update_attributes(expense_params)
+        @events << @expense
         flash[:notice] = "Expense successfully updated!"
         format.html { redirect_to house_path(@house) }
         format.js {}
@@ -56,6 +59,7 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
+    @events.delete(@expense)
     @expense.destroy
 
     respond_to do |format|

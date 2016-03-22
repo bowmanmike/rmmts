@@ -19,6 +19,7 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @purchase.save
+        @events << @purchase
         flash[:notice] = "Purchase successfully created."
         format.html { redirect_to house_path(@house) }
         format.js {}
@@ -43,9 +44,11 @@ class PurchasesController < ApplicationController
   def update
     @house = @purchase.house
     @purchases = @house.purchases
+    @events.delete(@purchase)
 
     respond_to do |format|
       if @purchase.update_attributes(purchase_params)
+        @events << @purchase
         flash[:notice] = "Purchase has been updated!"
         format.html { redirect_to house_path(@house) }
         format.js {}
@@ -61,6 +64,7 @@ class PurchasesController < ApplicationController
     @house = @purchase.house
     @purchase.destroy
     @purchases = @house.purchases
+    @events.delete(@purchase)
 
     respond_to do |format|
       if @purchase.destroy

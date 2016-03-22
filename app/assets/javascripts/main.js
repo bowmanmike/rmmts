@@ -34,7 +34,7 @@ var showPopUp = function() {
   $('.popup').addClass('is-active');
   $('.popup-form').addClass('is-active');
   $('body').addClass('noscroll');
-
+  // initializeTooltips();
   $('.close-popup-link').on('click', function() {
     hidePopUp();
   })
@@ -46,4 +46,5 @@ var hidePopUp = function() {
   $('.popup-form').removeClass('is-active');
   $('body').removeClass('noscroll');
   $('.popup-form').html('');
+  // initializeTooltips();
 }
