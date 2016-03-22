@@ -73,27 +73,27 @@ function initializeTooltips() {
           // From Google's Material Design colour palette
           // http://www.google.com/design/spec/style/color.html#color-color-palette
           if (num == 0)
-              return "#1DE9B6";
+              return "#2979FF";
           if (num == 1)
-              return "#00E676";
+              return "#00B0FF";
           if (num == 2)
-              return "#76FF03";
+              return "#00E5FF";
           if (num == 3)
-              return "#C6FF00";
+              return "#1DE9B6";
           if (num == 4)
-              return "#FFEA00";
+              return "#00E676";
           if (num == 5)
-              return "#FFC400";
+              return "#76FF03";
           if (num == 6)
-              return "#FF9100";
+              return "#C6FF00";
           if (num == 7)
-              return "#FF3D00";
+              return "#FFEA00";
           if (num == 8)
-              return "#FF1744";
+              return "#FFC400";
           if (num == 9)
-              return "#F50057";
+              return "#FF9100";
           if (num == 10)
-              return "#D500F9";
+              return "#FF3D00";
         };
       }
     });
