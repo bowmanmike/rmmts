@@ -89,7 +89,7 @@
             <% else %>
               <%= @mate.first_name.capitalize %> Is Owed:
             <% end %>
-            <%= number_to_currency(@mate.sum_owed_to_self) %>
+            <%= number_to_currency(@mate.sum_owed_to_self * -1) %>
           </h3>
           <% if @mate == current_user %>
             <%= link_to image_tag("add.svg", class: "medium-icon"), new_mate_purchase_path(@mate), class: "medium-icon-link new-purchase-button", remote: true %>
