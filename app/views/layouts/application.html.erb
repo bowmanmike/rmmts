@@ -85,7 +85,7 @@
       <%= yield %>
     </div>
 
-    <% if current_user %>
+    <% if current_user && (controller_name != "conversations") %>
       <footer class="footer-2" role="contentinfo">
         <div class="footer-logo">
           <p class="chortal-footer-logo">chortal</p>
