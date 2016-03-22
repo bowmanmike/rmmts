@@ -38,8 +38,8 @@
   }
 
   @include media($small-screen-only) {
-    @include span-columns(11);
-    @include shift(0.5);
+    @include span-columns(10);
+    @include shift(1);
     &.is-active {
       max-height: 80%;
     }

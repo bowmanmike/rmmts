@@ -122,8 +122,11 @@
   }
 
   .info-text {
-    overflow: scroll;
     height: 70%;
+
+    @include media($small-screen-only) {
+      overflow: scroll;
+    }
 
     .info-div-column {
       @include span-columns(12);
