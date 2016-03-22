@@ -1,6 +1,6 @@
 .messaging-global {
   @include outer-container(98%);
-  height: 100%
+  height: calc(100% - 1em);
 }
 
 .messaging-header {
@@ -9,6 +9,8 @@
   padding: 0.5rem 0;
   text-align: center;
   cursor: pointer;
+  position: fixed;
+  background-color: $white;
 
   @include media($medium-screen-up) {
     margin-top: 1rem;
@@ -54,9 +56,8 @@
 .messages {
   @include outer-container;
   width: 100%;
-  height: calc(100% - 7rem);
-  overflow-x: hidden;
-  overflow-y: scroll;
+  height: 100%;
+  overflow: auto;
   padding: 0.5rem;
   color: $medium-gray;
 
@@ -81,14 +82,12 @@
   bottom: 0;
   left: 0;
   padding: 0.5rem 0 0 0;
-  height: 7rem;
 
   @include media($medium-screen-only) {
     @include span-columns(8);
     @include shift(4);
     position: fixed;
     display: inline-block;
-    height: 7rem;
   }
 
   @include media($large-screen-up) {
@@ -97,7 +96,6 @@
     max-width: 584px;
     position: fixed;
     display: inline-block;
-    height: 7rem;
   }
 
   .action {
