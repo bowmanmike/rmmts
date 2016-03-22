@@ -16,7 +16,7 @@ class AnnouncementsController < ApplicationController
 
   def create
     @announcement = @house.announcements.build(announcement_params)
-    if announcement_params[:anonymous] = "1"
+    if params[:anonymous]
       @announcement.mate_id = nil
     else
       @announcement.mate = current_user
