@@ -65,7 +65,7 @@ class MatesController < ApplicationController
       elsif mate_params[:notify_sms] || mate_params[:notify_email]
         flash[:notice] = "Notification settings changed!"
         @mate.update_all_notifications
-        redirect_to house_path(@mate.house)
+        redirect_to :back
       elsif mate_params[:house_id].blank?
         flash[:notice] = "You have left your house!"
         @mate.chores = []
