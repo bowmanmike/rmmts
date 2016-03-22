@@ -5,31 +5,6 @@
     <% else %>
       <%= image_tag "noprofilephoto.svg", class: "no-photo mate-avatar" %>
     <% end %>
-    <% if @mate == current_user %>
-      <%= link_to button_tag("Edit profile", class: "large-button"), edit_mate_path(@mate), class: "edit-mate-link", remote: true %>
-    <% end %>
-    <div class="mate-notifications">
-      <% if @mate == current_user %>
-        <h3>Notification Preferences</h3>
-        <p>Updating these settings will update your notification settings for all chores, expenses, and purchases.</p>
-        <%= form_for @mate, class: "mate-notifications", remote: true do |f| %>
-
-            <%= f.label :notify_email, for: "email_mate_#{@mate.id}", class: "label-switch" do %>
-              <%= f.check_box :notify_sms, id: "email_mate_#{@mate.id}" %>
-              <div class="checkbox"></div>
-              Email
-            <% end %>
-
-            <%= f.label :notify_sms, for: "sms_mate_#{@mate.id}", class: "label-switch" do %>
-              <%= f.check_box :notify_sms, id: "sms_mate_#{@mate.id}" %>
-              <div class="checkbox"></div>
-              SMS
-            <% end %>
-
-            <%= f.submit "Update", class: "mate-form-submit large-button" %>
-        <% end %>
-      <% end %>
-    </div>
   </div>
   <div class="mate-summary">
     <h1><%= @mate.full_name %></h1>
@@ -37,10 +12,14 @@
       Username: <%= @mate.username %><br>
       <% if @mate.house %>
         Lives at <%= @mate.house.name %>
-      <% else %>
-        You haven't joined a house yet. Find one <%= link_to "here.", houses_path %>
       <% end %>
     </p>
+    <% if @mate == current_user %>
+      <%= link_to button_tag("Edit profile", class: "large-button"), edit_mate_path(@mate), class: "edit-mate-link", remote: true %>
+      <% if @mate.house == nil %>
+        <%= link_to button_tag("Join a house", class: "large-button"), houses_path %>
+      <% end %>
+    <% end %>
   </div>
   <div class="mate-point-container">
     <div class="mate-point-summary">
@@ -54,32 +33,32 @@
   </div>
 </div>
 
+<% if (@mate == current_user) && (@mate.house != nil) %>
 
-
-
-  <div id="mate-duties" class="full-container">
-
-    <div id="mate-chores" class="chores-container card-container">
-      <div id="mate-chores-header" class="card-header">
-        <h3>Chores</h3>
-        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
+  <div id="mate-duties" class="mate-container chores-expenses">
+    <div class="chores-expenses-container">
+      <div class="mate-chores chores">
+        <div class="mate-chores-header card-header">
+          <h3>Chores</h3>
+          <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_chore_path(@house), class: "medium-icon-link new-chore-button", remote: true %>
+        </div>
+        <div class="mate-chores-list card-list">
+          <%= render @chores %>
+        </div>
       </div>
-      <div id="mate-chores-list" class="card-list">
-        <%= render @chores %>
-      </div>
-    </div>
-    <div id="mate-expenses" class="card-container">
-      <div id="mate-expenses-header" class="card-header">
-        <h3>Expenses</h3>
-        <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link edit-expense-button", remote: true %>
-      </div>
-      <div id="mate-expenses-list" class="expenses-list card-list">
-        <%= render @expenses || "No current expenses." %>
+      <div class="mate-expenses expenses">
+        <div class="mate-expenses-header card-header">
+          <h3>Expenses</h3>
+          <%= link_to image_tag("add.svg", class: "medium-icon"), new_house_expense_path(@house), class: "medium-icon-link new-expense-button", remote: true %>
+        </div>
+        <div class="mate-expenses-list expenses-list card-list">
+          <%= render @expenses || "No current expenses." %>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="purchases-container full-container">
+  <div class="purchases-container">
 
     <div id="mate-owed-payments" class="purchases-container card-container">
       <div id="mate-owed-payments-header" class="card-header">
@@ -124,3 +103,4 @@
       </div>
     </div>
   </div>
+<% end %>

@@ -27,8 +27,6 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-
-    <link href='https://fonts.googleapis.com/css?family=Raleway:400,700|Lobster' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -49,11 +47,12 @@
                 </li>
                 <li class="nav-link">
                   <%= link_to "#{current_user.username.capitalize}", mate_path(current_user), class: 'hvr-underline-from-left' %>
-                  <!-- <%#= link_to "Edit Profile", edit_mate_path(current_user), id: "edit-mate-link", remote: true %> -->
                 </li>
-                <li class="nav-link">
-                  <%= link_to "New House", new_house_path, class: 'hvr-underline-from-left' %>
-                </li>
+                <% if @mate.house == nil %>
+                  <li class="nav-link">
+                    <%= link_to "New House", new_house_path, class: 'hvr-underline-from-left' %>
+                  </li>
+                <% end %>
                 <li class="nav-link">
                   <%= link_to "Log out", logout_path, method: :post, class: 'hvr-underline-from-left' %>
                 </li>
