@@ -70,19 +70,21 @@
       </header>
     <% end %>
 
-    <div class="flash"></div>
+    <div class="wrapper-for-content-outside-of-footer">
+      <div class="flash"></div>
 
-    <div id="overlay"></div>
+      <div id="overlay"></div>
 
-    <div class="popup">
-      <div class="popup-layout">
-        <span class="close-popup-link close-button">close</span>
+      <div class="popup">
+        <div class="popup-layout">
+          <span class="close-popup-link close-button">close</span>
+        </div>
+        <div class="popup-form"></div>
       </div>
-      <div class="popup-form"></div>
-    </div>
 
-    <div class="content">
-      <%= yield %>
+      <div class="content">
+        <%= yield %>
+      </div>
     </div>
 
     <% if current_user && (controller_name != "conversations") %>
