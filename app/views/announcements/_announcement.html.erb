@@ -7,7 +7,7 @@
         <%= link_to image_tag("noprofilephoto.svg", class: "no-photo announcement-mate-avatar"), mate_path(announcement.mate) %>
       <% end %>
     <% else %>
-      <%= link_to image_tag("noprofilephoto.svg", class: "no-photo announcement-mate-avatar"), mate_path(announcement.mate) %>
+      <%= image_tag "noprofilephoto.svg", class: "no-photo announcement-mate-avatar" %>
     <% end %>
     <p>
       <% if announcement.mate.present? %>
