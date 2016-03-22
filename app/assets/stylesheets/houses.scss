@@ -262,6 +262,10 @@
   }
 }
 
+.no-house-container {
+  height: 100vh;
+}
+
 .house-container {
   @include span-columns(12);
 

@@ -75,10 +75,8 @@
   </div>
 </div>
 
-<% if current_user && current_user.house == @house %>
-
+<% if current_user && (current_user.house == @house) %>
   <div class="house-container">
-
     <div class="announcements-container">
       <div class="announcements">
         <div class="announcements-header full-card-header">
@@ -112,7 +110,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="chores">
       <div class="chores-header">
         <h3>Chores</h3>
@@ -164,4 +162,6 @@
       </div>
     </div>
   </div>
+<% else %>
+  <div class="no-house-container"></div>
 <% end %>
