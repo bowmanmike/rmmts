@@ -9,8 +9,11 @@
   padding: 0.5rem 0;
   text-align: center;
   cursor: pointer;
-  position: fixed;
   background-color: $white;
+
+  @include media($small-screen-only) {
+    position: fixed;
+  }
 
   @include media($medium-screen-up) {
     margin-top: 1rem;
