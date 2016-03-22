@@ -14,10 +14,22 @@
     text-align: right;
   }
 
-  .close-popup-link {
-    text-decoration: underline;
-    color: $medium-gray;
+  .close-popup-link.close-button {
+    width: 3rem;
+    margin-right: 0.2rem;
+    background-color: transparent;
+    border: 1px solid $black-38;
+    padding: 0.2rem;
+    box-shadow: none;
+    color: $black-38;
+    font-size: 0.8rem;
     cursor: pointer;
+
+    &:hover {
+      background-color: $black-38;
+      color: $white;
+      border: 0;
+    }
   }
 
   @include media($medium-screen-up) {

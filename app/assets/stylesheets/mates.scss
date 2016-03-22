@@ -64,13 +64,13 @@
 
     @include media($medium-screen-only) {
       @include span-columns(5);
-      padding-top: 3rem;
+      padding-top: 2rem;
       text-align: left;
     }
 
     @include media($large-screen-up) {
       @include span-columns(4);
-      padding-top: 3rem;
+      padding-top: 2rem;
       text-align: left;
     }
 
@@ -86,7 +86,6 @@
 
     @include media($large-screen-up) {
       @include span-columns(3);
-      margin-top: 1rem;
       margin-right: 0;
       padding-right: 2rem;
     }
@@ -208,7 +207,7 @@
       }
 
       .card-header {
-        
+
         h3 {
           display: inline-block;
           margin-bottom: 1rem;
