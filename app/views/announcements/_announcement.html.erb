@@ -20,7 +20,7 @@
         <% if announcement.mate_id.present? %>
           <%= announcement.created_at.localtime.strftime('%a, %b %d %Y %l:%M %p') %>
         <% else %>
-          Posted anomymously at <%= announcement.created_at.localtime.strftime('%a, %b %d %Y %l:%M %p') %>
+          Posted anonymously at <%= announcement.created_at.localtime.strftime('%a, %b %d %Y %l:%M %p') %>
         <% end %>
       </p>
       <p class="announcement-links">
