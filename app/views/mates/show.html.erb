@@ -58,48 +58,50 @@
     </div>
   </div>
 
-  <div class="purchases-container">
+  <div class="owed-owing-purchases">
 
-    <div id="mate-owed-payments" class="purchases-container card-container">
-      <div id="mate-owed-payments-header" class="card-header">
-        <h3>
-          <% if @mate == current_user %>
-            You Owe:
+    <div class="purchases-container">
+      <div class="mate-owed-payments owed-purchases card-container">
+        <div class="mate-owed-payments-header card-header">
+          <h3>
+            <% if @mate == current_user %>
+              You Owe:
+            <% else %>
+              <%= @mate.first_name.capitalize %> Owes:
+            <% end %>
+            <%= number_to_currency(@mate.sum_owed_to_mates) %>
+          </h3>
+        </div>
+        <div class="mate-owed-payments-list card-list">
+          <% if @housemate_purchases.any? %>
+            <%= render @housemate_purchases %>
           <% else %>
-            <%= @mate.first_name.capitalize %> Owes:
+            <p>No purchases yet.</p>
           <% end %>
-          <%= number_to_currency(@mate.sum_owed_to_mates) %>
-        </h3>
+        </div>
       </div>
-      <div id="mate-owed-payments-list" class="card-list">
-        <% if @housemate_purchases.any? %>
-          <%= render @housemate_purchases %>
-        <% else %>
-          <p>No purchases yet.</p>
-        <% end %>
-      </div>
-    </div>
 
-    <div id="mate-purchases" class="purchases-container card-container">
-      <div id="mate-purchases-header" class="card-header">
-        <h3>
+      <div class="mate-purchases owing-purchases card-container">
+        <div class="mate-purchases-header card-header">
+          <h3>
+            <% if @mate == current_user %>
+              You Are Owed:
+            <% else %>
+              <%= @mate.first_name.capitalize %> Is Owed:
+            <% end %>
+            <%= number_to_currency(@mate.sum_owed_to_self) %>
+          </h3>
           <% if @mate == current_user %>
-            You Are Owed:
-          <% else %>
-            <%= @mate.first_name.capitalize %> Is Owed:
+            <%= link_to image_tag("add.svg", class: "medium-icon"), new_mate_purchase_path(@mate), class: "medium-icon-link new-purchase-button", remote: true %>
           <% end %>
-          <%= number_to_currency(@mate.sum_owed_to_self) %>
-        </h3>
-        <% if @mate == current_user %>
-          <%= link_to image_tag("add.svg", class: "medium-icon"), new_mate_purchase_path(@mate), class: "medium-icon-link new-purchase-button", remote: true %>
-        <% end %>
-      </div>
-      <div id="mate-purchases-list" class="card-list">
-        <% if @purchases.any? %>
-          <%= render @purchases %>
-        <% else %>
-          <p>No purchases yet.</p>
-        <% end %>
+        </div>
+        <div class="mate-purchases-list card-list">
+          <% if @purchases.any? %>
+            <%= render @purchases %>
+          <% else %>
+            <p>No purchases yet.</p>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

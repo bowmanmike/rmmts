@@ -30,45 +30,48 @@
   </head>
 
   <body>
-    <% if current_user %>
-      <header class="navigation" role="banner">
-        <div class="navigation-wrapper">
-          <%= link_to "chortal", root_path, class: "site-logo logo" %>
-          <%= link_to "MENU", "", class: "navigation-menu-button", id: "js-mobile-menu"  %>
-          <nav role="navigation">
-            <ul id="js-navigation-menu" class="navigation-menu show">
-              <% if current_user %>
-                <li class="nav-link">
-                  <%= link_to "House", house_path(current_user.house), class: 'hvr-underline-from-left' if current_user.house.present? %>
-                  <%= link_to "Houses", houses_path, class: 'hvr-underline-from-left' if current_user.house.blank? %>
-                </li>
-                <li class="nav-link">
-                  <%= link_to "Messages", conversations_path, class: 'hvr-underline-from-left' %>
-                </li>
-                <li class="nav-link">
-                  <%= link_to "#{current_user.username.capitalize}", mate_path(current_user), class: 'hvr-underline-from-left' %>
-                </li>
-                <% if @mate.house == nil %>
+    <% unless controller_name == "landing" %>
+      <% if current_user %>
+        <header class="navigation" role="banner">
+          <div class="navigation-wrapper">
+            <%= link_to "chortal", root_path, class: "site-logo logo" %>
+            <%= link_to "MENU", "", class: "navigation-menu-button", id: "js-mobile-menu"  %>
+            <nav role="navigation">
+              <ul id="js-navigation-menu" class="navigation-menu show">
+                <% if current_user %>
                   <li class="nav-link">
-                    <%= link_to "New House", new_house_path, class: 'hvr-underline-from-left' %>
+                    <%= link_to "House", house_path(current_user.house), class: 'hvr-underline-from-left' if current_user.house.present? %>
+                    <%= link_to "Houses", houses_path, class: 'hvr-underline-from-left' if current_user.house.blank? %>
+                  </li>
+                  <li class="nav-link">
+                    <%= link_to "Messages", conversations_path, class: 'hvr-underline-from-left' %>
+                  </li>
+                  <li class="nav-link">
+                    <%= link_to "#{current_user.username.capitalize}", mate_path(current_user), class: 'hvr-underline-from-left' %>
+                  </li>
+                  <% if @mate.house == nil %>
+                    <li class="nav-link">
+                      <%= link_to "New House", new_house_path, class: 'hvr-underline-from-left' %>
+                    </li>
+                  <% end %>
+                  <li class="nav-link">
+                    <%= link_to "Log out", logout_path, method: :post, class: 'hvr-underline-from-left' %>
+                  </li>
+                <% else %>
+                  <li class="nav-link">
+                    <%= link_to "Login", new_session_path, id: "login-link", remote: true, class: 'hvr-underline-from-left' %>
+                  </li>
+                  <li class="nav-link">
+                    <%= link_to "Sign up", new_mate_path, id: "signup-link", remote: true, class: 'hvr-underline-from-left' %>
                   </li>
                 <% end %>
-                <li class="nav-link">
-                  <%= link_to "Log out", logout_path, method: :post, class: 'hvr-underline-from-left' %>
-                </li>
-              <% else %>
-                <li class="nav-link">
-                  <%= link_to "Login", new_session_path, id: "login-link", remote: true, class: 'hvr-underline-from-left' %>
-                </li>
-                <li class="nav-link">
-                  <%= link_to "Sign up", new_mate_path, id: "signup-link", remote: true, class: 'hvr-underline-from-left' %>
-                </li>
-              <% end %>
-            </ul>
-          </nav>
-        </div>
-      </header>
+              </ul>
+            </nav>
+          </div>
+        </header>
+      <% end %>
     <% end %>
+
 
     <div class="flash"></div>
 
@@ -85,5 +88,29 @@
       <%= yield %>
     </div>
 
+    <% unless controller_name == "landing" %>
+      <footer class="footer-2" role="contentinfo">
+        <div class="footer-logo">
+          <p class="chortal-footer-logo">chortal</p>
+        </div>
+          <!-- <ul>
+            <li></li>
+          </ul> -->
+
+          <div class="footer-secondary-links">
+            <ul>
+              <li>Created by:</li>
+              <li><%= link_to "Mike Bowman", "http://bowmanmike.com/" %></li>
+              <li><%= link_to "Patrick Cruikshank", "https://ca.linkedin.com/in/pcruikshank" %></li>
+              <li><%= link_to "Karen Ho", "http://karenjho.com/" %></li>
+            </ul>
+            <ul class="footer-social">
+              <li>
+                <%= link_to image_tag("github.png"), "https://github.com/pcruiksh/rmmts" %>
+              </li>
+            </ul>
+          </div>
+      </footer>
+    <% end %>
   </body>
 </html>
